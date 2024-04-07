@@ -1,7 +1,7 @@
 #ifndef BANGUNAN_HPP
 #define BANGUNAN_HPP
 
-#include "../Sellable/Sellable.hpp"
+#include "../Sellable/Sellable.cpp"
 #include <map>
 
 /* <ID> <KODE_HURUF> <NAME> <PRICE> <MATERIAL_1> <MATERIAL_1_QUANTITY> <MATERIAL_2> <MATERIAL_2_QUANTITY> ...*/
@@ -12,6 +12,8 @@ private:
     map<string, int> material; // <string nama_material, int jumlah_material>
 
 public:
+    static int id_bangunan;
+
     // ctor default
     Bangunan();
 
@@ -21,20 +23,19 @@ public:
     // operator overloading
     Bangunan &operator=(const Bangunan &other);
 
-    // cctor
-    Bangunan(const Bangunan &other);
-
     // dtor
     ~Bangunan();
 
     /* Methods */
     // getter
+    int getIdBangunan();
+
     map<string, int> getMaterial();
 
     // setter
-    void setMaterial(map<string, int> material);
+    void setIdBangunan(int id);
 
-    void bangun();
+    void setMaterial(map<string, int> material);
 };
 
 #endif

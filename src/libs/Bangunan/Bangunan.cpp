@@ -4,45 +4,55 @@
 
 // map<string, int> material; // <string nama_material, int jumlah_material>
 
+int Bangunan::id_bangunan = 1;
+
 // ctor default
-Bangunan::Bangunan(){
+Bangunan::Bangunan()
+{
     this->material = {};
 }
 
 // ctor user defined
-Bangunan::Bangunan(int id, string kode, string nama_bangunan, int harga, map<string, int> material){
-    this->id_barang = id;
-    this->kode_huruf = kode;
-    this->nama_barang = nama_bangunan;
-    this->harga_barang = harga;
+Bangunan::Bangunan(int id, string kode, string nama_bangunan, int harga, map<string, int> material) : Sellable(kode, nama_bangunan, harga)
+{
+    this->id_bangunan = id;
     this->material = material;
 }
 
 // operator overloading
-Bangunan &Bangunan::operator=(const Bangunan &other){
+Bangunan &Bangunan::operator=(const Bangunan &other)
+{
+    this->id_bangunan = other.id_bangunan;
     this->material = other.material;
     return *this;
 }
 
-// cctor
-Bangunan::Bangunan(const Bangunan &other): Sellable(other){
-    this->material = other.material;
-}
-
 // dtor
-Bangunan::~Bangunan(){}
+Bangunan::~Bangunan()
+{
+    // this->material.clear();
+    cout << "Bangunan " << this->getNamaBarang() << " telah dihancurkan" << endl;
+}
 
 /* Methods */
 // getter
-map<string, int> Bangunan::getMaterial(){
+int Bangunan::getIdBangunan()
+{
+    return id_bangunan++;
+}
+
+map<string, int> Bangunan::getMaterial()
+{
     return this->material;
 }
 
 // setter
-void Bangunan::setMaterial(map<string, int> material){
-    this->material = material;
+void Bangunan::setIdBangunan(int id)
+{
+    this->id_bangunan = id;
 }
 
-void Bangunan::bangun(){
-    
+void Bangunan::setMaterial(map<string, int> material)
+{
+    this->material = material;
 }
