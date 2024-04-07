@@ -22,6 +22,8 @@ public:
 
     void Simpan(string path);
 
+
+
 };
 
 #endif
