@@ -8,15 +8,15 @@ using namespace std;
 int main()
 {
     // Hewan a;
-    // a.setIdBarang(1);
+    // a.setIdHewan(1);
     // a.setHargaBarang(1000);
-    // cout << a.getIdBarang() << endl;
+    // cout << a.getIdHewan() << endl;
     // cout << a.getHargaBarang() << endl;
 
-    Hewan hewan = Hewan::tambahHewan();
-    // // ctrl + alt + N
+    // Hewan hewan = Hewan::tambahHewan();
+    // // // ctrl + alt + N
     // cout << "Ini Output: ";
-    // cout << hewan.getIdBarang() << ' ';
+    // cout << hewan.getIdHewan() << ' ';
     // cout << hewan.getKodeHuruf() << ' ';
     // cout << hewan.getNamaBarang() << ' ';
     // cout << hewan.getTipeHewan() << ' ';
@@ -33,28 +33,29 @@ int main()
     // cout << hewan.getWeight() << ' ';
     // cout << hewan.getHargaBarang() << endl;
 
-    // ifstream inFile("../File Config/animal.txt");
-    // vector<Hewan> hewanList;
+    ifstream inFile("../File Config/animal.txt");
+    vector<Hewan> hewanList;
 
-    // if (!inFile)
-    // {
-    //     cerr << "Unable to open file" << endl;
-    //     return 1;
-    // }
+    if (!inFile)
+    {
+        cerr << "Unable to open file" << endl;
+        return 1;
+    }
 
-    // while (inFile.peek() != EOF)
-    // {
-    //     Hewan hewan = Hewan::tambahHewan(inFile);
-    //     hewanList.push_back(hewan);
+    while (inFile.peek() != EOF)
+    {
+        Hewan hewan = Hewan::tambahHewanConfig(inFile);
+        hewanList.push_back(hewan);
 
-    //     cout << "ID: " << hewan.getIdBarang() << ", "
-    //          << "Kode: " << hewan.getKodeHuruf() << ", "
-    //          << "Nama: " << hewan.getNamaBarang() << ", "
-    //          << "Tipe: " << hewan.getTipeHewan() << ", "
-    //          << "Berat: " << hewan.getWeight() << ", "
-    //          << "Harga: " << hewan.getHargaBarang() << endl;
-    // }
+        cout << "ID: " << hewan.getIdHewan() << ", "
+             << "Kode: " << hewan.getKodeHuruf() << ", "
+             << "Nama: " << hewan.getNamaBarang() << ", "
+             << "Tipe: " << hewan.getTipeHewan() << ", "
+             << "Berat: " << hewan.getWeight() << ", "
+             << "Berat Panen: " << hewan.getWeightToHarvest() << ", "
+             << "Harga: " << hewan.getHargaBarang() << endl;
+    }
 
-    // inFile.close();
+    inFile.close();
     return 0;
 }
