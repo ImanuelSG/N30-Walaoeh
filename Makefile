@@ -15,7 +15,7 @@ build: files
 clean:
 	rm -rf $(OUTPUT_FOLDER)/*.o $(OUTPUT_FOLDER)/Walaoeh
 
-files: print.o h.o main.o
+files: print.o h.o main.o GameWorld.o
 	@echo Linking object files
 	@$(CC) $(wildcard $(OUTPUT_FOLDER)/*.o) -o $(OUTPUT_FOLDER)/Walaoeh
 
@@ -30,6 +30,10 @@ h.o: ${SOURCE_FOLDER}/compile/h.cpp
 main.o: src/main.cpp
 	@echo Compiling $<
 	@$(CC) $(CFLAGS) -c $< -o $(OUTPUT_FOLDER)/main.o
+
+GameWorld.o: src/In-Progress/GameWorld.cpp
+	@echo Compiling $<
+	@$(CC) $(CFLAGS) -c $< -o $(OUTPUT_FOLDER)/GameWorld.o
 
 execute:
 	@./$(OUTPUT_FOLDER)/Walaoeh

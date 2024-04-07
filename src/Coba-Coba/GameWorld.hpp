@@ -18,6 +18,10 @@ public:
         pemain.push_back(player);
     }
 
+    void Muat(string path);
+
+    void Simpan(string path);
+
 };
 
 #endif

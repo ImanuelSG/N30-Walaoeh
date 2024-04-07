@@ -1,9 +1,15 @@
 #include <iostream>
+#include <sstream>
+#include <filesystem>
+#include <fstream>
 #include "./libs/Exception/Exception.hpp"
 #include "./libs/compile/h.hpp"
-#include <sstream>
+
+#include "Coba-Coba/GameWorld.hpp"
 
 using namespace std;
+
+namespace fs = std::filesystem;
 
 bool isNumber(const string &s)
 {
@@ -14,16 +20,19 @@ int main()
 {
     try
     {
-        string input;
-        cout << "Masukkan angka: ";
-        cin >> input;
+        string path;
+        cout << "Mohon masukkan path file: ";
+        cin >> path;
+        GameWorld g;
 
-        if (!isNumber(input))
-        {
-            throw NumericException();
+        while (!(fs::exists(path) && (path.length() >= 4) && (path.substr(path.length() - 4) == ".txt"))) {
+            cout << "Path yang diberikan tidak ditemukan atau bukan file txt. Mohon masukkan ulang path: ";
+            cin >> path;
         }
 
-        print2();
+        g.Muat(path);
+
+
     }
     catch (const NumericException &e)
     {
