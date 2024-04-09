@@ -17,9 +17,11 @@ public:
     GameWorld();
     ~GameWorld();
     void startGame();
+    void displayHeader();
     void checkEndGame();
     void initializeConfigs();
-    void safeGameState();
+    void saveGameState();
     void loadGameState();
+    void initiaizeDefaultGame();
     void addPlayer(Pemain &pemain);
 };

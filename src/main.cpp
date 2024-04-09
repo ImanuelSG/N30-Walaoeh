@@ -1,23 +1,17 @@
 #include <iostream>
 #include "./libs/Exception/Exception.hpp"
-#include <sstream>
+#include "./libs/GameWorld/GameWorld.hpp"
 
 using namespace std;
 
-bool isNumber(const string &s)
-{
-    return !s.empty() && s.find_first_not_of("0123456789") == string::npos;
-}
-
 int main()
 {
-    try
-    {
-        }
-    catch (const NumericException &e)
-    {
-        cout << e.what() << endl;
-    }
+    GameWorld game;
+    game.initializeConfigs();
+    game.displayHeader();
+    string ans;
+    cin >> ans;
+    game.startGame();
 
     return 0;
 }

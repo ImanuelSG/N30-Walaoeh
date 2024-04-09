@@ -20,7 +20,7 @@ class InvalidInputException : public exception
 public:
     const char *what() const noexcept override
     {
-        return "Input anda tidak valid.\nSilahkan masukkan input yang sesuai.";
+        return "Input yang anda masukkan tidak valid !.\nSilahkan masukkan input yang sesuai.";
     }
 };
 
