@@ -43,5 +43,9 @@ class NotEnoughMoneyException : public exception{
     const char *what();
 };
 
+class NotEnoughHewanException : public exception {
+    const char *what();
+};
+
 
 #endif

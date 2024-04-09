@@ -2,13 +2,18 @@
 #define PETERNAK_HPP
 
 #include "../Pemain.hpp"
+#include "../Storage/Storage.hpp"
+#include "../Hewan/hewan.hpp"
+
 
 class Peternak : public Pemain
 {
 private:
     static int ternak_n;
     static int ternak_m;
-    // storage HEWAN
+    Storage<Hewan&> peternakan;
+    void cetakPenyimpananHewan();
+    int countHewanInventory();
 public:
     Peternak(string name, int gulden, int berat);
     ~Peternak();

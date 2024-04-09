@@ -50,6 +50,8 @@ public:
     // static method
     static ProdukHewan tambahProdukHewan(ifstream &file);
 
+    bool isEdible() override;
+
 };
 
 #endif

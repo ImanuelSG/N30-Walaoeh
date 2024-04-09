@@ -4,9 +4,9 @@
 
 using namespace std;
 
-bool isValidInput(string input);
+bool isValidInputStorage(string input);
 
-int getCol(char firstChar);
-int getRow(string input);
+int getColStorage(char firstChar);
+int getRowStorage(string input);
 
 string getValidInputStorage(string order);

@@ -1,6 +1,9 @@
 #include "Pemain.hpp"
+#include "../Utils/utils.hpp"
 
 Pemain::Pemain(string name, int gulden, int berat): name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m) {}
+
+Pemain::~Pemain(){}
 
 int Pemain::getGulden() const
 {
@@ -39,17 +42,36 @@ void Pemain::makan()
 
     do
     {
+        slot = getValidInputStorage("Slot");
 
-    } while ()
+        int col = getColStorage(slot[0]);
+        int row = getRowStorage(slot);
+        
+        Sellable* item = inventory.getElement(row,col);
+        if (item->isEdible()){
+            inventory.deleteAt(row,col);
+            int addedWeight = item->getAddedWeight();
+
+            setBerat(getBerat()-addedWeight);
+            valid = true;
+
+        } else if (!item->isEdible()) {
+            cout << "Apa yang kamu lakukan??!! Kamu mencoba untuk memakan itu?!!" << endl;
+            cout << "Silahkan masukan slot yang berisi makanan." << endl << endl;
+
+        } else if (item == nullptr ){
+            cout << "Kamu mengambil harapan kosong dari penyimpanan." << endl;
+            cout << "Silahkan masukan slot yang berisi makanan." << endl << endl;
+        }
+    } while (!valid);
     
-    
-
-
 }
 
 void Pemain::next(){}
 
-void Pemain::cetakPenyimpanan(){}
+void Pemain::cetakPenyimpanan(){
+
+}
 
 void Pemain::pungutPajak()
 {
@@ -59,6 +81,11 @@ void Pemain::pungutPajak()
 void Pemain::cetakLadang()
 {
     throw InvalidCommandException();
+}
+
+void Pemain::cetakPeternakan()
+{
+    
 }
 
 void Pemain::tanam()
@@ -80,6 +107,7 @@ void Pemain::kasihMakan()
 {
     throw InvalidCommandException();
 }
+
 
 void Pemain::panen()
 {

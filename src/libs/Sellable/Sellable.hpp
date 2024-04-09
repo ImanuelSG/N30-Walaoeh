@@ -36,6 +36,11 @@ public:
     void setKodeHuruf(string kode);
     void setNamaBarang(string nama);
     void setHargaBarang(int harga);
+
+    // additional
+    virtual bool isEdible();
+    virtual int getAddedWeight() = 0;
+    virtual bool isHewan();
 };
 
 #endif

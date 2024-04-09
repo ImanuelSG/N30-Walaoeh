@@ -127,3 +127,5 @@ ProdukHewan ProdukHewan::tambahProdukHewan(ifstream &file)
 
     return ProdukHewan(id, kode, nama_produk, tipe, origin, added_weight, harga);
 }
+
+bool ProdukHewan::isEdible()  {return true;}

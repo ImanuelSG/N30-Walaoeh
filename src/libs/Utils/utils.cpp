@@ -29,11 +29,11 @@ bool isValidInputStorage(string input) {
     return valid;
 }
 
-int getCol(char firstChar){
+int getColStorage(char firstChar){
     return firstChar - 'A';
 }
 
-int getRow(string input){
+int getRowStorage(string input){
     return stoi(input.substr(1))-1;
 }
 
@@ -45,7 +45,7 @@ string getValidInputStorage(string order){
     {
         cout << order <<" : ";
         cin >> input;
-        valid = isValidInput(input);
+        valid = isValidInputStorage(input);
         if (!valid){
             cout << "Masukkan dengan format yang benar\n";
         } else {

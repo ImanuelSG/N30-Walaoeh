@@ -62,3 +62,12 @@ void Sellable::setHargaBarang(int harga)
 {
     this->harga_barang = harga;
 }
+
+// additional
+bool Sellable::isEdible(){
+    return false;
+}
+
+bool Sellable::isHewan(){
+    return false;
+}
