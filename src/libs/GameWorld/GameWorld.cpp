@@ -40,9 +40,11 @@ void GameWorld::startGame()
         CommandManager.setIsTakingTurn(true);
         while (CommandManager.getIsTakingTurn())
         {
+            cout << "> ";
             string command;
             cin >> command;
             CommandManager.execute(command, listOfPLayers, currPlayerIndex);
+            cout << endl;
         }
         CommandManager.getNextPlayerIndex();
         currPlayerIndex = CommandManager.getNextPlayerIndex();

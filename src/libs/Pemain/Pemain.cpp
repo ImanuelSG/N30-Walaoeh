@@ -6,6 +6,14 @@ Pemain::Pemain(string name, int gulden, int berat)
     this->gulden = gulden;
     this->berat = berat;
 }
+
+Pemain::~Pemain()
+{
+    for (auto item : this->inventory)
+    {
+        delete item;
+    }
+}
 int Pemain::getGulden() const
 {
     return this->gulden;
@@ -20,3 +28,46 @@ string Pemain::getName() const
 {
     return this->name;
 }
+
+void Pemain::setGulden(int num)
+{
+    this->gulden = num;
+}
+
+int Pemain::getKekayaan() const
+{
+    int kekayaan = 0;
+    for (auto item : this->inventory)
+    {
+        kekayaan += item->getHargaBarang();
+    }
+
+    return kekayaan + this->getGulden();
+}
+
+void Pemain::pungutPajak(const vector<Pemain *> &pemain)
+{
+    throw WalikotaInputException();
+}
+void Pemain::cetakLadang() {}
+void Pemain::cetakPeternakan() {}
+void Pemain::tanam() {}
+void Pemain::ternak() {}
+
+void Pemain::bangunBangunan()
+{
+    throw WalikotaInputException();
+}
+void Pemain::kasihMakan()
+{
+}
+void Pemain::beli() {}
+void Pemain::jual() {}
+void Pemain::panen() {}
+
+int Pemain::tambahPemain(vector<Pemain *> &pemain)
+{
+    throw WalikotaInputException();
+}
+
+int Pemain::getKKP() {}

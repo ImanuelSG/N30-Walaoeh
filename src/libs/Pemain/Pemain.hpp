@@ -1,7 +1,9 @@
 #ifndef PEMAIN_HPP
 #define PEMAIN_HPP
 
-#include <iostream>
+#include <vector>
+#include "../Exception/Exception.hpp"
+#include "../Sellable/Sellable.hpp"
 
 using namespace std;
 class Pemain
@@ -9,6 +11,8 @@ class Pemain
 protected:
     static int inventory_n;
     static int inventory_m;
+    vector<Sellable *> inventory;
+
     string name;
     int gulden;
     int berat;
@@ -18,20 +22,20 @@ public:
     ~Pemain();
     /**
      * @brief Getter nama pema
-     * 
-     * @return string 
+     *
+     * @return string
      */
     string getName() const;
     /**
      * @brief Getter gulden pemain
-     * 
-     * @return int 
+     *
+     * @return int
      */
     int getGulden() const;
     /**
      * @brief Getter berat pemain
-     * 
-     * @return int 
+     *
+     * @return int
      */
     int getBerat() const;
     /**
@@ -43,7 +47,7 @@ public:
      * @brief Setter untuk Gulden pemain
      *
      */
-    void setGulden();
+    void setGulden(int num);
     /**
      * @brief Setter untuk berat pemain
      *
@@ -65,28 +69,38 @@ public:
      */
     void cetakPenyimpanan();
     /**
-     * @brief Melakukan Pemungutan Pajak, Khusus untuk walikota
-     *
+     * @brief Menghitung Kekayaan pemain
      */
-    virtual void pungutPajak() = 0;
-    virtual void cetakLadang() = 0;
-    virtual void cetakPeternakan() = 0;
-    virtual void tanam() = 0;
-    virtual void ternak() = 0;
+    int getKekayaan() const;
+    /**
+     * @brief Pungut Pajak, Khusus untuk walikota
+     *
+     * @param pemain vector pemain yang akan dikenakan pajak
+     */
+    virtual void pungutPajak(const vector<Pemain *> &pemain);
+    virtual void cetakLadang();
+    virtual void cetakPeternakan();
+    virtual void tanam();
+    virtual void ternak();
     /**
      * @brief Membangun Bangunan, Khusus untuk walikota
-     * 
+     *
      */
-    virtual void bangun() = 0;
-    virtual void kasihMakan() = 0;
-    virtual void beli() = 0;
-    virtual void jual() = 0;
-    virtual void panen() = 0;
+    virtual void bangunBangunan();
+    virtual void kasihMakan();
+    virtual void beli();
+    virtual void jual();
+    virtual void panen();
     /**
-     * @brief Menambah Pemain baru, Khusus untuk walikota
-     * 
+     * @brief Menambah pemain atau peternak, Khusus untuk walikota
+     *
+     * @param pemain vector pemain yang akan dimanipulasi
+     * @return index pemain baru (untuk menentukan urutan main nantinya)
      */
-    virtual void tambahPemain() = 0;
+    virtual int tambahPemain(vector<Pemain *> &pemain);
+
+    virtual int getKKP();
+    virtual string getRole() = 0;
 };
 
 #endif

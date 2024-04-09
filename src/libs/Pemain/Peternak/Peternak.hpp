@@ -18,6 +18,7 @@ public:
     void cetakPeternakan();
     void beli();
     void jual();
+    string getRole();
 };
 
 #endif

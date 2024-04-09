@@ -18,4 +18,10 @@ public:
     const char *what();
 };
 
+class WalikotaInputException : public exception
+{
+public:
+    const char *what();
+};
+
 #endif

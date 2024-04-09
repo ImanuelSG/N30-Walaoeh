@@ -5,9 +5,9 @@ using namespace std;
 
 int main()
 {
-    GameWorld game;
-    game.initializeConfigs();
-    game.displayHeader();
+    GameWorld MainGame;
+    MainGame.initializeConfigs();
+    MainGame.displayHeader();
     cout << endl;
     char ans;
     do
@@ -25,14 +25,14 @@ int main()
 
     if (ans == 'y' || ans == 'Y')
     {
-        game.loadGameState();
+        MainGame.loadGameState();
     }
     else
     {
-        game.initializeDefaultGame();
+        MainGame.initializeDefaultGame();
     }
 
-    game.startGame();
+    MainGame.startGame();
 
     return 0;
 }
