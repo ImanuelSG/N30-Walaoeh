@@ -13,30 +13,31 @@ private:
     int age;
 
 public:
+    int id_tanaman = 1;
+
     // ctor default
     Tanaman();
 
     // ctor user defined
-    Tanaman(int id, string kode, string nama_tanaman, string tipe, int durasi_panen, int harga);
+    Tanaman(int id, string kode, string nama_tanaman, string tipe, int umur, int durasi_panen, int harga);
 
     // operator overloading
     Tanaman &operator=(const Tanaman &other);
-
-    // cctor
-    Tanaman(const Tanaman &other);
 
     // dtor
     ~Tanaman();
 
     /* Methods */
     // getter
+    int getIdTanaman();
     string getTipeTanaman();
+    int getAge();
     int getDurationToHarvest();
-    //int getWeightToHarvest();
 
     // setter
+    void setIdTanaman(int id);
     void setTipeTanaman(string tipe);
-    void setDurationToHarvest(int durasi_panen);
+    void setAge(int age);
 
     static Tanaman tambahTanaman();
     static Tanaman tambahTanamanConfig(ifstream &file);

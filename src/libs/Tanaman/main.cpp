@@ -7,54 +7,56 @@ using namespace std;
 
 int main()
 {
-    Tanaman t;
-    t.setIdBarang(1);
-    t.setHargaBarang(1000);
-    cout << t.getIdBarang() << endl;
-    cout << t.getHargaBarang() << endl;
+    // Tanaman t;
+    // t.setIdTanaman(1);
+    // t.setHargaBarang(1000);
+    // cout << t.getIdTanaman() << endl;
+    // cout << t.getHargaBarang() << endl;
 
     // Tanaman tanaman = Tanaman::tambahTanaman();
-    //ctrl + alt + N
+
     // cout << "Ini Output: ";
-    // cout << tanaman.getIdBarang() << ' ';
+    // cout << tanaman.getIdTanaman() << ' ';
     // cout << tanaman.getKodeHuruf() << ' ';
     // cout << tanaman.getNamaBarang() << ' ';
     // cout << tanaman.getTipeTanaman() << ' ';
+    // cout << tanaman.getAge() << ' ';
     // cout << tanaman.getDurationToHarvest() << ' ';
-    //cout << tanaman.getHargaBarang() << endl;
+    // cout << tanaman.getHargaBarang() << endl;
 
-    // hewan.tambahWeightHewan(10);
+    // tanaman.tambahUmurTanaman(10);
 
     // cout << "Ini Output Berat setelah ditambah: ";
-    // cout << hewan.getIdBarang() << ' ';
-    // cout << hewan.getKodeHuruf() << ' ';
-    // cout << hewan.getNamaBarang() << ' ';
-    // cout << hewan.getTipeHewan() << ' ';
-    // cout << hewan.getWeight() << ' ';
-    // cout << hewan.getHargaBarang() << endl;
+    // cout << tanaman.getIdTanaman() << ' ';
+    // cout << tanaman.getKodeHuruf() << ' ';
+    // cout << tanaman.getNamaBarang() << ' ';
+    // cout << tanaman.getTipeTanaman() << ' ';
+    // cout << tanaman.getAge() << ' ';
+    // cout << tanaman.getDurationToHarvest() << ' ';
+    // cout << tanaman.getHargaBarang() << endl;
 
-    // ifstream inFile("../File Config/animal.txt");
-    // vector<Hewan> hewanList;
+    ifstream inFile("../File Config/plant.txt");
+    vector<Tanaman> tanamanList;
 
-    // if (!inFile)
-    // {
-    //     cerr << "Unable to open file" << endl;
-    //     return 1;
-    // }
+    if (!inFile)
+    {
+        cerr << "Unable to open file" << endl;
+        return 1;
+    }
 
-    // while (inFile.peek() != EOF)
-    // {
-    //     Hewan hewan = Hewan::tambahHewan(inFile);
-    //     hewanList.push_back(hewan);
+    while (inFile.peek() != EOF)
+    {
+        Tanaman tanaman = Tanaman::tambahTanamanConfig(inFile);
+        tanamanList.push_back(tanaman);
 
-    //     cout << "ID: " << hewan.getIdBarang() << ", "
-    //          << "Kode: " << hewan.getKodeHuruf() << ", "
-    //          << "Nama: " << hewan.getNamaBarang() << ", "
-    //          << "Tipe: " << hewan.getTipeHewan() << ", "
-    //          << "Berat: " << hewan.getWeight() << ", "
-    //          << "Harga: " << hewan.getHargaBarang() << endl;
-    // }
+        cout << "ID: " << tanaman.getIdTanaman() << ", "
+             << "Kode: " << tanaman.getKodeHuruf() << ", "
+             << "Nama: " << tanaman.getNamaBarang() << ", "
+             << "Tipe: " << tanaman.getTipeTanaman() << ", "
+             << "Umur: " << tanaman.getAge() << ", "
+             << "Harga: " << tanaman.getHargaBarang() << endl;
+    }
 
-    // inFile.close();
+    inFile.close();
     return 0;
 }

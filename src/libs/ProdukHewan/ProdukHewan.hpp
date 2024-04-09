@@ -4,8 +4,6 @@
 #include "../Produk/Produk.cpp"
 #include "../Hewan/Hewan.cpp"
 
-// #include "../Sellable/Sellable.cpp"
-
 /*<ID> <KODE_HURUF> <NAME> <TYPE> <ORIGIN> <ADDED_WEIGHT> <PRICE>*/
 class ProdukHewan : public Produk
 {
