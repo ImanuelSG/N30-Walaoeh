@@ -4,21 +4,21 @@
 #include <iostream>
 
 
-template<class T,int N,int M>
+template<class T>
 class Storage{
     private:
-        T array[][];
+        T& array[][];
         int neff;
         int capacity;
     public:
-        Storage();
+        Storage(int N, int M);
         ~Storage();
-        void insertAt(int idx);
-        void deleteAt(int idx);
+        void insert(const T& obj);
+        void insert(int row, int col, const T& obj);
+        void deleteAt(int row, int col);
         bool isEmpty();
         bool isFull();
         void display();
-
 };
 
 #endif
