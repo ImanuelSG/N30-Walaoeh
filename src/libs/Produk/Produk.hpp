@@ -1,7 +1,7 @@
 #ifndef PRODUK_HPP
 #define PRODUK_HPP
 
-#include "../Sellable/Sellable.cpp"
+#include "../Sellable/Sellable.hpp"
 #include <vector>
 
 /*<ID> <KODE_HURUF> <NAME> <TYPE> <ORIGIN> <ADDED_WEIGHT> <PRICE>*/

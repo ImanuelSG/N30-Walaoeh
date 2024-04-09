@@ -22,6 +22,6 @@ public:
     void initializeConfigs();
     void saveGameState();
     void loadGameState();
-    void initiaizeDefaultGame();
+    void initializeDefaultGame();
     void addPlayer(Pemain &pemain);
 };

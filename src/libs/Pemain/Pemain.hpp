@@ -78,7 +78,6 @@ public:
      * 
      */
     virtual void bangun() = 0;
-    virtual void makan() = 0;
     virtual void kasihMakan() = 0;
     virtual void beli() = 0;
     virtual void jual() = 0;

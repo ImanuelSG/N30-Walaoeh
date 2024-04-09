@@ -7,29 +7,15 @@ OUTPUT_FOLDER = bin
 WARNING_CFLAG = -Wall -Wextra -Werror
 DEBUG_CFLAG   = -fshort-wchar -g
 CFLAGS        = $(DEBUG_CFLAG) $(WARNING_CFLAG)
+EXECUTABLE_FILENAME = Walaoeh
+ALL_SRCS :=   $(filter-out $(SOURCE_FOLDER)/Bangunan/main.cpp $(SOURCE_FOLDER)/Hewan/main.cpp  $(SOURCE_FOLDER)/ProdukHewan/main.cpp ,$(wildcard $(SOURCE_FOLDER)/*/*.cpp $(SOURCE_FOLDER)/*/*/*.cpp ))
 
+compile:
+	@echo "Compiling object files..."
+	@$(CC) -std=c++17 -o ./bin/Walaoeh ${ALL_SRCS} ./src/main.cpp
+	@echo "Compilation done." 
 
-run: all execute
-all: build
-build: files
-clean:
-	rm -rf $(OUTPUT_FOLDER)/*.o $(OUTPUT_FOLDER)/Walaoeh
+run:
+	@./bin/$(EXECUTABLE_FILENAME)
 
-files: print.o h.o main.o
-	@echo Linking object files
-	@$(CC) $(wildcard $(OUTPUT_FOLDER)/*.o) -o $(OUTPUT_FOLDER)/Walaoeh
-
-print.o: ${SOURCE_FOLDER}/Test/print.cpp
-	@echo Compiling $<
-	@$(CC) $(CFLAGS) -c $< -o $(OUTPUT_FOLDER)/print.o
-
-h.o: ${SOURCE_FOLDER}/compile/h.cpp
-	@echo Compiling $<
-	@$(CC) $(CFLAGS) -c $< -o $(OUTPUT_FOLDER)/h.o
-
-main.o: src/main.cpp
-	@echo Compiling $<
-	@$(CC) $(CFLAGS) -c $< -o $(OUTPUT_FOLDER)/main.o
-
-execute:
-	@./$(OUTPUT_FOLDER)/Walaoeh
+all: compile run

@@ -1,7 +1,8 @@
 #ifndef BANGUNAN_HPP
 #define BANGUNAN_HPP
 
-#include "../Sellable/Sellable.cpp"
+#include "../Sellable/Sellable.hpp"
+
 #include <map>
 
 /* <ID> <KODE_HURUF> <NAME> <PRICE> <MATERIAL_1> <MATERIAL_1_QUANTITY> <MATERIAL_2> <MATERIAL_2_QUANTITY> ...*/

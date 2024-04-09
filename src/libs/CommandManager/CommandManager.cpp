@@ -14,7 +14,7 @@ int CommandManager::getNextPlayerIndex()
     return nextPlayerIndex;
 }
 
-void execute(string what, vector<Pemain *> &ListOfPlayers, int CurrentPlayerIndex)
+void CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int CurrentPlayerIndex)
 {
     Pemain *currPlayer = ListOfPlayers[CurrentPlayerIndex];
     if (what == "NEXT")
@@ -61,10 +61,19 @@ void execute(string what, vector<Pemain *> &ListOfPlayers, int CurrentPlayerInde
     }
     else if (what == "TAMBAH_PEMAIN")
     {
-        
     }
     else
     {
         throw;
     }
+}
+
+void CommandManager::setIsTakingTurn(bool isTakingTurn)
+{
+    this->isTakingTurn = isTakingTurn;
+}
+
+bool CommandManager::getIsTakingTurn()
+{
+    return isTakingTurn;
 }

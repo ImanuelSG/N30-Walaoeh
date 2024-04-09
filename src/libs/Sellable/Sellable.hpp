@@ -2,6 +2,7 @@
 #define SELLABLE_HPP
 
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -15,7 +16,7 @@ protected:
 public:
     // ctor default
     Sellable();
-    
+
     // ctor user defined
     Sellable(string kode, string nama, int harga);
 
@@ -35,7 +36,6 @@ public:
     void setKodeHuruf(string kode);
     void setNamaBarang(string nama);
     void setHargaBarang(int harga);
-
 };
 
 #endif
