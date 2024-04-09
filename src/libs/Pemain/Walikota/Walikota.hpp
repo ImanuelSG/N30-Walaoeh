@@ -4,6 +4,7 @@
 #include "../Pemain.hpp"
 #include "../Petani/Petani.hpp"
 #include "../Peternak/Peternak.hpp"
+#include "../../Utils/Utils.hpp"
 
 #include <vector>
 #include <cmath>

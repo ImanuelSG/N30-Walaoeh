@@ -8,7 +8,27 @@ Petani::~Petani()
 {
 }
 
-string Petani::getRole()
+void Petani::tanam()
+{
+}
+
+void Petani::panen()
+{
+}
+
+void Petani::cetakLadang()
+{
+}
+
+void Petani::beli()
+{
+}
+
+void Petani::jual()
+{
+}
+
+string Petani::getRole() const
 {
     return "Petani";
 }

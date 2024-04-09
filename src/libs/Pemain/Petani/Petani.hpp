@@ -17,7 +17,7 @@ public:
     void cetakLadang();
     void beli();
     void jual();
-    string getRole();
+    string getRole() const;
 };
 
 #endif

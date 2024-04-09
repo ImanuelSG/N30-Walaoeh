@@ -1,7 +1,9 @@
 #include <iostream>
 #include <vector>
 #include "../CommandManager/CommandManager.hpp"
-
+#include "../Pemain/Walikota/Walikota.hpp"
+#include "../Pemain/Petani/Petani.hpp"
+#include "../Pemain/Peternak/Peternak.hpp"
 using namespace std;
 
 class GameWorld

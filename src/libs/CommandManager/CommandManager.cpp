@@ -14,57 +14,96 @@ int CommandManager::getNextPlayerIndex()
     return nextPlayerIndex;
 }
 
-void CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int CurrentPlayerIndex)
+int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int CurrentPlayerIndex)
 {
-    Pemain *currPlayer = ListOfPlayers[CurrentPlayerIndex];
-    if (what == "NEXT")
+    try
     {
+        Pemain *currPlayer = ListOfPlayers[CurrentPlayerIndex];
+        if (what == "NEXT")
+        {
+            nextPlayerIndex++;
+            if (nextPlayerIndex >= ListOfPlayers.size())
+            {
+                nextPlayerIndex = 0;
+            }
+            isTakingTurn = false;
+        }
+        else if (what == "CETAK_PENYIMPANAN")
+        {
+            currPlayer->cetakPenyimpanan();
+        }
+        else if (what == "PUNGUT_PAJAK")
+        {
+            currPlayer->pungutPajak(ListOfPlayers);
+        }
+        else if (what == "CETAK_LADANG")
+        {
+            currPlayer->cetakLadang();
+        }
+        else if (what == "CETAK_PETERNAKAN")
+        {
+            currPlayer->cetakPeternakan();
+        }
+        else if (what == "TANAM")
+        {
+            currPlayer->tanam();
+        }
+        else if (what == "TERNAK")
+        {
+            currPlayer->ternak();
+        }
+        else if (what == "BANGUN")
+        {
+            currPlayer->bangunBangunan();
+        }
+        else if (what == "MAKAN")
+        {
+            currPlayer->kasihMakan();
+        }
+        else if (what == "KASIH_MAKAN")
+        {
+            currPlayer->kasihMakan();
+        }
+        else if (what == "BELI")
+        {
+            currPlayer->beli();
+        }
+        else if (what == "JUAL")
+        {
+            currPlayer->jual();
+        }
+        else if (what == "PANEN")
+        {
+            currPlayer->panen();
+        }
+        else if (what == "SIMPAN")
+        {
+            return 2;
+        }
+        else if (what == "TAMBAH_PEMAIN")
+        {
+            int addedPlayerIndex = currPlayer->tambahPemain(ListOfPlayers);
+            cout << "addedPlayerIndex: " << addedPlayerIndex << endl;
+            if (addedPlayerIndex <= CurrentPlayerIndex)
+            {
+                nextPlayerIndex++;
+            }
+        }
+        else
+        {
+            throw InvalidInputException();
+        }
+        return 1;
     }
-    else if (what == "CETAK_PENYIMPANAN")
+    catch (InvalidInputException &e)
     {
+        cout << e.what() << endl;
+        return 0;
     }
-    else if (what == "PUNGUT_PAJAK")
+    catch (WalikotaInputException &e)
     {
-    }
-    else if (what == "CETAK_LADANG")
-    {
-    }
-    else if (what == "CETAK_PETERNAKAN")
-    {
-    }
-    else if (what == "TANAM")
-    {
-    }
-    else if (what == "TERNAK")
-    {
-    }
-    else if (what == "BANGUN")
-    {
-    }
-    else if (what == "MAKAN")
-    {
-    }
-    else if (what == "KASIH_MAKAN")
-    {
-    }
-    else if (what == "BELI")
-    {
-    }
-    else if (what == "JUAL")
-    {
-    }
-    else if (what == "PANEN")
-    {
-    }
-    else if (what == "SIMPAN")
-    {
-    }
-    else if (what == "TAMBAH_PEMAIN")
-    {
-    }
-    else
-    {
-        throw;
+        cout << e.what() << endl;
+        return 0;
     }
 }
 

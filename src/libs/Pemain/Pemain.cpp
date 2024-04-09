@@ -29,9 +29,18 @@ string Pemain::getName() const
     return this->name;
 }
 
+void Pemain::setName()
+{
+    this->name = name;
+}
 void Pemain::setGulden(int num)
 {
     this->gulden = num;
+}
+
+void Pemain::setBerat(int num)
+{
+    this->berat = num;
 }
 
 int Pemain::getKekayaan() const
@@ -43,6 +52,10 @@ int Pemain::getKekayaan() const
     }
 
     return kekayaan + this->getGulden();
+}
+
+void Pemain::next()
+{
 }
 
 void Pemain::pungutPajak(const vector<Pemain *> &pemain)
@@ -65,9 +78,19 @@ void Pemain::beli() {}
 void Pemain::jual() {}
 void Pemain::panen() {}
 
+void Pemain::makan()
+{
+}
+
+void Pemain::cetakPenyimpanan()
+{
+}
 int Pemain::tambahPemain(vector<Pemain *> &pemain)
 {
     throw WalikotaInputException();
 }
 
-int Pemain::getKKP() {}
+int Pemain::getKKP()
+{
+    return 0;
+}

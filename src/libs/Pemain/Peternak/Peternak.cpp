@@ -32,7 +32,7 @@ void Peternak::jual()
 {
 }
 
-string Peternak::getRole()
+string Peternak::getRole() const
 {
     return "Peternak";
 }

@@ -69,11 +69,13 @@ int Walikota::tagihPajak(Pemain *pemain)
 
 int Walikota::tambahPemain(vector<Pemain *> &pemain)
 {
+    // Check if the Walikota has enough money
     if (this->getGulden() < 50)
     {
         cout << "Uang tidak cukup!" << endl;
-        return;
+        return -1;
     }
+
     else
     {
         string jenisPemain = "";
@@ -99,7 +101,7 @@ int Walikota::tambahPemain(vector<Pemain *> &pemain)
             }
             for (auto pemain : pemain)
             {
-                if (pemain->getName() == namaPemain)
+                if (toLowercase(pemain->getName()) == toLowercase(namaPemain))
                 {
                     cout << "Nama pemain sudah ada, silahkan coba nama yang lain!" << endl;
                     namaPemain = "";
@@ -123,7 +125,9 @@ int Walikota::tambahPemain(vector<Pemain *> &pemain)
         int index = 0;
         while (!found && index < pemain.size())
         {
-            if (pemain[index]->getName() > newPemain->getName())
+
+            if ((toLowercase(pemain[index]->getName()) > toLowercase(namaPemain)))
+
             {
                 found = true;
                 pemain.insert(pemain.begin() + index, newPemain);

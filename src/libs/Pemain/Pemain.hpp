@@ -4,7 +4,7 @@
 #include <vector>
 #include "../Exception/Exception.hpp"
 #include "../Sellable/Sellable.hpp"
-
+#include "iostream"
 using namespace std;
 class Pemain
 {
@@ -52,7 +52,7 @@ public:
      * @brief Setter untuk berat pemain
      *
      */
-    void setBerat();
+    void setBerat(int num);
     /**
      * @brief Makan untuk menambah berat pemain
      *
@@ -100,7 +100,7 @@ public:
     virtual int tambahPemain(vector<Pemain *> &pemain);
 
     virtual int getKKP();
-    virtual string getRole() = 0;
+    virtual string getRole() const = 0;
 };
 
 #endif
