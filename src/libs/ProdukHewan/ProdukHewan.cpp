@@ -52,7 +52,6 @@ ProdukHewan ProdukHewan::tambahProdukHewanHerbivora(Hewan &hewan)
 
     if (hewan.getKodeHuruf() == "COW")
     {
-
         produk_hewan_baru = ProdukHewan(id_produk, "COM", "COW_MEAT", "PRODUCT_ANIMAL", "COW", added_weight, harga);
     }
     else if (hewan.getKodeHuruf() == "SHP")
