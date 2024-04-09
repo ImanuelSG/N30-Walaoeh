@@ -39,7 +39,7 @@ public:
      */
     int getNextPlayerIndex();
 
-    bool setIsTakingTurn(bool isTakingTurn);
+    void setIsTakingTurn(bool isTakingTurn);
 
     bool getIsTakingTurn();
 };

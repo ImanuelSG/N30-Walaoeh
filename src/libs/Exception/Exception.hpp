@@ -9,19 +9,13 @@ using namespace std;
 class NumericException : public exception
 {
 public:
-    const char *what() const noexcept override
-    {
-        return "Input anda tidak valid.\nSilahkan masukkan angka sebagai input.";
-    }
+    const char *what();
 };
 
 class InvalidInputException : public exception
 {
 public:
-    const char *what() const noexcept override
-    {
-        return "Input yang anda masukkan tidak valid !.\nSilahkan masukkan input yang sesuai.";
-    }
+    const char *what();
 };
 
 #endif
