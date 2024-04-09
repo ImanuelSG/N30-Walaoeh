@@ -3,22 +3,24 @@
 
 #include <iostream>
 
-template <class T, int N, int M>
-class Storage
-{
-private:
-    T array[][];
-    int neff;
-    int capacity;
 
-public:
-    Storage();
-    ~Storage();
-    void insertAt(int idx);
-    void deleteAt(int idx);
-    bool isEmpty();
-    bool isFull();
-    void display();
+template<class T>
+class Storage{
+    private:
+        T& array[][];
+        int neff;
+        int capacity;
+    public:
+        Storage(int N, int M);
+        ~Storage();
+        void insert(const T& obj);
+        void insert(int row, int col, const T& obj);
+        void deleteAt(int row, int col);
+        bool isEmpty();
+        bool isFull();
+        void display();
+        T getElement(int row, int col);
 };
 
 #endif
+

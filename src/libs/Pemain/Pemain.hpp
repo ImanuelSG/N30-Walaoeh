@@ -2,22 +2,26 @@
 #define PEMAIN_HPP
 
 #include <iostream>
+#include "Storage/Storage.hpp"
+#include "../Sellable/Sellable.hpp"
+#include "../Exception/Exception.hpp"
+
 
 using namespace std;
 class Pemain
 {
 protected:
-    static int inventory_n;
-    static int inventory_m;
+    const static int inventory_n;
+    const static int inventory_m;
     string name;
     int gulden;
     int berat;
-    // storage
+    Storage<Sellable> inventory;
 public:
     Pemain(string name, int gulden, int berat);
     ~Pemain();
     /**
-     * @brief Getter nama pema
+     * @brief Getter nama pemain
      * 
      * @return string 
      */
@@ -38,17 +42,17 @@ public:
      * @brief Setter untuk nama pemain
      *
      */
-    void setName();
+    void setName(string name);
     /**
      * @brief Setter untuk Gulden pemain
      *
      */
-    void setGulden();
+    void setGulden(int gulden);
     /**
      * @brief Setter untuk berat pemain
      *
      */
-    void setBerat();
+    void setBerat(int berat);
     /**
      * @brief Makan untuk menambah berat pemain
      *
@@ -68,25 +72,25 @@ public:
      * @brief Melakukan Pemungutan Pajak, Khusus untuk walikota
      *
      */
-    virtual void pungutPajak() = 0;
-    virtual void cetakLadang() = 0;
-    virtual void cetakPeternakan() = 0;
-    virtual void tanam() = 0;
-    virtual void ternak() = 0;
+    virtual void pungutPajak();
+    virtual void cetakLadang();
+    virtual void cetakPeternakan();
+    virtual void tanam();
+    virtual void ternak();
     /**
      * @brief Membangun Bangunan, Khusus untuk walikota
      * 
      */
-    virtual void bangun() = 0;
-    virtual void kasihMakan() = 0;
+    virtual void bangun();
+    virtual void kasihMakan();
     virtual void beli() = 0;
     virtual void jual() = 0;
-    virtual void panen() = 0;
+    virtual void panen();
     /**
      * @brief Menambah Pemain baru, Khusus untuk walikota
      * 
      */
-    virtual void tambahPemain() = 0;
+    virtual void tambahPemain();
 };
 
 #endif
