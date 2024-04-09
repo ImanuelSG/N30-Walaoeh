@@ -1,34 +1,38 @@
-#include <iostream>
 #include "./libs/Exception/Exception.hpp"
-#include "./libs/compile/h.hpp"
-#include <sstream>
-
+#include "./libs/GameWorld/GameWorld.hpp"
+#include <limits>
 using namespace std;
-
-bool isNumber(const string &s)
-{
-    return !s.empty() && s.find_first_not_of("0123456789") == string::npos;
-}
 
 int main()
 {
-    try
+    GameWorld game;
+    game.initializeConfigs();
+    game.displayHeader();
+    cout << endl;
+    char ans;
+    do
     {
-        string input;
-        cout << "Masukkan angka: ";
-        cin >> input;
+        cout << "Apakah anda ingin memuat state? (y/n) ";
+        cin >> ans;
 
-        if (!isNumber(input))
+        if (ans != 'y' && ans != 'n' && ans != 'Y' && ans != 'N')
         {
-            throw NumericException();
+            cout << "Input tidak sesuai. Silahkan masukkan 'y' atau 'n'." << endl;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
 
-        print2();
-    }
-    catch (const NumericException &e)
+    } while (ans != 'y' && ans != 'n' && ans != 'Y' && ans != 'N');
+
+    if (ans == 'y' || ans == 'Y')
     {
-        cout << e.what() << endl;
+        game.loadGameState();
     }
+    else
+    {
+        game.initializeDefaultGame();
+    }
+
+    game.startGame();
 
     return 0;
 }

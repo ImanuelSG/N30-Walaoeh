@@ -1,8 +1,8 @@
 #ifndef PRODUK_HEWAN_HPP
 #define PRODUK_HEWAN_HPP
 
-#include "../Produk/Produk.cpp"
-#include "../Hewan/Hewan.cpp"
+#include "../Produk/Produk.hpp"
+#include "../Hewan/Hewan.hpp"
 
 /*<ID> <KODE_HURUF> <NAME> <TYPE> <ORIGIN> <ADDED_WEIGHT> <PRICE>*/
 class ProdukHewan : public Produk
