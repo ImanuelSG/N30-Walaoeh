@@ -10,3 +10,4 @@ int getColStorage(char firstChar);
 int getRowStorage(string input);
 
 string getValidInputStorage(string order);
+string intToStringWithLeadingZero(int num);

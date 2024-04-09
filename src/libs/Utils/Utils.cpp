@@ -1,4 +1,4 @@
-#include "utils.hpp"
+#include "Utils.hpp"
 
 bool isValidInputStorage(string input) {
     bool valid = false;
@@ -56,3 +56,10 @@ string getValidInputStorage(string order){
     return input;
 }
 
+string intToStringWithLeadingZero(int num) {
+    if (num < 10) {
+        return "0" + std::to_string(num);
+    } else {
+        return std::to_string(num);
+    }
+}
