@@ -1,6 +1,5 @@
 #include <iostream>
 #include "./libs/Exception/Exception.hpp"
-#include "./libs/compile/h.hpp"
 #include <sstream>
 
 using namespace std;
@@ -14,17 +13,7 @@ int main()
 {
     try
     {
-        string input;
-        cout << "Masukkan angka: ";
-        cin >> input;
-
-        if (!isNumber(input))
-        {
-            throw NumericException();
         }
-
-        print2();
-    }
     catch (const NumericException &e)
     {
         cout << e.what() << endl;
