@@ -11,7 +11,6 @@ class CommandManager
 private:
     int nextPlayerIndex;
     bool isTakingTurn;
-
 public:
     /**
      * @brief Construct a new Command Manager object
@@ -29,8 +28,10 @@ public:
      * @param what The command string given
      * @param ListOfPlayers List Of Players (IF pemain is walikota, we need to modify this)
      * @param CurrentPlayerIndex To know who is executing the command
+     *
+     * @return int 1 if the command is invalid, 1 if the command is valid
      */
-    void execute(string what, vector<Pemain *> &ListOfPlayers, int CurrentPlayerIndex);
+    int execute(string what, vector<Pemain *> &ListOfPlayers, int CurrentPlayerIndex);
 
     /**
      * @brief Get the Next Player Index

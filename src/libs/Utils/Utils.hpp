@@ -1,7 +1,8 @@
 #include <iostream>
 #include <string>
 #include <cctype>
-
+#include <thread>
+#include <chrono>
 using namespace std;
 
 bool isValidInputStorage(string input);
@@ -11,3 +12,6 @@ int getRowStorage(string input);
 
 string getValidInputStorage(string order);
 string intToStringWithLeadingZero(int num);
+string toLowercase(const string &str);
+
+void countdown(int seconds);

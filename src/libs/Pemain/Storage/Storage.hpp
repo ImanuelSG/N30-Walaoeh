@@ -4,150 +4,162 @@
 #include <iostream>
 #include <vector>
 #include <string>
-
+#include "../../Sellable/Sellable.hpp"
+#include "../../Exception/Exception.hpp"
 using namespace std;
 
-template<class T>
+template <class T>
 class Storage;
 
-template<class T>
-void display(const Storage<T>& storage);
+template <class T>
+void display(const Storage<T> &storage);
 
-template<class T>
-class Storage{
-    private:
-        vector<vector<T*>> buffer;
-        int neff;
-        int row;
-        int col;
-        int capacity;
-    public:
-        /**
-         * @brief Construct a new Storage object
-         * 
-         * @param N Num of Rows
-         * @param M Num of Cols
-         */
-        Storage(int N, int M)
+template <>
+void display<Sellable>(const Storage<Sellable> &storage);
+
+template <class T>
+class Storage
+{
+private:
+    vector<vector<T *>> buffer;
+    int neff;
+    int row;
+    int col;
+    int capacity;
+
+public:
+    /**
+     * @brief Construct a new Storage object
+     *
+     * @param N Num of Rows
+     * @param M Num of Cols
+     */
+    Storage(int N, int M)
+    {
+        buffer.resize(N, vector<T *>(M, nullptr)); // Initialize buffer with nullptrs
+
+        neff = 0;
+        row = N;
+        col = M;
+        capacity = N * M;
+    }
+
+    /**
+     * @brief Destroy the Storage object
+     *
+     */
+    ~Storage()
+    {
+        for (auto &row : buffer)
         {
-            buffer.resize(N, vector<T*>(M, nullptr)); // Initialize buffer with nullptrs
-
-            neff = 0;
-            row = N;
-            col = M;
-            capacity = N * M;
-        }
-
-        /**
-         * @brief Destroy the Storage object
-         * 
-         */
-        ~Storage()
-        {
-            for (auto& row : buffer)
+            for (auto ptr : row)
             {
-                for (auto ptr : row)
+                delete ptr; // Delete objects pointed by pointers
+            }
+        }
+    }
+
+    /**
+     * @brief Insert object to first empty slot
+     *
+     * @param obj Object to be inserted
+     */
+    void insert(const T &obj)
+    {
+        bool found = false;
+        int i = 0;
+        while (i < row && !found)
+        {
+            int j = 0;
+            while (j < col && !found)
+            {
+                if (buffer[i][j] == nullptr)
                 {
-                    delete ptr; // Delete objects pointed by pointers
+                    buffer[i][j] = &obj;
+                    found = true;
                 }
+                j++;
             }
+            i++;
         }
+    }
 
-        /**
-         * @brief Insert object to first empty slot
-         * 
-         * @param obj Object to be inserted
-         */
-        void insert(const T& obj)
-        {
-            bool found = false;
-            int i = 0;
-            while (i < row && !found)
-            {
-                int j = 0;
-                while (j < col && !found)
-                {
-                    if (buffer[i][j] == nullptr)
-                    {
-                        buffer[i][j] = &obj;
-                        found = true;
-                    }
-                    j++;
-                }
-                i++;
-            }
-        }
+    /**
+     * @brief Insert a new object at a specific location
+     *
+     * @param row Row position of new object (starting from zero)
+     * @param col Col position of new object (starting from zero)
+     * @param obj Object to be inserted
+     */
+    void insert(int row, int col, T &obj)
+    {
+        buffer[row][col] = &obj;
+        neff++;
+    }
 
-        /**
-         * @brief Insert a new object at a specific location
-         * 
-         * @param row Row position of new object (starting from zero)
-         * @param col Col position of new object (starting from zero)
-         * @param obj Object to be inserted
-         */
-        void insert(int row, int col, const T& obj)
+    /**
+     * @brief Delete an object entry at a specific location without destroying the object then returns the object
+     *
+     * @param row Row position of deleted object (starting from zero)
+     * @param col Col position of deleted object (starting from zero)
+     * @return T& Reference to the deleted object entry
+     */
+    T &deleteAt(int row, int col)
+    {
+        if (buffer[row][col] != nullptr)
         {
-            buffer[row][col] = &obj;
-            neff++;
-        }
+            T &ref = *(buffer[row][col]);
 
-        /**
-         * @brief Delete an object entry at a specific location without destroying the object then returns the object
-         * 
-         * @param row Row position of deleted object (starting from zero)
-         * @param col Col position of deleted object (starting from zero)
-         * @return T& Reference to the deleted object entry
-         */
-        T& deleteAt(int row, int col)
-        {
-            if (buffer[row][col] != nullptr)
-            {
-                T& ref = buffer[row][col];
-                buffer[row][col] = nullptr; // Set the pointer to nullptr
-                neff--;
-                return ref;
-            }
+            buffer[row][col] = nullptr; // Set the pointer to nullptr
+            neff--;
+            return ref;
         }
+        else
+        {
 
-        /**
-         * @brief Check if the Storage is empty
-         * 
-         * @return true if the Storage is empty
-         * @return false otherwise
-         */
-        bool isEmpty()
-        {
-            return neff == 0;
+            throw InvalidStorageIndexException();
         }
+    }
 
-        /**
-         * @brief Check if the Storage is full
-         * 
-         * @return true if the Storage is full
-         * @return false otherwise
-         */
-        bool isFull()
-        {
-            return neff == capacity;
-        }
-        
-        /**
-         * @brief Get the object from buffer[row][col]
-         * 
-         * @param row Row position of object (starting from zero)
-         * @param col Col position of object (starting from zero)
-         * @return T& Reference to object
-         */
-        T& getElement(int row, int col)
-        {
-            return buffer[row][col];
-        }
+    /**
+     * @brief Check if the Storage is empty
+     *
+     * @return true if the Storage is empty
+     * @return false otherwise
+     */
+    bool isEmpty()
+    {
+        return neff == 0;
+    }
 
-        /**
-         * @brief Print storage with default inventory format
-         * 
-         */
-        friend void display<>(const Storage<T>& storage);
+    /**
+     * @brief Check if the Storage is full
+     *
+     * @return true if the Storage is full
+     * @return false otherwise
+     */
+    bool isFull()
+    {
+        return neff == capacity;
+    }
+
+    /**
+     * @brief Get the object from buffer[row][col]
+     *
+     * @param row Row position of object (starting from zero)
+     * @param col Col position of object (starting from zero)
+     * @return T& Reference to object
+     */
+    T &getElement(int row, int col)
+    {
+        return buffer[row][col];
+    }
+
+    /**
+     * @brief Print storage with default inventory format
+     *
+     */
+    friend void display<>(const Storage<T> &storage);
 };
 
 #endif

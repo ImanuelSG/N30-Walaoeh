@@ -35,14 +35,32 @@ void GameWorld::displayHeader()
 void GameWorld::startGame()
 {
     CommandManager CommandManager;
+    cout << "Berikut adalah daftar pemain yang ada dalam permainan ini : " << endl;
+    for (int i = 0; i < listOfPLayers.size(); i++)
+    {
+        cout << i + 1 << ". " << listOfPLayers[i]->getName() << endl;
+    }
+    cout << endl;
+    countdown(3);
+    cout << "Game dimulai!" << endl;
+    cout << endl;
     while (!ended)
     {
         CommandManager.setIsTakingTurn(true);
+        cout << "Sekarang giliran " << listOfPLayers[currPlayerIndex]->getName() << " untuk melakukan aksi." << endl;
+        cout << endl;
         while (CommandManager.getIsTakingTurn())
         {
+            cout << "> ";
             string command;
             cin >> command;
-            CommandManager.execute(command, listOfPLayers, currPlayerIndex);
+            int res = CommandManager.execute(command, listOfPLayers, currPlayerIndex);
+            cout << endl;
+
+            if (res == 2)
+            {
+                saveGameState();
+            }
         }
         CommandManager.getNextPlayerIndex();
         currPlayerIndex = CommandManager.getNextPlayerIndex();
@@ -54,7 +72,7 @@ void GameWorld::checkEndGame()
 {
     Pemain *currPlayer = listOfPLayers[currPlayerIndex];
     {
-        if (currPlayer->getGulden() >= winningGulden && currPlayer->getBerat() >= winningWeight)
+        if (currPlayer->getGulden() >= 100 && currPlayer->getBerat() >= 100)
         {
 
             cout << R"(
@@ -82,9 +100,13 @@ void GameWorld::initializeConfigs()
 
 void GameWorld::initializeDefaultGame()
 {
-    // Pemain *pemain1 = new Pemain("Pemain 1", 100, 100);
-    // Pemain *pemain2 = new Pemain("Pemain 2", 100, 100);
-    // Pemain *pemain3 = new Pemain("Pemain 3", 100, 100);
+    Pemain *pemain1 = new Petani("Petani1", 50, 40);
+    Pemain *pemain2 = new Peternak("Peternak1", 50, 40);
+    Pemain *pemain3 = new Walikota("Walikota", 50, 40);
+
+    listOfPLayers.push_back(pemain1);
+    listOfPLayers.push_back(pemain2);
+    listOfPLayers.push_back(pemain3);
 }
 
 void GameWorld::saveGameState()
@@ -94,32 +116,3 @@ void GameWorld::saveGameState()
 void GameWorld::loadGameState()
 {
 }
-
-void GameWorld::addPlayer(Pemain &pemain)
-{
-    bool found = false;
-    int index = 0;
-    while (!found && index < listOfPLayers.size())
-    {
-        if (listOfPLayers[index]->getName() > pemain.getName())
-        {
-            found = true;
-            listOfPLayers.insert(listOfPLayers.begin() + index, &pemain);
-        }
-        index++;
-    }
-    if (!found)
-    {
-        listOfPLayers.push_back(&pemain);
-    }
-}
-
-// 1 2 3 5
-// index == 2
-// 1 2 3 4 5
-// index == 3
-
-// 1 3 4 5
-// index == 1
-// 1 2 3 4 5
-// current player index += 1;

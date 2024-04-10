@@ -1,7 +1,15 @@
 #include "Pemain.hpp"
 #include "../Utils/utils.hpp"
 
-Pemain::Pemain(string name, int gulden, int berat): name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m) {}
+const int Pemain::inventory_n = 5;
+const int Pemain::inventory_m = 5;
+
+Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m)
+{
+}
+Pemain::~Pemain()
+{
+}
 
 Pemain::~Pemain(){}
 
@@ -20,7 +28,12 @@ string Pemain::getName() const
     return this->name;
 }
 
-void Pemain::setName(string name) 
+int Pemain::getKekayaan() const
+{
+    return 0;
+}
+
+void Pemain::setName(string name)
 {
     this->name = name;
 }
@@ -30,14 +43,15 @@ void Pemain::setGulden(int gulden)
     this->gulden = gulden;
 }
 
-void Pemain::setBerat(int berat){
+void Pemain::setBerat(int berat)
+{
     this->berat = berat;
 }
 
 void Pemain::makan()
 {
     cetakPenyimpanan();
-    bool valid= false;
+    bool valid = false;
     string slot;
 
     do
@@ -73,12 +87,17 @@ void Pemain::cetakPenyimpanan(){
     display(inventory);
 }
 
-void Pemain::pungutPajak()
+void Pemain::pungutPajak(const vector<Pemain *> &pemain)
+{
+    throw WalikotaInputException();
+}
+
+void Pemain::cetakLadang()
 {
     throw InvalidCommandException();
 }
 
-void Pemain::cetakLadang()
+void Pemain::cetakPeternakan()
 {
     throw InvalidCommandException();
 }
@@ -98,9 +117,9 @@ void Pemain::ternak()
     throw InvalidCommandException();
 }
 
-void Pemain::bangun()
+void Pemain::bangunBangunan()
 {
-    throw InvalidCommandException();
+    throw WalikotaInputException();
 }
 
 void Pemain::kasihMakan()
@@ -114,13 +133,21 @@ void Pemain::panen()
     throw InvalidCommandException();
 }
 
-void Pemain::tambahPemain()
+void Pemain::beli()
 {
-    throw InvalidCommandException();
 }
 
-template<>
-void display<Sellable>(const Storage<Sellable>& storage)
+void Pemain::jual()
+{
+}
+
+int Pemain::tambahPemain(vector<Pemain *> &pemain)
+{
+    throw WalikotaInputException();
+}
+
+template <>
+void display<Sellable>(const Storage<Sellable> &storage)
 {
     // ================[ Penyimpanan ]==================
     cout << "     ";

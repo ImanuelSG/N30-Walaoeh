@@ -23,6 +23,8 @@ public:
     void cetakPeternakan();
     void beli();
     void jual();
+    int getKKP() const;
+    string getRole() const;
 };
 
 #endif

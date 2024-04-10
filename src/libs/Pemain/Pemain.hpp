@@ -1,12 +1,11 @@
 #ifndef PEMAIN_HPP
 #define PEMAIN_HPP
 
-#include <iostream>
+#include <vector>
 #include "Storage/Storage.hpp"
 #include "../Sellable/Sellable.hpp"
 #include "../Exception/Exception.hpp"
 #include "../Utils/Utils.hpp"
-
 
 using namespace std;
 class Pemain
@@ -17,26 +16,27 @@ protected:
     string name;
     int gulden;
     int berat;
-    Storage<Sellable*> inventory;
+    Storage<Sellable> inventory;
+
 public:
     Pemain(string name, int gulden, int berat);
     ~Pemain();
     /**
      * @brief Getter nama pemain
-     * 
-     * @return string 
+     *
+     * @return string
      */
     string getName() const;
     /**
      * @brief Getter gulden pemain
-     * 
-     * @return int 
+     *
+     * @return int
      */
     int getGulden() const;
     /**
      * @brief Getter berat pemain
-     * 
-     * @return int 
+     *
+     * @return int
      */
     int getBerat() const;
     /**
@@ -70,28 +70,37 @@ public:
      */
     void cetakPenyimpanan();
     /**
-     * @brief Melakukan Pemungutan Pajak, Khusus untuk walikota
-     *
+     * @brief Menghitung Kekayaan pemain
      */
-    virtual void pungutPajak();
+    int getKekayaan() const;
+    /**
+     * @brief Pungut Pajak, Khusus untuk walikota
+     *
+     * @param pemain vector pemain yang akan dikenakan pajak
+     */
+    virtual void pungutPajak(const vector<Pemain *> &pemain);
     virtual void cetakLadang();
     virtual void cetakPeternakan();
     virtual void tanam();
     virtual void ternak();
     /**
      * @brief Membangun Bangunan, Khusus untuk walikota
-     * 
+     *
      */
-    virtual void bangun();
+    virtual void bangunBangunan();
     virtual void kasihMakan();
-    virtual void beli() = 0;
-    virtual void jual() = 0;
+    virtual void beli();
+    virtual void jual();
     virtual void panen();
     /**
-     * @brief Menambah Pemain baru, Khusus untuk walikota
-     * 
+     * @brief Menambah pemain atau peternak, Khusus untuk walikota
+     *
+     * @param pemain vector pemain yang akan dimanipulasi
+     * @return index pemain baru (untuk menentukan urutan main nantinya)
      */
-    virtual void tambahPemain();
+    virtual int tambahPemain(vector<Pemain *> &pemain);
+    virtual int getKKP() const = 0;
+    virtual string getRole() const = 0;
 };
 
 #endif

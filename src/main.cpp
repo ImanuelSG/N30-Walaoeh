@@ -5,34 +5,35 @@ using namespace std;
 
 int main()
 {
-    GameWorld game;
-    game.initializeConfigs();
-    game.displayHeader();
+    GameWorld MainGame;
+
+    MainGame.displayHeader();
+    MainGame.initializeConfigs();
     cout << endl;
-    char ans;
+    string ans;
     do
     {
         cout << "Apakah anda ingin memuat state? (y/n) ";
         cin >> ans;
 
-        if (ans != 'y' && ans != 'n' && ans != 'Y' && ans != 'N')
+        if (ans != "y" && ans != "n" && ans != "Y" && ans != "N")
         {
-            cout << "Input tidak sesuai. Silahkan masukkan 'y' atau 'n'." << endl;
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Input tidak sesuai. Silahkan masukkan 'y' atau 'n'."
+                 << endl;
         }
 
-    } while (ans != 'y' && ans != 'n' && ans != 'Y' && ans != 'N');
+    } while (ans != "y" && ans != "n" && ans != "Y" && ans != "N");
 
-    if (ans == 'y' || ans == 'Y')
+    if (ans == "y" || ans == "Y")
     {
-        game.loadGameState();
+        MainGame.loadGameState();
     }
     else
     {
-        game.initializeDefaultGame();
+        MainGame.initializeDefaultGame();
     }
 
-    game.startGame();
+    MainGame.startGame();
 
     return 0;
 }

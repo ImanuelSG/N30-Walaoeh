@@ -1,27 +1,33 @@
 #include "Utils.hpp"
 
-bool isValidInputStorage(string input) {
+bool isValidInput(string input)
+{
     bool valid = false;
     bool has00 = false;
-    if (isalpha(input[0])){
-        
+    if (isalpha(input[0]))
+    {
+
         int id = 1;
         bool flag = true;
-        while (flag && id < input.length()){
-            if (isdigit(input[id])){
+        while (flag && id < input.length())
+        {
+            if (isdigit(input[id]))
+            {
                 // case X00
-                if (input[id] == '0' && input[id-1] == '0' && id != 1){
+                if (input[id] == '0' && input[id - 1] == '0' && id != 1)
+                {
                     has00 = true;
                     break;
-                    
                 }
                 id++;
-            } else 
+            }
+            else
             {
                 flag = false;
             }
         }
-        if (!has00 && id == input.length()) {
+        if (!has00 && id == input.length())
+        {
             valid = true;
         }
     }
@@ -61,5 +67,24 @@ string intToStringWithLeadingZero(int num) {
         return "0" + std::to_string(num);
     } else {
         return std::to_string(num);
+    }
+}
+
+string toLowercase(const std::string &str)
+{
+    string result;
+    for (char c : str)
+    {
+        result += std::tolower(c);
+    }
+    return result;
+}
+
+void countdown(int seconds)
+{
+    for (int i = seconds; i > 0; --i)
+    {
+        cout << i << "..\n";
+        this_thread::sleep_for(chrono::seconds(1)); // Sleep for 1 second
     }
 }
