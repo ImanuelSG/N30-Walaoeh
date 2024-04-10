@@ -20,6 +20,10 @@ public:
     void jual();
     int getKKP() const;
     string getRole() const;
+    static int getUkuranTernakN();
+    static int getUkuranTernakM();
+    static void setUkuranTernakN(int n);
+    static void setUkuranTernakM(int m);
 };
 
 #endif

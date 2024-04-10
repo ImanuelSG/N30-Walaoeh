@@ -7,6 +7,7 @@
 #include <map>
 #include <string>
 #include <sstream>
+#include <fstream>
 #include <tuple>
 
 /*<ID> <KODE_HURUF> <NAME> <TYPE> <ORIGIN> <ADDED_WEIGHT> <PRICE>*/

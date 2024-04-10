@@ -1,5 +1,4 @@
 #include "Produk.hpp"
-#include <fstream>
 
 // class Produk : public Sellable
 // string tipe_produk;

@@ -1,5 +1,8 @@
 #include <iostream>
 #include <vector>
+#include <string>
+#include <sstream>
+#include <fstream>
 #include "../CommandManager/CommandManager.hpp"
 #include "../Pemain/Walikota/Walikota.hpp"
 #include "../Pemain/Petani/Petani.hpp"
@@ -25,6 +28,7 @@ public:
     void displayHeader();
     void checkEndGame();
     void initializeConfigs();
+    void loadMiscConfig(string path);
     void saveGameState();
     void loadGameState();
     void initializeDefaultGame();

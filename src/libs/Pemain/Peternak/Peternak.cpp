@@ -1,5 +1,8 @@
 #include "Peternak.hpp"
 
+int Peternak::ternak_n = 0;
+int Peternak::ternak_m = 0;
+
 Peternak::Peternak(string name, int gulden, int berat) : Pemain(name, gulden, berat)
 {
 }
@@ -39,4 +42,20 @@ int Peternak::getKKP() const
 string Peternak::getRole() const
 {
     return "Peternak";
+}
+
+int Peternak::getUkuranTernakN() {
+    return ternak_n;
+}
+
+int Peternak::getUkuranTernakM() {
+    return ternak_m;
+}
+
+void Peternak::setUkuranTernakN(int n) {
+    ternak_n = n;
+}
+
+void Peternak::setUkuranTernakM(int m) {
+    ternak_m = m;
 }
