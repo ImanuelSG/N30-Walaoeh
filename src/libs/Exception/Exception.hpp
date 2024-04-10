@@ -29,24 +29,32 @@ public:
     const char *what();
 };
 
-class StorageFullException : public exception{
+class StorageFullException : public exception
+{
 public:
     const char *what();
 };
 
-class LadangFullException : public exception{
+class LadangFullException : public exception
+{
 public:
     const char *what();
 };
 
-class TernakFullException : public exception{
+class TernakFullException : public exception
+{
 public:
     const char *what();
 };
 
-class NotEnoughMoneyException : public exception{
+class NotEnoughMoneyException : public exception
+{
     const char *what();
 };
 
+class InvalidStorageIndexException : public exception
+{
+    const char *what();
+};
 
 #endif

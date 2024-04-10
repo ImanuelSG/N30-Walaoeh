@@ -54,6 +54,9 @@ testParser: $(TEST_OUTPUT_FOLDER)/testParser
 testTanaman: $(TEST_OUTPUT_FOLDER)/testTanaman
 	@./$(TEST_OUTPUT_FOLDER)/testTanaman
 
+testStorage: $(TEST_OUTPUT_FOLDER)/testStorage
+	@./$(TEST_OUTPUT_FOLDER)/testStorage
+	
 clean:
 	@rm -rf $(OUTPUT_FOLDER)/*
 	@echo "Clean done."

@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include "../../Sellable/Sellable.hpp"
+#include "../../Exception/Exception.hpp"
 using namespace std;
 
 template <class T>
@@ -90,7 +91,7 @@ public:
      * @param col Col position of new object (starting from zero)
      * @param obj Object to be inserted
      */
-    void insert(int row, int col, const T &obj)
+    void insert(int row, int col, T &obj)
     {
         buffer[row][col] = &obj;
         neff++;
@@ -107,10 +108,16 @@ public:
     {
         if (buffer[row][col] != nullptr)
         {
-            T &ref = buffer[row][col];
+            T &ref = *(buffer[row][col]);
+
             buffer[row][col] = nullptr; // Set the pointer to nullptr
             neff--;
             return ref;
+        }
+        else
+        {
+
+            throw InvalidStorageIndexException();
         }
     }
 
