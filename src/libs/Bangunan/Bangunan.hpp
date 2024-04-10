@@ -21,7 +21,7 @@ public:
     Bangunan();
 
     // ctor user defined
-    Bangunan(int id, string kode, string nama_bangunan, int harga, map<string, int> material);
+    Bangunan(int jenis_sellable, int id, string kode, string nama_bangunan, int harga, map<string, int> material);
 
     // operator overloading
     Bangunan &operator=(const Bangunan &other);

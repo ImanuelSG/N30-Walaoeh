@@ -6,9 +6,12 @@
 
 // class ProdukTanamanBuah : public Produk
 
+const string ProdukTanamanBuah::tipe_produk_tanaman_buah = "PRODUCT_FRUIT_PLANT";
+
 // ctor default
 ProdukTanamanBuah::ProdukTanamanBuah()
 {
+    this->jenis_sellable = jenis_produk_tanaman_buah;
     this->id_produk = 1;
     this->kode_huruf = "";
     this->nama_barang = "";
@@ -19,14 +22,15 @@ ProdukTanamanBuah::ProdukTanamanBuah()
 }
 
 // ctor user defined
-ProdukTanamanBuah::ProdukTanamanBuah(int id, string kode, string nama_produk, string origin, int added_weight, int harga)
-    : Produk(id, kode, nama_produk, "PRODUCT_FRUIT_PLANT", origin, added_weight, harga)
+ProdukTanamanBuah::ProdukTanamanBuah(int jenis_sellable, int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga)
+    : Produk(jenis_produk_tanaman_buah, id, kode, nama_produk, tipe_produk_tanaman_buah, origin, added_weight, harga)
 {
 }
 
 // operator overloading
 ProdukTanamanBuah &ProdukTanamanBuah::operator=(const ProdukTanamanBuah &other)
 {
+    this->jenis_sellable = other.jenis_sellable;
     this->id_produk = other.id_produk;
     this->kode_huruf = other.kode_huruf;
     this->nama_barang = other.nama_barang;
@@ -45,6 +49,7 @@ ProdukTanamanBuah ProdukTanamanBuah::tambahProdukTanamanBuah(Tanaman &tanaman)
 {
     ProdukTanamanBuah produk_tanaman_buah_baru;
     int id_produk = Produk::getIdProduk();
+    string origin = tanaman.getNamaBarang();
     int added_weight, harga;
 
     cout << "Masukkan berat tambahan: ";
@@ -53,21 +58,21 @@ ProdukTanamanBuah ProdukTanamanBuah::tambahProdukTanamanBuah(Tanaman &tanaman)
     cout << "Masukkan harga: ";
     cin >> harga;
 
-    if (tanaman.getKodeHuruf() == "APP")
+    if (tanaman.isApple())
     {
-        produk_tanaman_buah_baru = ProdukTanamanBuah(id_produk, "APP", "APPLE", "APPLE_TREE", added_weight, harga);
+        produk_tanaman_buah_baru = ProdukTanamanBuah(jenis_produk_tanaman_buah, id_produk, "APP", "APPLE", tipe_produk_tanaman_buah, origin, added_weight, harga);
     }
-    else if (tanaman.getKodeHuruf() == "ORP")
+    else if (tanaman.isOrange())
     {
-        produk_tanaman_buah_baru = ProdukTanamanBuah(id_produk, "ORP", "ORANGE", "ORANGE_TREE", added_weight, harga);
+        produk_tanaman_buah_baru = ProdukTanamanBuah(jenis_produk_tanaman_buah, id_produk, "ORP", "ORANGE", tipe_produk_tanaman_buah, origin, added_weight, harga);
     }
-    else if (tanaman.getKodeHuruf() == "BNP")
+    else if (tanaman.isBanana())
     {
-        produk_tanaman_buah_baru = ProdukTanamanBuah(id_produk, "BNP", "BANANA", "BANANA_TREE", added_weight, harga);
+        produk_tanaman_buah_baru = ProdukTanamanBuah(jenis_produk_tanaman_buah, id_produk, "BNP", "BANANA", tipe_produk_tanaman_buah, origin, added_weight, harga);
     }
-    else if (tanaman.getKodeHuruf() == "GAP")
+    else if (tanaman.isGuava())
     {
-        produk_tanaman_buah_baru = ProdukTanamanBuah(id_produk, "GAP", "GUAVA", "GUAVA_TREE", added_weight, harga);
+        produk_tanaman_buah_baru = ProdukTanamanBuah(jenis_produk_tanaman_buah, id_produk, "GAP", "GUAVA", tipe_produk_tanaman_buah, origin, added_weight, harga);
     }
 
     return produk_tanaman_buah_baru;

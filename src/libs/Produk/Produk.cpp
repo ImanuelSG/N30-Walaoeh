@@ -12,6 +12,7 @@ map<string, tuple<int, string, string, string, int, int>> Produk::productMap;
 
 Produk::Produk() : Sellable()
 {
+    this->jenis_sellable = -1;
     this->id_produk = 1;
     this->tipe_produk = "";
     this->origin = "";
@@ -19,8 +20,9 @@ Produk::Produk() : Sellable()
 }
 
 // ctor user defined
-Produk::Produk(int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga) : Sellable(kode, nama_produk, harga)
+Produk::Produk(int jenis_sellable, int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga) : Sellable(jenis_sellable, kode, nama_produk, harga)
 {
+    this->jenis_sellable = jenis_sellable;
     this->id_produk = id;
     this->tipe_produk = tipe;
     this->origin = origin;
@@ -30,6 +32,7 @@ Produk::Produk(int id, string kode, string nama_produk, string tipe, string orig
 // operator overloading
 Produk &Produk::operator=(const Produk &other)
 {
+    this->jenis_sellable = other.jenis_sellable;
     this->id_produk = other.id_produk;
     this->tipe_produk = other.tipe_produk;
     this->origin = other.origin;

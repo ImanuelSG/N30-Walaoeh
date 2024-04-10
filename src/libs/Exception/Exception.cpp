@@ -28,3 +28,33 @@ const char *FileNotFoundException::what()
 {
     return "File yang diberikan tidak ditemukan!.\nPastikan path file Anda sesuai.\n";
 }
+
+const char *InvalidJenisTanamanException::what()
+{
+    return "Jenis tanaman yang Anda masukkan tidak valid!.\n Pastikan Jenis Tanaman Anda sesuai.\n";
+}
+
+const char *InvalidJenisHewanException::what()
+{
+    return "Jenis hewan yang Anda masukkan tidak valid!.\n Pastikan Jenis Hewan Anda sesuai.\n";
+}
+
+const char *InvalidJenisProdukMaterialException::what()
+{
+    return "Jenis produk material yang Anda masukkan tidak valid!.\n Pastikan Jenis Produk Material Anda sesuai.\n";
+}
+
+const char *InvalidJenisProdukBuahException::what()
+{
+    return "Jenis produk buah yang Anda masukkan tidak valid!.\n Pastikan Jenis Produk Buah Anda sesuai.\n";
+}
+
+const char *InvalidJenisProdukHewanException::what()
+{
+    return "Jenis produk hewan yang Anda masukkan tidak valid!.\n Pastikan Jenis Produk Hewan Anda sesuai.\n";
+}
+
+const char *InvalidJenisBangunanException::what()
+{
+    return "Jenis bangunan yang Anda masukkan tidak valid!.\n Pastikan Jenis Bangunan Anda sesuai.\n";
+}
