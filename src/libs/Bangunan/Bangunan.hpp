@@ -16,7 +16,7 @@ private:
 public:
     static int id_bangunan;
     // map with key = nama_bangunan, value = tuple<kode_bangunan, harga_bangunan, vector<tuple<material, jumlah_material>>>
-    
+
     // ctor default
     Bangunan();
 
@@ -39,8 +39,13 @@ public:
     void setIdBangunan(int id);
 
     void setMaterial(map<string, int> material);
+    tuple<string, int, vector<tuple<string, int>>> Bangunan::getSpecificRecipe(string name);
 
-    void getListBangunan();
+    map<string, tuple<string, int, vector<tuple<string, int>>>> getAllRecipe();
+
+    void displayAllRecipe();
+
+    bool isValidRecipe(string name);
 };
 
 #endif

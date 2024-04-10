@@ -152,11 +152,47 @@ int Walikota::tambahPemain(vector<Pemain *> &pemain)
 
 void Walikota::bangunBangunan()
 {
+    Bangunan bangunan;
+    bangunan.displayAllRecipe();
 
-    cout << "Bangunan berhasil dibangun!" << endl;
+    string namaBangunan;
+    do
+    {
+        cout << "Bangunan yang ingin dibangun: ";
+        cin >> namaBangunan;
+        if (namaBangunan.empty())
+        {
+            cout << "Nama bangunan tidak boleh kosong!" << endl;
+        }
+        else if (!bangunan.isValidRecipe(namaBangunan))
+        {
+            cout << "Kamu tidak punya resep bangunan tersebut!" << endl;
+        }
+
+    } while (namaBangunan.empty() || !bangunan.isValidRecipe(namaBangunan));
+
+    // Get the recipe to check
+    tuple<string, int, vector<tuple<string, int>>> recipe = bangunan.getSpecificRecipe(namaBangunan);
+
+    int neededGulden = get<1>(recipe);
+    vector<tuple<string, int>> neededMaterials = get<2>(recipe);
+
+    // Get all materialProduct from walikota
+
+    map<string, int> materialProduct = this->getMaterialProduct();
 }
 
 string Walikota::getRole() const
 {
     return "Walikota";
+}
+
+map<string, int> Walikota::getMaterialProduct()
+{
+    map<string, int> materialProduct;
+    for (auto &items : this->inventory)
+    {
+        cout << items.first << " : " << items.second << endl;
+    }
+    return materialProduct;
 }

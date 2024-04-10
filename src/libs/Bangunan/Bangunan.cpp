@@ -57,15 +57,44 @@ void Bangunan::setMaterial(map<string, int> material)
     this->material = material;
 }
 
-void Bangunan::getListBangunan()
+tuple<string, int, vector<tuple<string, int>>> Bangunan::getSpecificRecipe(string name)
 {
-    for (auto &it : list_of_bangunan)
+    return list_of_bangunan.find(name)->second;
+}
+
+map<string, tuple<string, int, vector<tuple<string, int>>>> Bangunan::getAllRecipe()
+{
+    return list_of_bangunan;
+}
+
+void Bangunan::displayAllRecipe()
+{
+    int index = 1;
+
+    cout << "Resep bangunan yang ada adalah sebagai berikut." << endl;
+
+    // Example tuple with entry.first = "SMALL_HOUSE"  is <SMH,50, vector<<TEAK_WOOD,1>,<SANDAL_WOOD,1>>
+    for (const auto &entry : list_of_bangunan)
     {
-        cout << it.first << " : " << get<0>(it.second) << " " << get<1>(it.second) << " ";
-        for (auto &it2 : get<2>(it.second))
+        cout << "    " << index << ". " << entry.first << "(" << get<1>(entry.second) << "gulden"
+             << ",";
+
+        // Iterate through all material
+        const auto &materials = get<2>(entry.second);
+        for (const auto &material : materials)
         {
-            cout << get<0>(it2) << " " << get<1>(it2) << " ";
+            cout << " " << get<0>(material) << " " << get<1>(material);
+            if (material != materials.back())
+            {
+                cout << ",";
+            }
         }
-        cout << endl;
+        cout << ")" << endl;
+        index++;
     }
+}
+
+bool Bangunan::isValidRecipe(string name)
+{
+    return list_of_bangunan.find(name) != list_of_bangunan.end();
 }
