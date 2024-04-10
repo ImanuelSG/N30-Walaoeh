@@ -95,22 +95,20 @@ void Produk::loadProductConfig(string path)
     }
 
     string line; 
-    int id;
-    string code, type;
+    int id, addedWeight, price;
+    string code, name, type, origin;
     while (getline(inputFile, line)) {
         istringstream iss(line);
-        int id, addedWeight, price;
-        std::string code, name, type, origin;
         iss >> id >> code >> name >> type >> origin >> addedWeight >> price;
         productMap[origin] = make_tuple(id, code, name, type, addedWeight, price);
     }
     inputFile.close();
 
     // how to access
-    // for (const auto& pair : productMap) {
-    //     std::cout << "Origin: " << pair.first << ", ID: " << get<0>(pair.second)
-    //               << ", Code: " << get<1>(pair.second) << ", Name: " << get<2>(pair.second)
-    //               << ", Type: " << get<3>(pair.second) << ", Weight: " << get<4>(pair.second)
-    //               << ", Price: " << get<5>(pair.second) << endl;
-    // }
+    for (const auto& pair : productMap) {
+        std::cout << "Origin: " << pair.first << ", ID: " << get<0>(pair.second)
+                  << ", Code: " << get<1>(pair.second) << ", Name: " << get<2>(pair.second)
+                  << ", Type: " << get<3>(pair.second) << ", Weight: " << get<4>(pair.second)
+                  << ", Price: " << get<5>(pair.second) << endl;
+    }
 }

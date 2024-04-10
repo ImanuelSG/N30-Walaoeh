@@ -2,8 +2,13 @@
 #define BANGUNAN_HPP
 
 #include "../Sellable/Sellable.hpp"
+#include "../Exception/Exception.hpp"
 #include <vector>
 #include <map>
+#include <string>
+#include <sstream>
+#include <fstream>
+#include <tuple>
 
 /* <ID> <KODE_HURUF> <NAME> <PRICE> <MATERIAL_1> <MATERIAL_1_QUANTITY> <MATERIAL_2> <MATERIAL_2_QUANTITY> ...*/
 
@@ -46,6 +51,9 @@ public:
     void displayAllRecipe();
 
     bool isValidRecipe(string name);
+
+    // load config to list_of_bangunan
+    static void loadBangunanConfig(string path);
 };
 
 #endif

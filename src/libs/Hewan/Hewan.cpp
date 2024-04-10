@@ -176,21 +176,19 @@ void Hewan::loadHewanConfig(string path)
     }
 
     string line; 
-    int id;
-    string code, type;
+    int id, weightToHarvest, price;
+    string code, name, type, origin;
     while (getline(inputFile, line)) {
         istringstream iss(line);
-        int id, weightToHarvest, price;
-        std::string code, name, type, origin;
         iss >> id >> code >> name >> type >> weightToHarvest >> price;
         animalMap[code] = make_tuple(id, name, type, weightToHarvest, price);
     }
     inputFile.close();
 
     // how to access
-    // for (const auto& pair : animalMap) {
-    //     std::cout << "Code: " << pair.first << ", ID: " << get<0>(pair.second)
-    //               << ", Name: " << get<1>(pair.second) << ", Type: " << get<2>(pair.second)
-    //               << ", WeightToHarvest: " << get<3>(pair.second) << ", Price: " << get<4>(pair.second) << endl;
-    // }
+    for (const auto& pair : animalMap) {
+        std::cout << "Code: " << pair.first << ", ID: " << get<0>(pair.second)
+                  << ", Name: " << get<1>(pair.second) << ", Type: " << get<2>(pair.second)
+                  << ", WeightToHarvest: " << get<3>(pair.second) << ", Price: " << get<4>(pair.second) << endl;
+    }
 }

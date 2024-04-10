@@ -100,3 +100,41 @@ bool Bangunan::isValidRecipe(string name)
 {
     return list_of_bangunan.find(name) != list_of_bangunan.end();
 }
+
+void Bangunan::loadBangunanConfig(string path)
+{
+    ifstream inputFile(path);
+    if (!inputFile.is_open()) {
+        throw FileNotFoundException();
+    }
+
+    string line;
+    int id, price;
+    string code, name;
+    while (getline(inputFile, line)) {
+        istringstream iss(line);
+        iss >> id >> code >> name >> price;
+
+
+        vector<tuple<string, int>> materials;
+        string material_name;
+        int quantity;
+        while (iss >> material_name >> quantity) {
+            materials.push_back(make_tuple(material_name, quantity));
+        }
+        list_of_bangunan[name] = make_tuple(code, price, materials);
+    }
+    inputFile.close();
+
+    // how to access
+    for (const auto& building : list_of_bangunan) {
+        std::cout << "Name: " << building.first << std::endl;
+        std::cout << "Code: " << std::get<0>(building.second) << std::endl;
+        std::cout << "Price: " << std::get<1>(building.second) << std::endl;
+
+        std::cout << "Materials:" << std::endl;
+        for (const auto& material : std::get<2>(building.second)) {
+            std::cout << "  " << std::get<0>(material) << " : " << std::get<1>(material) << std::endl;
+        }
+    }
+}

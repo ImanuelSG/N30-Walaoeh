@@ -173,21 +173,19 @@ void Tanaman::loadTanamanConfig(string path)
     }
 
     string line; 
-    int id;
-    string code, type;
+    int id, durationToHarvest, price;
+    string code, name, type, origin;
     while (getline(inputFile, line)) {
         istringstream iss(line);
-        int id, durationToHarvest, price;
-        std::string code, name, type, origin;
         iss >> id >> code >> name >> type >> durationToHarvest >> price;
         plantMap[code] = make_tuple(id, name, type, durationToHarvest, price);
     }
     inputFile.close();
 
     // how to access
-    // for (const auto& pair : plantMap) {
-    //     std::cout << "Code: " << pair.first << ", ID: " << get<0>(pair.second)
-    //               << ", Name: " << get<1>(pair.second) << ", Type: " << get<2>(pair.second)
-    //               << ", DurationToHarvest: " << get<3>(pair.second) << ", Price: " << get<4>(pair.second) << endl;
-    // }
+    for (const auto& pair : plantMap) {
+        std::cout << "Code: " << pair.first << ", ID: " << get<0>(pair.second)
+                  << ", Name: " << get<1>(pair.second) << ", Type: " << get<2>(pair.second)
+                  << ", DurationToHarvest: " << get<3>(pair.second) << ", Price: " << get<4>(pair.second) << endl;
+    }
 }
