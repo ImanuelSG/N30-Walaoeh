@@ -43,6 +43,20 @@ public:
     static Hewan tambahHewanConfig(ifstream &file);
 
     void tambahWeightHewan(int weight);
+
+    // boolean
+    bool isCarnivore();
+    bool isHerbivore();
+    bool isOmnivore();
+    bool isHarvestValid(int weight, int weight_to_harvest);
+
+    bool isCow();
+    bool isSheep();
+    bool isHorse();
+    bool isRabbit();
+    bool isSnake();
+    bool isChicken();
+    bool isDuck();
 };
 
 #endif

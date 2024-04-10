@@ -43,6 +43,20 @@ public:
     static Tanaman tambahTanamanConfig(ifstream &file);
 
     void tambahUmurTanaman(int age);
+
+    // boolean
+    bool isMaterial();
+    bool isBuah();
+    
+    bool isTeak();
+    bool isSandalwood();
+    bool isAloe();
+    bool isIronwood();
+    bool isApple();
+    bool isOrange();
+    bool isBanana();
+    bool isGuava();
+
 };
 
 #endif

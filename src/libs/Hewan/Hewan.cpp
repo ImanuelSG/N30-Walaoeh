@@ -109,3 +109,59 @@ void Hewan::tambahWeightHewan(int weight)
 {
     this->weight += weight;
 }
+
+// boolean
+bool Hewan::isCarnivore()
+{
+    return this->tipe_hewan == "CARNIVORE";
+}
+
+bool Hewan::isHerbivore()
+{
+    return this->tipe_hewan == "HERBIVORE";
+}
+
+bool Hewan::isOmnivore()
+{
+    return this->tipe_hewan == "OMNIVORE";
+}
+
+bool Hewan::isHarvestValid(int weight, int weight_to_harvest)
+{
+    return weight >= weight_to_harvest;
+}
+
+bool Hewan::isCow()
+{
+    return getKodeHurufHewan() == "COW";
+}
+
+bool Hewan::isSheep()
+{
+    return getKodeHurufHewan() == "SHP";
+}
+
+bool Hewan::isHorse()
+{
+    return getKodeHurufHewan() == "HRS";
+}
+
+bool Hewan::isRabbit()
+{
+    return getKodeHurufHewan() == "RBT";
+}
+
+bool Hewan::isSnake()
+{
+    return getKodeHurufHewan() == "SNK";
+}
+
+bool Hewan::isChicken()
+{
+    return getKodeHurufHewan() == "CHK";
+}
+
+bool Hewan::isDuck()
+{
+    return getKodeHurufHewan() == "DCK";
+}

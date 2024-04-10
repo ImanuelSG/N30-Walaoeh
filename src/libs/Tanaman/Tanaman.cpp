@@ -111,3 +111,54 @@ void Tanaman::tambahUmurTanaman(int age)
 {
     this->age += age;
 }
+
+// boolean
+bool Tanaman::isMaterial()
+{
+    return this->tipe_tanaman == "MATERIAL_PLANT";
+}
+
+bool Tanaman::isBuah()
+{
+    return this->tipe_tanaman == "FRUIT_PLANT";
+}
+
+bool Tanaman::isTeak()
+{
+    return getKodeHurufTanaman() == "TEK";
+}
+
+bool Tanaman::isSandalwood()
+{
+    return getKodeHurufTanaman() == "SDT";
+}
+
+bool Tanaman::isAloe()
+{
+    return getKodeHurufTanaman() == "ALT";
+}
+
+bool Tanaman::isIronwood()
+{
+    return getKodeHurufTanaman() == "IRN";
+}
+
+bool Tanaman::isApple()
+{
+    return getKodeHurufTanaman() == "APL";
+}
+
+bool Tanaman::isOrange()
+{
+    return getKodeHurufTanaman() == "ORG";
+}
+
+bool Tanaman::isBanana()
+{
+    return getKodeHurufTanaman() == "BNT";
+}
+
+bool Tanaman::isGuava()
+{
+    return getKodeHurufTanaman() == "GAV";
+}

@@ -11,7 +11,7 @@ class ProdukHewan : public Produk
 {
 
 private:
-    const string tipe = "PRODUCT_ANIMAL";
+    const static string tipe_produk_hewan;
 
 public:
     // ctor default

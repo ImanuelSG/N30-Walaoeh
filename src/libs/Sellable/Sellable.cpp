@@ -42,7 +42,6 @@ Sellable &Sellable::operator=(const Sellable &other)
     return *this;
 }
 
-
 // dtor
 Sellable::~Sellable() {}
 
@@ -53,34 +52,34 @@ int Sellable::getJenisSellable()
     return this->jenis_sellable;
 }
 
-string Sellable::getKodeHurufTanaman(int jenis_sellable)
+string Sellable::getKodeHurufTanaman()
 {
-    return (jenis_sellable == jenis_tanaman) ? this->kode_huruf : throw InvalidJenisTanamanException();
+    return (isTanaman()) ? this->kode_huruf : throw InvalidJenisTanamanException();
 }
 
-string Sellable::getKodeHurufHewan(int jenis_sellable)
+string Sellable::getKodeHurufHewan()
 {
-    return (jenis_sellable == jenis_hewan) ? this->kode_huruf : throw InvalidJenisHewanException();
+    return (isHewan()) ? this->kode_huruf : throw InvalidJenisHewanException();
 }
 
-string Sellable::getKodeHurufProdukMaterial(int jenis_sellable)
+string Sellable::getKodeHurufProdukMaterial()
 {
-    return (jenis_sellable == jenis_produk_tanaman_material) ? this->kode_huruf : throw InvalidJenisProdukMaterialException();
+    return (isProdukMaterial()) ? this->kode_huruf : throw InvalidJenisProdukMaterialException();
 }
 
-string Sellable::getKodeHurufProdukBuah(int jenis_sellable)
+string Sellable::getKodeHurufProdukBuah()
 {
-    return (jenis_sellable == jenis_produk_tanaman_buah) ? this->kode_huruf : throw InvalidJenisProdukBuahException();
+    return (isProdukBuah()) ? this->kode_huruf : throw InvalidJenisProdukBuahException();
 }
 
-string Sellable::getKodeHurufProdukHewan(int jenis_sellable)
+string Sellable::getKodeHurufProdukHewan()
 {
-    return (jenis_sellable == jenis_produk_hewan) ? this->kode_huruf : throw InvalidJenisProdukHewanException();
+    return (isProdukHewan()) ? this->kode_huruf : throw InvalidJenisProdukHewanException();
 }
 
-string Sellable::getKodeHurufBangunan(int jenis_sellable)
+string Sellable::getKodeHurufBangunan()
 {
-    return (jenis_sellable == jenis_bangunan) ? this->kode_huruf : throw InvalidJenisBangunanException();
+    return (isBangunan()) ? this->kode_huruf : throw InvalidJenisBangunanException();
 }
 
 string Sellable::getNamaBarang()
@@ -107,4 +106,35 @@ void Sellable::setNamaBarang(string nama)
 void Sellable::setHargaBarang(int harga)
 {
     this->harga_barang = harga;
+}
+
+// boolean
+bool Sellable::isHewan()
+{
+    return this->jenis_sellable == jenis_hewan;
+}
+
+bool Sellable::isTanaman()
+{
+    return this->jenis_sellable == jenis_tanaman;
+}
+
+bool Sellable::isProdukMaterial()
+{
+    return this->jenis_sellable == jenis_produk_tanaman_material;
+}
+
+bool Sellable::isProdukBuah()
+{
+    return this->jenis_sellable == jenis_produk_tanaman_buah;
+}
+
+bool Sellable::isProdukHewan()
+{
+    return this->jenis_sellable == jenis_produk_hewan;
+}
+
+bool Sellable::isBangunan()
+{
+    return this->jenis_sellable == jenis_bangunan;
 }

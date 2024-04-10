@@ -8,14 +8,14 @@
 class ProdukTanamanMaterial : public Produk
 {
 private:
-    const string tipe = "PRODUCT_MATERIAL_PLANT";
+    const static string tipe_produk_tanaman_material;
 
 public:
     // ctor default
     ProdukTanamanMaterial();
 
     // ctor user defined
-    ProdukTanamanMaterial(int jenis_sellable, int id, string kode, string nama_produk, string origin, int added_weight, int harga);
+    ProdukTanamanMaterial(int jenis_sellable, int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga);
 
     ProdukTanamanMaterial &operator=(const ProdukTanamanMaterial &other);
 
