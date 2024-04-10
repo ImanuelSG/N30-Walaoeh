@@ -6,6 +6,7 @@
 #include <exception> // Add missing include directive
 using namespace std;
 
+// EXCEPTION UNTUK INPUT
 class NumericException : public exception
 {
 public:
@@ -22,14 +23,26 @@ class WalikotaInputException : public exception
 public:
     const char *what();
 };
-
-class InvalidCommandException : public exception
+class PeternakInputException : public exception
+{
+public:
+    const char *what();
+};
+class PetaniInputException : public exception
 {
 public:
     const char *what();
 };
 
-class StorageFullException : public exception
+class PanenInputException : public exception
+{
+public:
+    const char *what();
+};
+
+
+// EXCEPTION UNTUK FULL
+class InventoryFullException : public exception
 {
 public:
     const char *what();
@@ -47,6 +60,8 @@ public:
     const char *what();
 };
 
+
+// EXCEPTION UNTUK KURANG
 class NotEnoughMoneyException : public exception
 {
     const char *what();
@@ -55,7 +70,24 @@ class NotEnoughMoneyException : public exception
 class NotEnoughHewanException : public exception {
     const char *what();
 };
+class NotEnoughFoodException : public exception {
+    const char *what();
+};
 
+
+// EXCEPTION UNTUK KOSONG
+class InventoryEmptyException : public exception {
+     const char *what();
+};
+class LadangEmptyException : public exception {
+     const char *what();
+};
+class TernakEmptyException : public exception {
+     const char *what();
+};
+
+
+// EXCEPTION UNTUK INVALID INDEX
 class InvalidStorageIndexException : public exception
 {
     const char *what();

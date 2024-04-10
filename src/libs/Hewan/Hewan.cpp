@@ -106,3 +106,5 @@ void Hewan::tambahWeightHewan(int weight)
 {
     this->weight += weight;
 }
+
+

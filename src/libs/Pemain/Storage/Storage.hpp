@@ -148,11 +148,20 @@ public:
      *
      * @param row Row position of object (starting from zero)
      * @param col Col position of object (starting from zero)
-     * @return T& Reference to object
+     * @return T* Pointer to object
      */
-    T &getElement(int row, int col)
+    T *getElementAddress(int row, int col)
     {
         return buffer[row][col];
+    }
+
+    /**
+     * @brief Get number of empty slots
+     *
+     * @return number of empty slots
+     */
+    int countEmptySlot(){
+        return capacity-neff;
     }
 
     /**

@@ -4,15 +4,11 @@
 const int Pemain::inventory_n = 5;
 const int Pemain::inventory_m = 5;
 
-Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m)
-{
-}
-Pemain::~Pemain()
-{
-}
+// Constructor , destructor
+Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m) {}
+Pemain::~Pemain() {}
 
-Pemain::~Pemain(){}
-
+// Getter Setter
 int Pemain::getGulden() const
 {
     return this->gulden;
@@ -48,8 +44,20 @@ void Pemain::setBerat(int berat)
     this->berat = berat;
 }
 
+// Command
 void Pemain::makan()
 {
+    // Jika inventory kosong
+    if (inventory.isEmpty()){
+        throw InventoryEmptyException();
+    }
+
+    // Jika tidak ada makanan
+    if (!isFoodAvailable()){
+        throw NotEnoughFoodException();
+    }
+    //blom di implement
+
     cetakPenyimpanan();
     bool valid = false;
     string slot;
@@ -61,7 +69,7 @@ void Pemain::makan()
         int col = getColStorage(slot[0]);
         int row = getRowStorage(slot);
         
-        Sellable* item = inventory.getElement(row,col);
+        Sellable* item = inventory.getElementAddress(row,col);
         if (item->isEdible()){
             inventory.deleteAt(row,col);
             int addedWeight = item->getAddedWeight();
@@ -85,8 +93,12 @@ void Pemain::next(){}
 
 void Pemain::cetakPenyimpanan(){
     display(inventory);
+    cout << endl;
+    cout << "Total Slot Kosong: " << inventory.countEmptySlot() << endl;
 }
 
+
+// JGN LUPA GANTI EXEPTION
 void Pemain::pungutPajak(const vector<Pemain *> &pemain)
 {
     throw WalikotaInputException();
@@ -94,27 +106,22 @@ void Pemain::pungutPajak(const vector<Pemain *> &pemain)
 
 void Pemain::cetakLadang()
 {
-    throw InvalidCommandException();
+    throw PetaniInputException();
 }
 
 void Pemain::cetakPeternakan()
 {
-    throw InvalidCommandException();
-}
-
-void Pemain::cetakPeternakan()
-{
-    
+    throw PeternakInputException();
 }
 
 void Pemain::tanam()
 {
-    throw InvalidCommandException();
+    throw PetaniInputException();
 }
 
 void Pemain::ternak()
 {
-    throw InvalidCommandException();
+    throw PeternakInputException();
 }
 
 void Pemain::bangunBangunan()
@@ -124,13 +131,13 @@ void Pemain::bangunBangunan()
 
 void Pemain::kasihMakan()
 {
-    throw InvalidCommandException();
+    throw PeternakInputException();
 }
 
 
 void Pemain::panen()
 {
-    throw InvalidCommandException();
+    throw PanenInputException();
 }
 
 void Pemain::beli()
@@ -144,6 +151,19 @@ void Pemain::jual()
 int Pemain::tambahPemain(vector<Pemain *> &pemain)
 {
     throw WalikotaInputException();
+}
+
+
+bool Pemain::isFoodAvailable(){
+    for (int i = 0; i < inventory_n; i++) {
+        for (int j = 0; j < inventory_m; j++) {
+            Sellable* item = inventory.getElementAddress(i,j);
+            if (item->isEdible()){
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 template <>

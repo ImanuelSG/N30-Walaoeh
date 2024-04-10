@@ -1,5 +1,5 @@
 #include "Peternak.hpp"
-#include "../Utils/utils.hpp"
+#include "../../Utils/utils.hpp"
 
 
 Peternak::Peternak(string name,int gulden, int berat) : Pemain(name,gulden,berat), peternakan(ternak_n,ternak_m) {}
@@ -9,7 +9,7 @@ Peternak::~Peternak(){}
 void Peternak::ternak(){
     // Kalau peternakan full
     if (peternakan.isFull()){
-        throw StorageFullException();
+        throw TernakFullException();
     }
     // Kalau di inventory gak punya hewan
     if (countHewanInventory()==0){
@@ -32,7 +32,7 @@ void Peternak::ternak(){
         col = getColStorage(slot[0]);
         row = getRowStorage(slot);
          
-        item = inventory.getElement(row,col);
+        item = inventory.getElementAddress(row,col);
         if (item->isHewan()){
             valid = true;
         }
@@ -50,6 +50,7 @@ void Peternak::ternak(){
     string petak;
     int colP = 0;
     int rowP = 0;
+    Hewan *cekPetak = nullptr; 
 
     // validasi kosong ato gak
     do 
@@ -59,24 +60,63 @@ void Peternak::ternak(){
         colP = getColStorage(petak[0]);
         rowP = getRowStorage(petak);
 
-        // Hewan* item = new peternakan.getElement(row,col);
-        // if (item == nullptr){
-        //     isEmpty = true;
-        // }
-        
+        cekPetak = peternakan.getElementAddress(rowP,colP);
+        if (cekPetak == nullptr){
+            isEmpty = true;
 
+        } else {
+            cout << "Petak yang anda pilih tidak kosong.\n Silakan pilih petak kosong." << endl;
+        }
 
     } while (!isEmpty);
-
-    
     
 
+    // Petak dipilih sudah kosong
 
+    Hewan *hewan = dynamic_cast<Hewan*>(item);
+    peternakan.insert(rowP,colP,*hewan);
+    inventory.deleteAt(row,col);
+
+    cout << "Dengan hati-hati, kamu meletakkan seekor " << item->getNamaBarang() << " di kandang." << endl << endl;
+    cout << item->getNamaBarang() << "telah menjadi peliharaanmu sekarang!";
 
 
 }
 
-void Peternak::kasihMakan(){}
+void Peternak::kasihMakan()
+{
+    if (peternakan.isEmpty()){
+        throw TernakEmptyException();
+    }
+    // klo gak ada makanannya beri pesan aja
+    cetakPeternakan();
+    bool isEmpty = false;
+    string petak;
+    int colP = 0;
+    int rowP = 0;
+    Hewan *cekPetak = nullptr; 
+
+    // validasi kosong ato gak
+    do 
+    {
+        petak = getValidInputStorage("Petak tanah");
+
+        colP = getColStorage(petak[0]);
+        rowP = getRowStorage(petak);
+
+        cekPetak = peternakan.getElementAddress(rowP,colP);
+        if (cekPetak == nullptr){
+            isEmpty = true;
+
+        } else {
+            cout << "Petak yang anda pilih tidak kosong.\n Silakan pilih petak kosong." << endl;
+        }
+
+    } while (!isEmpty);
+
+
+
+}
 
 void Peternak::panen() {}
 
@@ -90,4 +130,11 @@ void Peternak::cetakPenyimpananHewan(){}
 
 int Peternak::countHewanInventory(){}
 
-
+int Peternak::getKKP() const
+{
+    return this->getKekayaan() - 11;
+}
+string Peternak::getRole() const
+{
+    return "Peternak";
+}

@@ -10,6 +10,8 @@
 using namespace std;
 class Pemain
 {
+private:
+    bool isFoodAvailable();
 protected:
     const static int inventory_n;
     const static int inventory_m;

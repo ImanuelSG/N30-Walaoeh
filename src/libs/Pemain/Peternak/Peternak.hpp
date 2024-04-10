@@ -3,7 +3,7 @@
 
 #include "../Pemain.hpp"
 #include "../Storage/Storage.hpp"
-#include "../Hewan/hewan.hpp"
+#include "../../Hewan/Hewan.hpp"
 
 
 class Peternak : public Pemain
