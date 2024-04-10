@@ -5,6 +5,7 @@
 #include "Storage/Storage.hpp"
 #include "../Sellable/Sellable.hpp"
 #include "../Exception/Exception.hpp"
+#include "../Utils/Utils.hpp"
 
 
 using namespace std;
