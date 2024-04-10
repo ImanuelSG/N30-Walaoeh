@@ -47,7 +47,7 @@ public:
 
     /* Methods */
     // getter
-    virtual int getJenisSellable();
+    int getJenisSellable();
 
     string getKodeHurufTanaman(int jenis_sellable);
     string getKodeHurufHewan(int jenis_sellable);
