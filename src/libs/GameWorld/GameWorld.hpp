@@ -4,6 +4,8 @@
 #include "../Pemain/Walikota/Walikota.hpp"
 #include "../Pemain/Petani/Petani.hpp"
 #include "../Pemain/Peternak/Peternak.hpp"
+#include "../Bangunan/Bangunan.hpp"
+
 using namespace std;
 
 class GameWorld
@@ -12,6 +14,7 @@ private:
     int winningGulden;
     int winningWeight;
     vector<Pemain *> listOfPLayers;
+    vector<Sellable *> listOfBangunan;
     int currPlayerIndex;
     bool ended;
 
@@ -25,5 +28,4 @@ public:
     void saveGameState();
     void loadGameState();
     void initializeDefaultGame();
-    void addPlayer(Pemain &pemain);
 };

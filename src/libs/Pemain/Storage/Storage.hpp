@@ -7,7 +7,7 @@ template <class T, int N, int M>
 class Storage
 {
 private:
-    T array[][];
+    T array[N][M];
     int neff;
     int capacity;
 

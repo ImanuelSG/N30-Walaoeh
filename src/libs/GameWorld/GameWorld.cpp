@@ -2,7 +2,6 @@
 
 GameWorld::GameWorld()
 {
-
 }
 
 GameWorld::~GameWorld()
@@ -36,10 +35,20 @@ void GameWorld::displayHeader()
 void GameWorld::startGame()
 {
     CommandManager CommandManager;
+    cout << "Berikut adalah daftar pemain yang ada dalam permainan ini : " << endl;
+    for (int i = 0; i < listOfPLayers.size(); i++)
+    {
+        cout << i + 1 << ". " << listOfPLayers[i]->getName() << endl;
+    }
+    cout << endl;
+    countdown(3);
+    cout << "Game dimulai!" << endl;
+    cout << endl;
     while (!ended)
     {
         CommandManager.setIsTakingTurn(true);
         cout << "Sekarang giliran " << listOfPLayers[currPlayerIndex]->getName() << " untuk melakukan aksi." << endl;
+        cout << endl;
         while (CommandManager.getIsTakingTurn())
         {
             cout << "> ";
@@ -107,32 +116,3 @@ void GameWorld::saveGameState()
 void GameWorld::loadGameState()
 {
 }
-
-void GameWorld::addPlayer(Pemain &pemain)
-{
-    bool found = false;
-    int index = 0;
-    while (!found && index < listOfPLayers.size())
-    {
-        if (listOfPLayers[index]->getName() > pemain.getName())
-        {
-            found = true;
-            listOfPLayers.insert(listOfPLayers.begin() + index, &pemain);
-        }
-        index++;
-    }
-    if (!found)
-    {
-        listOfPLayers.push_back(&pemain);
-    }
-}
-
-// 1 2 3 5
-// index == 2
-// 1 2 3 4 5
-// index == 3
-
-// 1 3 4 5
-// index == 1
-// 1 2 3 4 5
-// current player index += 1;

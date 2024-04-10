@@ -6,6 +6,7 @@
 #include "../Peternak/Peternak.hpp"
 #include "../../Utils/Utils.hpp"
 
+
 #include <vector>
 #include <cmath>
 using namespace std;
@@ -16,7 +17,6 @@ public:
     ~Walikota();
     string getRole() const;
     int tagihPajak(Pemain *pemain);
-
     void pungutPajak(const vector<Pemain *> &pemain) override;
     void bangunBangunan() override;
     int tambahPemain(vector<Pemain *> &pemain) override;

@@ -5,7 +5,7 @@
 // map<string, int> material; // <string nama_material, int jumlah_material>
 
 int Bangunan::id_bangunan = 1;
-
+map<string, tuple<string, int, vector<tuple<string, int>>>> Bangunan::list_of_bangunan;
 // ctor default
 Bangunan::Bangunan()
 {
@@ -55,4 +55,17 @@ void Bangunan::setIdBangunan(int id)
 void Bangunan::setMaterial(map<string, int> material)
 {
     this->material = material;
+}
+
+void Bangunan::getListBangunan()
+{
+    for (auto &it : list_of_bangunan)
+    {
+        cout << it.first << " : " << get<0>(it.second) << " " << get<1>(it.second) << " ";
+        for (auto &it2 : get<2>(it.second))
+        {
+            cout << get<0>(it2) << " " << get<1>(it2) << " ";
+        }
+        cout << endl;
+    }
 }

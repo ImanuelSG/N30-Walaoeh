@@ -67,6 +67,8 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         else if (what == "BELI")
         {
             currPlayer->beli();
+           
+            
         }
         else if (what == "JUAL")
         {

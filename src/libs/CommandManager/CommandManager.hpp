@@ -11,7 +11,6 @@ class CommandManager
 private:
     int nextPlayerIndex;
     bool isTakingTurn;
-
 public:
     /**
      * @brief Construct a new Command Manager object

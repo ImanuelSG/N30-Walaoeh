@@ -2,7 +2,7 @@
 #define BANGUNAN_HPP
 
 #include "../Sellable/Sellable.hpp"
-
+#include <vector>
 #include <map>
 
 /* <ID> <KODE_HURUF> <NAME> <PRICE> <MATERIAL_1> <MATERIAL_1_QUANTITY> <MATERIAL_2> <MATERIAL_2_QUANTITY> ...*/
@@ -11,10 +11,12 @@ class Bangunan : public Sellable
 {
 private:
     map<string, int> material; // <string nama_material, int jumlah_material>
+    static map<string, tuple<string, int, vector<tuple<string, int>>>> list_of_bangunan;
 
 public:
     static int id_bangunan;
-
+    // map with key = nama_bangunan, value = tuple<kode_bangunan, harga_bangunan, vector<tuple<material, jumlah_material>>>
+    
     // ctor default
     Bangunan();
 
@@ -37,6 +39,8 @@ public:
     void setIdBangunan(int id);
 
     void setMaterial(map<string, int> material);
+
+    void getListBangunan();
 };
 
 #endif
