@@ -1,16 +1,60 @@
+
 #ifndef _EXCEPTION_HPP_
 #define _EXCEPTION_HPP_
 
-#include <exception>
 #include <iostream>
+#include <exception> // Add missing include directive
+using namespace std;
 
-class NumericException : public std::exception
+class NumericException : public exception
 {
 public:
-    const char *what() const noexcept override
-    {
-        return "Input anda tidak valid.\nSilahkan masukkan angka sebagai input.";
-    }
+    const char *what();
+};
+
+class InvalidInputException : public exception
+{
+public:
+    const char *what();
+};
+class WalikotaInputException : public exception
+{
+public:
+    const char *what();
+};
+
+class InvalidCommandException : public exception
+{
+public:
+    const char *what();
+};
+
+class StorageFullException : public exception
+{
+public:
+    const char *what();
+};
+
+class LadangFullException : public exception
+{
+public:
+    const char *what();
+};
+
+class TernakFullException : public exception
+{
+public:
+    const char *what();
+};
+
+class NotEnoughMoneyException : public exception
+{
+    const char *what();
+};
+
+class InvalidStorageIndexException : public exception
+{
+    const char *what();
 };
 
 #endif

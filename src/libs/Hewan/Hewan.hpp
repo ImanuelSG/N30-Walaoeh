@@ -9,8 +9,8 @@ class Hewan : public Sellable
 {
 private:
     string tipe_hewan;
-    int weight_to_harvest;
     int weight;
+    int weight_to_harvest;
 
 public:
     int id_hewan = 1;
