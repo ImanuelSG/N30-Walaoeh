@@ -22,8 +22,17 @@ public:
 
     void Simpan(string path);
 
+    void MuatTanaman();
 
+    void MuatHewan();
 
+    void MuatProduk();
+
+    void MuatResep();
+    
+    void MuatBahanBangunan(istringstream iss);
+
+    void MuatLainLain();
 };
 
 #endif
