@@ -4,6 +4,8 @@
 #include <sstream>
 #include <fstream>
 #include "../CommandManager/CommandManager.hpp"
+#include "../Hewan/Hewan.hpp"
+#include "../Produk/Produk.hpp"
 #include "../Pemain/Walikota/Walikota.hpp"
 #include "../Pemain/Petani/Petani.hpp"
 #include "../Pemain/Peternak/Peternak.hpp"
