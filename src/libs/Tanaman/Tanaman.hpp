@@ -1,7 +1,7 @@
 #ifndef TANAMAN_HPP
 #define TANAMAN_HPP
 
-#include "../Sellable/Sellable.cpp"
+#include "../Sellable/Sellable.hpp"
 #include <fstream>
 
 /*<ID> <KODE_HURUF> <NAME> <TYPE> <DURATION_TO_HARVEST> <PRICE>*/

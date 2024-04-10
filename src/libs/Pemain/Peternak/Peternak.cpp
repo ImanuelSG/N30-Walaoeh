@@ -32,7 +32,7 @@ void Peternak::jual()
 {
 }
 
-int Peternak::getKKP()
+int Peternak::getKKP() const
 {
     return this->getKekayaan() - 11;
 }

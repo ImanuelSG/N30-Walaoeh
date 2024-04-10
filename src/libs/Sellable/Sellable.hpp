@@ -36,6 +36,8 @@ public:
     void setKodeHuruf(string kode);
     void setNamaBarang(string nama);
     void setHargaBarang(int harga);
+
+
 };
 
 #endif

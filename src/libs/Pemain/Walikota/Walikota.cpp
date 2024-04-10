@@ -187,6 +187,10 @@ string Walikota::getRole() const
     return "Walikota";
 }
 
+int Walikota::getKKP() const
+{
+    return 0;
+}
 map<string, int> Walikota::getMaterialProduct()
 {
     map<string, int> materialProduct;
@@ -197,8 +201,7 @@ map<string, int> Walikota::getMaterialProduct()
     {
         for (int j = 0; j < this->inventory_m; j++)
         {
-            
         }
     }
-    
+    return materialProduct;
 }

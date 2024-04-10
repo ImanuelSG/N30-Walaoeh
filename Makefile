@@ -11,7 +11,7 @@ CFLAGS          = $(DEBUG_CFLAG) $(WARNING_CFLAG)
 EXECUTABLE_FILENAME = Walaoeh
 
 # Find all source files recursively
-ALL_SRCS := $(filter-out $(SOURCE_FOLDER)/Bangunan/main.cpp $(SOURCE_FOLDER)/Hewan/main.cpp  $(SOURCE_FOLDER)/ProdukHewan/main.cpp ,$(wildcard $(SOURCE_FOLDER)/*/*.cpp $(SOURCE_FOLDER)/*/*/*.cpp))
+ALL_SRCS := $(filter-out $(SOURCE_FOLDER)/Bangunan/main.cpp $(SOURCE_FOLDER)/Hewan/main.cpp $(SOURCE_FOLDER)/Tanaman/main.cpp $(SOURCE_FOLDER)/ProdukHewan/main.cpp ,$(wildcard $(SOURCE_FOLDER)/*/*.cpp $(SOURCE_FOLDER)/*/*/*.cpp $(SOURCE_FOLDER)/Pemain/Storage/Storage.hpp))
 
 # Create a list of object files from source files
 OBJECTS := $(patsubst $(SOURCE_FOLDER)/%.cpp,$(OUTPUT_FOLDER)/%.o,$(ALL_SRCS))
@@ -47,7 +47,13 @@ testProdukHewan: $(TEST_OUTPUT_FOLDER)/testProdukHewan
 
 testHewan: $(TEST_OUTPUT_FOLDER)/testHewan
 	@./$(TEST_OUTPUT_FOLDER)/testHewan
-	
+
+testParser: $(TEST_OUTPUT_FOLDER)/testParser
+	@./$(TEST_OUTPUT_FOLDER)/testParser
+
+testTanaman: $(TEST_OUTPUT_FOLDER)/testTanaman
+	@./$(TEST_OUTPUT_FOLDER)/testTanaman
+
 clean:
 	@rm -rf $(OUTPUT_FOLDER)/*
 	@echo "Clean done."

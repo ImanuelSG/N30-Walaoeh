@@ -16,7 +16,7 @@ protected:
     string name;
     int gulden;
     int berat;
-    Storage<Sellable *> inventory;
+    Storage<Sellable> inventory;
 
 public:
     Pemain(string name, int gulden, int berat);
@@ -99,8 +99,7 @@ public:
      * @return index pemain baru (untuk menentukan urutan main nantinya)
      */
     virtual int tambahPemain(vector<Pemain *> &pemain);
-
-    virtual int getKKP();
+    virtual int getKKP() const = 0;
     virtual string getRole() const = 0;
 };
 

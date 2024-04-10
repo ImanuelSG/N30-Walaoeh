@@ -63,7 +63,10 @@ public:
      *
      * @return string
      */
+
     string getRole() const;
+
+    int getKKP() const;
 };
 
 #endif

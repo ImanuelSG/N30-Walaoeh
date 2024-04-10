@@ -28,7 +28,7 @@ void Petani::jual()
 {
 }
 
-int Petani::getKKP()
+int Petani::getKKP() const
 {
     return this->getKekayaan() - 13;
 }

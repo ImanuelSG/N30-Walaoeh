@@ -5,7 +5,6 @@
 #include <vector>
 #include <string>
 #include "../../Sellable/Sellable.hpp"
-#include "../../Utils/Utils.hpp"
 using namespace std;
 
 template <class T>
@@ -34,18 +33,55 @@ public:
      * @param N Num of Rows
      * @param M Num of Cols
      */
-    Storage(int N, int M);
+    Storage(int N, int M)
+    {
+        buffer.resize(N, vector<T *>(M, nullptr)); // Initialize buffer with nullptrs
+
+        neff = 0;
+        row = N;
+        col = M;
+        capacity = N * M;
+    }
+
     /**
      * @brief Destroy the Storage object
      *
      */
-    ~Storage();
+    ~Storage()
+    {
+        for (auto &row : buffer)
+        {
+            for (auto ptr : row)
+            {
+                delete ptr; // Delete objects pointed by pointers
+            }
+        }
+    }
+
     /**
      * @brief Insert object to first empty slot
      *
      * @param obj Object to be inserted
      */
-    void insert(const T &obj);
+    void insert(const T &obj)
+    {
+        bool found = false;
+        int i = 0;
+        while (i < row && !found)
+        {
+            int j = 0;
+            while (j < col && !found)
+            {
+                if (buffer[i][j] == nullptr)
+                {
+                    buffer[i][j] = &obj;
+                    found = true;
+                }
+                j++;
+            }
+            i++;
+        }
+    }
 
     /**
      * @brief Insert a new object at a specific location
@@ -54,7 +90,12 @@ public:
      * @param col Col position of new object (starting from zero)
      * @param obj Object to be inserted
      */
-    void insert(int row, int col, const T &obj);
+    void insert(int row, int col, const T &obj)
+    {
+        buffer[row][col] = &obj;
+        neff++;
+    }
+
     /**
      * @brief Delete an object entry at a specific location without destroying the object then returns the object
      *
@@ -62,21 +103,39 @@ public:
      * @param col Col position of deleted object (starting from zero)
      * @return T& Reference to the deleted object entry
      */
-    T &deleteAt(int row, int col);
+    T &deleteAt(int row, int col)
+    {
+        if (buffer[row][col] != nullptr)
+        {
+            T &ref = buffer[row][col];
+            buffer[row][col] = nullptr; // Set the pointer to nullptr
+            neff--;
+            return ref;
+        }
+    }
+
     /**
      * @brief Check if the Storage is empty
      *
      * @return true if the Storage is empty
      * @return false otherwise
      */
-    bool isEmpty();
+    bool isEmpty()
+    {
+        return neff == 0;
+    }
+
     /**
      * @brief Check if the Storage is full
      *
      * @return true if the Storage is full
      * @return false otherwise
      */
-    bool isFull();
+    bool isFull()
+    {
+        return neff == capacity;
+    }
+
     /**
      * @brief Get the object from buffer[row][col]
      *
@@ -84,7 +143,11 @@ public:
      * @param col Col position of object (starting from zero)
      * @return T& Reference to object
      */
-    T &getElement(int row, int col);
+    T &getElement(int row, int col)
+    {
+        return buffer[row][col];
+    }
+
     /**
      * @brief Print storage with default inventory format
      *

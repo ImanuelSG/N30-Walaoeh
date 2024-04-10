@@ -1,10 +1,15 @@
 #include "Pemain.hpp"
 
-Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m) {}
+const int Pemain::inventory_n = 5;
+const int Pemain::inventory_m = 5;
 
+Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m)
+{
+}
 Pemain::~Pemain()
 {
 }
+
 int Pemain::getGulden() const
 {
     return this->gulden;
@@ -18,6 +23,11 @@ int Pemain::getBerat() const
 string Pemain::getName() const
 {
     return this->name;
+}
+
+int Pemain::getKekayaan() const
+{
+    return 0;
 }
 
 void Pemain::setName(string name)
@@ -92,6 +102,14 @@ void Pemain::kasihMakan()
 void Pemain::panen()
 {
     throw InvalidCommandException();
+}
+
+void Pemain::beli()
+{
+}
+
+void Pemain::jual()
+{
 }
 
 int Pemain::tambahPemain(vector<Pemain *> &pemain)

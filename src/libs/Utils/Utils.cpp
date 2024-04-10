@@ -1,27 +1,33 @@
 #include "Utils.hpp"
 
-bool isValidInputStorage(string input) {
+bool isValidInput(string input)
+{
     bool valid = false;
     bool has00 = false;
-    if (isalpha(input[0])){
-        
+    if (isalpha(input[0]))
+    {
+
         int id = 1;
         bool flag = true;
-        while (flag && id < input.length()){
-            if (isdigit(input[id])){
+        while (flag && id < input.length())
+        {
+            if (isdigit(input[id]))
+            {
                 // case X00
-                if (input[id] == '0' && input[id-1] == '0' && id != 1){
+                if (input[id] == '0' && input[id - 1] == '0' && id != 1)
+                {
                     has00 = true;
                     break;
-                    
                 }
                 id++;
-            } else 
+            }
+            else
             {
                 flag = false;
             }
         }
-        if (!has00 && id == input.length()) {
+        if (!has00 && id == input.length())
+        {
             valid = true;
         }
     }
