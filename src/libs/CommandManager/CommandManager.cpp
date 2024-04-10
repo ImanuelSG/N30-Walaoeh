@@ -67,8 +67,6 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         else if (what == "BELI")
         {
             currPlayer->beli();
-           
-            
         }
         else if (what == "JUAL")
         {
@@ -103,6 +101,36 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         return 0;
     }
     catch (WalikotaInputException &e)
+    {
+        cout << e.what() << endl;
+        return 0;
+    }
+    catch (InvalidCommandException &e)
+    {
+        cout << e.what() << endl;
+        return 0;
+    }
+    catch (NotEnoughMoneyException &e)
+    {
+        cout << e.what() << endl;
+        return 0;
+    }
+    catch (InvalidStorageIndexException &e)
+    {
+        cout << e.what() << endl;
+        return 0;
+    }
+    catch (StorageFullException &e)
+    {
+        cout << e.what() << endl;
+        return 0;
+    }
+    catch (LadangFullException &e)
+    {
+        cout << e.what() << endl;
+        return 0;
+    }
+    catch (TernakFullException &e)
     {
         cout << e.what() << endl;
         return 0;

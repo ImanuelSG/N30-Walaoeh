@@ -108,3 +108,4 @@ void Tanaman::tambahUmurTanaman(int age)
 {
     this->age += age;
 }
+

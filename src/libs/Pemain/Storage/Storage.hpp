@@ -60,6 +60,26 @@ public:
     }
 
     /**
+     * @brief Get the Row attribute
+     * 
+     * @return int 
+     */
+    int getRow() const
+    {
+        return row;
+    }
+
+    /**
+     * @brief Get the Col attribute
+     * 
+     * @return int 
+     */
+    int getCol() const
+    {
+        return col;
+    }
+
+    /**
      * @brief Insert object to first empty slot
      *
      * @param obj Object to be inserted

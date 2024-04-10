@@ -15,15 +15,24 @@ void Walikota::pungutPajak(const vector<Pemain *> &pemain)
     cout << endl;
     cout << "Berikut adalah detil dari pemungutan pajak: " << endl;
     int counter = 1;
+    int totalpajak = 0;
+    int currentpajak;
     for (auto pemain : pemain)
     {
         if (pemain->getName() != this->name)
         {
 
-            cout << "   " << counter << ". " << pemain->getName() << " - " << pemain->getRole() << ": " << tagihPajak(pemain) << " gulden" << endl;
+            currentpajak = tagihPajak(pemain);
+            cout << "   " << counter << ". " << pemain->getName() << " - " << pemain->getRole() << ": " << currentpajak << " gulden" << endl;
             counter++;
+            totalpajak += currentpajak;
         }
     }
+    cout << endl;
+    cout << "Negara mendapatkan pemasukan sebesar " << totalpajak << " gulden" << endl;
+    cout << "Gunakan dengan baik dan jangan dikorupsi ya!" << endl;
+
+    setGulden(getGulden() + totalpajak);
 }
 
 int Walikota::tagihPajak(Pemain *pemain)
@@ -72,12 +81,11 @@ int Walikota::tambahPemain(vector<Pemain *> &pemain)
     // Check if the Walikota has enough money
     if (this->getGulden() < 50)
     {
-        cout << "Uang tidak cukup!" << endl;
-        return -1;
+        throw NotEnoughMoneyException();
     }
-
     else
     {
+
         string jenisPemain = "";
         string namaPemain = "";
         do
@@ -145,6 +153,9 @@ int Walikota::tambahPemain(vector<Pemain *> &pemain)
         cout << endl;
         cout << "Pemain baru ditambahkan!" << endl;
         cout << "Selamat datang \"" << namaPemain << "\" di kota ini!" << endl;
+
+        // Kurangi uang Walikota
+        this->setGulden(this->getGulden() - 50);
         // Return the new Player index
         return index;
     }
@@ -191,16 +202,18 @@ int Walikota::getKKP() const
 {
     return 0;
 }
+
 map<string, int> Walikota::getMaterialProduct()
 {
     map<string, int> materialProduct;
 
     int i, j = 0;
 
-    for (int i = 0; i < this->inventory_m; i++)
+    for (int i = 0; i < inventory.getRow(); i++)
     {
-        for (int j = 0; j < this->inventory_m; j++)
+        for (int j = 0; j < inventory.getCol(); j++)
         {
+            if (inventory.getElement(i, j).)
         }
     }
     return materialProduct;

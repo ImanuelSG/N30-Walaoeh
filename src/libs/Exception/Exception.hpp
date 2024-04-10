@@ -3,7 +3,7 @@
 #define _EXCEPTION_HPP_
 
 #include <iostream>
-#include <exception> // Add missing include directive
+#include <exception>
 using namespace std;
 
 class NumericException : public exception
@@ -49,11 +49,12 @@ public:
 
 class NotEnoughMoneyException : public exception
 {
+public:
     const char *what();
 };
-
 class InvalidStorageIndexException : public exception
 {
+public:
     const char *what();
 };
 

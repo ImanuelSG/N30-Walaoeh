@@ -12,6 +12,7 @@ protected:
     string kode_huruf; // 3 huruf
     string nama_barang;
     int harga_barang;
+    string type;
 
 public:
     // ctor default
@@ -37,7 +38,10 @@ public:
     void setNamaBarang(string nama);
     void setHargaBarang(int harga);
 
-
+    bool isMaterial();
+    bool isAnimal();
+    bool isPlant();
+    bool isProduct();
 };
 
 #endif

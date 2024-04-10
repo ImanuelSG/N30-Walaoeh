@@ -43,6 +43,7 @@ public:
     static Tanaman tambahTanamanConfig(ifstream &file);
 
     void tambahUmurTanaman(int age);
+
 };
 
 #endif
