@@ -28,6 +28,10 @@ void Petani::jual()
 {
 }
 
+int Petani::getKKP()
+{
+    return this->getKekayaan() - 13;
+}
 string Petani::getRole() const
 {
     return "Petani";

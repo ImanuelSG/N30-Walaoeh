@@ -32,6 +32,10 @@ void Peternak::jual()
 {
 }
 
+int Peternak::getKKP()
+{
+    return this->getKekayaan() - 11;
+}
 string Peternak::getRole() const
 {
     return "Peternak";

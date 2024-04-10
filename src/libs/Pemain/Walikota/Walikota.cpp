@@ -190,9 +190,15 @@ string Walikota::getRole() const
 map<string, int> Walikota::getMaterialProduct()
 {
     map<string, int> materialProduct;
-    for (auto &items : this->inventory)
+
+    int i, j = 0;
+
+    for (int i = 0; i < this->inventory_m; i++)
     {
-        cout << items.first << " : " << items.second << endl;
+        for (int j = 0; j < this->inventory_m; j++)
+        {
+            
+        }
     }
-    return materialProduct;
+    
 }

@@ -39,7 +39,7 @@ public:
     void setIdBangunan(int id);
 
     void setMaterial(map<string, int> material);
-    tuple<string, int, vector<tuple<string, int>>> Bangunan::getSpecificRecipe(string name);
+    tuple<string, int, vector<tuple<string, int>>> getSpecificRecipe(string name);
 
     map<string, tuple<string, int, vector<tuple<string, int>>>> getAllRecipe();
 

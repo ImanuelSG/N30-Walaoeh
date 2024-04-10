@@ -1,18 +1,9 @@
 #include "Pemain.hpp"
 
-Pemain::Pemain(string name, int gulden, int berat)
-{
-    this->name = name;
-    this->gulden = gulden;
-    this->berat = berat;
-}
+Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m) {}
 
 Pemain::~Pemain()
 {
-    for (auto item : this->inventory)
-    {
-        delete item;
-    }
 }
 int Pemain::getGulden() const
 {
@@ -29,68 +20,141 @@ string Pemain::getName() const
     return this->name;
 }
 
-void Pemain::setName()
+void Pemain::setName(string name)
 {
     this->name = name;
 }
-void Pemain::setGulden(int num)
+
+void Pemain::setGulden(int gulden)
 {
-    this->gulden = num;
+    this->gulden = gulden;
 }
 
-void Pemain::setBerat(int num)
+void Pemain::setBerat(int berat)
 {
-    this->berat = num;
+    this->berat = berat;
 }
 
-int Pemain::getKekayaan() const
+void Pemain::makan()
 {
-    int kekayaan = 0;
-    for (auto item : this->inventory)
-    {
-        kekayaan += item->getHargaBarang();
-    }
+    cetakPenyimpanan();
+    bool valid = false;
+    string slot;
 
-    return kekayaan + this->getGulden();
-}
+    // do
+    // {
 
-void Pemain::next()
+    // } while ()
+};
+
+void Pemain::next() {}
+
+void Pemain::cetakPenyimpanan()
 {
+    display(inventory);
 }
 
 void Pemain::pungutPajak(const vector<Pemain *> &pemain)
 {
     throw WalikotaInputException();
 }
-void Pemain::cetakLadang() {}
-void Pemain::cetakPeternakan() {}
-void Pemain::tanam() {}
-void Pemain::ternak() {}
+
+void Pemain::cetakLadang()
+{
+    throw InvalidCommandException();
+}
+
+void Pemain::cetakPeternakan()
+{
+    throw InvalidCommandException();
+}
+
+void Pemain::tanam()
+{
+    throw InvalidCommandException();
+}
+
+void Pemain::ternak()
+{
+    throw InvalidCommandException();
+}
 
 void Pemain::bangunBangunan()
 {
     throw WalikotaInputException();
 }
+
 void Pemain::kasihMakan()
 {
-}
-void Pemain::beli() {}
-void Pemain::jual() {}
-void Pemain::panen() {}
-
-void Pemain::makan()
-{
+    throw InvalidCommandException();
 }
 
-void Pemain::cetakPenyimpanan()
+void Pemain::panen()
 {
+    throw InvalidCommandException();
 }
+
 int Pemain::tambahPemain(vector<Pemain *> &pemain)
 {
     throw WalikotaInputException();
 }
 
-int Pemain::getKKP()
+template <>
+void display<Sellable>(const Storage<Sellable> &storage)
 {
-    return 0;
+    // ================[ Penyimpanan ]==================
+    cout << "     ";
+    int numOfEq = (1 + 6 * storage.col - 15) / 2; // 15 is len([ Penyimpanan ])
+    for (int i = 0; i < numOfEq; i++)
+    {
+        cout << "=";
+    }
+    cout << "[ Penyimpanan ]";
+    for (int i = 0; i < numOfEq; i++)
+    {
+        cout << "=";
+    }
+    cout << endl;
+
+    // Print the letters for each column
+    cout << "     ";
+    for (char c = 'A'; c < 'A' + storage.col; ++c)
+    {
+        cout << "   " << c << "  ";
+    }
+    cout << " " << endl;
+
+    for (int i = 0; i < storage.col; ++i)
+    {
+        if (i == 0)
+        {
+            cout << "     +";
+        }
+        cout << "-----+";
+    }
+    cout << endl;
+    for (int i = 0; i < storage.row; ++i)
+    {
+        cout << "  " << intToStringWithLeadingZero(i + 1) << " |";
+        for (int j = 0; j < storage.col; ++j)
+        {
+            string keluaran = "";
+            if (storage.buffer[i][j] != nullptr)
+            {
+                keluaran = (*storage.buffer[i][j]).getKodeHuruf();
+            }
+            if (keluaran == "")
+            {
+                keluaran = "   ";
+            }
+            cout << " " << keluaran << " |";
+        }
+        cout << endl;
+        cout << "     +";
+        for (int j = 0; j < storage.col; ++j)
+        {
+            cout << "-----+";
+        }
+        cout << endl;
+    }
 }

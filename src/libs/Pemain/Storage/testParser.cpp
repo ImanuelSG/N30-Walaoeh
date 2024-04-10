@@ -1,6 +1,9 @@
-#include "Utils.hpp"
+#include <iostream>
+#include <string>
 
-bool isValidInputStorage(string input) {
+using namespace std;
+
+bool isValidInput(string input) {
     bool valid = false;
     bool has00 = false;
     if (isalpha(input[0])){
@@ -56,29 +59,17 @@ string getValidInputStorage(string order){
     return input;
 }
 
-string intToStringWithLeadingZero(int num) {
-    if (num < 10) {
-        return "0" + std::to_string(num);
-    } else {
-        return std::to_string(num);
-    }
-}
+int main() {
 
-string toLowercase(const std::string &str)
-{
-    string result;
-    for (char c : str)
-    {
-        result += std::tolower(c);
-    }
-    return result;
-}
 
-void countdown(int seconds)
-{
-    for (int i = seconds; i > 0; --i)
-    {
-        cout << i << "..\n";
-        this_thread::sleep_for(chrono::seconds(1)); // Sleep for 1 second
-    }
+    bool valid = false;
+    std::string input = getValidInputStorage("Stok");
+
+    
+    int col = getCol(input[0]);
+    int row = getRow(input);
+   
+    std::cout << "Parsed column: " << col << ", Parsed row: " << row << std::endl;
+
+    return 0;
 }

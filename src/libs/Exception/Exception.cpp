@@ -7,9 +7,14 @@ const char *NumericException::what()
 
 const char *InvalidInputException::what()
 {
-    return "Input yang anda masukkan tidak valid !\nSilahkan masukkan input yang sesuai.";
+return "Input yang anda masukkan tidak valid !\nSilahkan masukkan input yang sesuai.";
 }
 const char *WalikotaInputException::what()
 {
     return "Input yang anda masukkan merupakan milik dari Walikota !\nSilahkan masukkan input yang sesuai dengan role anda!";
+}
+
+const char *InvalidCommandException::what()
+{
+    return "Command yang Anda masukkan tidak valid!.\n Pastikan Command Anda sesuai.\n";
 }

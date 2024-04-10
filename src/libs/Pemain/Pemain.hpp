@@ -2,26 +2,27 @@
 #define PEMAIN_HPP
 
 #include <vector>
-#include "../Exception/Exception.hpp"
+#include "Storage/Storage.hpp"
 #include "../Sellable/Sellable.hpp"
-#include "iostream"
+#include "../Exception/Exception.hpp"
+#include "../Utils/Utils.hpp"
+
 using namespace std;
 class Pemain
 {
 protected:
-    static int inventory_n;
-    static int inventory_m;
-    vector<Sellable *> inventory;
-
+    const static int inventory_n;
+    const static int inventory_m;
     string name;
     int gulden;
     int berat;
-    // storage
+    Storage<Sellable *> inventory;
+
 public:
     Pemain(string name, int gulden, int berat);
     ~Pemain();
     /**
-     * @brief Getter nama pema
+     * @brief Getter nama pemain
      *
      * @return string
      */
@@ -42,17 +43,17 @@ public:
      * @brief Setter untuk nama pemain
      *
      */
-    void setName();
+    void setName(string name);
     /**
      * @brief Setter untuk Gulden pemain
      *
      */
-    void setGulden(int num);
+    void setGulden(int gulden);
     /**
      * @brief Setter untuk berat pemain
      *
      */
-    void setBerat(int num);
+    void setBerat(int berat);
     /**
      * @brief Makan untuk menambah berat pemain
      *
