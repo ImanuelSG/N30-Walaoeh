@@ -2,7 +2,12 @@
 #define PRODUK_HPP
 
 #include "../Sellable/Sellable.hpp"
+#include "../Exception/Exception.hpp"
 #include <vector>
+#include <map>
+#include <string>
+#include <sstream>
+#include <tuple>
 
 /*<ID> <KODE_HURUF> <NAME> <TYPE> <ORIGIN> <ADDED_WEIGHT> <PRICE>*/
 class Produk : public Sellable
@@ -14,6 +19,7 @@ protected:
 
 public:
     static int id_produk;
+    static map<string, tuple<int, string, string, string, int, int>> productMap;
 
     // ctor default
     Produk();
@@ -39,6 +45,9 @@ public:
     void setTipeProduk(string tipe);
     void setOrigin(string origin);
     void setAddedWeight(int added_weight);
+
+    // load config to productMap
+    static void loadProductConfig(string path);
 };
 
 #endif

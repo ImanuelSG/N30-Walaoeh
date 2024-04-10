@@ -23,3 +23,8 @@ const char *InvalidStorageIndexException::what()
 {
     return "Indeks yang Anda masukkan tidak valid!.\n Pastikan Indeks Anda sesuai.\n";
 }
+
+const char *FileNotFoundException::what()
+{
+    return "File yang diberikan tidak ditemukan!.\nPastikan path file Anda sesuai.\n";
+}
