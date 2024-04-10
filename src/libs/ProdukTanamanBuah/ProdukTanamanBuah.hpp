@@ -15,7 +15,7 @@ public:
     ProdukTanamanBuah();
 
     // ctor user defined
-    ProdukTanamanBuah(int id, string kode, string nama_produk, string origin, int added_weight, int harga);
+    ProdukTanamanBuah(int jenis_sellable, int id, string kode, string nama_produk, string origin, int added_weight, int harga);
 
     ProdukTanamanBuah &operator=(const ProdukTanamanBuah &other);
 

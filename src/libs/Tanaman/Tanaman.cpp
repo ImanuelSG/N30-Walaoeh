@@ -1,10 +1,10 @@
 #include "Tanaman.hpp"
 #include <iostream>
 
-
 // ctor default
 Tanaman::Tanaman()
 {
+    this->jenis_sellable = jenis_tanaman;
     this->id_tanaman = 1;
     this->tipe_tanaman = "";
     this->age = 0;
@@ -12,8 +12,9 @@ Tanaman::Tanaman()
 }
 
 // ctor user defined
-Tanaman::Tanaman(int id, string kode, string nama_tanaman, string tipe, int umur, int durasi_panen, int harga) : Sellable(kode, nama_tanaman, harga)
+Tanaman::Tanaman(int jenis_sellable, int id, string kode, string nama_tanaman, string tipe, int umur, int durasi_panen, int harga) : Sellable(jenis_sellable, kode, nama_tanaman, harga)
 {
+    this->jenis_sellable = jenis_tanaman;
     this->id_tanaman = id;
     this->tipe_tanaman = tipe;
     this->age = 0;
@@ -23,6 +24,7 @@ Tanaman::Tanaman(int id, string kode, string nama_tanaman, string tipe, int umur
 // operator overloading
 Tanaman &Tanaman::operator=(const Tanaman &other)
 {
+    this->jenis_sellable = other.jenis_sellable;
     this->id_tanaman = other.id_tanaman;
     this->tipe_tanaman = other.tipe_tanaman;
     this->age = other.age;
@@ -31,7 +33,8 @@ Tanaman &Tanaman::operator=(const Tanaman &other)
 }
 
 // dtor
-Tanaman::~Tanaman() {
+Tanaman::~Tanaman()
+{
     // cout << "Tanaman " << this->getNamaBarang() << " telah dihapus" << std::endl;
 }
 
@@ -88,7 +91,7 @@ Tanaman Tanaman::tambahTanaman()
     cin >> durasi;
     cin >> harga;
 
-    Tanaman tanaman(id, kode, nama, tipe, umur, durasi, harga);
+    Tanaman tanaman(jenis_tanaman, id, kode, nama, tipe, umur, durasi, harga);
     return tanaman;
 }
 
@@ -99,7 +102,7 @@ Tanaman Tanaman::tambahTanamanConfig(ifstream &file)
 
     file >> id >> kode >> nama >> tipe >> durasi >> harga;
 
-    Tanaman tanaman(id, kode, nama, tipe, umur, durasi, harga);
+    Tanaman tanaman(jenis_tanaman, id, kode, nama, tipe, umur, durasi, harga);
 
     return tanaman;
 }

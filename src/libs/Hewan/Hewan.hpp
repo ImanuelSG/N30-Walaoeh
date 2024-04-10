@@ -19,7 +19,7 @@ public:
     Hewan();
 
     // ctor user defined
-    Hewan(int id, string kode, string nama_hewan, string tipe, int weight, int weight_to_harvest, int harga);
+    Hewan(int jenis_sellable, int id, string kode, string nama_hewan, string tipe, int weight, int weight_to_harvest, int harga);
 
     // operator overloading
     Hewan &operator=(const Hewan &other);

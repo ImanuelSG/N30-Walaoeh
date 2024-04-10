@@ -9,8 +9,8 @@ class Tanaman : public Sellable
 {
 private:
     string tipe_tanaman;
-    int duration_to_harvest;
     int age;
+    int duration_to_harvest;
 
 public:
     int id_tanaman = 1;
@@ -19,7 +19,7 @@ public:
     Tanaman();
 
     // ctor user defined
-    Tanaman(int id, string kode, string nama_tanaman, string tipe, int umur, int durasi_panen, int harga);
+    Tanaman(int jenis_sellable, int id, string kode, string nama_tanaman, string tipe, int umur, int durasi_panen, int harga);
 
     // operator overloading
     Tanaman &operator=(const Tanaman &other);
