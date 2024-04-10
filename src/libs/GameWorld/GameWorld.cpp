@@ -125,6 +125,7 @@ void GameWorld::initializeConfigs()
     loadMiscConfig("./src/libs/FileConfig/misc.txt");
     Hewan::loadHewanConfig("./src/libs/FileConfig/animal.txt");
     Produk::loadProductConfig("./src/libs/FileConfig/product.txt");
+    Tanaman::loadTanamanConfig("./src/libs/FileConfig/plant.txt");
     ended = false;
 }
 

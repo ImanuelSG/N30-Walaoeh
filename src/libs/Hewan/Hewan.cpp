@@ -188,9 +188,9 @@ void Hewan::loadHewanConfig(string path)
     inputFile.close();
 
     // how to access
-    for (const auto& pair : animalMap) {
-        std::cout << "Code: " << pair.first << ", ID: " << get<0>(pair.second)
-                  << ", Name: " << get<1>(pair.second) << ", Type: " << get<2>(pair.second)
-                  << ", WeightToHarvest: " << get<3>(pair.second) << ", Price: " << get<4>(pair.second) << endl;
-    }
+    // for (const auto& pair : animalMap) {
+    //     std::cout << "Code: " << pair.first << ", ID: " << get<0>(pair.second)
+    //               << ", Name: " << get<1>(pair.second) << ", Type: " << get<2>(pair.second)
+    //               << ", WeightToHarvest: " << get<3>(pair.second) << ", Price: " << get<4>(pair.second) << endl;
+    // }
 }

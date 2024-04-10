@@ -5,6 +5,7 @@
 #include <fstream>
 #include "../CommandManager/CommandManager.hpp"
 #include "../Hewan/Hewan.hpp"
+#include "../Tanaman/Tanaman.hpp"
 #include "../Produk/Produk.hpp"
 #include "../Pemain/Walikota/Walikota.hpp"
 #include "../Pemain/Petani/Petani.hpp"
