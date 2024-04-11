@@ -5,7 +5,7 @@
 // map<string, int> material; // <string nama_material, int jumlah_material>
 
 int Bangunan::id_bangunan = 1;
-map<string, tuple<string, int, vector<tuple<string, int>>>> Bangunan::list_of_bangunan;
+map<string, tuple<string, int, map<string, int>>> Bangunan::list_of_bangunan;
 // ctor default
 Bangunan::Bangunan()
 {
@@ -59,12 +59,12 @@ void Bangunan::setMaterial(map<string, int> material)
     this->material = material;
 }
 
-tuple<string, int, vector<tuple<string, int>>> Bangunan::getSpecificRecipe(string name)
+tuple<string, int, map<string, int>> Bangunan::getSpecificRecipe(string name)
 {
     return list_of_bangunan.find(name)->second;
 }
 
-map<string, tuple<string, int, vector<tuple<string, int>>>> Bangunan::getAllRecipe()
+map<string, tuple<string, int, map<string, int>>> Bangunan::getAllRecipe()
 {
     return list_of_bangunan;
 }
@@ -86,10 +86,10 @@ void Bangunan::displayAllRecipe()
         for (const auto &material : materials)
         {
             cout << " " << get<0>(material) << " " << get<1>(material);
-            if (material != materials.back())
-            {
-                cout << ",";
-            }
+            // if (material != materials.back())
+            // {
+            //     cout << ",";
+            // }
         }
         cout << ")" << endl;
         index++;
@@ -116,25 +116,25 @@ void Bangunan::loadBangunanConfig(string path)
         iss >> id >> code >> name >> price;
 
 
-        vector<tuple<string, int>> materials;
+        map<string, int> materials;
         string material_name;
         int quantity;
         while (iss >> material_name >> quantity) {
-            materials.push_back(make_tuple(material_name, quantity));
+            materials[material_name] = quantity;
         }
         list_of_bangunan[name] = make_tuple(code, price, materials);
     }
     inputFile.close();
 
     // how to access
-    for (const auto& building : list_of_bangunan) {
-        std::cout << "Name: " << building.first << std::endl;
-        std::cout << "Code: " << std::get<0>(building.second) << std::endl;
-        std::cout << "Price: " << std::get<1>(building.second) << std::endl;
+    // for (const auto& building : list_of_bangunan) {
+    //     cout << "Name: " << building.first << endl;
+    //     cout << "Code: " << get<0>(building.second) << endl;
+    //     cout << "Price: " << get<1>(building.second) << endl;
 
-        std::cout << "Materials:" << std::endl;
-        for (const auto& material : std::get<2>(building.second)) {
-            std::cout << "  " << std::get<0>(material) << " : " << std::get<1>(material) << std::endl;
-        }
-    }
+    //     cout << "Materials:" << endl;
+    //     for (const auto& material : get<2>(building.second)) {
+    //         cout << "  " << material.first << " : " << material.second << endl;
+    //     }
+    // }
 }

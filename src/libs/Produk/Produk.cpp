@@ -105,10 +105,10 @@ void Produk::loadProductConfig(string path)
     inputFile.close();
 
     // how to access
-    for (const auto& pair : productMap) {
-        std::cout << "Origin: " << pair.first << ", ID: " << get<0>(pair.second)
-                  << ", Code: " << get<1>(pair.second) << ", Name: " << get<2>(pair.second)
-                  << ", Type: " << get<3>(pair.second) << ", Weight: " << get<4>(pair.second)
-                  << ", Price: " << get<5>(pair.second) << endl;
-    }
+    // for (const auto& pair : productMap) {
+    //     std::cout << "Origin: " << pair.first << ", ID: " << get<0>(pair.second)
+    //               << ", Code: " << get<1>(pair.second) << ", Name: " << get<2>(pair.second)
+    //               << ", Type: " << get<3>(pair.second) << ", Weight: " << get<4>(pair.second)
+    //               << ", Price: " << get<5>(pair.second) << endl;
+    // }
 }

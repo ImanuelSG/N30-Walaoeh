@@ -16,7 +16,7 @@ class Bangunan : public Sellable
 {
 private:
     map<string, int> material; // <string nama_material, int jumlah_material>
-    static map<string, tuple<string, int, vector<tuple<string, int>>>> list_of_bangunan;
+    static map<string, tuple<string, int, map<string, int>>> list_of_bangunan;
 
 public:
     static int id_bangunan;
@@ -44,9 +44,9 @@ public:
     void setIdBangunan(int id);
 
     void setMaterial(map<string, int> material);
-    tuple<string, int, vector<tuple<string, int>>> getSpecificRecipe(string name);
+    tuple<string, int, map<string, int>> getSpecificRecipe(string name);
 
-    map<string, tuple<string, int, vector<tuple<string, int>>>> getAllRecipe();
+    map<string, tuple<string, int, map<string, int>>> getAllRecipe();
 
     void displayAllRecipe();
 

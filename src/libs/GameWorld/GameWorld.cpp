@@ -113,10 +113,10 @@ void GameWorld::loadMiscConfig(string path) {
     Peternak::setUkuranTernakN(ranchN);
     Peternak::setUkuranTernakM(ranchM);
 
-    cout << "Gulden: " << winningGulden << ", Weight: " << winningWeight << endl;
-    cout << "Inventory Height: " << Pemain::getUkuranInventoryN() << ", Width: " << Pemain::getUkuranInventoryM() << endl;
-    cout << "Field Height: " << Petani::getUkuranLadangN() << ", Width: " << Petani::getUkuranLadangM() << endl;
-    cout << "Ranch Height: " << Peternak::getUkuranTernakN() << ", Width: " << Peternak::getUkuranTernakM() << endl;
+    // cout << "Gulden: " << winningGulden << ", Weight: " << winningWeight << endl;
+    // cout << "Inventory Height: " << Pemain::getUkuranInventoryN() << ", Width: " << Pemain::getUkuranInventoryM() << endl;
+    // cout << "Field Height: " << Petani::getUkuranLadangN() << ", Width: " << Petani::getUkuranLadangM() << endl;
+    // cout << "Ranch Height: " << Peternak::getUkuranTernakN() << ", Width: " << Peternak::getUkuranTernakM() << endl;
 }
 
 
