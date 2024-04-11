@@ -89,6 +89,16 @@ string toLowercase(const std::string &str)
     return result;
 }
 
+void displayReadyPanen(map<string, tuple<list<string>,int>>& readyItems)
+{
+    int count = 1;
+    for (const auto& pair : readyItems)
+    {
+        cout << count << ". " << pair.first << '(' << get<1>(pair.second) << " petak siap panen)" << endl;
+        count++;
+    }
+}
+
 void countdown(int seconds)
 {
     for (int i = seconds; i > 0; --i)

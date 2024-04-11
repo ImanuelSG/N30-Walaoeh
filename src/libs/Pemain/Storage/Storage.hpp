@@ -68,7 +68,6 @@ public:
     Storage(int N, int M)
     {
         buffer.resize(N, vector<T *>(M, nullptr)); // Initialize buffer with nullptrs
-
         neff = 0;
         row = N;
         col = M;
@@ -79,16 +78,7 @@ public:
      * @brief Destroy the Storage object
      *
      */
-    ~Storage()
-    {
-        for (auto &row : buffer)
-        {
-            for (auto ptr : row)
-            {
-                delete ptr; // Delete objects pointed by pointers
-            }
-        }
-    }
+    ~Storage() {}
 
     /**
      * @brief Get the Row attribute
@@ -133,6 +123,7 @@ public:
             }
             i++;
         }
+        neff++;
     }
 
     /**

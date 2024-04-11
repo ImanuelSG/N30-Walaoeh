@@ -1,8 +1,11 @@
 #include "Petani.hpp"
+#include <set>
+#include <algorithm>
 #include "../../pcolor/pcolor.h"
+#include "../../Utils/Utils.hpp"
 
 
-int Petani::ladang_m = 0; int Petani::ladang_n = 0;
+int Petani::ladang_m = 5; int Petani::ladang_n = 5;
 Petani::Petani(string name, int gulden, int berat) : Pemain(name, gulden, berat), ladang(ladang_n,ladang_m) 
 {
 }
@@ -14,22 +17,219 @@ Petani::~Petani()
 void Petani::tanam()
 {
     if (ladang.isFull()){
-        throw TernakFullException();
+        throw LadangFullException();
     }
 
     if (countTanamanInventory()==0){
         throw NotEnoughTanamanException();
     }
 
+    cout << "Pilih tanaman dari penyimpanan" << endl;
+    display(inventory);
+    bool valid= false;
+    string slot;
+    int col = 0;
+    int row = 0;
+    Sellable* item = nullptr;
+
+    // Slot inventory
+    do
+    {
+        bool acc = false;
+        int col = 0; int row = 0;
+        do
+        {
+            slot = getValidInputStorage("Slot");
+
+            col = getColStorage(slot[0]);
+            row = getRowStorage(slot);
+
+            if (col < 0 || col > inventory.getCol() || row < 0 || row > inventory.getRow())
+            {
+                cout << "Masukkan lokasi petak yang sesuai!" << endl;
+            }
+            else
+            {
+                acc = true;
+            }
+            
+        } while (!acc);
+         
+        item = inventory.getElementAddress(row,col);
+        if (item != nullptr)
+        {
+            if (item->getJenis() == "TANAMAN")
+            {
+                valid = true;
+            }
+            else
+            {
+                cout << "Barang pada slot tersebut bukanlah Tanaman.\n Silakan pilih Slot lain!\n";
+            }
+        }
+    } while (!valid);
+    
+    cout << "Kamu memilih " << item->getNamaBarang() << "." << endl;
+    cout << "Pilihlah petak tanah yang akan ditanami" << endl;
+
+    display(ladang);
+
+    valid = false;
+    string petak;
+    int colP = 0;
+    int rowP = 0;
+    Tanaman *cekPetak = nullptr; 
+
+    // Validasi apakah petak yang dipilih valid (kosong)
+    do 
+    {
+        bool acc = false;
+        do
+        {
+            slot = getValidInputStorage("Petak tanah");
+
+            colP = getColStorage(slot[0]);
+            rowP = getRowStorage(slot);
+
+            if (colP< 0 || colP > ladang.getCol() || rowP < 0 || rowP > ladang.getRow())
+            {
+                cout << "Masukkan lokasi petak yang sesuai!" << endl;
+            }
+            else
+            {
+                acc = true;
+            }
+            
+        } while (!acc);
+
+        cekPetak = ladang.getElementAddress(rowP,colP);
+        if (cekPetak == nullptr){
+            valid = true;
+
+        } else {
+            cout << "Petak yang anda pilih tidak kosong.\n Silakan pilih petak kosong." << endl;
+        }
+
+    } while (!valid);
+
+    Tanaman *tanaman = dynamic_cast<Tanaman*>(item);
+    ladang.insert(rowP,colP,*tanaman);
+    inventory.deleteAt(row,col);
+
+    cout << "Cangkul, cangkul, cangkul yang dalam~!" << endl;
+    cout << item->getNamaBarang() << " berhasil ditanam!" << endl;
+
 }
 
 void Petani::panen()
 {
+    cetakLadang();
+    cout << "Pilih tanaman siap panen yang kamu miliki" << endl;
+
+    // Dapatkan semua item yang ready untuk dipanen
+    map<string, tuple<vector<string>,int>> readyItems = readyPanen(ladang);
+    displayReadyPanen(readyItems);
+
+    // Pilihan tanaman yang mau dipanen
+    bool valid = false;
+    int size = readyItems.size();
+    string input;
+    string chosenItem;
+    cout << endl;
+    do
+    {
+        cout << "Nomor tanaman yang ingin dipanen: ";
+        cin >> input;
+        if (1 <= stoi(input) <= size)
+        {
+            // Jika input valid, maka cari key dari readyItems (chosenItem)
+            valid = true;
+            auto it = readyItems.begin();
+            advance(it, stoi(input));
+
+            chosenItem = it->first;
+            cout << endl;
+        }
+        else
+        {
+            cout << "Pilihan tidak tersedia!" << endl;
+        }
+    } while (!valid);
+    
+    valid = false;
+    int availableSlots = inventory.countEmptySlot();
+    int numPanen;
+    do
+    {
+        cout << "Berapa petak yang ingin dipanen: ";
+        cin >> input;
+        if (stoi(input) < 0 || stoi(input) > get<1>(readyItems[chosenItem]))
+        {
+            cout << "Masukkan jumlah yang benar!" << endl;
+        }
+        if (stoi(input) > availableSlots)
+        {
+            throw InventoryFullException();
+        }
+        numPanen = stoi(input);
+    } while (!valid);
+    
+    cout << "Pilih petak yang ingin dipanen:" << endl;
+    // Validasi format dan lokasi petak
+    int i = 0;
+    vector<string> possibleLocations = get<0>(readyItems[chosenItem]);
+    vector<string> chosenLocations;
+    while (i < numPanen)
+    {
+        string location = getValidInputStorage("Petak ke-" + to_string(i+1));
+        // cari apakah element ada pada list
+        auto it = find(possibleLocations.begin(), possibleLocations.end(), location);
+        if (it != possibleLocations.end())
+        {
+            chosenLocations.push_back(location);
+            i++;
+        }
+    }
+
+
+    // Message terakhir
+    cout << endl << numPanen << " petak tanaman " << chosenItem << "pada petak";
+
+    // Konversi
+    int colP, rowP;
+
+    for (int i = 0; i < chosenLocations.size(); i++)
+    {
+        colP = getColStorage(chosenLocations[i][0]);
+        rowP = getRowStorage(chosenLocations[i]);
+
+        // Nanti tunggu fungsi tambahProdukTanaman
+    }
+    
+
+    // Tampilkan lokasi ladang yang dipanen
+    for (i = 0; i < chosenLocations.size(); i ++)
+    {
+        if (i == chosenLocations.size() - 1)
+        {
+            cout << chosenLocations[i];
+        } else
+        {
+            cout << chosenLocations[i] << ", ";
+        }
+    }
+    cout << " telah dipanen!" << endl;
 }
 
 void Petani::cetakLadang()
 {
     display(ladang);
+    cout << endl << endl;
+    if (!ladang.isEmpty())
+    {
+        displayItems(ladang);
+        cout << endl;
+    }
 }
 
 void Petani::beli()
@@ -46,8 +246,11 @@ int Petani::countTanamanInventory()
     for (int i = 0; i < inventory_n; i++) {
         for (int j = 0; j < inventory_m; j++) {
             Sellable* item = inventory.getElementAddress(i,j);
-            if (item->getJenis() == "TANAMAN"){
-                count++;
+            if (item != nullptr)
+            {
+                if (item->getJenis() == "TANAMAN"){
+                    count++;
+                }
             }
         }
     }
@@ -190,9 +393,15 @@ void displayItems<Tanaman>(const Storage<Tanaman> &storage)
     {
         for (Tanaman* value : innerVector)
         {
-            map<string, string> itemMap;
-            itemMap[value->getKodeHuruf()] = value->getNamaBarang();
-            Items.insert(itemMap);
+            if (value != nullptr)
+            {
+                map<string, string> itemMap;
+                if (value != nullptr)
+                {
+                    itemMap[value->getKodeHuruf()] = value->getNamaBarang();
+                    Items.insert(itemMap);
+                }
+            }
         }
     }
     for (const auto& item : Items)

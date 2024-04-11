@@ -5,7 +5,9 @@ const int Pemain::inventory_n = 5;
 const int Pemain::inventory_m = 5;
 
 // Constructor , destructor
-Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m) {}
+Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m) {
+    cout << "Pemain created" << endl;
+}
 Pemain::~Pemain() {}
 
 // Getter Setter
@@ -79,29 +81,46 @@ void Pemain::makan()
 
     do
     {
-        slot = getValidInputStorage("Slot");
 
-        int col = getColStorage(slot[0]);
-        int row = getRowStorage(slot);
+        bool acc = false;
+        int col = 0; int row = 0;
+        do
+        {
+            slot = getValidInputStorage("Slot");
 
+            col = getColStorage(slot[0]);
+            row = getRowStorage(slot);
+
+            if (col < 0 || col > inventory.getCol() || row < 0 || row > inventory.getRow())
+            {
+                cout << "Masukkan lokasi petak yang sesuai!" << endl;
+            }
+            else
+            {
+                acc = true;
+            }
+            
+        } while (!acc);
+        
         Sellable *item = inventory.getElementAddress(row, col);
-        if (item->isEdible())
+
+        if (item == nullptr)
+        {
+            cout << "Kamu mengambil harapan kosong dari penyimpanan." << endl;
+            cout << "Silahkan masukan slot yang berisi makanan." << endl
+                 << endl;
+        }
+        else if (item->isEdible())
         {
             inventory.deleteAt(row, col);
             int addedWeight = item->getAddedWeight();
 
-            setBerat(getBerat() - addedWeight);
+            setBerat(getBerat() + addedWeight);
             valid = true;
         }
         else if (!item->isEdible())
         {
             cout << "Apa yang kamu lakukan??!! Kamu mencoba untuk memakan itu?!!" << endl;
-            cout << "Silahkan masukan slot yang berisi makanan." << endl
-                 << endl;
-        }
-        else if (item == nullptr)
-        {
-            cout << "Kamu mengambil harapan kosong dari penyimpanan." << endl;
             cout << "Silahkan masukan slot yang berisi makanan." << endl
                  << endl;
         }
