@@ -47,7 +47,6 @@ public:
   /* Methods */
   // getter
   int getJenisSellable();
-  string getKodeHuruf();
 
   string getKodeHurufTanaman();
   string getKodeHurufHewan();

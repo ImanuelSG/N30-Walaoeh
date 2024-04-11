@@ -2,6 +2,7 @@
 
 GameWorld::GameWorld()
 {
+    currPlayerIndex = 0;
 }
 
 GameWorld::~GameWorld()
