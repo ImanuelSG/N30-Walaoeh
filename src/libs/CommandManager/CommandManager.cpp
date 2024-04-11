@@ -78,7 +78,7 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         }
         else if (what == "SIMPAN")
         {
-            return 2;
+            return -3;
         }
         else if (what == "TAMBAH_PEMAIN")
         {
@@ -86,50 +86,55 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
             cout << "addedPlayerIndex: " << addedPlayerIndex << endl;
             if (addedPlayerIndex <= CurrentPlayerIndex)
             {
+                // if the player is added behind the current player
+                // the next player index and current player index should be incremented
+
                 nextPlayerIndex++;
+                CurrentPlayerIndex++;
             }
+            return CurrentPlayerIndex;
         }
         else
         {
             throw InvalidInputException();
         }
-        return 1;
+        return -1;
     }
     catch (InvalidInputException &e)
     {
         cout << e.what() << endl;
-        return 0;
+        return -2;
     }
     catch (WalikotaInputException &e)
     {
         cout << e.what() << endl;
-        return 0;
+        return -2;
     }
 
     catch (NotEnoughMoneyException &e)
     {
         cout << e.what() << endl;
-        return 0;
+        return -2;
     }
     catch (InvalidStorageIndexException &e)
     {
         cout << e.what() << endl;
-        return 0;
+        return -2;
     }
     catch (InventoryFullException &e)
     {
         cout << e.what() << endl;
-        return 0;
+        return -2;
     }
     catch (LadangFullException &e)
     {
         cout << e.what() << endl;
-        return 0;
+        return -2;
     }
     catch (TernakFullException &e)
     {
         cout << e.what() << endl;
-        return 0;
+        return -2;
     }
 }
 

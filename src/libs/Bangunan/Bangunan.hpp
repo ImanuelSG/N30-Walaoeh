@@ -2,6 +2,7 @@
 #define BANGUNAN_HPP
 
 #include "../Sellable/Sellable.hpp"
+#include "../Exception/Exception.hpp"
 #include <vector>
 #include <map>
 
@@ -11,7 +12,7 @@ class Bangunan : public Sellable
 {
 private:
     map<string, int> material; // <string nama_material, int jumlah_material>
-    static map<string, tuple<string, int, vector<tuple<string, int>>>> list_of_bangunan;
+    static map<string, tuple<string, int, map<string, int>>> list_of_bangunan;
 
 public:
     static int id_bangunan;
@@ -32,7 +33,7 @@ public:
     /* Methods */
     // getter
     string getJenis();
-    
+
     int getIdBangunan();
 
     map<string, int> getMaterial();
@@ -41,13 +42,12 @@ public:
     void setIdBangunan(int id);
 
     void setMaterial(map<string, int> material);
-    tuple<string, int, vector<tuple<string, int>>> getSpecificRecipe(string name);
-
-    map<string, tuple<string, int, vector<tuple<string, int>>>> getAllRecipe();
 
     void displayAllRecipe();
 
     bool isValidRecipe(string name);
+
+    tuple<Sellable *, int, map<string, int>> build(string name, map<string, int> material, int gulden);
 };
 
 #endif

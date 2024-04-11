@@ -122,3 +122,45 @@ const char *InvalidJenisSellableException::what()
 {
     return "Jenis sellable yang Anda masukkan tidak valid!.\n Pastikan Jenis Sellable Anda sesuai.\n";
 }
+
+// ECEPTION UNTUK NOT ENOUGH
+NotEnoughMaterialException::NotEnoughMaterialException(int gulden, map<string, int> material)
+{
+    this->gulden = gulden;
+    this->material = material;
+}
+const char *NotEnoughMaterialException::what()
+{
+    ostringstream oss;
+    int gulden = this->gulden;
+    map<string, int> material = this->material;
+    oss << "Kamu tidak punya sumber daya yang cukup! Masih memerlukan ";
+
+    if (gulden > 0)
+    {
+        oss << gulden << " gulden";
+    }
+
+    if (!material.empty())
+    {
+        if (gulden > 0)
+        {
+            oss << ", ";
+        }
+
+        for (auto it = material.begin(); it != material.end(); it++)
+        {
+            oss << it->first << " " << it->second;
+            if (it != prev(material.end()))
+            {
+                oss << ", ";
+            }
+        }
+    }
+    oss << "!";
+    // Convert the ostringstream to a string and return its char* representation
+    string result = oss.str();
+    char *word = new char[result.length() + 1];
+    strcpy(word, result.c_str());
+    return word;
+}
