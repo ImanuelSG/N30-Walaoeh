@@ -40,7 +40,10 @@ void Petani::jual()
 {
 }
 
-int Petani::countTanamanInventory(){}
+int Petani::countTanamanInventory()
+{
+    return 0;
+}
 
 int Petani::getKKP() const
 {

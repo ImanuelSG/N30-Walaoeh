@@ -29,6 +29,9 @@ void displayItems(const Storage<T> &storage);
 template <>
 void display<Sellable>(const Storage<Sellable> &storage);
 
+template <>
+void display<Tanaman>(const Storage<Tanaman> &storage);
+
 template <class T>
 class Storage
 {

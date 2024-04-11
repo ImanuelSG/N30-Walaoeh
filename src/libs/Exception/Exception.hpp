@@ -66,6 +66,12 @@ public:
     const char *what();
 };
 
+class NotEnoughTanamanException : public exception
+{
+public:
+    const char *what();
+};
+
 class NotEnoughHewanException : public exception
 {
 
