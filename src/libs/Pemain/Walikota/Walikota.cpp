@@ -121,11 +121,11 @@ int Walikota::tambahPemain(vector<Pemain *> &pemain)
         Pemain *newPemain;
         if (jenisPemain == "Peternak" || jenisPemain == "peternak")
         {
-            newPemain = new Peternak(namaPemain, 50, 40);
+            newPemain = new Peternak(namaPemain, 50, 0);
         }
         else
         {
-            newPemain = new Petani(namaPemain, 50, 40);
+            newPemain = new Petani(namaPemain, 50, 0);
         }
 
         // Search for the right position to input the new Player
@@ -134,7 +134,7 @@ int Walikota::tambahPemain(vector<Pemain *> &pemain)
         while (!found && index < pemain.size())
         {
 
-            if ((toLowercase(pemain[index]->getName()) > toLowercase(namaPemain)))
+            if (pemain[index]->getName() > namaPemain)
 
             {
                 found = true;
@@ -171,10 +171,12 @@ void Walikota::bangunBangunan()
     Bangunan bangunan;
 
     bangunan.displayAllRecipe();
+    cout << endl;
 
     string namaBangunan;
     do
     {
+
         cout << "Bangunan yang ingin dibangun: ";
         cin >> namaBangunan;
         if (namaBangunan.empty())
@@ -188,18 +190,48 @@ void Walikota::bangunBangunan()
 
     } while (namaBangunan.empty() || !bangunan.isValidRecipe(namaBangunan));
 
-    // Get the recipe to check
-    tuple<string, int, map<string, int>> recipe = bangunan.getSpecificRecipe(namaBangunan);
-
-    // int neededGulden = get<1>(recipe);
-    // vector<tuple<string, int>> neededMaterials = get<2>(recipe);
-
     // Get all materialProduct from walikota
-
     map<string, int> materialProduct = this->getMaterialProduct();
 
-    //Display needed materials
-    
+    // Build the desired building
+    tuple<Sellable *, int, map<string, int>> result = bangunan.build(namaBangunan, materialProduct, this->getGulden());
+
+    // If it ever reaches this point, the building is successfully built, because else it will throw exception
+
+    // Add the building to inventory
+    Sellable *actualBuilding = get<0>(result);
+    int usedGulden = get<1>(result);
+    map<string, int> usedMaterial = get<2>(result);
+
+    // change gulden
+
+    this->setGulden(this->getGulden() - usedGulden);
+
+    // remove material from inventory
+    int i = 0;
+    while (i < inventory.getRow() && !usedMaterial.empty())
+    {
+        int j = 0;
+        while (j < inventory.getCol() && !usedMaterial.empty())
+        {
+            string name = inventory.getElementAddress(i, j)->getNamaBarang();
+            if (usedMaterial.find(name) != usedMaterial.end())
+            {
+                usedMaterial[name]--;
+                if (usedMaterial[name] == 0)
+                {
+                    usedMaterial.erase(name);
+                }
+                inventory.deleteAt(i, j);
+            }
+            j++;
+        }
+        i++;
+    }
+
+    // Add actual building to inventory
+    inventory.insert(*actualBuilding);
+    cout << namaBangunan << " berhasil dibangun dan telah menjadi hak miliki walikota!" << endl;
 }
 
 string Walikota::getRole() const
@@ -222,7 +254,7 @@ map<string, int> Walikota::getMaterialProduct()
         for (int j = 0; j < inventory.getCol(); j++)
         {
             // Check if the item is a product material
-            if ((inventory.getElementAddress(i, j)->getJenis())== "PRODUK_TANAMAN_MATERIAL")
+            if (inventory.getElementAddress(i, j) != nullptr && (inventory.getElementAddress(i, j)->getJenis()) == "PRODUK_TANAMAN_MATERIAL")
             {
                 // Get the name of the item
                 string itemName = inventory.getElementAddress(i, j)->getNamaBarang();

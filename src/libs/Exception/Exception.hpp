@@ -3,7 +3,10 @@
 #define _EXCEPTION_HPP_
 
 #include <iostream>
+#include <map>
 #include <exception>
+#include <sstream>
+#include <cstring>
 using namespace std;
 
 // EXCEPTION UNTUK INPUT
@@ -161,6 +164,17 @@ public:
 class FileNotFoundException : public exception
 {
 public:
+    const char *what();
+};
+
+class NotEnoughMaterialException : public exception
+{
+private:
+    int gulden;
+    map<string, int> material;
+
+public:
+    NotEnoughMaterialException(int gulden, map<string, int> material);
     const char *what();
 };
 

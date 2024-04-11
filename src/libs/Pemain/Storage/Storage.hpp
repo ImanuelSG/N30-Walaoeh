@@ -96,7 +96,7 @@ public:
      *
      * @param obj Object to be inserted
      */
-    void insert(const T &obj)
+    void insert( T &obj)
     {
         bool found = false;
         int i = 0;

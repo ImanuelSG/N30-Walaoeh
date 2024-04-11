@@ -12,6 +12,7 @@ class Pemain
 {
 private:
     bool isFoodAvailable();
+
 protected:
     static int inventory_n;
     static int inventory_m;
@@ -72,6 +73,12 @@ public:
      */
     void cetakPenyimpanan();
     /**
+     * @brief Mencetak Informasi penting dari pemain ke layar
+     *
+     */
+
+    void displayInfo();
+    /**
      * @brief Menghitung Kekayaan pemain
      */
     int getKekayaan() const;
@@ -103,7 +110,6 @@ public:
     virtual int tambahPemain(vector<Pemain *> &pemain);
     virtual int getKKP() const = 0;
     virtual string getRole() const = 0;
-
 
     static int getUkuranInventoryN();
     static int getUkuranInventoryM();

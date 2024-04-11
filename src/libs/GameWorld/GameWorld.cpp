@@ -55,12 +55,20 @@ void GameWorld::startGame()
             cout << "> ";
             string command;
             cin >> command;
+            // res = -1 is normal exit
+            // res = -2 is exception exit
+            // res = -3 is save game
+            // res >= 0 is the change to current player index
             int res = CommandManager.execute(command, listOfPLayers, currPlayerIndex);
             cout << endl;
 
-            if (res == 2)
+            if (res == -3)
             {
                 saveGameState();
+            }
+            else if (res >= 0)
+            {
+                currPlayerIndex = res;
             }
         }
         CommandManager.getNextPlayerIndex();
@@ -144,8 +152,10 @@ void GameWorld::initializeDefaultGame()
 
 void GameWorld::saveGameState()
 {
+    cout << "Game State Saved!" << endl;
 }
 
 void GameWorld::loadGameState()
 {
+    cout << "Game State Loaded!" << endl;
 }

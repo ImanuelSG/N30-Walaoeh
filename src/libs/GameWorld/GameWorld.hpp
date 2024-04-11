@@ -20,7 +20,6 @@ private:
     int winningGulden;
     int winningWeight;
     vector<Pemain *> listOfPLayers;
-    vector<Sellable *> listOfBangunan;
     int currPlayerIndex;
     bool ended;
 

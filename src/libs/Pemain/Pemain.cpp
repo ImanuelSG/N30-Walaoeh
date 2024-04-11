@@ -254,18 +254,33 @@ void display<Sellable>(const Storage<Sellable> &storage)
     }
 }
 
-int Pemain::getUkuranInventoryN() {
+void Pemain::displayInfo()
+{
+    cout << endl;
+    cout << "Informasi Pemain : " << endl;
+    cout << "Role Pemain : " << getRole() << endl;
+    cout << "Nama : " << getName() << endl;
+    cout << "Gulden : " << getGulden() << endl;
+    cout << "Berat : " << getBerat() << endl;
+    cout << "Total Kekayaan : " << getKekayaan() << endl;
+}
+
+int Pemain::getUkuranInventoryN()
+{
     return inventory_n;
 }
 
-int Pemain::getUkuranInventoryM() {
+int Pemain::getUkuranInventoryM()
+{
     return inventory_m;
 }
 
-void Pemain::setUkuranInventoryN(int n) {
+void Pemain::setUkuranInventoryN(int n)
+{
     inventory_n = n;
 }
 
-void Pemain::setUkuranInventoryM(int m) {
+void Pemain::setUkuranInventoryM(int m)
+{
     inventory_m = m;
 }

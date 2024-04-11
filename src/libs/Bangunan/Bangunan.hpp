@@ -37,7 +37,7 @@ public:
     /* Methods */
     // getter
     string getJenis();
-    
+
     int getIdBangunan();
 
     map<string, int> getMaterial();
@@ -46,13 +46,12 @@ public:
     void setIdBangunan(int id);
 
     void setMaterial(map<string, int> material);
-    tuple<string, int, map<string, int>> getSpecificRecipe(string name);
-
-    map<string, tuple<string, int, map<string, int>>> getAllRecipe();
 
     void displayAllRecipe();
 
     bool isValidRecipe(string name);
+
+    tuple<Sellable *, int, map<string, int>> build(string name, map<string, int> material, int gulden);
 
     // load config to list_of_bangunan
     static void loadBangunanConfig(string path);
