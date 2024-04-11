@@ -7,6 +7,7 @@
 #include <map>
 #include <tuple>
 #include <list>
+#include <set>
 
 #include "../../Sellable/Sellable.hpp"
 #include "../../Hewan/Hewan.hpp"
@@ -30,7 +31,23 @@ template <>
 void display<Sellable>(const Storage<Sellable> &storage);
 
 template <>
+void display<Hewan>(const Storage<Hewan> &storage);
+
+template <>
 void display<Tanaman>(const Storage<Tanaman> &storage);
+
+
+template <>
+map<string, tuple<list<string>,int>> readyPanen<Hewan>(const Storage<Hewan> &storage);
+
+template <>
+map<string, tuple<list<string>,int>> readyPanen<Tanaman>(const Storage<Tanaman> &storage);
+
+template <>
+void displayItems<Hewan>(const Storage<Hewan> &storage);
+
+template <>
+void displayItems<Tanaman>(const Storage<Tanaman> &storage);
 
 template <class T>
 class Storage
@@ -217,4 +234,5 @@ public:
      */
     friend void displayItems<>(const Storage<T> &storage);
 };
+
 #endif
