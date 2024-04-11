@@ -4,7 +4,7 @@
 #include <algorithm>
 
 
-int Peternak::ternak_m = 0; int Peternak::ternak_n = 0;
+int Peternak::ternak_m = 5; int Peternak::ternak_n = 5;
 Peternak::Peternak(string name,int gulden, int berat) : Pemain(name,gulden,berat), peternakan(ternak_n,ternak_m) {}
 
 Peternak::~Peternak(){}

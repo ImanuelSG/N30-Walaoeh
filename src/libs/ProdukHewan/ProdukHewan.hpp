@@ -18,7 +18,7 @@ public:
     ProdukHewan();
 
     // ctor user defined
-    ProdukHewan(int jenis_sellable, int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga);
+    ProdukHewan(int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga);
 
     // operator overloading
     ProdukHewan &operator=(const ProdukHewan &other);

@@ -68,7 +68,6 @@ public:
     Storage(int N, int M)
     {
         buffer.resize(N, vector<T *>(M, nullptr)); // Initialize buffer with nullptrs
-
         neff = 0;
         row = N;
         col = M;
@@ -133,6 +132,7 @@ public:
             }
             i++;
         }
+        neff++;
     }
 
     /**

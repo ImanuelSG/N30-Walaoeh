@@ -5,7 +5,7 @@
 #include "../../Utils/Utils.hpp"
 
 
-int Petani::ladang_m = 0; int Petani::ladang_n = 0;
+int Petani::ladang_m = 5; int Petani::ladang_n = 5;
 Petani::Petani(string name, int gulden, int berat) : Pemain(name, gulden, berat), ladang(ladang_n,ladang_m) 
 {
 }
@@ -94,7 +94,7 @@ void Petani::panen()
     cout << "Pilih tanaman siap panen yang kamu miliki" << endl;
 
     // Dapatkan semua item yang ready untuk dipanen
-    map<string, tuple<list<string>,int>> readyItems = readyPanen(inventory);
+    map<string, tuple<vector<string>,int>> readyItems = readyPanen(ladang);
     displayReadyPanen(readyItems);
 
     // Pilihan tanaman yang mau dipanen
@@ -121,7 +121,7 @@ void Petani::panen()
         {
             cout << "Pilihan tidak tersedia!" << endl;
         }
-    } while (!false);
+    } while (!valid);
     
     valid = false;
     int availableSlots = inventory.countEmptySlot();
@@ -144,8 +144,8 @@ void Petani::panen()
     cout << "Pilih petak yang ingin dipanen:" << endl;
     // Validasi format dan lokasi petak
     int i = 0;
-    list<string> possibleLocations = get<0>(readyItems[chosenItem]);
-    list<string> chosenLocations;
+    vector<string> possibleLocations = get<0>(readyItems[chosenItem]);
+    vector<string> chosenLocations;
     while (i < numPanen)
     {
         string location = getValidInputStorage("Petak ke-" + to_string(i+1));
@@ -162,20 +162,27 @@ void Petani::panen()
     // Message terakhir
     cout << endl << numPanen << " petak tanaman " << chosenItem << "pada petak";
 
-    // Tampilkan lokasi ladang yang dipanen
-    auto lastElement = prev(chosenLocations.end());
-
+    // Konversi
     int colP, rowP;
 
-    colP = getColStorage(petak[0]);
-    rowP = getRowStorage(petak);
+    for (int i = 0; i < chosenLocations.size(); i++)
+    {
+        colP = getColStorage(chosenLocations[i][0]);
+        rowP = getRowStorage(chosenLocations[i]);
 
-    // Iterate through chosenLocations
-    for (auto it = chosenLocations.begin(); it != chosenLocations.end(); it++) {
-        if (it == lastElement) {
-            cout << *it;
-        } else {
-            cout << *it << ", ";
+        // Nanti tunggu fungsi tambahProdukTanaman
+    }
+    
+
+    // Tampilkan lokasi ladang yang dipanen
+    for (i = 0; i < chosenLocations.size(); i ++)
+    {
+        if (i == chosenLocations.size() - 1)
+        {
+            cout << chosenLocations[i];
+        } else
+        {
+            cout << chosenLocations[i] << ", ";
         }
     }
     cout << " telah dipanen!" << endl;
@@ -185,8 +192,11 @@ void Petani::cetakLadang()
 {
     display(ladang);
     cout << endl << endl;
-    displayItems(ladang);
-    cout << endl;
+    if (!ladang.isEmpty())
+    {
+        displayItems(ladang);
+        cout << endl;
+    }
 }
 
 void Petani::beli()

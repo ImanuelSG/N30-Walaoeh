@@ -56,6 +56,9 @@ testTanaman: $(TEST_OUTPUT_FOLDER)/testTanaman
 
 testStorage: $(TEST_OUTPUT_FOLDER)/testStorage
 	@./$(TEST_OUTPUT_FOLDER)/testStorage
+
+testPemain: $(TEST_OUTPUT_FOLDER)/testPemain
+	@./$(TEST_OUTPUT_FOLDER)/testPemain
 	
 clean:
 	@rm -rf $(OUTPUT_FOLDER)/*

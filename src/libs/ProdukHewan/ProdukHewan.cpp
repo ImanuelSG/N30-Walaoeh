@@ -18,7 +18,7 @@ ProdukHewan::ProdukHewan()
 }
 
 // ctor user defined
-ProdukHewan::ProdukHewan(int jenis_sellable, int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga)
+ProdukHewan::ProdukHewan(int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga)
     : Produk(id, kode, nama_produk, tipe_produk_hewan, origin, added_weight, harga)
 {
 }

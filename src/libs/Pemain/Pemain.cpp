@@ -5,7 +5,9 @@ const int Pemain::inventory_n = 5;
 const int Pemain::inventory_m = 5;
 
 // Constructor , destructor
-Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m) {}
+Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m) {
+    cout << "Pemain created" << endl;
+}
 Pemain::~Pemain() {}
 
 // Getter Setter
@@ -26,7 +28,7 @@ string Pemain::getName() const
 
 int Pemain::getKekayaan() 
 {
-    int count = 0;
+    int count = gulden;
     for (int i = 0; i < inventory_n; i++)
     {
         for (int j = 0; j < inventory_m; j++)

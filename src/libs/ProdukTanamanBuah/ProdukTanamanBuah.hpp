@@ -23,7 +23,7 @@ public:
     ~ProdukTanamanBuah();
 
     /* Methods */
-    // getter
+    // getter   
     string getJenis();
     bool isEdible() override;
     
