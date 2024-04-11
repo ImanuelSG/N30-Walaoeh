@@ -29,6 +29,12 @@ void displayItems(const Storage<T> &storage);
 template <>
 void display<Sellable>(const Storage<Sellable> &storage);
 
+template <>
+void display<Hewan>(const Storage<Hewan> &storage);
+
+template <>
+map<string, tuple<list<string>,int>> readyPanen(const Storage<Hewan> &storage);
+
 template <class T>
 class Storage
 {

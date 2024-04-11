@@ -2,6 +2,7 @@
 #include "../../Utils/Utils.hpp"
 
 
+
 int Peternak::ternak_m = 0; int Peternak::ternak_n = 0;
 Peternak::Peternak(string name,int gulden, int berat) : Pemain(name,gulden,berat), peternakan(ternak_n,ternak_m) {}
 
@@ -160,6 +161,7 @@ void Peternak::kasihMakan()
 void Peternak::panen() 
 {
     cetakPeternakan();
+
     
 
 }
@@ -210,3 +212,12 @@ string Peternak::getRole() const
 {
     return "Peternak";
 }
+
+template<>
+void display<Hewan>(const Storage<Hewan> &storage){
+
+}
+map<string, tuple<list<string>,int>> readyPanen(const Storage<Hewan> &storage){
+    
+}
+
