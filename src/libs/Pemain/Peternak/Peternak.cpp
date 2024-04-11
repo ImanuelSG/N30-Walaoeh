@@ -1,6 +1,6 @@
 #include "Peternak.hpp"
 #include "../../Utils/Utils.hpp"
-
+#include "../../pcolor/pcolor.h"
 
 
 int Peternak::ternak_m = 0; int Peternak::ternak_n = 0;
@@ -166,7 +166,10 @@ void Peternak::panen()
 
 }
 
-void Peternak::cetakPeternakan() {}
+void Peternak::cetakPeternakan() 
+{
+    display(peternakan);
+}
 
 void Peternak::beli(){}
 
@@ -215,9 +218,95 @@ string Peternak::getRole() const
 
 template<>
 void display<Hewan>(const Storage<Hewan> &storage){
+    // ================[ Penyimpanan ]==================
+    cout << "     ";
+    int numOfEq = (1 + 6 * storage.col - 10) / 2; // 10 is len([ Ladang ])
+    for (int i = 0; i < numOfEq; i++)
+    {
+        cout << "=";
+    }
+    cout << "[ Ladang ]";
+    for (int i = 0; i < numOfEq; i++)
+    {
+        cout << "=";
+    }
+    cout << endl;
+
+    // Print the letters for each column
+    cout << "     ";
+    for (char c = 'A'; c < 'A' + storage.col; ++c)
+    {
+        cout << "   " << c << "  ";
+    }
+    cout << " " << endl;
+
+    for (int i = 0; i < storage.col; ++i)
+    {
+        if (i == 0)
+        {
+            cout << "     +";
+        }
+        cout << "-----+";
+    }
+    cout << endl;
+    for (int i = 0; i < storage.row; ++i)
+    {
+        cout << "  " << intToStringWithLeadingZero(i + 1) << " |";
+        for (int j = 0; j < storage.col; ++j)
+        {
+            cout << " ";
+            string keluaran = "";
+            if (storage.buffer[i][j] != nullptr)
+            {
+                keluaran = (*storage.buffer[i][j]).getKodeHuruf();
+                if ((*storage.buffer[i][j]).isHarvestValid())
+                {
+                    print_green(keluaran[0]); print_green(keluaran[1]); print_green(keluaran[2]);
+                }
+                else{
+                    print_red(keluaran[0]); print_red(keluaran[1]); print_red(keluaran[2]);
+                }
+            }
+            if (keluaran == "")
+            {
+                cout << "   ";
+            }
+            cout << " |";
+        }
+        cout << endl;
+        cout << "     +";
+        for (int j = 0; j < storage.col; ++j)
+        {
+            cout << "-----+";
+        }
+        cout << endl;
+    }
+}
+
+template<>
+map<string, tuple<list<string>,int>> readyPanen<Hewan>(const Storage<Hewan> &storage){
 
 }
-map<string, tuple<list<string>,int>> readyPanen(const Storage<Hewan> &storage){
-    
+
+template<>
+void displayItems<Hewan>(const Storage<Hewan> &storage)
+{
+    set<map<string,string>> Items;
+    for (const auto& innerVector : storage.buffer)
+    {
+        for (Hewan* value : innerVector)
+        {
+            map<string, string> itemMap;
+            itemMap[value->getKodeHuruf()] = value->getNamaBarang();
+            Items.insert(itemMap);
+        }
+    }
+    for (const auto& item : Items)
+    {
+        for (const auto& pair : item)
+        {
+            std::cout << " - " << pair.first << ": " << pair.second << endl;
+        }
+    }
 }
 

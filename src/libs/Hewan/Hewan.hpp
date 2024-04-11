@@ -50,7 +50,7 @@ public:
     bool isCarnivore();
     bool isHerbivore();
     bool isOmnivore();
-    bool isHarvestValid(int weight, int weight_to_harvest);
+    bool isHarvestValid();
 
     // bool isCow();
     // bool isSheep();
