@@ -15,7 +15,7 @@ public:
     ProdukTanamanMaterial();
 
     // ctor user defined
-    ProdukTanamanMaterial(int jenis_sellable, int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga);
+    ProdukTanamanMaterial(int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga);
 
     ProdukTanamanMaterial &operator=(const ProdukTanamanMaterial &other);
 
@@ -27,7 +27,7 @@ public:
     string getJenis();
     
     // Konversi tanaman menjadi produk (material) kalau weight sudah mencapai weight_to_harvest
-    ProdukTanamanMaterial tambahProdukTanamanMaterial(Tanaman &tanaman);
+    // ProdukTanamanMaterial tambahProdukTanamanMaterial(Tanaman &tanaman);
 };
 
 #endif

@@ -8,9 +8,9 @@
 #include <tuple>
 #include <list>
 
-// #include "../../Sellable/Sellable.hpp"
-// #include "../../Hewan/Hewan.hpp"
-// #include "../../Tanaman/Tanaman.hpp"
+#include "../../Sellable/Sellable.hpp"
+#include "../../Hewan/Hewan.hpp"
+#include "../../Tanaman/Tanaman.hpp"
 #include "../../Exception/Exception.hpp"
 using namespace std;
 
@@ -26,8 +26,8 @@ map<string, tuple<list<string>,int>> readyPanen(const Storage<T> &storage);
 template <class T>
 void displayItems(const Storage<T> &storage);
 
-// template <>
-// void display<Sellable>(const Storage<Sellable> &storage);
+template <>
+void display<Sellable>(const Storage<Sellable> &storage);
 
 template <class T>
 class Storage

@@ -19,13 +19,13 @@ protected:
   - bangunan = 5
   */
 
-  int jenis_sellable;
-  const static int jenis_hewan;
-  const static int jenis_tanaman;
-  const static int jenis_produk_tanaman_material;
-  const static int jenis_produk_tanaman_buah;
-  const static int jenis_produk_hewan;
-  const static int jenis_bangunan;
+  // int jenis_sellable;
+  // const static int jenis_hewan;
+  // const static int jenis_tanaman;
+  // const static int jenis_produk_tanaman_material;
+  // const static int jenis_produk_tanaman_buah;
+  // const static int jenis_produk_hewan;
+  // const static int jenis_bangunan;
 
   string kode_huruf; // 3 huruf
   string nama_barang;
@@ -36,7 +36,7 @@ public:
   Sellable();
 
   // ctor user defined
-  Sellable(int jenis_sellable, string kode, string nama, int harga);
+  Sellable(string kode, string nama, int harga);
 
   // operator overloading
   Sellable &operator=(const Sellable &other);
@@ -46,19 +46,9 @@ public:
 
   /* Methods */
   // getter
-  int getJenisSellable();
-
-  string getKodeHurufTanaman();
-  string getKodeHurufHewan();
-  string getKodeHurufProdukMaterial();
-  string getKodeHurufProdukBuah();
-  string getKodeHurufProdukHewan();
-  string getKodeHurufBangunan();
-
   string getNamaBarang();
   string getKodeHuruf();
   int getHargaBarang();
-
   virtual string getJenis() = 0;
 
   // setter
@@ -68,14 +58,9 @@ public:
 
   // additional
   virtual bool isEdible();
-  virtual int getAddedWeight() = 0;
-  virtual bool isHewan(); // boolean
+  virtual int getAddedWeight();
 
-  bool isTanaman();
-  bool isProdukMaterial();
-  bool isProdukBuah();
-  bool isProdukHewan();
-  bool isBangunan();
+
 };
 
 #endif

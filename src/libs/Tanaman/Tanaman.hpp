@@ -19,7 +19,7 @@ public:
     Tanaman();
 
     // ctor user defined
-    Tanaman(int jenis_sellable, int id, string kode, string nama_tanaman, string tipe, int umur, int durasi_panen, int harga);
+    Tanaman(int id, string kode, string nama_tanaman, string tipe, int umur, int durasi_panen, int harga);
 
     // operator overloading
     Tanaman &operator=(const Tanaman &other);
@@ -50,14 +50,14 @@ public:
     bool isMaterial();
     bool isBuah();
     
-    bool isTeak();
-    bool isSandalwood();
-    bool isAloe();
-    bool isIronwood();
-    bool isApple();
-    bool isOrange();
-    bool isBanana();
-    bool isGuava();
+    // bool isTeak();
+    // bool isSandalwood();
+    // bool isAloe();
+    // bool isIronwood();
+    // bool isApple();
+    // bool isOrange();
+    // bool isBanana();
+    // bool isGuava();
 
 };
 
