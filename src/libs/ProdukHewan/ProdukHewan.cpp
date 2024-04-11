@@ -44,53 +44,16 @@ ProdukHewan::~ProdukHewan() {}
 /* Methods */
 ProdukHewan ProdukHewan::tambahProdukHewanHerbivora(Hewan &hewan)
 {
-    ProdukHewan produk_hewan_baru;
-    int id_produk = Produk::getIdProduk();
-    string origin = hewan.getNamaBarang();
-    int added_weight, harga;
-
-    cout << "Masukkan berat tambahan: ";
-    cin >> added_weight;
-
-    cout << "Masukkan harga: ";
-    cin >> harga;
-
-    if (hewan.isCow())
-    {
-        produk_hewan_baru = ProdukHewan(jenis_produk_hewan, id_produk, "COM", "COW_MEAT", tipe_produk_hewan, origin, added_weight, harga);
-    }
-    else if (hewan.isSheep())
-    {
-        produk_hewan_baru = ProdukHewan(jenis_produk_hewan, id_produk, "SHM", "SHEEP_MEAT", tipe_produk_hewan, origin, added_weight, harga);
-    }
-    else if (hewan.isHorse())
-    {
-        produk_hewan_baru = ProdukHewan(jenis_produk_hewan, id_produk, "HRM", "HORSE_MEAT", tipe_produk_hewan, origin, added_weight, harga);
-    }
-    else if (hewan.isRabbit())
-    {
-        produk_hewan_baru = ProdukHewan(jenis_produk_hewan, id_produk, "RBM", "RABBIT_MEAT", tipe_produk_hewan, origin, added_weight, harga);
-    }
+    tuple<int, string, string, string, int, int> produk_herbivora_tuple = Produk::productOriginMap[hewan.getNamaBarang()];
+    ProdukHewan produk_hewan_baru = ProdukHewan(jenis_produk_hewan, get<0>(produk_herbivora_tuple), get<1>(produk_herbivora_tuple), get<2>(produk_herbivora_tuple), get<3>(produk_herbivora_tuple), hewan.getNamaBarang(), get<4>(produk_herbivora_tuple), get<5>(produk_herbivora_tuple));
 
     return produk_hewan_baru;
 }
 
 ProdukHewan ProdukHewan::tambahProdukHewanKarnivora(Hewan &hewan)
 {
-    ProdukHewan produk_hewan_baru;
-    int id_produk = Produk::getIdProduk();
-    int added_weight, harga;
-
-    cout << "Masukkan berat tambahan: ";
-    cin >> added_weight;
-
-    cout << "Masukkan harga: ";
-    cin >> harga;
-
-    if (hewan.isSnake())
-    {
-        produk_hewan_baru = ProdukHewan(jenis_produk_hewan, id_produk, "SNM", "SNAKE_MEAT", tipe_produk_hewan, "SNAKE", added_weight, harga);
-    }
+    tuple<int, string, string, string, int, int> produk_karnivora_tuple = Produk::productOriginMap[hewan.getNamaBarang()];
+    ProdukHewan produk_hewan_baru = ProdukHewan(jenis_produk_hewan, get<0>(produk_karnivora_tuple), get<1>(produk_karnivora_tuple), get<2>(produk_karnivora_tuple), get<3>(produk_karnivora_tuple), hewan.getNamaBarang(), get<4>(produk_karnivora_tuple), get<5>(produk_karnivora_tuple));
 
     return produk_hewan_baru;
 }
@@ -98,25 +61,16 @@ ProdukHewan ProdukHewan::tambahProdukHewanKarnivora(Hewan &hewan)
 pair<ProdukHewan, ProdukHewan> ProdukHewan::tambahProdukHewanOmnivora(Hewan &hewan)
 {
     ProdukHewan produk_hewan_baru_meat, produk_hewan_baru_egg;
-    int id_produk = Produk::getIdProduk();
-    string origin = hewan.getNamaBarang();
-    int added_weight, harga;
-
-    cout << "Masukkan berat tambahan: ";
-    cin >> added_weight;
-
-    cout << "Masukkan harga: ";
-    cin >> harga;
 
     if (hewan.isChicken())
     {
-        produk_hewan_baru_meat = ProdukHewan(jenis_produk_hewan, id_produk, "CHM", "CHICKEN_MEAT", tipe_produk_hewan, origin, added_weight, harga);
-        produk_hewan_baru_egg = ProdukHewan(jenis_produk_hewan, id_produk, "CHE", "CHICKEN_EGG", tipe_produk_hewan, origin, added_weight, harga);
+        produk_hewan_baru_meat = ProdukHewan(jenis_produk_hewan, 14, "CHM", "CHICKEN_MEAT", tipe_produk_hewan, "CHICKEN", 3, 7);
+        produk_hewan_baru_egg = ProdukHewan(jenis_produk_hewan, 16, "CHE", "CHICKEN_EGG", tipe_produk_hewan, "CHICKEN", 1, 4);
     }
     else if (hewan.isDuck())
     {
-        produk_hewan_baru_meat = ProdukHewan(jenis_produk_hewan, id_produk, "DCM", "DUCK_MEAT", tipe_produk_hewan, origin, added_weight, harga);
-        produk_hewan_baru_egg = ProdukHewan(jenis_produk_hewan, id_produk, "DCE", "DUCK_EGG", tipe_produk_hewan, origin, added_weight, harga);
+        produk_hewan_baru_meat = ProdukHewan(jenis_produk_hewan, 15, "DCM", "DUCK_MEAT", tipe_produk_hewan, "DUCK", 3, 7);
+        produk_hewan_baru_egg = ProdukHewan(jenis_produk_hewan, 17, "DCE", "DUCK_EGG", tipe_produk_hewan, "DUCK", 2, 4);
     }
 
     return make_pair(produk_hewan_baru_meat, produk_hewan_baru_egg);
