@@ -38,6 +38,11 @@ Bangunan::~Bangunan()
 
 /* Methods */
 // getter
+string Bangunan::getJenis()
+{
+    return "BANGUNAN";
+}
+
 int Bangunan::getIdBangunan()
 {
     return id_bangunan++;
