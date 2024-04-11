@@ -5,7 +5,7 @@
 // map<string, int> material; // <string nama_material, int jumlah_material>
 
 int Bangunan::id_bangunan = 1;
-map<string, tuple<string, int, vector<tuple<string, int>>>> Bangunan::list_of_bangunan;
+map<string, tuple<string, int, map<string, int>>> Bangunan::list_of_bangunan;
 // ctor default
 Bangunan::Bangunan()
 {
@@ -62,12 +62,12 @@ void Bangunan::setMaterial(map<string, int> material)
     this->material = material;
 }
 
-tuple<string, int, vector<tuple<string, int>>> Bangunan::getSpecificRecipe(string name)
+tuple<string, int, map<string, int>> Bangunan::getSpecificRecipe(string name)
 {
     return list_of_bangunan.find(name)->second;
 }
 
-map<string, tuple<string, int, vector<tuple<string, int>>>> Bangunan::getAllRecipe()
+map<string, tuple<string, int, map<string, int>>> Bangunan::getAllRecipe()
 {
     return list_of_bangunan;
 }
@@ -89,10 +89,10 @@ void Bangunan::displayAllRecipe()
         for (const auto &material : materials)
         {
             cout << " " << get<0>(material) << " " << get<1>(material);
-            if (material != materials.back())
-            {
-                cout << ",";
-            }
+            // if (material != materials.back())
+            // {
+            //     cout << ",";
+            // }
         }
         cout << ")" << endl;
         index++;
@@ -102,4 +102,42 @@ void Bangunan::displayAllRecipe()
 bool Bangunan::isValidRecipe(string name)
 {
     return list_of_bangunan.find(name) != list_of_bangunan.end();
+}
+
+void Bangunan::loadBangunanConfig(string path)
+{
+    ifstream inputFile(path);
+    if (!inputFile.is_open()) {
+        throw FileNotFoundException();
+    }
+
+    string line;
+    int id, price;
+    string code, name;
+    while (getline(inputFile, line)) {
+        istringstream iss(line);
+        iss >> id >> code >> name >> price;
+
+
+        map<string, int> materials;
+        string material_name;
+        int quantity;
+        while (iss >> material_name >> quantity) {
+            materials[material_name] = quantity;
+        }
+        list_of_bangunan[name] = make_tuple(code, price, materials);
+    }
+    inputFile.close();
+
+    // how to access
+    // for (const auto& building : list_of_bangunan) {
+    //     cout << "Name: " << building.first << endl;
+    //     cout << "Code: " << get<0>(building.second) << endl;
+    //     cout << "Price: " << get<1>(building.second) << endl;
+
+    //     cout << "Materials:" << endl;
+    //     for (const auto& material : get<2>(building.second)) {
+    //         cout << "  " << material.first << " : " << material.second << endl;
+    //     }
+    // }
 }

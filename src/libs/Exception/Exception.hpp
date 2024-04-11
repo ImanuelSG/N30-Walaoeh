@@ -158,4 +158,10 @@ public:
     const char *what();
 };
 
+class FileNotFoundException : public exception
+{
+public:
+    const char *what();
+};
+
 #endif

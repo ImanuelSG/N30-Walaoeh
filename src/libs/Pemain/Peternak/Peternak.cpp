@@ -210,3 +210,19 @@ string Peternak::getRole() const
 {
     return "Peternak";
 }
+
+int Peternak::getUkuranTernakN() {
+    return ternak_n;
+}
+
+int Peternak::getUkuranTernakM() {
+    return ternak_m;
+}
+
+void Peternak::setUkuranTernakN(int n) {
+    ternak_n = n;
+}
+
+void Peternak::setUkuranTernakM(int m) {
+    ternak_m = m;
+}

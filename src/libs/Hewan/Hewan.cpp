@@ -1,6 +1,8 @@
 #include "Hewan.hpp"
 #include <iostream>
 
+map<string, tuple<int, string, string, int, int>> Hewan::animalMap;
+
 // ctor default
 Hewan::Hewan() : Sellable()
 {
@@ -168,3 +170,29 @@ bool Hewan::isHarvestValid(int weight, int weight_to_harvest)
 // {
 //     return getKodeHurufHewan() == "DCK";
 // }
+
+
+void Hewan::loadHewanConfig(string path)
+{
+    ifstream inputFile(path);
+    if (!inputFile.is_open()) {
+        throw FileNotFoundException();
+    }
+
+    string line; 
+    int id, weightToHarvest, price;
+    string code, name, type, origin;
+    while (getline(inputFile, line)) {
+        istringstream iss(line);
+        iss >> id >> code >> name >> type >> weightToHarvest >> price;
+        animalMap[code] = make_tuple(id, name, type, weightToHarvest, price);
+    }
+    inputFile.close();
+
+    // how to access
+    // for (const auto& pair : animalMap) {
+    //     std::cout << "Code: " << pair.first << ", ID: " << get<0>(pair.second)
+    //               << ", Name: " << get<1>(pair.second) << ", Type: " << get<2>(pair.second)
+    //               << ", WeightToHarvest: " << get<3>(pair.second) << ", Price: " << get<4>(pair.second) << endl;
+    // }
+}

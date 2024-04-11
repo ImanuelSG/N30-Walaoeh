@@ -13,8 +13,8 @@ class Pemain
 private:
     bool isFoodAvailable();
 protected:
-    const static int inventory_n;
-    const static int inventory_m;
+    static int inventory_n;
+    static int inventory_m;
     string name;
     int gulden;
     int berat;
@@ -103,6 +103,12 @@ public:
     virtual int tambahPemain(vector<Pemain *> &pemain);
     virtual int getKKP() const = 0;
     virtual string getRole() const = 0;
+
+
+    static int getUkuranInventoryN();
+    static int getUkuranInventoryM();
+    static void setUkuranInventoryN(int n);
+    static void setUkuranInventoryM(int m);
 };
 
 #endif

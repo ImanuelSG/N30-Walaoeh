@@ -1,8 +1,8 @@
 #include "Pemain.hpp"
 #include "../Utils/Utils.hpp"
 
-const int Pemain::inventory_n = 5;
-const int Pemain::inventory_m = 5;
+int Pemain::inventory_n = 0;
+int Pemain::inventory_m = 0;
 
 // Constructor , destructor
 Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m) {}
@@ -216,7 +216,27 @@ void display<Sellable>(const Storage<Sellable> &storage)
             string keluaran = "";
             if (storage.buffer[i][j] != nullptr)
             {
-                keluaran = (*storage.buffer[i][j]).getKodeHuruf();
+                int jenis_sellable = (*storage.buffer[i][j]).getJenisSellable();
+                switch (jenis_sellable) {
+                    case 0:
+                        keluaran = (*storage.buffer[i][j]).getKodeHurufHewan();
+                        break;
+                    case 1:
+                        keluaran = (*storage.buffer[i][j]).getKodeHurufTanaman();
+                        break;
+                    case 2:
+                        keluaran = (*storage.buffer[i][j]).getKodeHurufProdukMaterial();
+                        break;
+                    case 3:
+                        keluaran = (*storage.buffer[i][j]).getKodeHurufProdukBuah();
+                        break;
+                    case 4:
+                        keluaran = (*storage.buffer[i][j]).getKodeHurufProdukHewan();
+                        break;
+                    case 5:
+                        keluaran = (*storage.buffer[i][j]).getKodeHurufBangunan();
+                        break;
+                }
             }
             if (keluaran == "")
             {
@@ -232,4 +252,20 @@ void display<Sellable>(const Storage<Sellable> &storage)
         }
         cout << endl;
     }
+}
+
+int Pemain::getUkuranInventoryN() {
+    return inventory_n;
+}
+
+int Pemain::getUkuranInventoryM() {
+    return inventory_m;
+}
+
+void Pemain::setUkuranInventoryN(int n) {
+    inventory_n = n;
+}
+
+void Pemain::setUkuranInventoryM(int m) {
+    inventory_m = m;
 }
