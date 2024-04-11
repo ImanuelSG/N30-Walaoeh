@@ -48,36 +48,10 @@ string ProdukTanamanMaterial::getJenis()
 {
     return "PRODUK_TANAMAN_MATERIAL";
 }
+ProdukTanamanMaterial ProdukTanamanMaterial::tambahProdukTanamanMaterial(Tanaman &tanaman)
+{
+    tuple<int, string, string, string, int, int> produk_material_tuple = Produk::productOriginMap[tanaman.getNamaBarang()];
+    ProdukTanamanMaterial produk_material_baru = ProdukTanamanMaterial(get<0>(produk_material_tuple), get<1>(produk_material_tuple), get<2>(produk_material_tuple), get<3>(produk_material_tuple), tanaman.getNamaBarang(), get<4>(produk_material_tuple), get<5>(produk_material_tuple));
 
-// ProdukTanamanMaterial ProdukTanamanMaterial::tambahProdukTanamanMaterial(Tanaman &tanaman)
-// {
-//     ProdukTanamanMaterial produk_tanaman_material_baru;
-//     int id_produk = Produk::getIdProduk();
-//     string origin = tanaman.getNamaBarang();
-//     int added_weight, harga;
-
-//     cout << "Masukkan berat tambahan: ";
-//     cin >> added_weight;
-
-//     cout << "Masukkan harga: ";
-//     cin >> harga;
-
-//     if (tanaman.isTeak())
-//     {
-//         produk_tanaman_material_baru = ProdukTanamanMaterial(jenis_produk_tanaman_material, id_produk, "TAW", "TEAK_WOOD", tipe_produk_tanaman_material, origin, added_weight, harga);
-//     }
-//     else if (tanaman.isSandalwood())
-//     {
-//         produk_tanaman_material_baru = ProdukTanamanMaterial(jenis_produk_tanaman_material, id_produk, "SAW", "SANDALWOOD_WOOD", tipe_produk_tanaman_material, origin, added_weight, harga);
-//     }
-//     else if (tanaman.isAloe())
-//     {
-//         produk_tanaman_material_baru = ProdukTanamanMaterial(jenis_produk_tanaman_material, id_produk, "ALW", "ALOE_WOOD", tipe_produk_tanaman_material, origin, added_weight, harga);
-//     }
-//     else if (tanaman.isIronwood())
-//     {
-//         produk_tanaman_material_baru = ProdukTanamanMaterial(jenis_produk_tanaman_material, id_produk, "IRW", "IRONWOOD_WOOD", tipe_produk_tanaman_material, origin, added_weight, harga);
-//     }
-
-//     return produk_tanaman_material_baru;
-// }
+    return produk_material_baru;
+}

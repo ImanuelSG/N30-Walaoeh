@@ -65,6 +65,10 @@ testPetani: $(TEST_OUTPUT_FOLDER)/testPetani
 
 testGameWorld: $(TEST_OUTPUT_FOLDER)/testGameWorld
 	@./$(TEST_OUTPUT_FOLDER)/testGameWorld
+
+testToko: $(TEST_OUTPUT_FOLDER)/testToko
+	@./$(TEST_OUTPUT_FOLDER)/testToko
+
 clean:
 	@rm -rf $(OUTPUT_FOLDER)/*
 	@echo "Clean done."

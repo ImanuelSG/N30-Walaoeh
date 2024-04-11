@@ -16,10 +16,10 @@ class Bangunan : public Sellable
 {
 private:
     map<string, int> material; // <string nama_material, int jumlah_material>
-    static map<string, tuple<string, int, map<string, int>>> list_of_bangunan;
 
 public:
     static int id_bangunan;
+    static map<string, tuple<string, int, map<string, int>, int>> list_of_bangunan;
     // map with key = nama_bangunan, value = tuple<kode_bangunan, harga_bangunan, vector<tuple<material, jumlah_material>>>
 
     // ctor default
@@ -46,6 +46,9 @@ public:
     void setIdBangunan(int id);
 
     void setMaterial(map<string, int> material);
+    tuple<string, int, map<string, int>, int> getSpecificRecipe(string name);
+
+    map<string, tuple<string, int, map<string, int>, int>> getAllRecipe();
 
     void displayAllRecipe();
 
