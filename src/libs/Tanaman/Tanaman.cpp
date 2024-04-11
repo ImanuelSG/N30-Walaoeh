@@ -40,6 +40,11 @@ Tanaman::~Tanaman()
 
 /* Methods */
 // getter
+string Tanaman::getJenis()
+{
+    return "TANAMAN";
+}
+
 int Tanaman::getIdTanaman()
 {
     return this->id_tanaman;

@@ -45,6 +45,12 @@ ProdukTanamanBuah &ProdukTanamanBuah::operator=(const ProdukTanamanBuah &other)
 ProdukTanamanBuah::~ProdukTanamanBuah() {}
 
 /* Methods */
+// getter
+string ProdukTanamanBuah::getJenis()
+{
+    return "PRODUK_TANAMAN_BUAH";
+}
+
 ProdukTanamanBuah ProdukTanamanBuah::tambahProdukTanamanBuah(Tanaman &tanaman)
 {
     ProdukTanamanBuah produk_tanaman_buah_baru;

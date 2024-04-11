@@ -53,3 +53,8 @@ const char *InvalidJenisBangunanException::what()
 {
     return "Jenis bangunan yang Anda masukkan tidak valid!.\n Pastikan Jenis Bangunan Anda sesuai.\n";
 }
+
+const char *InvalidJenisSellableException::what()
+{
+    return "Jenis sellable yang Anda masukkan tidak valid!.\n Pastikan Jenis Sellable Anda sesuai.\n";
+}

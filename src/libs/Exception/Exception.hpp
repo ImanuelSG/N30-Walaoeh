@@ -87,4 +87,9 @@ class InvalidJenisBangunanException : public exception
     const char *what();
 };
 
+class InvalidJenisSellableException : public exception
+{
+    const char *what();
+};
+
 #endif

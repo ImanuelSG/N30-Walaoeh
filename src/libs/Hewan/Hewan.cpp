@@ -41,6 +41,11 @@ Hewan::~Hewan()
 
 /* Methods */
 // getter
+string Hewan::getJenis()
+{
+    return "HEWAN";
+}
+
 int Hewan::getIdHewan()
 {
     return this->id_hewan;

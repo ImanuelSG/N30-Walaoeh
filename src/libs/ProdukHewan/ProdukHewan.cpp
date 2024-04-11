@@ -42,6 +42,12 @@ ProdukHewan &ProdukHewan::operator=(const ProdukHewan &other)
 ProdukHewan::~ProdukHewan() {}
 
 /* Methods */
+// getter
+string ProdukHewan::getJenis()
+{
+    return "PRODUK_HEWAN";
+}
+
 ProdukHewan ProdukHewan::tambahProdukHewanHerbivora(Hewan &hewan)
 {
     ProdukHewan produk_hewan_baru;
