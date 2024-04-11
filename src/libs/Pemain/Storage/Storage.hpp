@@ -4,9 +4,13 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "../../Sellable/Sellable.hpp"
-#include "../../Hewan/Hewan.hpp"
-#include "../../Tanaman/Tanaman.hpp"
+#include <map>
+#include <tuple>
+#include <list>
+
+// #include "../../Sellable/Sellable.hpp"
+// #include "../../Hewan/Hewan.hpp"
+// #include "../../Tanaman/Tanaman.hpp"
 #include "../../Exception/Exception.hpp"
 using namespace std;
 
@@ -16,8 +20,14 @@ class Storage;
 template <class T>
 void display(const Storage<T> &storage);
 
-template <>
-void display<Sellable>(const Storage<Sellable> &storage);
+template <class T>
+map<string, tuple<list<string>,int>> readyPanen(const Storage<T> &storage);
+
+template <class T>
+void displayItems(const Storage<T> &storage);
+
+// template <>
+// void display<Sellable>(const Storage<Sellable> &storage);
 
 template <class T>
 class Storage
@@ -196,6 +206,14 @@ public:
      * @brief Print daftar barang yang siap panen
      *
      */
+    friend map<string, tuple<list<string>,int>> readyPanen<>(const Storage<T> &storage);
+
+    /**
+     * @brief Print barang-barang yang ada di storage
+     *
+     */
+    friend void displayItems<>(const Storage<T> &storage);
+
 
 };
 #endif
