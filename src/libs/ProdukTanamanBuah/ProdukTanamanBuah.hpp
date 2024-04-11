@@ -28,7 +28,7 @@ public:
     bool isEdible() override;
     
     // Konversi tanaman menjadi produk (buah) kalau weight sudah mencapai weight_to_harvest
-    // ProdukTanamanBuah tambahProdukTanamanBuah(Tanaman &tanaman);
+    ProdukTanamanBuah tambahProdukTanamanBuah(Tanaman &tanaman);
 };
 
 #endif
