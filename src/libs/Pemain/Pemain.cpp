@@ -216,27 +216,27 @@ void display<Sellable>(const Storage<Sellable> &storage)
             string keluaran = "";
             if (storage.buffer[i][j] != nullptr)
             {
-                int jenis_sellable = (*storage.buffer[i][j]).getJenisSellable();
-                switch (jenis_sellable) {
-                    case 0:
-                        keluaran = (*storage.buffer[i][j]).getKodeHurufHewan();
-                        break;
-                    case 1:
-                        keluaran = (*storage.buffer[i][j]).getKodeHurufTanaman();
-                        break;
-                    case 2:
-                        keluaran = (*storage.buffer[i][j]).getKodeHurufProdukMaterial();
-                        break;
-                    case 3:
-                        keluaran = (*storage.buffer[i][j]).getKodeHurufProdukBuah();
-                        break;
-                    case 4:
-                        keluaran = (*storage.buffer[i][j]).getKodeHurufProdukHewan();
-                        break;
-                    case 5:
-                        keluaran = (*storage.buffer[i][j]).getKodeHurufBangunan();
-                        break;
-                }
+                // int jenis_sellable = (*storage.buffer[i][j]).getJenisSellable();
+                // switch (jenis_sellable) {
+                //     case 0:
+                //         keluaran = (*storage.buffer[i][j]).getKodeHurufHewan();
+                //         break;
+                //     case 1:
+                //         keluaran = (*storage.buffer[i][j]).getKodeHurufTanaman();
+                //         break;
+                //     case 2:
+                //         keluaran = (*storage.buffer[i][j]).getKodeHurufProdukMaterial();
+                //         break;
+                //     case 3:
+                //         keluaran = (*storage.buffer[i][j]).getKodeHurufProdukBuah();
+                //         break;
+                //     case 4:
+                //         keluaran = (*storage.buffer[i][j]).getKodeHurufProdukHewan();
+                //         break;
+                //     case 5:
+                //         keluaran = (*storage.buffer[i][j]).getKodeHurufBangunan();
+                //         break;
+                // }
             }
             if (keluaran == "")
             {
