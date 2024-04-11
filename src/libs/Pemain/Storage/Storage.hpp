@@ -6,7 +6,6 @@
 #include <string>
 #include <map>
 #include <tuple>
-#include <list>
 #include <set>
 
 #include "../../Sellable/Sellable.hpp"
@@ -22,7 +21,7 @@ template <class T>
 void display(const Storage<T> &storage);
 
 template <class T>
-map<string, tuple<list<string>,int>> readyPanen(const Storage<T> &storage);
+map<string, tuple<vector<string>,int>> readyPanen(const Storage<T> &storage);
 
 template <class T>
 void displayItems(const Storage<T> &storage);
@@ -38,10 +37,10 @@ void display<Tanaman>(const Storage<Tanaman> &storage);
 
 
 template <>
-map<string, tuple<list<string>,int>> readyPanen<Hewan>(const Storage<Hewan> &storage);
+map<string, tuple<vector<string>,int>> readyPanen<Hewan>(const Storage<Hewan> &storage);
 
 template <>
-map<string, tuple<list<string>,int>> readyPanen<Tanaman>(const Storage<Tanaman> &storage);
+map<string, tuple<vector<string>,int>> readyPanen<Tanaman>(const Storage<Tanaman> &storage);
 
 template <>
 void displayItems<Hewan>(const Storage<Hewan> &storage);
@@ -226,7 +225,7 @@ public:
      * @brief Print daftar barang yang siap panen
      *
      */
-    friend map<string, tuple<list<string>,int>> readyPanen<>(const Storage<T> &storage);
+    friend map<string, tuple<vector<string>,int>> readyPanen<>(const Storage<T> &storage);
 
     /**
      * @brief Print barang-barang yang ada di storage

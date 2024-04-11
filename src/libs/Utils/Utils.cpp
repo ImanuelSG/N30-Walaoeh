@@ -97,3 +97,24 @@ void countdown(int seconds)
         this_thread::sleep_for(chrono::seconds(1)); // Sleep for 1 second
     }
 }
+
+
+string intToAlphabet(int n) {
+    if (n < 0 || n >= 26) {
+        return "Invalid";
+    }
+
+    char alphabet = 'A' + n;
+
+    return std::string(1, alphabet);
+}
+
+void displayReadyPanen(map<string, tuple<vector<string>,int>>& readyItems)
+{
+    int count = 1;
+    for (const auto& pair : readyItems)
+    {
+        cout << count << ". " << pair.first << '(' << get<1>(pair.second) << " petak siap panen)" << endl;
+        count++;
+    }
+}
