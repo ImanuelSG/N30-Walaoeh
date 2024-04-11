@@ -35,7 +35,6 @@ public:
     string getTipeHewan();
     int getWeight();
     int getWeightToHarvest();
-    int getAddedWeight
 
     // setter
     void setIdHewan(int id);

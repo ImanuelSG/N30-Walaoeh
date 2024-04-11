@@ -61,11 +61,6 @@ int Hewan::getWeightToHarvest()
     return this->weight_to_harvest;
 }
 
-int Hewan::getAddedWeight()
-{
-    return 0;
-}
-
 // setter
 void Hewan::setIdHewan(int id)
 {
