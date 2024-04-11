@@ -67,7 +67,7 @@ public:
     virtual bool isEdible();
     virtual int getAddedWeight() = 0;
     virtual bool isHewan();  // boolean
-  bool isHewan();
+  // bool isHewan();
   bool isTanaman();
   bool isProdukMaterial();
   bool isProdukBuah();

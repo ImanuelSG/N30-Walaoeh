@@ -11,7 +11,7 @@ class Peternak : public Pemain
 private:
     static int ternak_n;
     static int ternak_m;
-    Storage<Hewan&> peternakan;
+    Storage<Hewan> peternakan;
     void cetakPenyimpananHewan();
     int countHewanInventory();
     bool isMakananAvailable(string tipeHewan);

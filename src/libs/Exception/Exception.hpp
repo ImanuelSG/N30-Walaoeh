@@ -125,11 +125,6 @@ class InvalidJenisBangunanException : public exception
     const char *what();
 };
 
-class InvalidJenisBangunanException : public exception
-{
-    const char *what();
-};
-
 class InvalidProdukException : public exception
 {
     const char *what();

@@ -2,13 +2,14 @@
 #define PETANI_HPP
 
 #include "../Pemain.hpp"
+#include "../../Tanaman/Tanaman.hpp"
 
 class Petani : public Pemain
 {
 private:
     static int ladang_m;
     static int ladang_n;
-    // storage
+    Storage<Tanaman> ladang;
 public:
     Petani(string name, int gulden, int berat);
     ~Petani();
