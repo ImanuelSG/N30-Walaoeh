@@ -35,6 +35,9 @@ void display<Hewan>(const Storage<Hewan> &storage);
 template <>
 map<string, tuple<list<string>,int>> readyPanen(const Storage<Hewan> &storage);
 
+template <>
+void display<Tanaman>(const Storage<Tanaman> &storage);
+
 template <class T>
 class Storage
 {
@@ -102,7 +105,7 @@ public:
      *
      * @param obj Object to be inserted
      */
-    void insert(const T &obj)
+    void insert(T &obj)
     {
         bool found = false;
         int i = 0;
@@ -219,7 +222,5 @@ public:
      *
      */
     friend void displayItems<>(const Storage<T> &storage);
-
-
 };
 #endif
