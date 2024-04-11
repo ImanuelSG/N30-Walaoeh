@@ -1,4 +1,5 @@
 #include "Petani.hpp"
+#include <set>
 #include "../../pcolor/pcolor.h"
 
 
@@ -30,6 +31,9 @@ void Petani::panen()
 void Petani::cetakLadang()
 {
     display(ladang);
+    cout << endl << endl;
+    displayItems(ladang);
+    cout << endl;
 }
 
 void Petani::beli()
@@ -119,5 +123,27 @@ void display<Tanaman>(const Storage<Tanaman> &storage)
             cout << "-----+";
         }
         cout << endl;
+    }
+}
+
+template<>
+void displayItems<Tanaman>(const Storage<Tanaman> &storage)
+{
+    set<map<string,string>> Items;
+    for (const auto& innerVector : storage.buffer)
+    {
+        for (Tanaman* value : innerVector)
+        {
+            map<string, string> itemMap;
+            itemMap[value->getKodeHuruf()] = value->getNamaBarang();
+            Items.insert(itemMap);
+        }
+    }
+    for (const auto& item : Items)
+    {
+        for (const auto& pair : item)
+        {
+            std::cout << " - " << pair.first << ": " << pair.second << endl;
+        }
     }
 }
