@@ -68,10 +68,18 @@ public:
     const char *what();
 };
 
-class NotEnoughHewanException : public exception {
+class NotEnoughTanamanException : public exception
+{
     const char *what();
 };
-class NotEnoughFoodException : public exception {
+
+class NotEnoughHewanException : public exception
+{
+    const char *what();
+};
+
+class NotEnoughFoodException : public exception
+{
     const char *what();
 };
 
