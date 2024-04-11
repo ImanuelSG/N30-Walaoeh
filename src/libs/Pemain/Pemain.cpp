@@ -1,8 +1,8 @@
 #include "Pemain.hpp"
 #include "../Utils/Utils.hpp"
 
-const int Pemain::inventory_n = 5;
-const int Pemain::inventory_m = 5;
+int Pemain::inventory_n = 5;
+int Pemain::inventory_m = 5;
 
 // Constructor , destructor
 Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m) {
@@ -29,9 +29,9 @@ string Pemain::getName() const
 int Pemain::getKekayaan() 
 {
     int count = gulden;
-    for (int i = 0; i < inventory_n; i++)
+    for (int i = 0; i < inventory.getRow(); i++)
     {
-        for (int j = 0; j < inventory_m; j++)
+        for (int j = 0; j < inventory.getCol(); j++)
         {
             Sellable *item = inventory.getElementAddress(i, j);
             if (item != nullptr){
@@ -192,9 +192,9 @@ int Pemain::tambahPemain(vector<Pemain *> &pemain)
 
 bool Pemain::isFoodAvailable()
 {
-    for (int i = 0; i < inventory_n; i++)
+    for (int i = 0; i < inventory.getRow(); i++)
     {
-        for (int j = 0; j < inventory_m; j++)
+        for (int j = 0; j < inventory.getCol(); j++)
         {
             Sellable *item = inventory.getElementAddress(i, j);
             if (item != nullptr)
@@ -207,6 +207,34 @@ bool Pemain::isFoodAvailable()
         }
     }
     return false;
+}
+
+
+void Pemain::setUkuranInventoryM(int m)
+{
+    inventory_m = m;
+}
+
+void Pemain::setUkuranInventoryN(int n)
+{
+    inventory_n = n;
+}
+
+int Pemain::getUkuranInventoryM()
+{
+    return inventory_m;
+}
+
+int Pemain::getUkuranInventoryN()
+{
+    return inventory_n;
+}
+
+void Pemain::displayInfo()
+{
+    cout << "Nama: " << name << endl;
+    cout << "Gulden: " << gulden << endl;
+    cout << "Berat: " << berat <<  endl;
 }
 
 template <>

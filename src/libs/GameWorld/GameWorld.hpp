@@ -1,6 +1,12 @@
 #include <iostream>
 #include <vector>
+#include <string>
+#include <sstream>
+#include <fstream>
 #include "../CommandManager/CommandManager.hpp"
+#include "../Hewan/Hewan.hpp"
+#include "../Tanaman/Tanaman.hpp"
+#include "../Produk/Produk.hpp"
 #include "../Pemain/Walikota/Walikota.hpp"
 #include "../Pemain/Petani/Petani.hpp"
 #include "../Pemain/Peternak/Peternak.hpp"
@@ -14,7 +20,6 @@ private:
     int winningGulden;
     int winningWeight;
     vector<Pemain *> listOfPLayers;
-    vector<Sellable *> listOfBangunan;
     int currPlayerIndex;
     bool ended;
 
@@ -25,6 +30,7 @@ public:
     void displayHeader();
     void checkEndGame();
     void initializeConfigs();
+    void loadMiscConfig(string path);
     void saveGameState();
     void loadGameState();
     void initializeDefaultGame();

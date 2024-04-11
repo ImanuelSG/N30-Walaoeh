@@ -2,7 +2,13 @@
 #define HEWAN_HPP
 
 #include "../Sellable/Sellable.hpp"
+#include "../Exception/Exception.hpp"
+#include <vector>
+#include <map>
+#include <string>
+#include <sstream>
 #include <fstream>
+#include <tuple>
 
 /*<ID> <KODE_HURUF> <NAME> <TYPE> <WEIGHT_TO_HARVEST> <PRICE>*/
 class Hewan : public Sellable
@@ -14,6 +20,7 @@ private:
 
 public:
     int id_hewan = 1;
+    static map<string, tuple<int, string, string, int, int>> animalMap;
     
     // ctor default
     Hewan();
@@ -59,6 +66,9 @@ public:
     // bool isSnake();
     // bool isChicken();
     // bool isDuck();
+
+    // load config to animalMap
+    static void loadHewanConfig(string path);
 };
 
 #endif

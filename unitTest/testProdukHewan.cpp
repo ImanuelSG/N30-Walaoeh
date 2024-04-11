@@ -12,27 +12,27 @@ int main()
 {
      Hewan h1 = Hewan(0, 1, "CHK", "CHICKEN", "OMNIVORE", 100, 50, 10000);
 
-     auto p1 = ProdukHewan::tambahProdukHewanOmnivora(h1);
+     // auto p1 = ProdukHewan::tambahProdukHewanOmnivora(h1);
 
-     cout << "ID: " << p1.first.getIdProduk() << ", "
-          << "Kode: " << p1.first.getKodeHuruf() << ", "
-          << "Nama: " << p1.first.getNamaBarang() << ", "
-          << "Tipe: " << p1.first.getTipeProduk() << ", "
-          << "Origin: " << p1.first.getOrigin() << ", "
-          << "Added Weight: " << p1.first.getAddedWeight() << ", "
-          << "Harga: " << p1.first.getHargaBarang() << endl;
+     // cout << "ID: " << p1.first.getIdProduk() << ", "
+     //      << "Kode: " << p1.first.getKodeHuruf() << ", "
+     //      << "Nama: " << p1.first.getNamaBarang() << ", "
+     //      << "Tipe: " << p1.first.getTipeProduk() << ", "
+     //      << "Origin: " << p1.first.getOrigin() << ", "
+     //      << "Added Weight: " << p1.first.getAddedWeight() << ", "
+     //      << "Harga: " << p1.first.getHargaBarang() << endl;
 
-     cout << "ID: " << p1.second.getIdProduk() << ", "
-          << "Kode: " << p1.second.getKodeHuruf() << ", "
-          << "Nama: " << p1.second.getNamaBarang() << ", "
-          << "Tipe: " << p1.second.getTipeProduk() << ", "
-          << "Origin: " << p1.second.getOrigin() << ", "
-          << "Added Weight: " << p1.second.getAddedWeight() << ", "
-          << "Harga: " << p1.second.getHargaBarang() << endl;
+     // cout << "ID: " << p1.second.getIdProduk() << ", "
+     //      << "Kode: " << p1.second.getKodeHuruf() << ", "
+     //      << "Nama: " << p1.second.getNamaBarang() << ", "
+     //      << "Tipe: " << p1.second.getTipeProduk() << ", "
+     //      << "Origin: " << p1.second.getOrigin() << ", "
+     //      << "Added Weight: " << p1.second.getAddedWeight() << ", "
+     //      << "Harga: " << p1.second.getHargaBarang() << endl;
 
      Hewan h2 = Hewan(0, 1, "COW", "COW", "HERBIVORE", 200, 100, 20000);
 
-     ProdukHewan p2 = p2.tambahProdukHewanHerbivora(h2);
+     // ProdukHewan p2 = p2.tambahProdukHewanHerbivora(h2);
 
      cout << "ID: " << p2.getIdProduk() << ", "
           << "Kode: " << p2.getKodeHurufProdukHewan() << ", "
@@ -66,6 +66,13 @@ int main()
      // }
 
      // inFile.close();
+
+     // calling load product
+     try {
+          Produk::loadProductConfig("./src/libs/FileConfig/product.txt");
+     } catch (FileNotFoundException& e) {
+          cout << e.what() << endl;
+     }
 
      return 0;
 }

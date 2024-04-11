@@ -2,7 +2,13 @@
 #define TANAMAN_HPP
 
 #include "../Sellable/Sellable.hpp"
+#include "../Exception/Exception.hpp"
+#include <vector>
+#include <map>
+#include <string>
+#include <sstream>
 #include <fstream>
+#include <tuple>
 
 /*<ID> <KODE_HURUF> <NAME> <TYPE> <DURATION_TO_HARVEST> <PRICE>*/
 class Tanaman : public Sellable
@@ -14,6 +20,7 @@ private:
 
 public:
     int id_tanaman = 1;
+    static map<string, tuple<int, string, string, int, int>> plantMap;
 
     // ctor default
     Tanaman();
@@ -59,6 +66,8 @@ public:
     // bool isBanana();
     // bool isGuava();
 
+    // load config to animalMap
+    static void loadTanamanConfig(string path);
 };
 
 #endif

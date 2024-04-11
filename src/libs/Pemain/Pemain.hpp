@@ -12,19 +12,16 @@ class Pemain
 {
 private:
     bool isFoodAvailable();
+
 protected:
-    const static int inventory_n;
-    const static int inventory_m;
+    static int inventory_n;
+    static int inventory_m;
     string name;
     int gulden;
     int berat;
+    Storage<Sellable> inventory;
 
 public:
-    // BALIKIN LAGI KE PROTECTED SESUDAH TESTING
-
-
-    // ETSEDRFSKDFJALD
-    Storage<Sellable> inventory;
     Pemain(string name, int gulden, int berat);
     ~Pemain();
     /**
@@ -76,6 +73,12 @@ public:
      */
     void cetakPenyimpanan();
     /**
+     * @brief Mencetak Informasi penting dari pemain ke layar
+     *
+     */
+
+    void displayInfo();
+    /**
      * @brief Menghitung Kekayaan pemain
      */
     virtual int getKekayaan();
@@ -107,6 +110,11 @@ public:
     virtual int tambahPemain(vector<Pemain *> &pemain);
     virtual int getKKP()  = 0;
     virtual string getRole() const = 0;
+
+    static int getUkuranInventoryN();
+    static int getUkuranInventoryM();
+    static void setUkuranInventoryN(int n);
+    static void setUkuranInventoryM(int m);
 };
 
 #endif

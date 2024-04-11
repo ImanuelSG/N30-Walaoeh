@@ -11,7 +11,7 @@ CFLAGS          = $(DEBUG_CFLAG) $(WARNING_CFLAG)
 EXECUTABLE_FILENAME = Walaoeh
 
 # Find all source files recursively
-ALL_SRCS := $(filter-out $(SOURCE_FOLDER)/GameWorld/GameWorld.cpp $(SOURCE_FOLDER)/Bangunan/main.cpp $(SOURCE_FOLDER)/Hewan/main.cpp $(SOURCE_FOLDER)/Tanaman/main.cpp $(SOURCE_FOLDER)/ProdukHewan/main.cpp ,$(wildcard $(SOURCE_FOLDER)/*/*.cpp $(SOURCE_FOLDER)/*/*/*.cpp $(SOURCE_FOLDER)/pcolor/pcolor.c $(SOURCE_FOLDER)/Pemain/Storage/Storage.hpp))
+ALL_SRCS := $(filter-out $(SOURCE_FOLDER)/Bangunan/main.cpp $(SOURCE_FOLDER)/Hewan/main.cpp $(SOURCE_FOLDER)/Tanaman/main.cpp $(SOURCE_FOLDER)/ProdukHewan/main.cpp ,$(wildcard $(SOURCE_FOLDER)/*/*.cpp $(SOURCE_FOLDER)/*/*/*.cpp $(SOURCE_FOLDER)/pcolor/pcolor.c $(SOURCE_FOLDER)/Pemain/Storage/Storage.hpp))
 
 # Create a list of object files from source files
 OBJECTS := $(patsubst $(SOURCE_FOLDER)/%.cpp,$(OUTPUT_FOLDER)/%.o,$(ALL_SRCS))
@@ -63,6 +63,8 @@ testPemain: $(TEST_OUTPUT_FOLDER)/testPemain
 testPetani: $(TEST_OUTPUT_FOLDER)/testPetani
 	@./$(TEST_OUTPUT_FOLDER)/testPetani
 
+testGameWorld: $(TEST_OUTPUT_FOLDER)/testGameWorld
+	@./$(TEST_OUTPUT_FOLDER)/testGameWorld
 clean:
 	@rm -rf $(OUTPUT_FOLDER)/*
 	@echo "Clean done."

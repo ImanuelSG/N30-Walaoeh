@@ -4,7 +4,7 @@
 #include "../Pemain.hpp"
 #include "../Storage/Storage.hpp"
 #include "../../Hewan/Hewan.hpp"
-
+#include "../../pcolor/pcolor.h"
 
 class Peternak : public Pemain
 {
@@ -14,6 +14,7 @@ private:
     Storage<Hewan> peternakan;
     int countHewanInventory();
     bool isMakananAvailable(string tipeHewan);
+
 public:
     Peternak(string name, int gulden, int berat);
     ~Peternak();
@@ -26,6 +27,10 @@ public:
     int getKekayaan();
     int getKKP();
     string getRole() const;
+    static int getUkuranTernakN();
+    static int getUkuranTernakM();
+    static void setUkuranTernakN(int n);
+    static void setUkuranTernakM(int m);
 };
 
 #endif

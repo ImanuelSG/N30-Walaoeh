@@ -1,5 +1,4 @@
 #include "Produk.hpp"
-#include <fstream>
 
 // class Produk : public Sellable
 // string tipe_produk;
@@ -7,6 +6,8 @@
 // int added_weight;
 
 int Produk::id_produk = 1;
+
+map<string, tuple<int, string, string, string, int, int>> Produk::productMap;
 
 Produk::Produk() : Sellable()
 {
@@ -81,4 +82,30 @@ void Produk::setOrigin(string origin)
 void Produk::setAddedWeight(int added_weight)
 {
     this->added_weight = added_weight;
+}
+
+void Produk::loadProductConfig(string path)
+{
+    ifstream inputFile(path);
+    if (!inputFile.is_open()) {
+        throw FileNotFoundException();
+    }
+
+    string line; 
+    int id, addedWeight, price;
+    string code, name, type, origin;
+    while (getline(inputFile, line)) {
+        istringstream iss(line);
+        iss >> id >> code >> name >> type >> origin >> addedWeight >> price;
+        productMap[origin] = make_tuple(id, code, name, type, addedWeight, price);
+    }
+    inputFile.close();
+
+    // how to access
+    // for (const auto& pair : productMap) {
+    //     std::cout << "Origin: " << pair.first << ", ID: " << get<0>(pair.second)
+    //               << ", Code: " << get<1>(pair.second) << ", Name: " << get<2>(pair.second)
+    //               << ", Type: " << get<3>(pair.second) << ", Weight: " << get<4>(pair.second)
+    //               << ", Price: " << get<5>(pair.second) << endl;
+    // }
 }

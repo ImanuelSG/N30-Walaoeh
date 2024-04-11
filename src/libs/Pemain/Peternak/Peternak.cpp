@@ -3,19 +3,20 @@
 #include "../../pcolor/pcolor.h"
 #include <algorithm>
 
+int Peternak::ternak_m = 5;
+int Peternak::ternak_n = 5;
+Peternak::Peternak(string name, int gulden, int berat) : Pemain(name, gulden, berat), peternakan(ternak_n, ternak_m) {}
 
-int Peternak::ternak_m = 5; int Peternak::ternak_n = 5;
-Peternak::Peternak(string name,int gulden, int berat) : Pemain(name,gulden,berat), peternakan(ternak_n,ternak_m) {}
-
-Peternak::~Peternak(){}
-
-void Peternak::ternak(){
+void Peternak::ternak()
+{
     // Kalau peternakan full
-    if (peternakan.isFull()){
+    if (peternakan.isFull())
+    {
         throw TernakFullException();
     }
     // Kalau di inventory gak punya hewan
-    if (countHewanInventory()==0){
+    if (countHewanInventory() == 0)
+    {
         throw NotEnoughHewanException();
     }
 
@@ -25,7 +26,7 @@ void Peternak::ternak(){
     string slot;
     int col = 0;
     int row = 0;
-    Sellable* item = nullptr;
+    Sellable *item = nullptr;
 
     // Slot inventory
     do
@@ -62,7 +63,7 @@ void Peternak::ternak(){
                 cout << "Barang pada slot tersebut bukanlah Hewan.\n Silakan pilih Slot lain!\n";
             }
         }
-    } while (!valid); 
+    } while (!valid);
 
     cout << "Kamu memilih " << item->getNamaBarang() << "." << endl;
     cout << "Pilih petak tanah yang akan ditinggali" << endl;
@@ -73,10 +74,10 @@ void Peternak::ternak(){
     string petak;
     int colP = 0;
     int rowP = 0;
-    Hewan *cekPetak; 
+    Hewan *cekPetak;
 
     // validasi kosong ato gak
-    do 
+    do
     {
         bool acc = false;
         do
@@ -110,19 +111,19 @@ void Peternak::ternak(){
 
     // Petak dipilih sudah kosong
 
-    Hewan *hewan = dynamic_cast<Hewan*>(item);
-    peternakan.insert(rowP,colP,*hewan);
-    inventory.deleteAt(row,col);
+    Hewan *hewan = dynamic_cast<Hewan *>(item);
+    peternakan.insert(rowP, colP, *hewan);
+    inventory.deleteAt(row, col);
 
-    cout << "Dengan hati-hati, kamu meletakkan seekor " << item->getNamaBarang() << " di kandang." << endl << endl;
+    cout << "Dengan hati-hati, kamu meletakkan seekor " << item->getNamaBarang() << " di kandang." << endl
+         << endl;
     cout << item->getNamaBarang() << "telah menjadi peliharaanmu sekarang!";
-
-
 }
 
 void Peternak::kasihMakan()
 {
-    if (peternakan.isEmpty()){
+    if (peternakan.isEmpty())
+    {
         throw TernakEmptyException();
     }
 
@@ -132,10 +133,10 @@ void Peternak::kasihMakan()
     string petak;
     int colP = 0;
     int rowP = 0;
-    Hewan *hewan; 
+    Hewan *hewan;
 
     // validasi kosong ato gak
-    do 
+    do
     {
         bool acc = false;
         do
@@ -156,17 +157,20 @@ void Peternak::kasihMakan()
             
         } while (!acc);
 
-        hewan = peternakan.getElementAddress(rowP,colP);
-        if (hewan == nullptr){
+        hewan = peternakan.getElementAddress(rowP, colP);
+        if (hewan == nullptr)
+        {
             cout << "Petak yang anda pilih kosong.\n Silakan pilih petak tidak kosong." << endl;
-
-        } else {
+        }
+        else
+        {
             isEmpty = false;
         }
 
     } while (isEmpty);
 
-    cout << "Kamu memilih " << hewan->getKodeHuruf() << "untuk diberi makan.\n" << endl;
+    cout << "Kamu memilih " << hewan->getKodeHuruf() << "untuk diberi makan.\n"
+         << endl;
     cout << "Pilih pangan yang akan diberikan: " << endl;
 
 
@@ -218,14 +222,15 @@ void Peternak::kasihMakan()
                 }
             }
         }
-
-    } else 
+    }
+    else
     {
-        cout << "Anda tidak memiliki jenis makanan yang sesuai untuk tipe hewan Anda\n" << endl;
+        cout << "Anda tidak memiliki jenis makanan yang sesuai untuk tipe hewan Anda\n"
+             << endl;
     }
 }
 
-void Peternak::panen() 
+void Peternak::panen()
 {
     // cetak ternak
     cetakPeternakan();
@@ -250,13 +255,12 @@ void Peternak::panen()
         {
             valid = true;
             auto it = readyItems.begin();
-            advance(it,input);
+            advance(it, input);
 
             chosenItem = it->first;
             cout << endl;
-
         }
-        else 
+        else
         {
             cout << "Silakan pilih nomor lain.\n Pilihan anda tidak tersedia!" << endl;
         }
@@ -280,13 +284,13 @@ void Peternak::panen()
         {
             valid = true;
         }
-        else 
+        else
         {
             cout << "Jumlah petak tidak tersedia.\n Silakan pilih jumlah yang sesuai!" << endl;
         }
 
     } while (!valid);
-    
+
     int iter = 0;
     vector<string> chosenPositions;
     // pilih petak
@@ -294,12 +298,12 @@ void Peternak::panen()
     cout << "Pilih petak yang ingin dipanen:" << endl;
     do
     {
-       
-        string slot;
-        slot = getValidInputStorage("Petak ke-" + to_string(iter +1));
 
-        auto it = find(positions.begin(),positions.end(),slot);
-        auto it2 = find(chosenPositions.begin(), chosenPositions.end(),slot);
+        string slot;
+        slot = getValidInputStorage("Petak ke-" + to_string(iter + 1));
+
+        auto it = find(positions.begin(), positions.end(), slot);
+        auto it2 = find(chosenPositions.begin(), chosenPositions.end(), slot);
 
         // if slot is not available
         if (it == positions.end())
@@ -310,16 +314,17 @@ void Peternak::panen()
         {
             cout << "Anda sudah memilih petak tersebut" << endl;
         }
-        else if ((it != positions.end()) && (it2 == chosenPositions.end())){
+        else if ((it != positions.end()) && (it2 == chosenPositions.end()))
+        {
             chosenPositions.push_back(slot);
             iter++;
         }
-        
+
     } while (iter < num);
-    
+
     // masukin petaknya
 
-    for (int i =0 ; i <num ; i++)
+    for (int i = 0; i < num; i++)
     {
         int col = getColStorage(chosenPositions[i][0]);
         int row = getRowStorage(chosenPositions[i]);
@@ -330,7 +335,6 @@ void Peternak::panen()
 
         // print klo sudah berhasil
     }
-
 }
 
 void Peternak::cetakPeternakan() 
@@ -343,22 +347,22 @@ void Peternak::cetakPeternakan()
     }
 }
 
-void Peternak::beli(){}
+void Peternak::beli() {}
 
-void Peternak::jual(){}
+void Peternak::jual() {}
 
-int Peternak::getKekayaan(){
+int Peternak::getKekayaan()
+{
     int count = Pemain::getKekayaan();
-    for (int i = 0; i < ternak_n; i++)
+    for (int i = 0; i < peternakan.getRow(); i++)
     {
-        for (int j = 0; j < ternak_m; j++)
+        for (int j = 0; j < peternakan.getCol(); j++)
         {
             Hewan *item = peternakan.getElementAddress(i, j);
-            if (item != nullptr){
+            if (item != nullptr)
+            {
                 count += item->getHargaBarang();
             }
-
-            
         }
     }
     return count;
@@ -366,8 +370,8 @@ int Peternak::getKekayaan(){
 
 int Peternak::countHewanInventory(){
     int count = 0;
-    for (int i = 0; i < inventory_n; i++) {
-        for (int j = 0; j < inventory_m; j++) {
+    for (int i = 0; i < inventory.getRow(); i++) {
+        for (int j = 0; j < inventory.getCol(); j++) {
             Sellable* item = inventory.getElementAddress(i,j);
             if (item != nullptr)
             {
@@ -381,8 +385,8 @@ int Peternak::countHewanInventory(){
 }
 
 bool Peternak::isMakananAvailable(string tipeHewan){
-    for (int i = 0; i < inventory_n; i++) {
-        for (int j = 0; j < inventory_m; j++) {
+    for (int i = 0; i < inventory.getRow(); i++) {
+        for (int j = 0; j < inventory.getCol(); j++) {
             Sellable* item = inventory.getElementAddress(i,j);
             
             if (item != nullptr)
@@ -411,7 +415,7 @@ bool Peternak::isMakananAvailable(string tipeHewan){
     return false;
 }
 
-int Peternak::getKKP() 
+int Peternak::getKKP()
 {
     return getKekayaan() - 11;
 }
@@ -420,8 +424,9 @@ string Peternak::getRole() const
     return "Peternak";
 }
 
-template<>
-void display<Hewan>(const Storage<Hewan> &storage){
+template <>
+void display<Hewan>(const Storage<Hewan> &storage)
+{
     // ================[ Penyimpanan ]==================
     cout << "     ";
     int numOfEq = (1 + 6 * storage.col - 10) / 2; // 10 is len([ Ladang ])
@@ -465,10 +470,15 @@ void display<Hewan>(const Storage<Hewan> &storage){
                 keluaran = (*storage.buffer[i][j]).getKodeHuruf();
                 if ((*storage.buffer[i][j]).isHarvestValid())
                 {
-                    print_green(keluaran[0]); print_green(keluaran[1]); print_green(keluaran[2]);
+                    print_green(keluaran[0]);
+                    print_green(keluaran[1]);
+                    print_green(keluaran[2]);
                 }
-                else{
-                    print_red(keluaran[0]); print_red(keluaran[1]); print_red(keluaran[2]);
+                else
+                {
+                    print_red(keluaran[0]);
+                    print_red(keluaran[1]);
+                    print_red(keluaran[2]);
                 }
             }
             if (keluaran == "")
@@ -487,12 +497,13 @@ void display<Hewan>(const Storage<Hewan> &storage){
     }
 }
 
-template<>
-map<string, tuple<vector<string>,int>> readyPanen<Hewan>(const Storage<Hewan> &storage){
+template <>
+map<string, tuple<vector<string>, int>> readyPanen<Hewan>(const Storage<Hewan> &storage)
+{
     map<string, tuple<vector<string>, int>> result;
-    for (int i =0 ;i < storage.row; i++)
+    for (int i = 0; i < storage.row; i++)
     {
-        for (int j=0; j < storage.col;j++)
+        for (int j = 0; j < storage.col; j++)
         {
             Hewan *item = storage.buffer[i][j];
             if (item != nullptr)
@@ -507,11 +518,13 @@ map<string, tuple<vector<string>,int>> readyPanen<Hewan>(const Storage<Hewan> &s
                     if (it == result.end())
                     {
                         vector<string> position = {intToAlphabet(j) + intToStringWithLeadingZero(i)};
-                        result[kode] = make_tuple(position,1);
-                    } else {
+                        result[kode] = make_tuple(position, 1);
+                    }
+                    else
+                    {
                         auto &value = it->second;
                         get<0>(value).push_back(intToAlphabet(j) + intToStringWithLeadingZero(i));
-                        get<1>(value) ++;
+                        get<1>(value)++;
                     }
                 }
             }
@@ -520,13 +533,13 @@ map<string, tuple<vector<string>,int>> readyPanen<Hewan>(const Storage<Hewan> &s
     return result;
 }
 
-template<>
+template <>
 void displayItems<Hewan>(const Storage<Hewan> &storage)
 {
-    set<map<string,string>> Items;
-    for (const auto& innerVector : storage.buffer)
+    set<map<string, string>> Items;
+    for (const auto &innerVector : storage.buffer)
     {
-        for (Hewan* value : innerVector)
+        for (Hewan *value : innerVector)
         {
             map<string, string> itemMap;
             if (value != nullptr)
@@ -536,13 +549,31 @@ void displayItems<Hewan>(const Storage<Hewan> &storage)
             }
         }
     }
-    
     for (const auto& item : Items)
     {
-        for (const auto& pair : item)
+        for (const auto &pair : item)
         {
             std::cout << " - " << pair.first << ": " << pair.second << endl;
         }
     }
 }
 
+int Peternak::getUkuranTernakN()
+{
+    return ternak_n;
+}
+
+int Peternak::getUkuranTernakM()
+{
+    return ternak_m;
+}
+
+void Peternak::setUkuranTernakN(int n)
+{
+    ternak_n = n;
+}
+
+void Peternak::setUkuranTernakM(int m)
+{
+    ternak_m = m;
+}

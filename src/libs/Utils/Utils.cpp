@@ -89,10 +89,10 @@ string toLowercase(const std::string &str)
     return result;
 }
 
-void displayReadyPanen(map<string, tuple<list<string>,int>>& readyItems)
+void displayReadyPanen(map<string, tuple<list<string>, int>> &readyItems)
 {
     int count = 1;
-    for (const auto& pair : readyItems)
+    for (const auto &pair : readyItems)
     {
         cout << count << ". " << pair.first << '(' << get<1>(pair.second) << " petak siap panen)" << endl;
         count++;
@@ -108,9 +108,10 @@ void countdown(int seconds)
     }
 }
 
-
-string intToAlphabet(int n) {
-    if (n < 0 || n >= 26) {
+string intToAlphabet(int n)
+{
+    if (n < 0 || n >= 26)
+    {
         return "Invalid";
     }
 
@@ -119,10 +120,10 @@ string intToAlphabet(int n) {
     return std::string(1, alphabet);
 }
 
-void displayReadyPanen(map<string, tuple<vector<string>,int>>& readyItems)
+void displayReadyPanen(map<string, tuple<vector<string>, int>> &readyItems)
 {
     int count = 1;
-    for (const auto& pair : readyItems)
+    for (const auto &pair : readyItems)
     {
         cout << count << ". " << pair.first << '(' << get<1>(pair.second) << " petak siap panen)" << endl;
         count++;

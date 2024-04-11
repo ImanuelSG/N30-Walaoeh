@@ -22,6 +22,11 @@ public:
     int getKekayaan();
     int getKKP();
     string getRole() const;
+
+    static int getUkuranLadangN();
+    static int getUkuranLadangM();
+    static void setUkuranLadangN(int n);
+    static void setUkuranLadangM(int m);
 };
 
 #endif

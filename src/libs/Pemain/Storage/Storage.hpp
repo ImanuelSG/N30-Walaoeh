@@ -35,7 +35,6 @@ void display<Hewan>(const Storage<Hewan> &storage);
 template <>
 void display<Tanaman>(const Storage<Tanaman> &storage);
 
-
 template <>
 map<string, tuple<vector<string>,int>> readyPanen<Hewan>(const Storage<Hewan> &storage);
 

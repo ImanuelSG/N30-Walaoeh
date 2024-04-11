@@ -55,12 +55,20 @@ void GameWorld::startGame()
             cout << "> ";
             string command;
             cin >> command;
+            // res = -1 is normal exit
+            // res = -2 is exception exit
+            // res = -3 is save game
+            // res >= 0 is the change to current player index
             int res = CommandManager.execute(command, listOfPLayers, currPlayerIndex);
             cout << endl;
 
-            if (res == 2)
+            if (res == -3)
             {
                 saveGameState();
+            }
+            else if (res >= 0)
+            {
+                currPlayerIndex = res;
             }
         }
         CommandManager.getNextPlayerIndex();
@@ -94,8 +102,42 @@ void GameWorld::checkEndGame()
     }
 }
 
+void GameWorld::loadMiscConfig(string path)
+{
+    ifstream inputFile(path);
+    if (!inputFile.is_open())
+    {
+        throw FileNotFoundException();
+    }
+
+    int inventoryN, inventoryM, fieldN, fieldM, ranchN, ranchM;
+    inputFile >> winningGulden;
+    inputFile >> winningWeight;
+    inputFile >> inventoryN >> inventoryM;
+    inputFile >> fieldN >> fieldM;
+    inputFile >> ranchN >> ranchM;
+
+    Pemain::setUkuranInventoryN(inventoryN);
+
+    Pemain::setUkuranInventoryM(inventoryM);
+    Petani::setUkuranLadangN(fieldN);
+    Petani::setUkuranLadangM(fieldM);
+    Peternak::setUkuranTernakN(ranchN);
+    Peternak::setUkuranTernakM(ranchM);
+
+    // cout << "Gulden: " << winningGulden << ", Weight: " << winningWeight << endl;
+    // cout << "Inventory Height: " << Pemain::getUkuranInventoryN() << ", Width: " << Pemain::getUkuranInventoryM() << endl;
+    // cout << "Field Height: " << Petani::getUkuranLadangN() << ", Width: " << Petani::getUkuranLadangM() << endl;
+    // cout << "Ranch Height: " << Peternak::getUkuranTernakN() << ", Width: " << Peternak::getUkuranTernakM() << endl;
+}
+
 void GameWorld::initializeConfigs()
 {
+    loadMiscConfig("./src/libs/FileConfig/misc.txt");
+    Hewan::loadHewanConfig("./src/libs/FileConfig/animal.txt");
+    Produk::loadProductConfig("./src/libs/FileConfig/product.txt");
+    Tanaman::loadTanamanConfig("./src/libs/FileConfig/plant.txt");
+    Bangunan::loadBangunanConfig("./src/libs/FileConfig/recipe.txt");
     ended = false;
 }
 
@@ -112,8 +154,10 @@ void GameWorld::initializeDefaultGame()
 
 void GameWorld::saveGameState()
 {
+    cout << "Game State Saved!" << endl;
 }
 
 void GameWorld::loadGameState()
 {
+    cout << "Game State Loaded!" << endl;
 }
