@@ -102,9 +102,11 @@ void GameWorld::checkEndGame()
     }
 }
 
-void GameWorld::loadMiscConfig(string path) {
+void GameWorld::loadMiscConfig(string path)
+{
     ifstream inputFile(path);
-    if (!inputFile.is_open()) {
+    if (!inputFile.is_open())
+    {
         throw FileNotFoundException();
     }
 
@@ -116,6 +118,7 @@ void GameWorld::loadMiscConfig(string path) {
     inputFile >> ranchN >> ranchM;
 
     Pemain::setUkuranInventoryN(inventoryN);
+
     Pemain::setUkuranInventoryM(inventoryM);
     Petani::setUkuranLadangN(fieldN);
     Petani::setUkuranLadangM(fieldM);
@@ -127,7 +130,6 @@ void GameWorld::loadMiscConfig(string path) {
     // cout << "Field Height: " << Petani::getUkuranLadangN() << ", Width: " << Petani::getUkuranLadangM() << endl;
     // cout << "Ranch Height: " << Peternak::getUkuranTernakN() << ", Width: " << Peternak::getUkuranTernakM() << endl;
 }
-
 
 void GameWorld::initializeConfigs()
 {

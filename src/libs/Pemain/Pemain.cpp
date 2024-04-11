@@ -5,7 +5,10 @@ int Pemain::inventory_n = 0;
 int Pemain::inventory_m = 0;
 
 // Constructor , destructor
-Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m) {}
+Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m)
+{
+    cout << "Pemain created" << endl;
+}
 Pemain::~Pemain() {}
 
 // Getter Setter
@@ -24,9 +27,21 @@ string Pemain::getName() const
     return this->name;
 }
 
-int Pemain::getKekayaan() const
+int Pemain::getKekayaan()
 {
-    return 0;
+    int count = gulden;
+    for (int i = 0; i < inventory_n; i++)
+    {
+        for (int j = 0; j < inventory_m; j++)
+        {
+            Sellable *item = inventory.getElementAddress(i, j);
+            if (item != nullptr)
+            {
+                count += item->getHargaBarang();
+            }
+        }
+    }
+    return count;
 }
 
 void Pemain::setName(string name)

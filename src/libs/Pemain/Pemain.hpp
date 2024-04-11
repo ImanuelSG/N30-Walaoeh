@@ -19,9 +19,13 @@ protected:
     string name;
     int gulden;
     int berat;
-    Storage<Sellable> inventory;
 
 public:
+    // BALIKIN LAGI KE PROTECTED SESUDAH TESTING
+
+
+    // ETSEDRFSKDFJALD
+    Storage<Sellable> inventory;
     Pemain(string name, int gulden, int berat);
     ~Pemain();
     /**
@@ -81,7 +85,7 @@ public:
     /**
      * @brief Menghitung Kekayaan pemain
      */
-    int getKekayaan() const;
+    virtual int getKekayaan();
     /**
      * @brief Pungut Pajak, Khusus untuk walikota
      *
@@ -108,7 +112,7 @@ public:
      * @return index pemain baru (untuk menentukan urutan main nantinya)
      */
     virtual int tambahPemain(vector<Pemain *> &pemain);
-    virtual int getKKP() const = 0;
+    virtual int getKKP()  = 0;
     virtual string getRole() const = 0;
 
     static int getUkuranInventoryN();

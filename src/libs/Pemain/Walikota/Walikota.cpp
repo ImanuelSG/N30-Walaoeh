@@ -239,7 +239,7 @@ string Walikota::getRole() const
     return "Walikota";
 }
 
-int Walikota::getKKP() const
+int Walikota::getKKP()
 {
     return 0;
 }

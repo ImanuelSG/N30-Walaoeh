@@ -66,7 +66,7 @@ public:
 
     string getRole() const;
 
-    int getKKP() const;
+    int getKKP() ;
 };
 
 #endif

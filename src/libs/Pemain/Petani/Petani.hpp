@@ -19,7 +19,8 @@ public:
     void beli();
     void jual();
     int countTanamanInventory();
-    int getKKP() const;
+    int getKekayaan();
+    int getKKP();
     string getRole() const;
 
     static int getUkuranLadangN();

@@ -1,11 +1,11 @@
 #include "Peternak.hpp"
 #include "../../Utils/Utils.hpp"
+#include "../../pcolor/pcolor.h"
+#include <algorithm>
 
-int Peternak::ternak_m = 0;
-int Peternak::ternak_n = 0;
+int Peternak::ternak_m = 5;
+int Peternak::ternak_n = 5;
 Peternak::Peternak(string name, int gulden, int berat) : Pemain(name, gulden, berat), peternakan(ternak_n, ternak_m) {}
-
-Peternak::~Peternak() {}
 
 void Peternak::ternak()
 {
@@ -54,7 +54,7 @@ void Peternak::ternak()
     string petak;
     int colP = 0;
     int rowP = 0;
-    Hewan *cekPetak = nullptr;
+    Hewan *cekPetak;
 
     // validasi kosong ato gak
     do
@@ -101,7 +101,7 @@ void Peternak::kasihMakan()
     string petak;
     int colP = 0;
     int rowP = 0;
-    Hewan *hewan = nullptr;
+    Hewan *hewan;
 
     // validasi kosong ato gak
     do
@@ -166,7 +166,109 @@ void Peternak::kasihMakan()
 
 void Peternak::panen()
 {
+    // cetak ternak
     cetakPeternakan();
+    // tampilin jenis hewan
+    displayItems(peternakan);
+
+    cout << "Pilih hewan siap panen yang kamu miliki" << endl;
+    auto readyItems = readyPanen<Hewan>(peternakan);
+    displayReadyPanen(readyItems);
+
+    string chosenItem;
+    bool valid = false;
+    int size = readyItems.size();
+    int input;
+
+    do
+    {
+        cout << "Nomor tanaman yang ingin dipanen: ";
+        cin >> input;
+
+        if (input >= 1 && input <= size)
+        {
+            valid = true;
+            auto it = readyItems.begin();
+            advance(it, input);
+
+            chosenItem = it->first;
+            cout << endl;
+        }
+        else
+        {
+            cout << "Silakan pilih nomor lain.\n Pilihan anda tidak tersedia!" << endl;
+        }
+
+    } while (!valid);
+
+    // sudah dipilih dapet keynya buat map
+    vector<string> positions = get<0>(readyItems[chosenItem]);
+    int count = get<1>(readyItems[chosenItem]);
+
+    valid = false;
+    int num;
+
+    // validasi jumlah petak
+    do
+    {
+        cout << "Berapa petak yang ingin dipanen: ";
+        cin >> num;
+
+        if (num >= 1 && num <= count)
+        {
+            valid = true;
+        }
+        else
+        {
+            cout << "Jumlah petak tidak tersedia.\n Silakan pilih jumlah yang sesuai!" << endl;
+        }
+
+    } while (!valid);
+
+    int iter = 0;
+    vector<string> chosenPositions;
+    // pilih petak
+
+    cout << "Pilih petak yang ingin dipanen:" << endl;
+    do
+    {
+
+        string slot;
+        slot = getValidInputStorage("Petak ke-" + to_string(iter + 1));
+
+        auto it = find(positions.begin(), positions.end(), slot);
+        auto it2 = find(chosenPositions.begin(), chosenPositions.end(), slot);
+
+        // if slot is not available
+        if (it == positions.end())
+        {
+            cout << "Lokasi petak tidak tersedia" << endl;
+        }
+        else if (it2 != positions.end()) // klo udh pernah diipilh
+        {
+            cout << "Anda sudah memilih petak tersebut" << endl;
+        }
+        else if ((it != positions.end()) && (it2 == chosenPositions.end()))
+        {
+            chosenPositions.push_back(slot);
+            iter++;
+        }
+
+    } while (iter < num);
+
+    // masukin petaknya
+
+    for (int i = 0; i < num; i++)
+    {
+        int col = getColStorage(chosenPositions[i][0]);
+        int row = getRowStorage(chosenPositions[i]);
+
+        // hapus dari ladang
+        // konversi menjadi produk
+        // tambah ke inventory
+
+        // print klo sudah berhasil
+    }
 }
 
 void Peternak::cetakPeternakan() {}
@@ -174,6 +276,23 @@ void Peternak::cetakPeternakan() {}
 void Peternak::beli() {}
 
 void Peternak::jual() {}
+
+int Peternak::getKekayaan()
+{
+    int count = Pemain::getKekayaan();
+    for (int i = 0; i < ternak_n; i++)
+    {
+        for (int j = 0; j < ternak_m; j++)
+        {
+            Hewan *item = peternakan.getElementAddress(i, j);
+            if (item != nullptr)
+            {
+                count += item->getHargaBarang();
+            }
+        }
+    }
+    return count;
+}
 
 int Peternak::countHewanInventory() { return 0; }
 
@@ -211,9 +330,9 @@ bool Peternak::isMakananAvailable(string tipeHewan)
     return false;
 }
 
-int Peternak::getKKP() const
+int Peternak::getKKP()
 {
-    return this->getKekayaan() - 11;
+    return getKekayaan() - 11;
 }
 string Peternak::getRole() const
 {
@@ -294,9 +413,9 @@ void display<Hewan>(const Storage<Hewan> &storage)
 }
 
 template <>
-map<string, tuple<list<string>, int>> readyPanen<Hewan>(const Storage<Hewan> &storage)
+map<string, tuple<vector<string>, int>> readyPanen<Hewan>(const Storage<Hewan> &storage)
 {
-    map<string, tuple<list<string>, int>> result;
+    map<string, tuple<vector<string>, int>> result;
     for (int i = 0; i < storage.row; i++)
     {
         for (int j = 0; j < storage.col; j++)
@@ -304,20 +423,24 @@ map<string, tuple<list<string>, int>> readyPanen<Hewan>(const Storage<Hewan> &st
             Hewan *item = storage.buffer[i][j];
             if (item != nullptr)
             {
-                string kode = item->getKodeHuruf();
+                // klo siap panen
+                if (item->isHarvestValid())
+                {
+                    string kode = item->getKodeHuruf();
 
-                // cari udah ada di map ato blom
-                auto it = result.find(kode);
-                if (it == result.end())
-                {
-                    list<string> position = {intToAlphabet(j) + intToStringWithLeadingZero(i)};
-                    result[kode] = make_tuple(position, 1);
-                }
-                else
-                {
-                    auto &value = it->second;
-                    get<0>(value).push_back(intToAlphabet(j) + intToStringWithLeadingZero(i));
-                    get<1>(value)++;
+                    // cari udah ada di map ato blom
+                    auto it = result.find(kode);
+                    if (it == result.end())
+                    {
+                        vector<string> position = {intToAlphabet(j) + intToStringWithLeadingZero(i)};
+                        result[kode] = make_tuple(position, 1);
+                    }
+                    else
+                    {
+                        auto &value = it->second;
+                        get<0>(value).push_back(intToAlphabet(j) + intToStringWithLeadingZero(i));
+                        get<1>(value)++;
+                    }
                 }
             }
         }
@@ -366,5 +489,3 @@ void Peternak::setUkuranTernakM(int m)
 {
     ternak_m = m;
 }
-
-
