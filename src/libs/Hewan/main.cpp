@@ -48,7 +48,7 @@ int main()
         hewanList.push_back(hewan);
 
         cout << "ID: " << hewan.getIdHewan() << ", "
-             << "Kode: " << hewan.getKodeHuruf() << ", "
+             << "Kode: " << hewan.getKodeHurufHewan() << ", "
              << "Nama: " << hewan.getNamaBarang() << ", "
              << "Tipe: " << hewan.getTipeHewan() << ", "
              << "Berat: " << hewan.getWeight() << ", "

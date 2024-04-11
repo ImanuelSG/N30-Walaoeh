@@ -9,10 +9,13 @@ using namespace std;
 
 int main()
 {
-     Bangunan b1 = Bangunan(1, "GEDUNG", "GEDUNG", 100, {{"WOOD", 50}, {"STONE", 100}, {"IRON", 20}, {"GOLD", 10}, {"DIAMOND", 5}});
+     // Bangunan b1 = Bangunan(5, 1, "HUT", "HUT", 100, 10000, {{"WOOD", 100}, {"STONE", 50}});
+
+     map<string, int> materials = {{"WOOD", 100}, {"STONE", 50}};
+     Bangunan b1(5, 1, "HUT", "HUT", 10000, materials);
 
      cout << "ID: " << b1.getIdBangunan() << ", "
-          << "Kode: " << b1.getKodeHuruf() << ", "
+          << "Kode: " << b1.getKodeHurufBangunan() << ", "
           << "Nama: " << b1.getNamaBarang() << ", "
           << "Harga: " << b1.getHargaBarang() << ", "
           << "Material: " << endl;

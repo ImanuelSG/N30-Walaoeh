@@ -10,7 +10,7 @@ using namespace std;
 
 int main()
 {
-     Hewan h1 = Hewan(1, "CHK", "CHICKEN", "OMNIVORE", 100, 50, 10000);
+     Hewan h1 = Hewan(0, 1, "CHK", "CHICKEN", "OMNIVORE", 100, 50, 10000);
 
      auto p1 = ProdukHewan::tambahProdukHewanOmnivora(h1);
 
@@ -30,12 +30,12 @@ int main()
           << "Added Weight: " << p1.second.getAddedWeight() << ", "
           << "Harga: " << p1.second.getHargaBarang() << endl;
 
-     Hewan h2 = Hewan(1, "COW", "COW", "HERBIVORE", 200, 100, 20000);
+     Hewan h2 = Hewan(0, 1, "COW", "COW", "HERBIVORE", 200, 100, 20000);
 
      ProdukHewan p2 = p2.tambahProdukHewanHerbivora(h2);
 
      cout << "ID: " << p2.getIdProduk() << ", "
-          << "Kode: " << p2.getKodeHuruf() << ", "
+          << "Kode: " << p2.getKodeHurufProdukHewan() << ", "
           << "Nama: " << p2.getNamaBarang() << ", "
           << "Tipe: " << p2.getTipeProduk() << ", "
           << "Origin: " << p2.getOrigin() << ", "

@@ -50,7 +50,7 @@ int main()
         tanamanList.push_back(tanaman);
 
         cout << "ID: " << tanaman.getIdTanaman() << ", "
-             << "Kode: " << tanaman.getKodeHuruf() << ", "
+             << "Kode: " << tanaman.getKodeHurufTanaman() << ", "
              << "Nama: " << tanaman.getNamaBarang() << ", "
              << "Tipe: " << tanaman.getTipeTanaman() << ", "
              << "Umur: " << tanaman.getAge() << ", "
