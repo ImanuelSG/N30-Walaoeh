@@ -13,7 +13,6 @@
 #include "../../Hewan/Hewan.hpp"
 #include "../../Tanaman/Tanaman.hpp"
 #include "../../Exception/Exception.hpp"
-#include "../../Utils/Utils.hpp"
 using namespace std;
 
 template <class T>
@@ -117,9 +116,8 @@ public:
      *
      * @param obj Object to be inserted
      */
-    string insert(T &obj)
+    void insert(T &obj)
     {
-        string location;
         bool found = false;
         int i = 0;
         while (i < row && !found)
@@ -130,14 +128,12 @@ public:
                 if (buffer[i][j] == nullptr)
                 {
                     buffer[i][j] = &obj;
-                    location = (j + 'A') + intToStringWithLeadingZero(i);
                     found = true;
                 }
                 j++;
             }
             i++;
         }
-        return location;
     }
 
     /**
