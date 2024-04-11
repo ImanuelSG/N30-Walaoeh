@@ -70,43 +70,25 @@ const char *TernakEmptyException::what(){
 
 
 
+#include "Exception.hpp"
 
-// EXCEPTION UNTUK FULL
-const char *InventoryFullException::what(){
-    return "Inventory Anda sudah penuh, tidak bisa menjalankan perintah\n";
+const char *NumericException::what()
+{
+    return "Input anda tidak valid.\nSilahkan masukkan angka sebagai input.";
 }
 
-const char *LadangFullException::what(){
-    return "Ladang Anda sudah penuh, tidak bisa menjalankan perintah\n";
+const char *InvalidInputException::what()
+{
+    return "Input yang anda masukkan tidak valid !\nSilahkan masukkan input yang sesuai.";
+}
+const char *WalikotaInputException::what()
+{
+    return "Input yang anda masukkan merupakan milik dari Walikota !\nSilahkan masukkan input yang sesuai dengan role anda!";
 }
 
-const char *TernakFullException::what(){
-    return "Ternak Anda sudah penuh, tidak bisa menjalankan perintah\n";
-}
-
-
-// EXCEPTION UNTUK KURANG
-const char *NotEnoughMoneyException::what(){
-    return "Gulden Anda tidak cukup\n";
-}
-
-const char *NotEnoughHewanException::what(){
-    return "Hewan Anda tidak cukup, tidak bisa menjalankan perintah\n";
-}
-const char *NotEnoughFoodException::what(){
-    return "Makanan Anda tidak cukup, tidak bisa menjalankan perintah\n";
-}
-
-
-// EXCEPTION UNTUK KOSONG
-const char *InventoryEmptyException::what(){
-    return "Inventory Anda Kosong, tidak bisa menjalankan perintah\n";
-}
-const char *LadangEmptyException::what(){
-    return "Ladang Anda Kosong, tidak bisa menjalankan perintah\n";
-}
-const char *TernakEmptyException::what(){
-    return "Ternak Anda Kosong, tidak bisa menjalankan perintah\n";
+const char *InvalidStorageIndexException::what()
+{
+    return "Indeks yang Anda masukkan tidak valid!.\n Pastikan Indeks Anda sesuai.\n";
 }
 
 const char *InvalidJenisTanamanException::what()
@@ -138,3 +120,12 @@ const char *InvalidJenisBangunanException::what()
 {
     return "Jenis bangunan yang Anda masukkan tidak valid!.\n Pastikan Jenis Bangunan Anda sesuai.\n";
 }
+const char *InvalidProdukException::what()
+{
+    return "Masukkan Anda bukan jenis Makanan, silakan masukkan jenis yang benar\n";
+}
+const char *InvalidJenisMakananException::what()
+{
+    return "Jenis maknanan yang Anda pilih tidak sesuai dengan jenis hewan Anda.\n";
+}
+

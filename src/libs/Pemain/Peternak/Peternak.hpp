@@ -14,6 +14,7 @@ private:
     Storage<Hewan&> peternakan;
     void cetakPenyimpananHewan();
     int countHewanInventory();
+    bool isMakananAvailable(string tipeHewan);
 public:
     Peternak(string name, int gulden, int berat);
     ~Peternak();

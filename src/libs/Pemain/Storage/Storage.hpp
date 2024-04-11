@@ -5,6 +5,8 @@
 #include <vector>
 #include <string>
 #include "../../Sellable/Sellable.hpp"
+#include "../../Hewan/Hewan.hpp"
+#include "../../Tanaman/Tanaman.hpp"
 #include "../../Exception/Exception.hpp"
 using namespace std;
 
@@ -169,6 +171,20 @@ public:
      *
      */
     friend void display<>(const Storage<T> &storage);
+
+    /**
+     * @brief Print daftar barang yang siap panen
+     *
+     */
+    friend void readyPanen<>(const Storage<T> &storage);
+
+    /**
+     * @brief Print barang-barang yang ada di storage
+     *
+     */
+    friend void displayItems<>(const Storage<T> &storage);
+
+
 };
 
 #endif

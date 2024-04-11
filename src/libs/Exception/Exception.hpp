@@ -93,6 +93,8 @@ class InvalidStorageIndexException : public exception
     const char *what();
 };
 
+
+// EXCEPTION UNTUK PERBEDAAN JENIS
 class InvalidJenisTanamanException : public exception
 {
     const char *what();
@@ -122,5 +124,21 @@ class InvalidJenisBangunanException : public exception
 {
     const char *what();
 };
+
+class InvalidJenisBangunanException : public exception
+{
+    const char *what();
+};
+
+class InvalidProdukException : public exception
+{
+    const char *what();
+};
+class InvalidJenisMakananException : public exception
+{
+    const char *what();
+};
+
+
 
 #endif
