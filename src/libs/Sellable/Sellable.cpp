@@ -45,6 +45,11 @@ int Sellable::getJenisSellable()
     return this->jenis_sellable;
 }
 
+string Sellable::getKodeHuruf()
+{
+    return this->kode_huruf;
+}
+
 string Sellable::getKodeHurufTanaman()
 {
     return (isTanaman()) ? this->kode_huruf : throw InvalidJenisTanamanException();
@@ -99,6 +104,17 @@ void Sellable::setNamaBarang(string nama)
 void Sellable::setHargaBarang(int harga)
 {
     this->harga_barang = harga;
+}
+
+// additional
+bool Sellable::isEdible()
+{
+    return false;
+}
+
+bool Sellable::isHewan()
+{
+    return false;
 }
 
 // boolean

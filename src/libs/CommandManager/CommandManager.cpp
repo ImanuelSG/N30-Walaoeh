@@ -105,11 +105,7 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         cout << e.what() << endl;
         return 0;
     }
-    catch (InvalidCommandException &e)
-    {
-        cout << e.what() << endl;
-        return 0;
-    }
+
     catch (NotEnoughMoneyException &e)
     {
         cout << e.what() << endl;
@@ -120,7 +116,7 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         cout << e.what() << endl;
         return 0;
     }
-    catch (StorageFullException &e)
+    catch (InventoryFullException &e)
     {
         cout << e.what() << endl;
         return 0;

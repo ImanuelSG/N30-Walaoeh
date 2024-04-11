@@ -56,6 +56,7 @@ public:
   string getKodeHurufBangunan();
 
   string getNamaBarang();
+  string getKodeHuruf();
   int getHargaBarang();
 
   // setter
@@ -63,8 +64,11 @@ public:
   void setNamaBarang(string nama);
   void setHargaBarang(int harga);
 
-  // boolean
-  bool isHewan();
+  // additional
+  virtual bool isEdible();
+  virtual int getAddedWeight() = 0;
+  virtual bool isHewan(); // boolean
+
   bool isTanaman();
   bool isProdukMaterial();
   bool isProdukBuah();
