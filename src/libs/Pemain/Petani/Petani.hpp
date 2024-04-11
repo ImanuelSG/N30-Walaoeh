@@ -18,6 +18,7 @@ public:
     void cetakLadang();
     void beli();
     void jual();
+    int countTanamanInventory();
     int getKKP() const;
     string getRole() const;
 

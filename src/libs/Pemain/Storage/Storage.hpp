@@ -7,6 +7,7 @@
 #include <map>
 #include <tuple>
 #include <list>
+#include <set>
 
 #include "../../Sellable/Sellable.hpp"
 #include "../../Hewan/Hewan.hpp"
@@ -21,13 +22,31 @@ template <class T>
 void display(const Storage<T> &storage);
 
 template <class T>
-map<string, tuple<list<string>,int>> readyPanen(const Storage<T> &storage);
+map<string, tuple<list<string>, int>> readyPanen(const Storage<T> &storage);
 
 template <class T>
 void displayItems(const Storage<T> &storage);
 
 template <>
 void display<Sellable>(const Storage<Sellable> &storage);
+
+template <>
+void display<Hewan>(const Storage<Hewan> &storage);
+
+template <>
+void display<Tanaman>(const Storage<Tanaman> &storage);
+
+template <>
+map<string, tuple<list<string>, int>> readyPanen<Hewan>(const Storage<Hewan> &storage);
+
+template <>
+map<string, tuple<list<string>, int>> readyPanen<Tanaman>(const Storage<Tanaman> &storage);
+
+template <>
+void displayItems<Hewan>(const Storage<Hewan> &storage);
+
+template <>
+void displayItems<Tanaman>(const Storage<Tanaman> &storage);
 
 template <class T>
 class Storage
@@ -96,7 +115,7 @@ public:
      *
      * @param obj Object to be inserted
      */
-    void insert( T &obj)
+    void insert(T &obj)
     {
         bool found = false;
         int i = 0;
@@ -206,14 +225,13 @@ public:
      * @brief Print daftar barang yang siap panen
      *
      */
-    friend map<string, tuple<list<string>,int>> readyPanen<>(const Storage<T> &storage);
+    friend map<string, tuple<list<string>, int>> readyPanen<>(const Storage<T> &storage);
 
     /**
      * @brief Print barang-barang yang ada di storage
      *
      */
     friend void displayItems<>(const Storage<T> &storage);
-
-
 };
+
 #endif

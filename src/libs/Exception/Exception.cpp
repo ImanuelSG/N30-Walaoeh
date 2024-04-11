@@ -50,6 +50,11 @@ const char *NotEnoughMoneyException::what()
     return "Gulden Anda tidak cukup\n";
 }
 
+const char *NotEnoughTanamanException::what()
+{
+    return "Tanaman Anda tidak cukup, tidak bisa menjalankan perintah\n";
+}
+
 const char *NotEnoughHewanException::what()
 {
     return "Hewan Anda tidak cukup, tidak bisa menjalankan perintah\n";

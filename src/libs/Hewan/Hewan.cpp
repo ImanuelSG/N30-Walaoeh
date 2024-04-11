@@ -131,7 +131,7 @@ bool Hewan::isOmnivore()
     return this->tipe_hewan == "OMNIVORE";
 }
 
-bool Hewan::isHarvestValid(int weight, int weight_to_harvest)
+bool Hewan::isHarvestValid()
 {
     return weight >= weight_to_harvest;
 }

@@ -89,11 +89,43 @@ string toLowercase(const std::string &str)
     return result;
 }
 
+void displayReadyPanen(map<string, tuple<list<string>, int>> &readyItems)
+{
+    int count = 1;
+    for (const auto &pair : readyItems)
+    {
+        cout << count << ". " << pair.first << '(' << get<1>(pair.second) << " petak siap panen)" << endl;
+        count++;
+    }
+}
+
 void countdown(int seconds)
 {
     for (int i = seconds; i > 0; --i)
     {
         cout << i << "..\n";
         this_thread::sleep_for(chrono::seconds(1)); // Sleep for 1 second
+    }
+}
+
+string intToAlphabet(int n)
+{
+    if (n < 0 || n >= 26)
+    {
+        return "Invalid";
+    }
+
+    char alphabet = 'A' + n;
+
+    return std::string(1, alphabet);
+}
+
+void displayReadyPanen(map<string, tuple<vector<string>, int>> &readyItems)
+{
+    int count = 1;
+    for (const auto &pair : readyItems)
+    {
+        cout << count << ". " << pair.first << '(' << get<1>(pair.second) << " petak siap panen)" << endl;
+        count++;
     }
 }
