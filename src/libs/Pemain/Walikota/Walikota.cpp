@@ -166,9 +166,9 @@ void Walikota::bangunBangunan()
 
     if (this->inventory.isFull())
     {
-        throw StorageFullException();
+        throw InventoryFullException();
     }
-    Bangunan bangunan;
+    Bangunan Bangunan();
 
     bangunan.displayAllRecipe();
 
