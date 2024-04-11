@@ -1,5 +1,5 @@
 #include "Peternak.hpp"
-#include "../../Utils/utils.hpp"
+#include "../../Utils/Utils.hpp"
 
 
 Peternak::Peternak(string name,int gulden, int berat) : Pemain(name,gulden,berat), peternakan(ternak_n,ternak_m) {}
