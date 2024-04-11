@@ -37,19 +37,37 @@ void Petani::tanam()
     // Slot inventory
     do
     {
-        slot = getValidInputStorage("Slot");
-
-        col = getColStorage(slot[0]);
-        row = getRowStorage(slot);
-
-        item = inventory.getElementAddress(row, col);
-        if (item->getJenis() == "TANAMAN")
+        bool acc = false;
+        int col = 0; int row = 0;
+        do
         {
-            valid = true;
-        }
-        else
+            slot = getValidInputStorage("Slot");
+
+            col = getColStorage(slot[0]);
+            row = getRowStorage(slot);
+
+            if (col < 0 || col > inventory.getCol() || row < 0 || row > inventory.getRow())
+            {
+                cout << "Masukkan lokasi petak yang sesuai!" << endl;
+            }
+            else
+            {
+                acc = true;
+            }
+            
+        } while (!acc);
+         
+        item = inventory.getElementAddress(row,col);
+        if (item != nullptr)
         {
-            cout << "Barang pada slot tersebut bukanlah Tanaman.\n Silakan pilih Slot lain!\n";
+            if (item->getJenis() == "TANAMAN")
+            {
+                valid = true;
+            }
+            else
+            {
+                cout << "Barang pada slot tersebut bukanlah Tanaman.\n Silakan pilih Slot lain!\n";
+            }
         }
     } while (!valid);
 
@@ -67,10 +85,24 @@ void Petani::tanam()
     // Validasi apakah petak yang dipilih valid (kosong)
     do
     {
-        petak = getValidInputStorage("Petak tanah");
+        bool acc = false;
+        do
+        {
+            slot = getValidInputStorage("Petak tanah");
 
-        colP = getColStorage(petak[0]);
-        rowP = getRowStorage(petak);
+            colP = getColStorage(slot[0]);
+            rowP = getRowStorage(slot);
+
+            if (colP< 0 || colP > ladang.getCol() || rowP < 0 || rowP > ladang.getRow())
+            {
+                cout << "Masukkan lokasi petak yang sesuai!" << endl;
+            }
+            else
+            {
+                acc = true;
+            }
+            
+        } while (!acc);
 
         cekPetak = ladang.getElementAddress(rowP, colP);
         if (cekPetak == nullptr)
@@ -215,14 +247,14 @@ void Petani::jual()
 int Petani::countTanamanInventory()
 {
     int count = 0;
-    for (int i = 0; i < inventory_n; i++)
-    {
-        for (int j = 0; j < inventory_m; j++)
-        {
-            Sellable *item = inventory.getElementAddress(i, j);
-            if (item->getJenis() == "TANAMAN")
+    for (int i = 0; i < inventory.getRow(); i++) {
+        for (int j = 0; j < inventory.getCol(); j++) {
+            Sellable* item = inventory.getElementAddress(i,j);
+            if (item != nullptr)
             {
-                count++;
+                if (item->getJenis() == "TANAMAN"){
+                    count++;
+                }
             }
         }
     }
@@ -232,9 +264,9 @@ int Petani::countTanamanInventory()
 int Petani::getKekayaan()
 {
     int count = Pemain::getKekayaan();
-    for (int i = 0; i < ladang_n; i++)
+    for (int i = 0; i < ladang.getRow(); i++)
     {
-        for (int j = 0; j < ladang_m; j++)
+        for (int j = 0; j < ladang.getCol(); j++)
         {
             Tanaman *item = ladang.getElementAddress(i, j);
             if (item != nullptr)
@@ -392,9 +424,15 @@ void displayItems<Tanaman>(const Storage<Tanaman> &storage)
     {
         for (Tanaman *value : innerVector)
         {
-            map<string, string> itemMap;
-            itemMap[value->getKodeHuruf()] = value->getNamaBarang();
-            Items.insert(itemMap);
+            if (value != nullptr)
+            {
+                map<string, string> itemMap;
+                if (value != nullptr)
+                {
+                    itemMap[value->getKodeHuruf()] = value->getNamaBarang();
+                    Items.insert(itemMap);
+                }
+            }
         }
     }
     for (const auto &item : Items)

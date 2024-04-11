@@ -59,7 +59,9 @@ testStorage: $(TEST_OUTPUT_FOLDER)/testStorage
 
 testPemain: $(TEST_OUTPUT_FOLDER)/testPemain
 	@./$(TEST_OUTPUT_FOLDER)/testPemain
-	
+
+testPetani: $(TEST_OUTPUT_FOLDER)/testPetani
+	@./$(TEST_OUTPUT_FOLDER)/testPetani
 
 testGameWorld: $(TEST_OUTPUT_FOLDER)/testGameWorld
 	@./$(TEST_OUTPUT_FOLDER)/testGameWorld

@@ -1,12 +1,11 @@
 #include "Pemain.hpp"
 #include "../Utils/Utils.hpp"
 
-int Pemain::inventory_n = 0;
-int Pemain::inventory_m = 0;
+int Pemain::inventory_n = 5;
+int Pemain::inventory_m = 5;
 
 // Constructor , destructor
-Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m)
-{
+Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m) {
     cout << "Pemain created" << endl;
 }
 Pemain::~Pemain() {}
@@ -27,18 +26,19 @@ string Pemain::getName() const
     return this->name;
 }
 
-int Pemain::getKekayaan()
+int Pemain::getKekayaan() 
 {
     int count = gulden;
-    for (int i = 0; i < inventory_n; i++)
+    for (int i = 0; i < inventory.getRow(); i++)
     {
-        for (int j = 0; j < inventory_m; j++)
+        for (int j = 0; j < inventory.getCol(); j++)
         {
             Sellable *item = inventory.getElementAddress(i, j);
-            if (item != nullptr)
-            {
+            if (item != nullptr){
                 count += item->getHargaBarang();
             }
+
+            
         }
     }
     return count;
@@ -81,29 +81,46 @@ void Pemain::makan()
 
     do
     {
-        slot = getValidInputStorage("Slot");
 
-        int col = getColStorage(slot[0]);
-        int row = getRowStorage(slot);
+        bool acc = false;
+        int col = 0; int row = 0;
+        do
+        {
+            slot = getValidInputStorage("Slot");
 
+            col = getColStorage(slot[0]);
+            row = getRowStorage(slot);
+
+            if (col < 0 || col > inventory.getCol() || row < 0 || row > inventory.getRow())
+            {
+                cout << "Masukkan lokasi petak yang sesuai!" << endl;
+            }
+            else
+            {
+                acc = true;
+            }
+            
+        } while (!acc);
+        
         Sellable *item = inventory.getElementAddress(row, col);
-        if (item->isEdible())
+
+        if (item == nullptr)
+        {
+            cout << "Kamu mengambil harapan kosong dari penyimpanan." << endl;
+            cout << "Silahkan masukan slot yang berisi makanan." << endl
+                 << endl;
+        }
+        else if (item->isEdible())
         {
             inventory.deleteAt(row, col);
             int addedWeight = item->getAddedWeight();
 
-            setBerat(getBerat() - addedWeight);
+            setBerat(getBerat() + addedWeight);
             valid = true;
         }
         else if (!item->isEdible())
         {
             cout << "Apa yang kamu lakukan??!! Kamu mencoba untuk memakan itu?!!" << endl;
-            cout << "Silahkan masukan slot yang berisi makanan." << endl
-                 << endl;
-        }
-        else if (item == nullptr)
-        {
-            cout << "Kamu mengambil harapan kosong dari penyimpanan." << endl;
             cout << "Silahkan masukan slot yang berisi makanan." << endl
                  << endl;
         }
@@ -175,18 +192,49 @@ int Pemain::tambahPemain(vector<Pemain *> &pemain)
 
 bool Pemain::isFoodAvailable()
 {
-    for (int i = 0; i < inventory_n; i++)
+    for (int i = 0; i < inventory.getRow(); i++)
     {
-        for (int j = 0; j < inventory_m; j++)
+        for (int j = 0; j < inventory.getCol(); j++)
         {
             Sellable *item = inventory.getElementAddress(i, j);
-            if (item->isEdible())
+            if (item != nullptr)
             {
-                return true;
+                if (item->isEdible())
+                {
+                    return true;
+                }
             }
         }
     }
     return false;
+}
+
+
+void Pemain::setUkuranInventoryM(int m)
+{
+    inventory_m = m;
+}
+
+void Pemain::setUkuranInventoryN(int n)
+{
+    inventory_n = n;
+}
+
+int Pemain::getUkuranInventoryM()
+{
+    return inventory_m;
+}
+
+int Pemain::getUkuranInventoryN()
+{
+    return inventory_n;
+}
+
+void Pemain::displayInfo()
+{
+    cout << "Nama: " << name << endl;
+    cout << "Gulden: " << gulden << endl;
+    cout << "Berat: " << berat <<  endl;
 }
 
 template <>
@@ -231,27 +279,7 @@ void display<Sellable>(const Storage<Sellable> &storage)
             string keluaran = "";
             if (storage.buffer[i][j] != nullptr)
             {
-                // int jenis_sellable = (*storage.buffer[i][j]).getJenisSellable();
-                // switch (jenis_sellable) {
-                //     case 0:
-                //         keluaran = (*storage.buffer[i][j]).getKodeHurufHewan();
-                //         break;
-                //     case 1:
-                //         keluaran = (*storage.buffer[i][j]).getKodeHurufTanaman();
-                //         break;
-                //     case 2:
-                //         keluaran = (*storage.buffer[i][j]).getKodeHurufProdukMaterial();
-                //         break;
-                //     case 3:
-                //         keluaran = (*storage.buffer[i][j]).getKodeHurufProdukBuah();
-                //         break;
-                //     case 4:
-                //         keluaran = (*storage.buffer[i][j]).getKodeHurufProdukHewan();
-                //         break;
-                //     case 5:
-                //         keluaran = (*storage.buffer[i][j]).getKodeHurufBangunan();
-                //         break;
-                // }
+                keluaran = (*storage.buffer[i][j]).getKodeHuruf();
             }
             if (keluaran == "")
             {
@@ -267,35 +295,4 @@ void display<Sellable>(const Storage<Sellable> &storage)
         }
         cout << endl;
     }
-}
-
-void Pemain::displayInfo()
-{
-    cout << endl;
-    cout << "Informasi Pemain : " << endl;
-    cout << "Role Pemain : " << getRole() << endl;
-    cout << "Nama : " << getName() << endl;
-    cout << "Gulden : " << getGulden() << endl;
-    cout << "Berat : " << getBerat() << endl;
-    cout << "Total Kekayaan : " << getKekayaan() << endl;
-}
-
-int Pemain::getUkuranInventoryN()
-{
-    return inventory_n;
-}
-
-int Pemain::getUkuranInventoryM()
-{
-    return inventory_m;
-}
-
-void Pemain::setUkuranInventoryN(int n)
-{
-    inventory_n = n;
-}
-
-void Pemain::setUkuranInventoryM(int m)
-{
-    inventory_m = m;
 }

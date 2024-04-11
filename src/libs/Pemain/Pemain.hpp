@@ -19,13 +19,9 @@ protected:
     string name;
     int gulden;
     int berat;
+    Storage<Sellable> inventory;
 
 public:
-    // BALIKIN LAGI KE PROTECTED SESUDAH TESTING
-
-
-    // ETSEDRFSKDFJALD
-    Storage<Sellable> inventory;
     Pemain(string name, int gulden, int berat);
     ~Pemain();
     /**
