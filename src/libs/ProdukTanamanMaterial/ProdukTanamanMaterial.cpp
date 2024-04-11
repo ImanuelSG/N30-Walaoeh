@@ -45,6 +45,12 @@ ProdukTanamanMaterial &ProdukTanamanMaterial::operator=(const ProdukTanamanMater
 ProdukTanamanMaterial::~ProdukTanamanMaterial() {}
 
 /* Methods */
+// getter
+string ProdukTanamanMaterial::getJenis()
+{
+    return "PRODUK_TANAMAN_MATERIAL";
+}
+
 ProdukTanamanMaterial ProdukTanamanMaterial::tambahProdukTanamanMaterial(Tanaman &tanaman)
 {
     ProdukTanamanMaterial produk_tanaman_material_baru;

@@ -29,6 +29,8 @@ public:
 
     /* Methods */
     // getter
+    string getJenis();
+    
     int getIdHewan();
     string getTipeHewan();
     int getWeight();

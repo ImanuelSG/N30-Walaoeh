@@ -23,6 +23,9 @@ public:
     ~ProdukTanamanBuah();
 
     /* Methods */
+    // getter
+    string getJenis();
+    
     // Konversi tanaman menjadi produk (buah) kalau weight sudah mencapai weight_to_harvest
     ProdukTanamanBuah tambahProdukTanamanBuah(Tanaman &tanaman);
 };

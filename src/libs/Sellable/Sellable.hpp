@@ -59,6 +59,8 @@ public:
   string getKodeHuruf();
   int getHargaBarang();
 
+  virtual string getJenis() = 0;
+
   // setter
   void setKodeHuruf(string kode);
   void setNamaBarang(string nama);

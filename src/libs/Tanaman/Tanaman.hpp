@@ -29,6 +29,8 @@ public:
 
     /* Methods */
     // getter
+    string getJenis();
+    
     int getIdTanaman();
     string getTipeTanaman();
     int getAge();

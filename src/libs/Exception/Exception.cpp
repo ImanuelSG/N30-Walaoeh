@@ -108,11 +108,8 @@ const char *InvalidJenisBangunanException::what()
 {
     return "Jenis bangunan yang Anda masukkan tidak valid!.\n Pastikan Jenis Bangunan Anda sesuai.\n";
 }
-const char *InvalidProdukException::what()
+
+const char *InvalidJenisSellableException::what()
 {
-    return "Masukkan Anda bukan jenis Makanan, silakan masukkan jenis yang benar\n";
-}
-const char *InvalidJenisMakananException::what()
-{
-    return "Jenis maknanan yang Anda pilih tidak sesuai dengan jenis hewan Anda.\n";
+    return "Jenis sellable yang Anda masukkan tidak valid!.\n Pastikan Jenis Sellable Anda sesuai.\n";
 }
