@@ -5,7 +5,7 @@
 // map<string, int> material; // <string nama_material, int jumlah_material>
 
 int Bangunan::id_bangunan = 1;
-map<string, tuple<string, int, map<string, int>>> Bangunan::list_of_bangunan;
+map<string, tuple<string, int, map<string, int>, int>> Bangunan::list_of_bangunan;
 // ctor default
 Bangunan::Bangunan()
 {
@@ -59,12 +59,12 @@ void Bangunan::setMaterial(map<string, int> material)
     this->material = material;
 }
 
-tuple<string, int, map<string, int>> Bangunan::getSpecificRecipe(string name)
+tuple<string, int, map<string, int>, int> Bangunan::getSpecificRecipe(string name)
 {
     return list_of_bangunan.find(name)->second;
 }
 
-map<string, tuple<string, int, map<string, int>>> Bangunan::getAllRecipe()
+map<string, tuple<string, int, map<string, int>, int>> Bangunan::getAllRecipe()
 {
     return list_of_bangunan;
 }
@@ -122,7 +122,7 @@ void Bangunan::loadBangunanConfig(string path)
         while (iss >> material_name >> quantity) {
             materials[material_name] = quantity;
         }
-        list_of_bangunan[name] = make_tuple(code, price, materials);
+        list_of_bangunan[name] = make_tuple(code, price, materials, id);
     }
     inputFile.close();
 
@@ -131,6 +131,7 @@ void Bangunan::loadBangunanConfig(string path)
     //     cout << "Name: " << building.first << endl;
     //     cout << "Code: " << get<0>(building.second) << endl;
     //     cout << "Price: " << get<1>(building.second) << endl;
+    //     cout << "ID: " << get<3>(building.second) << endl;
 
     //     cout << "Materials:" << endl;
     //     for (const auto& material : get<2>(building.second)) {

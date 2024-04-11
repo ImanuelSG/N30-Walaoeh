@@ -172,10 +172,10 @@ void Walikota::bangunBangunan()
     } while (namaBangunan.empty() || !bangunan.isValidRecipe(namaBangunan));
 
     // Get the recipe to check
-    tuple<string, int, vector<tuple<string, int>>> recipe = bangunan.getSpecificRecipe(namaBangunan);
+    // tuple<string, int, map<string, int>> recipe = bangunan.getSpecificRecipe(namaBangunan);
 
-    int neededGulden = get<1>(recipe);
-    vector<tuple<string, int>> neededMaterials = get<2>(recipe);
+    // int neededGulden = get<1>(recipe);
+    // vector<tuple<string, int>> neededMaterials = get<2>(recipe);
 
     // Get all materialProduct from walikota
 
