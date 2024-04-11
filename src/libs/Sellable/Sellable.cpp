@@ -52,6 +52,11 @@ int Sellable::getJenisSellable()
     return this->jenis_sellable;
 }
 
+string Sellable::getKodeHuruf()
+{
+    return this->kode_huruf;
+}
+
 string Sellable::getKodeHurufTanaman()
 {
     return (isTanaman()) ? this->kode_huruf : throw InvalidJenisTanamanException();
