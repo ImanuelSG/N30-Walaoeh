@@ -265,13 +265,6 @@ void Peternak::panen()
         // print klo sudah berhasil
     }
 
-
-
-
-
-
-    
-
 }
 
 void Peternak::cetakPeternakan() 
@@ -283,6 +276,22 @@ void Peternak::beli(){}
 
 void Peternak::jual(){}
 
+int Peternak::getKekayaan(){
+    int count = Pemain::getKekayaan();
+    for (int i = 0; i < inventory_n; i++)
+    {
+        for (int j = 0; j < inventory_m; j++)
+        {
+            Hewan *item = peternakan.getElementAddress(i, j);
+            if (item != nullptr){
+                count += item->getHargaBarang();
+            }
+
+            
+        }
+    }
+    return count;
+}
 
 int Peternak::countHewanInventory(){
     int count = 0;
@@ -325,9 +334,9 @@ bool Peternak::isMakananAvailable(string tipeHewan){
     return false;
 }
 
-int Peternak::getKKP() const
+int Peternak::getKKP() 
 {
-    return this->getKekayaan() - 11;
+    return getKekayaan() - 11;
 }
 string Peternak::getRole() const
 {

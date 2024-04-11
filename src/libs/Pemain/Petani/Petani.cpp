@@ -54,9 +54,27 @@ int Petani::countTanamanInventory()
     return count;
 }
 
-int Petani::getKKP() const
+int Petani::getKekayaan()
 {
-    return this->getKekayaan() - 13;
+    int count = Pemain::getKekayaan();
+    for (int i = 0; i < inventory_n; i++)
+    {
+        for (int j = 0; j < inventory_m; j++)
+        {
+            Tanaman* item = ladang.getElementAddress(i, j);
+            if (item != nullptr){
+                count += item->getHargaBarang();
+            }
+
+            
+        }
+    }
+    return count;
+}
+
+int Petani::getKKP()
+{
+    return getKekayaan() - 13;
 }
 string Petani::getRole() const
 {
