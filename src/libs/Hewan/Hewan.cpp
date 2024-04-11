@@ -105,6 +105,7 @@ Hewan Hewan::tambahHewanConfig(ifstream &file)
     return hewan;
 }
 
+
 void Hewan::tambahWeightHewan(int weight)
 {
     this->weight += weight;
