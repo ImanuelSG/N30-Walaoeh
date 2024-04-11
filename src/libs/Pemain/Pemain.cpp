@@ -26,7 +26,7 @@ string Pemain::getName() const
 
 int Pemain::getKekayaan() 
 {
-    int count = 0;
+    int count = gulden;
     for (int i = 0; i < inventory_n; i++)
     {
         for (int j = 0; j < inventory_m; j++)
@@ -178,9 +178,12 @@ bool Pemain::isFoodAvailable()
         for (int j = 0; j < inventory_m; j++)
         {
             Sellable *item = inventory.getElementAddress(i, j);
-            if (item->isEdible())
+            if (item != nullptr)
             {
-                return true;
+                if (item->isEdible())
+                {
+                    return true;
+                }
             }
         }
     }

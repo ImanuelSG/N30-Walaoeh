@@ -57,9 +57,9 @@ int Petani::countTanamanInventory()
 int Petani::getKekayaan()
 {
     int count = Pemain::getKekayaan();
-    for (int i = 0; i < inventory_n; i++)
+    for (int i = 0; i < ladang_n; i++)
     {
-        for (int j = 0; j < inventory_m; j++)
+        for (int j = 0; j < ladang_m; j++)
         {
             Tanaman* item = ladang.getElementAddress(i, j);
             if (item != nullptr){
