@@ -13,9 +13,8 @@ Bangunan::Bangunan()
 }
 
 // ctor user defined
-Bangunan::Bangunan(int jenis_sellable, int id, string kode, string nama_bangunan, int harga, map<string, int> material) : Sellable(jenis_sellable, kode, nama_bangunan, harga)
+Bangunan::Bangunan(int id, string kode, string nama_bangunan, int harga, map<string, int> material) : Sellable(kode, nama_bangunan, harga)
 {
-    this->jenis_sellable = jenis_bangunan;
     this->id_bangunan = id;
     this->material = material;
 }
@@ -23,7 +22,6 @@ Bangunan::Bangunan(int jenis_sellable, int id, string kode, string nama_bangunan
 // operator overloading
 Bangunan &Bangunan::operator=(const Bangunan &other)
 {
-    this->jenis_sellable = other.jenis_sellable;
     this->id_bangunan = other.id_bangunan;
     this->material = other.material;
     return *this;
@@ -38,6 +36,11 @@ Bangunan::~Bangunan()
 
 /* Methods */
 // getter
+string Bangunan::getJenis()
+{
+    return "BANGUNAN";
+}
+
 int Bangunan::getIdBangunan()
 {
     return id_bangunan++;

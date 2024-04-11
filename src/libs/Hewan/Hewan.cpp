@@ -4,7 +4,6 @@
 // ctor default
 Hewan::Hewan() : Sellable()
 {
-    this->jenis_sellable = jenis_hewan;
     this->id_hewan = 1;
     this->tipe_hewan = "";
     this->weight = 0;
@@ -12,10 +11,9 @@ Hewan::Hewan() : Sellable()
 }
 
 // ctor user defined
-Hewan::Hewan(int jenis_sellable, int id, string kode, string nama_hewan, string tipe, int weight, int weight_to_harvest, int harga)
-    : Sellable(jenis_sellable, kode, nama_hewan, harga)
+Hewan::Hewan(int id, string kode, string nama_hewan, string tipe, int weight, int weight_to_harvest, int harga)
+    : Sellable(kode, nama_hewan, harga)
 {
-    this->jenis_sellable = jenis_hewan;
     this->id_hewan = id;
     this->tipe_hewan = tipe;
     this->weight = 0;
@@ -25,7 +23,6 @@ Hewan::Hewan(int jenis_sellable, int id, string kode, string nama_hewan, string 
 // operator overloading
 Hewan &Hewan::operator=(const Hewan &other)
 {
-    this->jenis_sellable = other.jenis_sellable;
     this->id_hewan = other.id_hewan;
     this->tipe_hewan = other.tipe_hewan;
     this->weight = other.weight;
@@ -41,6 +38,11 @@ Hewan::~Hewan()
 
 /* Methods */
 // getter
+string Hewan::getJenis()
+{
+    return "HEWAN";
+}
+
 int Hewan::getIdHewan()
 {
     return this->id_hewan;
@@ -94,7 +96,7 @@ Hewan Hewan::tambahHewan()
     cin >> weight_to_harvest;
     cin >> harga;
 
-    Hewan hewan(jenis_hewan, id, kode, nama, tipe, weight, weight_to_harvest, harga);
+    Hewan hewan(id, kode, nama, tipe, weight, weight_to_harvest, harga);
     return hewan;
 }
 
@@ -105,7 +107,7 @@ Hewan Hewan::tambahHewanConfig(ifstream &file)
 
     file >> id >> kode >> nama >> tipe >> weight_to_harvest >> harga;
 
-    Hewan hewan(jenis_hewan, id, kode, nama, tipe, weight, weight_to_harvest, harga);
+    Hewan hewan(id, kode, nama, tipe, weight, weight_to_harvest, harga);
 
     return hewan;
 }
@@ -137,37 +139,37 @@ bool Hewan::isHarvestValid(int weight, int weight_to_harvest)
     return weight >= weight_to_harvest;
 }
 
-bool Hewan::isCow()
-{
-    return getKodeHurufHewan() == "COW";
-}
+// bool Hewan::isCow()
+// {
+//     return getKodeHurufHewan() == "COW";
+// }
 
-bool Hewan::isSheep()
-{
-    return getKodeHurufHewan() == "SHP";
-}
+// bool Hewan::isSheep()
+// {
+//     return getKodeHurufHewan() == "SHP";
+// }
 
-bool Hewan::isHorse()
-{
-    return getKodeHurufHewan() == "HRS";
-}
+// bool Hewan::isHorse()
+// {
+//     return getKodeHurufHewan() == "HRS";
+// }
 
-bool Hewan::isRabbit()
-{
-    return getKodeHurufHewan() == "RBT";
-}
+// bool Hewan::isRabbit()
+// {
+//     return getKodeHurufHewan() == "RBT";
+// }
 
-bool Hewan::isSnake()
-{
-    return getKodeHurufHewan() == "SNK";
-}
+// bool Hewan::isSnake()
+// {
+//     return getKodeHurufHewan() == "SNK";
+// }
 
-bool Hewan::isChicken()
-{
-    return getKodeHurufHewan() == "CHK";
-}
+// bool Hewan::isChicken()
+// {
+//     return getKodeHurufHewan() == "CHK";
+// }
 
-bool Hewan::isDuck()
-{
-    return getKodeHurufHewan() == "DCK";
-}
+// bool Hewan::isDuck()
+// {
+//     return getKodeHurufHewan() == "DCK";
+// }

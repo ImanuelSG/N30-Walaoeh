@@ -4,7 +4,6 @@
 // ctor default
 Tanaman::Tanaman()
 {
-    this->jenis_sellable = jenis_tanaman;
     this->id_tanaman = 1;
     this->tipe_tanaman = "";
     this->age = 0;
@@ -12,9 +11,8 @@ Tanaman::Tanaman()
 }
 
 // ctor user defined
-Tanaman::Tanaman(int jenis_sellable, int id, string kode, string nama_tanaman, string tipe, int umur, int durasi_panen, int harga) : Sellable(jenis_sellable, kode, nama_tanaman, harga)
+Tanaman::Tanaman(int id, string kode, string nama_tanaman, string tipe, int umur, int durasi_panen, int harga) : Sellable(kode, nama_tanaman, harga)
 {
-    this->jenis_sellable = jenis_tanaman;
     this->id_tanaman = id;
     this->tipe_tanaman = tipe;
     this->age = 0;
@@ -24,7 +22,6 @@ Tanaman::Tanaman(int jenis_sellable, int id, string kode, string nama_tanaman, s
 // operator overloading
 Tanaman &Tanaman::operator=(const Tanaman &other)
 {
-    this->jenis_sellable = other.jenis_sellable;
     this->id_tanaman = other.id_tanaman;
     this->tipe_tanaman = other.tipe_tanaman;
     this->age = other.age;
@@ -40,6 +37,11 @@ Tanaman::~Tanaman()
 
 /* Methods */
 // getter
+string Tanaman::getJenis()
+{
+    return "TANAMAN";
+}
+
 int Tanaman::getIdTanaman()
 {
     return this->id_tanaman;
@@ -91,7 +93,7 @@ Tanaman Tanaman::tambahTanaman()
     cin >> durasi;
     cin >> harga;
 
-    Tanaman tanaman(jenis_tanaman, id, kode, nama, tipe, umur, durasi, harga);
+    Tanaman tanaman(id, kode, nama, tipe, umur, durasi, harga);
     return tanaman;
 }
 
@@ -102,7 +104,7 @@ Tanaman Tanaman::tambahTanamanConfig(ifstream &file)
 
     file >> id >> kode >> nama >> tipe >> durasi >> harga;
 
-    Tanaman tanaman(jenis_tanaman, id, kode, nama, tipe, umur, durasi, harga);
+    Tanaman tanaman(id, kode, nama, tipe, umur, durasi, harga);
 
     return tanaman;
 }
@@ -123,42 +125,42 @@ bool Tanaman::isBuah()
     return this->tipe_tanaman == "FRUIT_PLANT";
 }
 
-bool Tanaman::isTeak()
-{
-    return getKodeHurufTanaman() == "TEK";
-}
+// bool Tanaman::isTeak()
+// {
+//     return getKodeHurufTanaman() == "TEK";
+// }
 
-bool Tanaman::isSandalwood()
-{
-    return getKodeHurufTanaman() == "SDT";
-}
+// bool Tanaman::isSandalwood()
+// {
+//     return getKodeHurufTanaman() == "SDT";
+// }
 
-bool Tanaman::isAloe()
-{
-    return getKodeHurufTanaman() == "ALT";
-}
+// bool Tanaman::isAloe()
+// {
+//     return getKodeHurufTanaman() == "ALT";
+// }
 
-bool Tanaman::isIronwood()
-{
-    return getKodeHurufTanaman() == "IRN";
-}
+// bool Tanaman::isIronwood()
+// {
+//     return getKodeHurufTanaman() == "IRN";
+// }
 
-bool Tanaman::isApple()
-{
-    return getKodeHurufTanaman() == "APL";
-}
+// bool Tanaman::isApple()
+// {
+//     return getKodeHurufTanaman() == "APL";
+// }
 
-bool Tanaman::isOrange()
-{
-    return getKodeHurufTanaman() == "ORG";
-}
+// bool Tanaman::isOrange()
+// {
+//     return getKodeHurufTanaman() == "ORG";
+// }
 
-bool Tanaman::isBanana()
-{
-    return getKodeHurufTanaman() == "BNT";
-}
+// bool Tanaman::isBanana()
+// {
+//     return getKodeHurufTanaman() == "BNT";
+// }
 
-bool Tanaman::isGuava()
-{
-    return getKodeHurufTanaman() == "GAV";
-}
+// bool Tanaman::isGuava()
+// {
+//     return getKodeHurufTanaman() == "GAV";
+// }

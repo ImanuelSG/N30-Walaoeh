@@ -40,7 +40,6 @@ public:
     const char *what();
 };
 
-
 // EXCEPTION UNTUK FULL
 class InventoryFullException : public exception
 {
@@ -60,7 +59,6 @@ public:
     const char *what();
 };
 
-
 // EXCEPTION UNTUK KURANG
 class NotEnoughMoneyException : public exception
 {
@@ -68,82 +66,96 @@ public:
     const char *what();
 };
 
-class NotEnoughTanamanException : public exception
-{
-    const char *what();
-};
-
 class NotEnoughHewanException : public exception
 {
+
+public:
     const char *what();
 };
-
 class NotEnoughFoodException : public exception
-{
-    const char *what();
-};
-
-
-// EXCEPTION UNTUK KOSONG
-class InventoryEmptyException : public exception {
-     const char *what();
-};
-class LadangEmptyException : public exception {
-     const char *what();
-};
-class TernakEmptyException : public exception {
-     const char *what();
-};
-
-
-// EXCEPTION UNTUK INVALID INDEX
-class InvalidStorageIndexException : public exception
 {
 public:
     const char *what();
 };
 
+// EXCEPTION UNTUK KOSONG
+class InventoryEmptyException : public exception
+{
+public:
+    const char *what();
+};
+class LadangEmptyException : public exception
+{
+public:
+    const char *what();
+};
+class TernakEmptyException : public exception
+{
+public:
+    const char *what();
+};
+
+// EXCEPTION UNTUK INVALID INDEX
+class InvalidStorageIndexException : public exception
+{
+
+public:
+    const char *what();
+};
 
 // EXCEPTION UNTUK PERBEDAAN JENIS
 class InvalidJenisTanamanException : public exception
 {
+public:
     const char *what();
 };
 
 class InvalidJenisHewanException : public exception
 {
+public:
     const char *what();
 };
 
 class InvalidJenisProdukMaterialException : public exception
 {
+public:
     const char *what();
 };
 
 class InvalidJenisProdukBuahException : public exception
 {
+public:
     const char *what();
 };
 
 class InvalidJenisProdukHewanException : public exception
 {
+public:
     const char *what();
 };
 
 class InvalidJenisBangunanException : public exception
 {
+public:
+    const char *what();
+};
+
+class InvalidJenisSellableException : public exception
+{
+public:
     const char *what();
 };
 
 class InvalidProdukException : public exception
 {
+public:
     const char *what();
 };
+
 class InvalidJenisMakananException : public exception
 {
+public:
     const char *what();
 };
-
-
 
 #endif

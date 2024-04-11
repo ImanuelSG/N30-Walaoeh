@@ -19,7 +19,7 @@ public:
     Hewan();
 
     // ctor user defined
-    Hewan(int jenis_sellable, int id, string kode, string nama_hewan, string tipe, int weight, int weight_to_harvest, int harga);
+    Hewan(int id, string kode, string nama_hewan, string tipe, int weight, int weight_to_harvest, int harga);
 
     // operator overloading
     Hewan &operator=(const Hewan &other);
@@ -29,6 +29,8 @@ public:
 
     /* Methods */
     // getter
+    string getJenis();
+    
     int getIdHewan();
     string getTipeHewan();
     int getWeight();
@@ -51,13 +53,13 @@ public:
     bool isOmnivore();
     bool isHarvestValid(int weight, int weight_to_harvest);
 
-    bool isCow();
-    bool isSheep();
-    bool isHorse();
-    bool isRabbit();
-    bool isSnake();
-    bool isChicken();
-    bool isDuck();
+    // bool isCow();
+    // bool isSheep();
+    // bool isHorse();
+    // bool isRabbit();
+    // bool isSnake();
+    // bool isChicken();
+    // bool isDuck();
 };
 
 #endif

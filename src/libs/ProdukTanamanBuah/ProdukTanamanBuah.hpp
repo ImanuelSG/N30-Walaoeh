@@ -15,7 +15,7 @@ public:
     ProdukTanamanBuah();
 
     // ctor user defined
-    ProdukTanamanBuah(int jenis_sellable, int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga);
+    ProdukTanamanBuah(int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga);
 
     ProdukTanamanBuah &operator=(const ProdukTanamanBuah &other);
 
@@ -23,8 +23,12 @@ public:
     ~ProdukTanamanBuah();
 
     /* Methods */
+    // getter
+    string getJenis();
+    bool isEdible() override;
+    
     // Konversi tanaman menjadi produk (buah) kalau weight sudah mencapai weight_to_harvest
-    ProdukTanamanBuah tambahProdukTanamanBuah(Tanaman &tanaman);
+    // ProdukTanamanBuah tambahProdukTanamanBuah(Tanaman &tanaman);
 };
 
 #endif
