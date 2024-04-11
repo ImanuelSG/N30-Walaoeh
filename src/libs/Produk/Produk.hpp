@@ -20,7 +20,9 @@ protected:
 
 public:
     static int id_produk;
+    static map<string, tuple<int, string, string, string, int, int>> productOriginMap;
     static map<string, tuple<int, string, string, string, int, int>> productMap;
+
 
     // ctor default
     Produk();
@@ -48,7 +50,9 @@ public:
     void setAddedWeight(int added_weight);
 
     // load config to productMap
+    static void loadProductOriginConfig(string path);
     static void loadProductConfig(string path);
+
 };
 
 #endif
