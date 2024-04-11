@@ -31,6 +31,8 @@ public:
 
     /* Methods */
     // getter
+    string getJenis();
+    
     int getIdBangunan();
 
     map<string, int> getMaterial();
