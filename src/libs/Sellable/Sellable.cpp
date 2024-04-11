@@ -7,13 +7,6 @@
 // string nama_barang;
 // int harga_barang;
 
-const int Sellable::jenis_hewan = 0;
-const int Sellable::jenis_tanaman = 1;
-const int Sellable::jenis_produk_tanaman_material = 2;
-const int Sellable::jenis_produk_tanaman_buah = 3;
-const int Sellable::jenis_produk_hewan = 4;
-const int Sellable::jenis_bangunan = 5;
-
 // ctor default
 Sellable::Sellable()
 {
@@ -50,6 +43,11 @@ Sellable::~Sellable() {}
 int Sellable::getJenisSellable()
 {
     return this->jenis_sellable;
+}
+
+string Sellable::getKodeHuruf()
+{
+    return this->kode_huruf;
 }
 
 string Sellable::getKodeHurufTanaman()
@@ -109,11 +107,13 @@ void Sellable::setHargaBarang(int harga)
 }
 
 // additional
-bool Sellable::isEdible(){
+bool Sellable::isEdible()
+{
     return false;
 }
 
-bool Sellable::isHewan(){
+bool Sellable::isHewan()
+{
     return false;
 }
 

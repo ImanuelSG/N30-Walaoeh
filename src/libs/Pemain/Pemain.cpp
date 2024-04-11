@@ -1,5 +1,5 @@
 #include "Pemain.hpp"
-#include "../Utils/utils.hpp"
+#include "../Utils/Utils.hpp"
 
 const int Pemain::inventory_n = 5;
 const int Pemain::inventory_m = 5;
@@ -48,15 +48,17 @@ void Pemain::setBerat(int berat)
 void Pemain::makan()
 {
     // Jika inventory kosong
-    if (inventory.isEmpty()){
+    if (inventory.isEmpty())
+    {
         throw InventoryEmptyException();
     }
 
     // Jika tidak ada makanan
-    if (!isFoodAvailable()){
+    if (!isFoodAvailable())
+    {
         throw NotEnoughFoodException();
     }
-    //blom di implement
+    // blom di implement
 
     cetakPenyimpanan();
     bool valid = false;
@@ -68,35 +70,39 @@ void Pemain::makan()
 
         int col = getColStorage(slot[0]);
         int row = getRowStorage(slot);
-        
-        Sellable* item = inventory.getElementAddress(row,col);
-        if (item->isEdible()){
-            inventory.deleteAt(row,col);
+
+        Sellable *item = inventory.getElementAddress(row, col);
+        if (item->isEdible())
+        {
+            inventory.deleteAt(row, col);
             int addedWeight = item->getAddedWeight();
 
-            setBerat(getBerat()-addedWeight);
+            setBerat(getBerat() - addedWeight);
             valid = true;
-
-        } else if (!item->isEdible()) {
+        }
+        else if (!item->isEdible())
+        {
             cout << "Apa yang kamu lakukan??!! Kamu mencoba untuk memakan itu?!!" << endl;
-            cout << "Silahkan masukan slot yang berisi makanan." << endl << endl;
-
-        } else if (item == nullptr ){
+            cout << "Silahkan masukan slot yang berisi makanan." << endl
+                 << endl;
+        }
+        else if (item == nullptr)
+        {
             cout << "Kamu mengambil harapan kosong dari penyimpanan." << endl;
-            cout << "Silahkan masukan slot yang berisi makanan." << endl << endl;
+            cout << "Silahkan masukan slot yang berisi makanan." << endl
+                 << endl;
         }
     } while (!valid);
-    
 }
 
-void Pemain::next(){}
+void Pemain::next() {}
 
-void Pemain::cetakPenyimpanan(){
+void Pemain::cetakPenyimpanan()
+{
     display(inventory);
     cout << endl;
     cout << "Total Slot Kosong: " << inventory.countEmptySlot() << endl;
 }
-
 
 // JGN LUPA GANTI EXEPTION
 void Pemain::pungutPajak(const vector<Pemain *> &pemain)
@@ -134,7 +140,6 @@ void Pemain::kasihMakan()
     throw PeternakInputException();
 }
 
-
 void Pemain::panen()
 {
     throw PanenInputException();
@@ -153,12 +158,15 @@ int Pemain::tambahPemain(vector<Pemain *> &pemain)
     throw WalikotaInputException();
 }
 
-
-bool Pemain::isFoodAvailable(){
-    for (int i = 0; i < inventory_n; i++) {
-        for (int j = 0; j < inventory_m; j++) {
-            Sellable* item = inventory.getElementAddress(i,j);
-            if (item->isEdible()){
+bool Pemain::isFoodAvailable()
+{
+    for (int i = 0; i < inventory_n; i++)
+    {
+        for (int j = 0; j < inventory_m; j++)
+        {
+            Sellable *item = inventory.getElementAddress(i, j);
+            if (item->isEdible())
+            {
                 return true;
             }
         }

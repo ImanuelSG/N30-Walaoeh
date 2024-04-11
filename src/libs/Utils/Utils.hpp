@@ -5,7 +5,7 @@
 #include <chrono>
 using namespace std;
 
-bool isValidInputStorage(string input);
+bool isValidInput(string input);
 
 int getColStorage(char firstChar);
 int getRowStorage(string input);

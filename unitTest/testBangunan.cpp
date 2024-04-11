@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-    Bangunan b1 = Bangunan(1, "GEDUNG", "GEDUNG", 100, {{"WOOD", 50}, {"STONE", 100}, {"IRON", 20}, {"GOLD", 10}, {"DIAMOND", 5}});
+    Bangunan b1 = Bangunan(5, 1, "GEDUNG", "GEDUNG", 100, {{"WOOD", 50}, {"STONE", 100}, {"IRON", 20}, {"GOLD", 10}, {"DIAMOND", 5}});
 
     cout << "ID: " << b1.getIdBangunan() << ", "
          << "Kode: " << b1.getKodeHuruf() << ", "

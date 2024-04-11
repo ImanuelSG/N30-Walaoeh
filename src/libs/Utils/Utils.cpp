@@ -35,37 +35,46 @@ bool isValidInput(string input)
     return valid;
 }
 
-int getColStorage(char firstChar){
+int getColStorage(char firstChar)
+{
     return firstChar - 'A';
 }
 
-int getRowStorage(string input){
-    return stoi(input.substr(1))-1;
+int getRowStorage(string input)
+{
+    return stoi(input.substr(1)) - 1;
 }
 
-
-string getValidInputStorage(string order){
+string getValidInputStorage(string order)
+{
     string input;
     bool valid = false;
     do
     {
-        cout << order <<" : ";
+        cout << order << " : ";
         cin >> input;
-        valid = isValidInputStorage(input);
-        if (!valid){
+        valid = isValidInput(input);
+        if (!valid)
+        {
             cout << "Masukkan dengan format yang benar\n";
-        } else {
         }
-        
+        else
+        {
+        }
+
     } while (!valid);
 
     return input;
 }
 
-string intToStringWithLeadingZero(int num) {
-    if (num < 10) {
+string intToStringWithLeadingZero(int num)
+{
+    if (num < 10)
+    {
         return "0" + std::to_string(num);
-    } else {
+    }
+    else
+    {
         return std::to_string(num);
     }
 }

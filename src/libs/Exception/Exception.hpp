@@ -3,7 +3,7 @@
 #define _EXCEPTION_HPP_
 
 #include <iostream>
-#include <exception> // Add missing include directive
+#include <exception>
 using namespace std;
 
 // EXCEPTION UNTUK INPUT
@@ -64,6 +64,7 @@ public:
 // EXCEPTION UNTUK KURANG
 class NotEnoughMoneyException : public exception
 {
+public:
     const char *what();
 };
 
@@ -90,6 +91,7 @@ class TernakEmptyException : public exception {
 // EXCEPTION UNTUK INVALID INDEX
 class InvalidStorageIndexException : public exception
 {
+public:
     const char *what();
 };
 

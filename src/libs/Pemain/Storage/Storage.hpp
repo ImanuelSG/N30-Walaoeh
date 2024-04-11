@@ -72,6 +72,26 @@ public:
     }
 
     /**
+     * @brief Get the Row attribute
+     *
+     * @return int
+     */
+    int getRow() const
+    {
+        return row;
+    }
+
+    /**
+     * @brief Get the Col attribute
+     *
+     * @return int
+     */
+    int getCol() const
+    {
+        return col;
+    }
+
+    /**
      * @brief Insert object to first empty slot
      *
      * @param obj Object to be inserted
@@ -172,8 +192,9 @@ public:
      *
      * @return number of empty slots
      */
-    int countEmptySlot(){
-        return capacity-neff;
+    int countEmptySlot()
+    {
+        return capacity - neff;
     }
 
     /**
@@ -181,7 +202,6 @@ public:
      *
      */
     friend void display<>(const Storage<T> &storage);
-
     /**
      * @brief Print daftar barang yang siap panen
      *
@@ -196,5 +216,4 @@ public:
 
 
 };
-
 #endif

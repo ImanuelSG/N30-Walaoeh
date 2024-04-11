@@ -1,6 +1,5 @@
 #include "Exception.hpp"
 
-
 // EXCEPTION UNTUK INPUT
 const char *NumericException::what()
 {
@@ -9,8 +8,9 @@ const char *NumericException::what()
 
 const char *InvalidInputException::what()
 {
-    return "Input yang anda masukkan tidak valid!\nSilahkan masukkan input yang sesuai.";
+    return "Input yang anda masukkan tidak valid !\nSilahkan masukkan input yang sesuai.";
 }
+
 const char *WalikotaInputException::what()
 {
     return "Input yang anda masukkan merupakan milik dari Walikota!\nSilahkan masukkan input yang sesuai dengan role anda!";
@@ -28,46 +28,52 @@ const char *PanenInputException::what()
     return "Input yang anda masukkan merupakan milik dari Petani atau Peternak!\nSilahkan masukkan input yang sesuai dengan role anda!";
 }
 
-
 // EXCEPTION UNTUK FULL
-const char *InventoryFullException::what(){
+const char *InventoryFullException::what()
+{
     return "Inventory Anda sudah penuh, tidak bisa menjalankan perintah\n";
 }
 
-const char *LadangFullException::what(){
+const char *LadangFullException::what()
+{
     return "Ladang Anda sudah penuh, tidak bisa menjalankan perintah\n";
 }
 
-const char *TernakFullException::what(){
+const char *TernakFullException::what()
+{
     return "Ternak Anda sudah penuh, tidak bisa menjalankan perintah\n";
 }
 
-
 // EXCEPTION UNTUK KURANG
-const char *NotEnoughMoneyException::what(){
+const char *NotEnoughMoneyException::what()
+{
     return "Gulden Anda tidak cukup\n";
 }
 
-const char *NotEnoughHewanException::what(){
+const char *NotEnoughHewanException::what()
+{
     return "Hewan Anda tidak cukup, tidak bisa menjalankan perintah\n";
 }
-const char *NotEnoughFoodException::what(){
+const char *NotEnoughFoodException::what()
+{
     return "Makanan Anda tidak cukup, tidak bisa menjalankan perintah\n";
 }
 
-
 // EXCEPTION UNTUK KOSONG
-const char *InventoryEmptyException::what(){
+const char *InventoryEmptyException::what()
+{
     return "Inventory Anda Kosong, tidak bisa menjalankan perintah\n";
 }
-const char *LadangEmptyException::what(){
+const char *LadangEmptyException::what()
+{
     return "Ladang Anda Kosong, tidak bisa menjalankan perintah\n";
 }
-const char *TernakEmptyException::what(){
+const char *TernakEmptyException::what()
+{
     return "Ternak Anda Kosong, tidak bisa menjalankan perintah\n";
 }
 
-
+// EXCEPTION UNTUK INVALID
 const char *InvalidStorageIndexException::what()
 {
     return "Indeks yang Anda masukkan tidak valid!.\n Pastikan Indeks Anda sesuai.\n";
@@ -110,4 +116,3 @@ const char *InvalidJenisMakananException::what()
 {
     return "Jenis maknanan yang Anda pilih tidak sesuai dengan jenis hewan Anda.\n";
 }
-

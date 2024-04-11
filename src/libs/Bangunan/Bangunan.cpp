@@ -9,7 +9,7 @@ map<string, tuple<string, int, vector<tuple<string, int>>>> Bangunan::list_of_ba
 // ctor default
 Bangunan::Bangunan()
 {
-    this->material = {};
+
 }
 
 // ctor user defined

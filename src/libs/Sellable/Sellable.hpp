@@ -20,12 +20,12 @@ protected:
   */
 
   int jenis_sellable;
-  const static int jenis_hewan = 0;
-  const static int jenis_tanaman = 1;
-  const static int jenis_produk_tanaman_material = 2;
-  const static int jenis_produk_tanaman_buah = 3;
-  const static int jenis_produk_hewan = 4;
-  const static int jenis_bangunan = 5;
+  const static int jenis_hewan;
+  const static int jenis_tanaman;
+  const static int jenis_produk_tanaman_material;
+  const static int jenis_produk_tanaman_buah;
+  const static int jenis_produk_hewan;
+  const static int jenis_bangunan;
 
   string kode_huruf; // 3 huruf
   string nama_barang;
@@ -47,6 +47,7 @@ public:
   /* Methods */
   // getter
   int getJenisSellable();
+  string getKodeHuruf();
 
   string getKodeHurufTanaman();
   string getKodeHurufHewan();
@@ -56,6 +57,7 @@ public:
   string getKodeHurufBangunan();
 
   string getNamaBarang();
+  string getKodeHuruf();
   int getHargaBarang();
 
   // setter
@@ -63,11 +65,11 @@ public:
   void setNamaBarang(string nama);
   void setHargaBarang(int harga);
 
-    // additional
-    virtual bool isEdible();
-    virtual int getAddedWeight() = 0;
-    virtual bool isHewan();  // boolean
-  // bool isHewan();
+  // additional
+  virtual bool isEdible();
+  virtual int getAddedWeight() = 0;
+  virtual bool isHewan(); // boolean
+
   bool isTanaman();
   bool isProdukMaterial();
   bool isProdukBuah();
