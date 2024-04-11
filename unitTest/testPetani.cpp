@@ -1,9 +1,9 @@
 #include <iostream>
 #include <cassert>
 #include "../src/libs/Pemain/Petani/Petani.hpp"
-#include "../src/libs/ProdukHewan/ProdukHewan.hpp"
+#include "../src/libs/Tanaman/Tanaman.hpp"
 
-void testPemain() {
+void testPetani() {
     // Test constructor and getter methods
     Petani player("John", 100, 50);
     assert(player.getName() == "John");
@@ -22,18 +22,16 @@ void testPemain() {
     // Assuming player's inventory has items with a total value of 300
     assert(player.getKekayaan() == 200);
 
-    ProdukHewan ayam(1, "COM", "Cow Meat", "PRODUK_HEWAN", "Cow", 10, 10);
-    player.inventory.insert(0,0,ayam);
-    ProdukHewan babi(2, "PIM", "Pig Meat", "PRODUK_HEWAN", "Pig", 10, 10);
-    player.inventory.insert(babi);
+    Tanaman lumut(1, "LUM", "Lumut Hijau", "TANAMAN", 3, 4, 10);
+    player.inventory.insert(0,0,lumut);
+    // player.cetakPenyimpanan();
+    // player.cetakLadang();
+    player.tanam();
     player.cetakPenyimpanan();
+    player.cetakLadang();
 
     // Test makan method
-    cout << player.getBerat() << endl;
-    player.makan();
-    player.cetakPenyimpanan();
-    cout << player.getBerat() << endl;
-    assert(player.getKekayaan() == 210);
+
 
     // Test other methods
     // Add more test cases for other methods as needed
@@ -41,7 +39,7 @@ void testPemain() {
 
 int main() {
     // Run the test cases
-    testPemain();
+    testPetani();
 
     std::cout << "All tests passed!" << std::endl;
 

@@ -78,16 +78,7 @@ public:
      * @brief Destroy the Storage object
      *
      */
-    ~Storage()
-    {
-        for (auto &row : buffer)
-        {
-            for (auto ptr : row)
-            {
-                delete ptr; // Delete objects pointed by pointers
-            }
-        }
-    }
+    ~Storage() {}
 
     /**
      * @brief Get the Row attribute

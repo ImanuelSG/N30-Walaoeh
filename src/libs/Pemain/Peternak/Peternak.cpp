@@ -278,9 +278,9 @@ void Peternak::jual(){}
 
 int Peternak::getKekayaan(){
     int count = Pemain::getKekayaan();
-    for (int i = 0; i < inventory_n; i++)
+    for (int i = 0; i < ternak_n; i++)
     {
-        for (int j = 0; j < inventory_m; j++)
+        for (int j = 0; j < ternak_m; j++)
         {
             Hewan *item = peternakan.getElementAddress(i, j);
             if (item != nullptr){
