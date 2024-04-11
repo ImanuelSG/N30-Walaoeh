@@ -58,4 +58,34 @@ public:
     const char *what();
 };
 
+class InvalidJenisTanamanException : public exception
+{
+    const char *what();
+};
+
+class InvalidJenisHewanException : public exception
+{
+    const char *what();
+};
+
+class InvalidJenisProdukMaterialException : public exception
+{
+    const char *what();
+};
+
+class InvalidJenisProdukBuahException : public exception
+{
+    const char *what();
+};
+
+class InvalidJenisProdukHewanException : public exception
+{
+    const char *what();
+};
+
+class InvalidJenisBangunanException : public exception
+{
+    const char *what();
+};
+
 #endif

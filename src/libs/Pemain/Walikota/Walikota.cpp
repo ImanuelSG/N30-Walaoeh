@@ -163,7 +163,13 @@ int Walikota::tambahPemain(vector<Pemain *> &pemain)
 
 void Walikota::bangunBangunan()
 {
+
+    if (this->inventory.isFull())
+    {
+        throw StorageFullException();
+    }
     Bangunan bangunan;
+
     bangunan.displayAllRecipe();
 
     string namaBangunan;
@@ -191,6 +197,9 @@ void Walikota::bangunBangunan()
     // Get all materialProduct from walikota
 
     map<string, int> materialProduct = this->getMaterialProduct();
+
+    //Display needed materials
+    
 }
 
 string Walikota::getRole() const
@@ -207,13 +216,29 @@ map<string, int> Walikota::getMaterialProduct()
 {
     map<string, int> materialProduct;
 
-    int i, j = 0;
-
+    // Iterate through all inventory items
     for (int i = 0; i < inventory.getRow(); i++)
     {
         for (int j = 0; j < inventory.getCol(); j++)
         {
-            if (inventory.getElement(i, j).)
+            // Check if the item is a product material
+            if (inventory.getElement(i, j).isProdukMaterial())
+            {
+                // Get the name of the item
+                string itemName = inventory.getElement(i, j).getNamaBarang();
+
+                // Check if the item already exists in materialProduct
+                if (materialProduct.find(itemName) != materialProduct.end())
+                {
+                    // Increment the count if the item exists
+                    materialProduct[itemName]++;
+                }
+                else
+                {
+                    // Initialize the count to 1 if the item doesn't exist
+                    materialProduct[itemName] = 1;
+                }
+            }
         }
     }
     return materialProduct;

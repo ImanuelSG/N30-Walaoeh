@@ -9,39 +9,67 @@ using namespace std;
 class Sellable
 {
 protected:
-    string kode_huruf; // 3 huruf
-    string nama_barang;
-    int harga_barang;
-    string type;
+  /*Aturan Jenis Sellable:
+  - hewan = 0,
+  - tanaman = 1,
+  - produk,
+    produk tanaman material = 2
+    produk tanaman buah = 3
+    produk hewan = 4
+  - bangunan = 5
+  */
+
+  int jenis_sellable;
+  const static int jenis_hewan = 0;
+  const static int jenis_tanaman = 1;
+  const static int jenis_produk_tanaman_material = 2;
+  const static int jenis_produk_tanaman_buah = 3;
+  const static int jenis_produk_hewan = 4;
+  const static int jenis_bangunan = 5;
+
+  string kode_huruf; // 3 huruf
+  string nama_barang;
+  int harga_barang;
 
 public:
-    // ctor default
-    Sellable();
+  // ctor default
+  Sellable();
 
-    // ctor user defined
-    Sellable(string kode, string nama, int harga);
+  // ctor user defined
+  Sellable(int jenis_sellable, string kode, string nama, int harga);
 
-    // operator overloading
-    Sellable &operator=(const Sellable &other);
+  // operator overloading
+  Sellable &operator=(const Sellable &other);
 
-    // dtor
-    virtual ~Sellable();
+  // dtor
+  virtual ~Sellable();
 
-    /* Methods */
-    // getter
-    string getKodeHuruf();
-    string getNamaBarang();
-    int getHargaBarang();
+  /* Methods */
+  // getter
+  int getJenisSellable();
 
-    // setter
-    void setKodeHuruf(string kode);
-    void setNamaBarang(string nama);
-    void setHargaBarang(int harga);
+  string getKodeHurufTanaman();
+  string getKodeHurufHewan();
+  string getKodeHurufProdukMaterial();
+  string getKodeHurufProdukBuah();
+  string getKodeHurufProdukHewan();
+  string getKodeHurufBangunan();
 
-    bool isMaterial();
-    bool isAnimal();
-    bool isPlant();
-    bool isProduct();
+  string getNamaBarang();
+  int getHargaBarang();
+
+  // setter
+  void setKodeHuruf(string kode);
+  void setNamaBarang(string nama);
+  void setHargaBarang(int harga);
+
+  // boolean
+  bool isHewan();
+  bool isTanaman();
+  bool isProdukMaterial();
+  bool isProdukBuah();
+  bool isProdukHewan();
+  bool isBangunan();
 };
 
 #endif

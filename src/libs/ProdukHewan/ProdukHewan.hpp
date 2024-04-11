@@ -11,14 +11,14 @@ class ProdukHewan : public Produk
 {
 
 private:
-    const string tipe = "PRODUCT_ANIMAL";
+    const static string tipe_produk_hewan;
 
 public:
     // ctor default
     ProdukHewan();
 
     // ctor user defined
-    ProdukHewan(int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga);
+    ProdukHewan(int jenis_sellable, int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga);
 
     // operator overloading
     ProdukHewan &operator=(const ProdukHewan &other);
