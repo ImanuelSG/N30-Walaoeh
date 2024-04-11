@@ -74,7 +74,7 @@ public:
     /**
      * @brief Menghitung Kekayaan pemain
      */
-    int getKekayaan() const;
+    virtual int getKekayaan();
     /**
      * @brief Pungut Pajak, Khusus untuk walikota
      *
@@ -101,7 +101,7 @@ public:
      * @return index pemain baru (untuk menentukan urutan main nantinya)
      */
     virtual int tambahPemain(vector<Pemain *> &pemain);
-    virtual int getKKP() const = 0;
+    virtual int getKKP()  = 0;
     virtual string getRole() const = 0;
 };
 

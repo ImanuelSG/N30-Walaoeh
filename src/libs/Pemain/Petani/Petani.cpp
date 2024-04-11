@@ -211,9 +211,27 @@ int Petani::countTanamanInventory()
     return count;
 }
 
-int Petani::getKKP() const
+int Petani::getKekayaan()
 {
-    return this->getKekayaan() - 13;
+    int count = Pemain::getKekayaan();
+    for (int i = 0; i < inventory_n; i++)
+    {
+        for (int j = 0; j < inventory_m; j++)
+        {
+            Tanaman* item = ladang.getElementAddress(i, j);
+            if (item != nullptr){
+                count += item->getHargaBarang();
+            }
+
+            
+        }
+    }
+    return count;
+}
+
+int Petani::getKKP()
+{
+    return getKekayaan() - 13;
 }
 string Petani::getRole() const
 {
@@ -286,6 +304,39 @@ void display<Tanaman>(const Storage<Tanaman> &storage)
         }
         cout << endl;
     }
+}
+
+template<>
+map<string, tuple<vector<string>,int>> readyPanen<Tanaman>(const Storage<Tanaman> &storage){
+    map<string, tuple<vector<string>, int>> result;
+    for (int i =0 ;i < storage.row; i++)
+    {
+        for (int j=0; j < storage.col;j++)
+        {
+            Tanaman *item = storage.buffer[i][j];
+            if (item != nullptr)
+            {
+                // klo dah siap panen
+                if (item->getDurationToHarvest() - item->getAge() <= 0)
+                {  
+                    string kode = item->getKodeHuruf();
+
+                    // cari udah ada di map ato blom
+                    auto it = result.find(kode);
+                    if (it == result.end())
+                    {
+                        vector<string> position = {intToAlphabet(j) + intToStringWithLeadingZero(i)};
+                        result[kode] = make_tuple(position,1);
+                    } else {
+                        auto &value = it->second;
+                        get<0>(value).push_back(intToAlphabet(j) + intToStringWithLeadingZero(i));
+                        get<1>(value) ++;
+                    }
+                }
+            }
+        }
+    }
+    return result;
 }
 
 template<>

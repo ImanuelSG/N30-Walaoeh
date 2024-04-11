@@ -24,9 +24,22 @@ string Pemain::getName() const
     return this->name;
 }
 
-int Pemain::getKekayaan() const
+int Pemain::getKekayaan() 
 {
-    return 0;
+    int count = 0;
+    for (int i = 0; i < inventory_n; i++)
+    {
+        for (int j = 0; j < inventory_m; j++)
+        {
+            Sellable *item = inventory.getElementAddress(i, j);
+            if (item != nullptr){
+                count += item->getHargaBarang();
+            }
+
+            
+        }
+    }
+    return count;
 }
 
 void Pemain::setName(string name)
