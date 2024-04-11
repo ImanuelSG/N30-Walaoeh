@@ -197,9 +197,12 @@ bool Pemain::isFoodAvailable()
         for (int j = 0; j < inventory_m; j++)
         {
             Sellable *item = inventory.getElementAddress(i, j);
-            if (item->isEdible())
+            if (item != nullptr)
             {
-                return true;
+                if (item->isEdible())
+                {
+                    return true;
+                }
             }
         }
     }

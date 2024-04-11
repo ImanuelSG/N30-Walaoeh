@@ -84,15 +84,14 @@ void Petani::tanam()
     do 
     {
         bool acc = false;
-        int col = 0; int row = 0;
         do
         {
             slot = getValidInputStorage("Petak tanah");
 
-            col = getColStorage(slot[0]);
-            row = getRowStorage(slot);
+            colP = getColStorage(slot[0]);
+            rowP = getRowStorage(slot);
 
-            if (col < 0 || col > ladang.getCol() || row < 0 || row > ladang.getRow())
+            if (colP< 0 || colP > ladang.getCol() || rowP < 0 || rowP > ladang.getRow())
             {
                 cout << "Masukkan lokasi petak yang sesuai!" << endl;
             }
@@ -397,8 +396,11 @@ void displayItems<Tanaman>(const Storage<Tanaman> &storage)
             if (value != nullptr)
             {
                 map<string, string> itemMap;
-                itemMap[value->getKodeHuruf()] = value->getNamaBarang();
-                Items.insert(itemMap);
+                if (value != nullptr)
+                {
+                    itemMap[value->getKodeHuruf()] = value->getNamaBarang();
+                    Items.insert(itemMap);
+                }
             }
         }
     }
