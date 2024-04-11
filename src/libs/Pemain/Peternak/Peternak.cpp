@@ -2,6 +2,7 @@
 #include "../../Utils/Utils.hpp"
 
 
+int Peternak::ternak_m = 0; int Peternak::ternak_n = 0;
 Peternak::Peternak(string name,int gulden, int berat) : Pemain(name,gulden,berat), peternakan(ternak_n,ternak_m) {}
 
 Peternak::~Peternak(){}
@@ -33,7 +34,7 @@ void Peternak::ternak(){
         row = getRowStorage(slot);
          
         item = inventory.getElementAddress(row,col);
-        if (item->isHewan()){
+        if (item->getJenis() == "HEWAN"){
             valid = true;
         }
         else
@@ -117,7 +118,7 @@ void Peternak::kasihMakan()
 
     } while (isEmpty);
 
-    cout << "Kamu memilih " << hewan->getKodeHurufHewan() << "untuk diberi makan.\n" << endl;
+    cout << "Kamu memilih " << hewan->getKodeHuruf() << "untuk diberi makan.\n" << endl;
     cout << "Pilih pangan yang akan diberikan: " << endl;
 
     
@@ -131,16 +132,16 @@ void Peternak::kasihMakan()
         int row = getRowStorage(slot);
         Sellable* item = inventory.getElementAddress(row,col);
 
-        if(!item->isProdukBuah() || !item->isProdukHewan()){
+        if(!(item->getJenis() == "PRODUK_TANAMAN_BUAH") || !(item->getJenis() == "PRODUK_HEWAN")){
             throw InvalidProdukException(); 
         }
         else
         {
-            if ((hewan->isCarnivore() && item->isProdukHewan()) || (hewan->isHerbivore() && item->isProdukBuah()) || (hewan->isOmnivore() && (item->isProdukBuah() || item->isProdukHewan())))
+            if ((hewan->isCarnivore() && (item->getJenis() == "PRODUK_HEWAN")) || (hewan->isHerbivore() && (item->getJenis() == "PRODUK_TANAMAN_BUAH")) || (hewan->isOmnivore() && ((item->getJenis() == "PRODUK_TANAMAN_BUAH") || (item->getJenis() == "PRODUK_HEWAN"))))
             {
                 // tambah berat
                 hewan->setWeight(hewan->getWeight() + 1);
-                cout << hewan->getKodeHurufHewan() << "sudah diberi makan dan beratnya menjadi " << hewan->getWeight() << endl;
+                cout << hewan->getKodeHuruf() << "sudah diberi makan dan beratnya menjadi " << hewan->getWeight() << endl;
                 // hapus barang dri inventory
                 inventory.deleteAt(col,row);
             }
@@ -171,7 +172,7 @@ void Peternak::jual(){}
 
 void Peternak::cetakPenyimpananHewan(){}
 
-int Peternak::countHewanInventory(){}
+int Peternak::countHewanInventory(){return 0;}
 
 bool Peternak::isMakananAvailable(string tipeHewan){
     for (int i = 0; i < inventory_n; i++) {
@@ -180,19 +181,19 @@ bool Peternak::isMakananAvailable(string tipeHewan){
             
             if (tipeHewan == "CARNIVORE")
             {
-                if (item->isProdukHewan()){
+                if ((item->getJenis() == "PRODUK_HEWAN")){
                     return true;
                 }
             }
             else if (tipeHewan == "HERBIVORE")
             {
-                if (item->isProdukBuah()){
+                if ((item->getJenis() == "PRODUK_TANAMAN_BUAH")){
                     return true;
                 }
             }
             else if (tipeHewan == "OMNIVORE")
             {
-                if (item->isProdukHewan() || item->isProdukBuah()){
+                if ((item->getJenis() == "PRODUK_HEWAN") || (item->getJenis() == "PRODUK_TANAMAN_BUAH")){
                     return true;
                 }
             }

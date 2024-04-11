@@ -168,7 +168,7 @@ void Walikota::bangunBangunan()
     {
         throw InventoryFullException();
     }
-    Bangunan Bangunan();
+    Bangunan bangunan;
 
     bangunan.displayAllRecipe();
 
@@ -222,10 +222,10 @@ map<string, int> Walikota::getMaterialProduct()
         for (int j = 0; j < inventory.getCol(); j++)
         {
             // Check if the item is a product material
-            if (inventory.getElement(i, j).isProdukMaterial())
+            if ((inventory.getElementAddress(i, j)->getJenis())== "PRODUK_TANAMAN_MATERIAL")
             {
                 // Get the name of the item
-                string itemName = inventory.getElement(i, j).getNamaBarang();
+                string itemName = inventory.getElementAddress(i, j)->getNamaBarang();
 
                 // Check if the item already exists in materialProduct
                 if (materialProduct.find(itemName) != materialProduct.end())

@@ -27,6 +27,9 @@ public:
     ~ProdukHewan();
 
     /* Methods */
+    // getter
+    string getJenis();
+    
     /*
     1. Herbivora
     Cow -> 1 Cow Meat

@@ -1,6 +1,8 @@
 #include "Petani.hpp"
 
-Petani::Petani(string name, int gulden, int berat) : Pemain(name, gulden, berat)
+
+int Petani::ladang_m = 0; int Petani::ladang_n = 0;
+Petani::Petani(string name, int gulden, int berat) : Pemain(name, gulden, berat), ladang(ladang_n,ladang_m) 
 {
 }
 
