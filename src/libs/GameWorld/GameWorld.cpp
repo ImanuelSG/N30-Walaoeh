@@ -59,7 +59,7 @@ void GameWorld::startGame()
             // res = -2 is exception exit
             // res = -3 is save game
             // res >= 0 is the change to current player index
-            int res = CommandManager.execute(command, listOfPLayers, currPlayerIndex);
+            int res = CommandManager.execute(command, listOfPLayers, currPlayerIndex, toko);
             cout << endl;
 
             if (res == -3)
@@ -151,6 +151,14 @@ void GameWorld::initializeDefaultGame()
     listOfPLayers.push_back(pemain1);
     listOfPLayers.push_back(pemain2);
     listOfPLayers.push_back(pemain3);
+
+    toko.MuatHewanTanamanToko();
+    cout << "Petani : " << endl;
+    toko.displayAllBuyableItem("Petani");
+    cout << "Peternak : " << endl;
+    toko.displayAllBuyableItem("Peternak");
+    cout << "Walikota : " << endl;
+    toko.displayAllBuyableItem("Walikota");
 }
 
 void GameWorld::saveGameState()

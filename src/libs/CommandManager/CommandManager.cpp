@@ -14,7 +14,7 @@ int CommandManager::getNextPlayerIndex()
     return nextPlayerIndex;
 }
 
-int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int CurrentPlayerIndex)
+int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int CurrentPlayerIndex, Toko &toko)
 {
     try
     {

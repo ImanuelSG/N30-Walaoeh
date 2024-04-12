@@ -108,9 +108,8 @@ void Toko::MuatStateToko(string path)
 void Toko::displayAllBuyableItem(string role)
 {
     cout << "Selamat datang di toko!!" << endl;
-    cout << "List of items available for purchase: " << endl;
 
-    cout << "Berikut merupakan hal yang dapat Anda Beli" << endl;
+    cout << "Berikut merupakan hal yang dapat Anda Beli : " << endl;
     vector<pair<Sellable *, int>> temp(items);
     if (role != "Walikota")
     {
@@ -127,6 +126,7 @@ void Toko::displayAllBuyableItem(string role)
         {
             cout << " (" << item.second << ")" << endl;
         }
+        i++;
     }
 }
 

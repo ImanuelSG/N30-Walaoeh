@@ -22,6 +22,7 @@ private:
     vector<Pemain *> listOfPLayers;
     int currPlayerIndex;
     bool ended;
+    Toko toko;
 
 public:
     GameWorld();

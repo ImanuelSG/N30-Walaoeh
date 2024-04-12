@@ -4,6 +4,7 @@
 #include <iostream>
 #include "../Pemain/Pemain.hpp"
 #include "vector"
+#include "../Toko/Toko.hpp"
 using namespace std;
 
 class CommandManager
@@ -11,6 +12,7 @@ class CommandManager
 private:
     int nextPlayerIndex;
     bool isTakingTurn;
+
 public:
     /**
      * @brief Construct a new Command Manager object
@@ -31,7 +33,7 @@ public:
      *
      * @return int 1 if the command is invalid, 1 if the command is valid
      */
-    int execute(string what, vector<Pemain *> &ListOfPlayers, int CurrentPlayerIndex);
+    int execute(string what, vector<Pemain *> &ListOfPlayers, int CurrentPlayerIndex, Toko &toko);
 
     /**
      * @brief Get the Next Player Index
