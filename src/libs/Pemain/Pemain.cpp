@@ -186,6 +186,11 @@ void Pemain::jual()
 {
 }
 
+void Pemain::addPlantAge()
+{
+    return;
+}
+
 int Pemain::tambahPemain(vector<Pemain *> &pemain)
 {
     throw WalikotaInputException();

@@ -127,6 +127,11 @@ bool Tanaman::isBuah()
     return this->tipe_tanaman == "FRUIT_PLANT";
 }
 
+bool Tanaman::isHarvestValid()
+{
+    return this->age >= this->duration_to_harvest;
+}
+
 // bool Tanaman::isTeak()
 // {
 //     return getKodeHurufTanaman() == "TEK";

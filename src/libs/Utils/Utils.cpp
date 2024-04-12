@@ -115,7 +115,7 @@ void displayReadyPanen(map<string, tuple<vector<string>, int>> &readyItems)
     int count = 1;
     for (const auto &pair : readyItems)
     {
-        cout << count << ". " << pair.first << '(' << get<1>(pair.second) << " petak siap panen)" << endl;
+        cout << count << ". " << pair.first << " (" << get<1>(pair.second) << " petak siap panen)" << endl;
         count++;
     }
 }

@@ -100,6 +100,7 @@ public:
     virtual void kasihMakan();
     virtual void beli();
     virtual void jual();
+    virtual void addPlantAge();
     virtual void panen();
     /**
      * @brief Menambah pemain atau peternak, Khusus untuk walikota

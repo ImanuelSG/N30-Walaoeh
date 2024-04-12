@@ -48,16 +48,3 @@ string ProdukTanamanMaterial::getJenis()
 {
     return "PRODUK_TANAMAN_MATERIAL";
 }
-
-vector<ProdukTanamanMaterial> ProdukTanamanMaterial::tambahProdukTanamanMaterial(Tanaman &tanaman)
-{
-    vector<tuple<int, string, string, string, int, int>> produk_material_vektor = Produk::productOriginMap[tanaman.getNamaBarang()];
-    vector<ProdukTanamanMaterial> produk_material_baru_list;
-
-    for (int i = 0; i < produk_material_vektor.size(); i++) {
-        ProdukTanamanMaterial produk_buah_baru = ProdukTanamanMaterial(get<0>(produk_material_vektor[i]), get<1>(produk_material_vektor[i]), get<2>(produk_material_vektor[i]), get<3>(produk_material_vektor[i]), tanaman.getNamaBarang(), get<4>(produk_material_vektor[i]), get<5>(produk_material_vektor[i]));
-        produk_material_baru_list.push_back(produk_buah_baru);
-    }
-
-    return produk_material_baru_list;
-}

@@ -2,6 +2,7 @@
 #include <cassert>
 #include "../src/libs/Pemain/Petani/Petani.hpp"
 #include "../src/libs/Toko/Sellable/Tanaman/Tanaman.hpp"
+#include "../src/libs/GameWorld/GameWorld.hpp"
 
 void testPetani() {
     // Test constructor and getter methods
@@ -22,17 +23,34 @@ void testPetani() {
     // Assuming player's inventory has items with a total value of 300
     assert(player.getKekayaan() == 200);
 
-    Tanaman lumut(1, "LUM", "Lumut Hijau", "TANAMAN", 3, 4, 10);
+    GameWorld world;
+    world.initializeConfigs();
+    
+    Tanaman lumut1(3, "BNT", "BANANA_TREE", "FRUIT_PLANT", 2, 4, 3);
+    Tanaman lumut(1, "IRN", "IRONWOOD_TREE", "MATERIAL_PLANT", 4, 5, 5);
+    Tanaman iron(2, "IRN", "IRONWOOD_TREE", "MATERIAL_PLANT", 4, 5, 5);
+    player.inventory.insert(3,4,lumut1);
     player.inventory.insert(0,0,lumut);
+    player.inventory.insert(1,1,iron);
     // player.cetakPenyimpanan();
     // player.cetakLadang();
     player.tanam();
-    player.cetakPenyimpanan();
-    player.cetakLadang();
+    player.tanam();
+    player.tanam();
+    // player.cetakPenyimpanan();
+    // player.cetakLadang();
 
     player.addPlantAge();
     player.cetakLadang();
-    // Test makan method
+    // Test panen
+    player.displayInfo();
+    cout << endl;
+    player.panen();
+    player.cetakPenyimpanan();
+    player.cetakLadang();
+    cout << endl;
+
+    player.displayInfo();
 
 
     // Test other methods

@@ -56,6 +56,7 @@ public:
     // boolean
     bool isMaterial();
     bool isBuah();
+    bool isHarvestValid();
     
     // bool isTeak();
     // bool isSandalwood();
