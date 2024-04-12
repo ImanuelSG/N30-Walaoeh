@@ -1,3 +1,6 @@
+#ifndef TOKO_HPP
+#define TOKO_HPP
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -31,3 +34,5 @@ public:
     int Jual(vector<Sellable *> soldItems, string role);
     void MuatStateToko(ifstream& inputFile);
 };
+
+#endif
