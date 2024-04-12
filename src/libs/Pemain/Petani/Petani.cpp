@@ -244,6 +244,22 @@ void Petani::jual()
 {
 }
 
+void Petani::addPlantAge()
+{
+    for (int i = 0; i < ladang.getRow(); i++)
+    {
+        for (int j = 0; j < ladang.getCol(); j ++)
+        {
+            Tanaman* tanaman = ladang.getElementAddress(i,j);
+            if (tanaman != nullptr)
+            {
+                tanaman->setAge(tanaman->getAge() + 1);
+            }
+        }
+        std::cout << std::endl;
+    }
+}
+
 int Petani::countTanamanInventory()
 {
     int count = 0;
@@ -351,7 +367,7 @@ void display<Tanaman>(const Storage<Tanaman> &storage)
             if (storage.buffer[i][j] != nullptr)
             {
                 keluaran = (*storage.buffer[i][j]).getKodeHuruf();
-                if ((*storage.buffer[i][j]).getDurationToHarvest() - (*storage.buffer[i][j]).getAge() <= 0)
+                if ((storage.buffer[i][j])->getDurationToHarvest() - (storage.buffer[i][j])->getAge() <= 0)
                 {
                     print_green(keluaran[0]);
                     print_green(keluaran[1]);

@@ -30,6 +30,8 @@ void testPetani() {
     player.cetakPenyimpanan();
     player.cetakLadang();
 
+    player.addPlantAge();
+    player.cetakLadang();
     // Test makan method
 
 
