@@ -4,13 +4,13 @@
 #include <sstream>
 #include <fstream>
 #include "../CommandManager/CommandManager.hpp"
-#include "../Hewan/Hewan.hpp"
-#include "../Tanaman/Tanaman.hpp"
-#include "../Produk/Produk.hpp"
+#include "../Toko/Sellable/Hewan/Hewan.hpp"
+#include "../Toko/Sellable/Tanaman/Tanaman.hpp"
+#include "../Toko/Sellable/Produk/Produk.hpp"
+#include "../Toko/Sellable/Bangunan/Bangunan.hpp"
 #include "../Pemain/Walikota/Walikota.hpp"
 #include "../Pemain/Petani/Petani.hpp"
 #include "../Pemain/Peternak/Peternak.hpp"
-#include "../Bangunan/Bangunan.hpp"
 
 using namespace std;
 

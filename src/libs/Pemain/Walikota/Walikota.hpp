@@ -4,7 +4,7 @@
 #include "../Pemain.hpp"
 #include "../Petani/Petani.hpp"
 #include "../Peternak/Peternak.hpp"
-#include "../../Bangunan/Bangunan.hpp"
+#include "../../Toko/Sellable/Bangunan/Bangunan.hpp"
 #include "../../Utils/Utils.hpp"
 
 #include <vector>

@@ -1,8 +1,8 @@
 #include "../src/libs/Pemain/Storage/Storage.hpp"
-#include "../src/libs/Sellable/Sellable.hpp"
-#include "../src/libs/ProdukTanamanBuah/ProdukTanamanBuah.hpp"
-#include "../src/libs/ProdukTanamanMaterial/ProdukTanamanMaterial.hpp"
-#include "../src/libs/ProdukHewan/ProdukHewan.hpp"
+#include "../src/libs/Toko/Sellable/Sellable.hpp"
+#include "../src/libs/Toko/Sellable/Produk/ProdukTanamanBuah/ProdukTanamanBuah.hpp"
+#include "../src/libs/Toko/Sellable/Produk/ProdukTanamanMaterial/ProdukTanamanMaterial.hpp"
+#include "../src/libs/Toko/Sellable/Produk/ProdukHewan/ProdukHewan.hpp"
 
 #include <cassert>
 

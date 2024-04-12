@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cassert>
 #include "../src/libs/Pemain/Petani/Petani.hpp"
-#include "../src/libs/Tanaman/Tanaman.hpp"
+#include "../src/libs/Toko/Sellable/Tanaman/Tanaman.hpp"
 
 void testPetani() {
     // Test constructor and getter methods

@@ -2,7 +2,7 @@
 #define PETANI_HPP
 
 #include "../Pemain.hpp"
-#include "../../Tanaman/Tanaman.hpp"
+#include "../../Toko/Sellable/Tanaman/Tanaman.hpp"
 
 class Petani : public Pemain
 {
