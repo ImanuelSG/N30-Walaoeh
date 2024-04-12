@@ -122,14 +122,18 @@ void Toko::displayAllBuyableItem(string role)
         temp.insert(temp.end(), list_bangunan.begin(), list_bangunan.end());
     }
     int i = 1;
-    for (const auto &item : items)
+    for (const auto &item : temp)
     {
 
-        cout << i << ". " << item.first->getNamaBarang() << " - " << item.first->getHargaBarang() << endl;
+        cout << i << ". " << item.first->getNamaBarang() << " - " << item.first->getHargaBarang();
 
         if (item.second != -1)
         {
             cout << " (" << item.second << ")" << endl;
+        }
+        else
+        {
+            cout << endl;
         }
         i++;
     }
@@ -190,17 +194,17 @@ tuple<Sellable *, int> Toko::Beli(int num, string role, int currentGulden, int q
         }
     }
 
-    return make_tuple(chosenItem, quantity);
+    return make_tuple(chosenItem, totalBelanja);
 }
 
 int Toko::Jual(vector<Sellable *> soldItems, string role)
 {
     // Validate if peternak and petani is selling a building
-
-    for (auto &item : soldItems)
+    if (role == "Petani" || role == "Peternak")
     {
-        if (role == "Petani" || role == "Peternak")
+        for (auto &item : soldItems)
         {
+
             if (item->getJenis() == "BANGUNAN")
             {
                 throw InvalidSellException();
@@ -219,35 +223,43 @@ int Toko::Jual(vector<Sellable *> soldItems, string role)
             // if item not bangunan
             if (item->getJenis() != "BANGUNAN")
             {
+                bool found = false;
                 for (auto &it : items)
                 {
                     // if barang exsist, increase the stock
                     if (it.first->getNamaBarang() == item->getNamaBarang())
                     {
                         it.second++;
+                        found = true;
+                        break;
                     }
-                    else
-                    // if not, add the item to the list
-                    {
-                        items.push_back(make_pair(item, 1));
-                    }
+                }
+                if (!found)
+                // if not, add the item to the list
+                {
+                    items.push_back(make_pair(item, 1));
                 }
             }
             else
             {
-                // if the item is a building, add it to the list of buildings
+
+                bool found = false;
+                // if the item is a building, check if it exsist and add it to the list of buildings
                 for (auto &it : list_bangunan)
                 {
+
                     // if building exsist, increase the stock
                     if (it.first->getNamaBarang() == item->getNamaBarang())
                     {
                         it.second++;
+                        found = true;
+                        break;
                     }
-                    else
-                    // if not, add the item to the list
-                    {
-                        list_bangunan.push_back(make_pair(item, 1));
-                    }
+                }
+                // if not, add the item to the list
+                if (!found)
+                {
+                    list_bangunan.push_back(make_pair(item, 1));
                 }
             }
         }

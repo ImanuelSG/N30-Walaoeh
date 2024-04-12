@@ -14,16 +14,15 @@
 class Hewan : public Sellable
 {
 private:
+    int id_hewan = 1;
     string tipe_hewan;
     int weight;
     int weight_to_harvest;
 
 public:
-    int id_hewan = 1;
-
-    // map with key = 
+    // map with key =
     static map<string, tuple<int, string, string, int, int>> animalMap;
-    
+
     // ctor default
     Hewan();
 
@@ -36,10 +35,12 @@ public:
     // dtor
     ~Hewan();
 
+    Sellable *Clone();
+
     /* Methods */
     // getter
     string getJenis();
-    
+
     int getIdHewan();
     string getTipeHewan();
     int getWeight();

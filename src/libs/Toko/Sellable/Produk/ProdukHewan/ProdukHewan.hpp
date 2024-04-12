@@ -26,10 +26,14 @@ public:
     // dtor
     ~ProdukHewan();
 
+    // Clone
+
+    Sellable *Clone();
+
     /* Methods */
     // getter
     string getJenis();
-    
+
     /*
     1. Herbivora
     Cow -> 1 Cow Meat
@@ -48,13 +52,12 @@ public:
     // Konversi hewan menjadi produk (hewan) kalau weight sudah mencapai weight_to_harvest
     vector<ProdukHewan> tambahProdukHewanHerbivora(Hewan &hewan);
     vector<ProdukHewan> tambahProdukHewanKarnivora(Hewan &hewan);
-    vector<ProdukHewan> tambahProdukHewanOmnivora(Hewan& hewan);
+    vector<ProdukHewan> tambahProdukHewanOmnivora(Hewan &hewan);
 
     // static method
     static ProdukHewan tambahProdukHewan(ifstream &file);
 
     bool isEdible() override;
-
 };
 
 #endif

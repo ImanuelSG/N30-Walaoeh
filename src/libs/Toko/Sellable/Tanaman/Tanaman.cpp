@@ -37,6 +37,13 @@ Tanaman::~Tanaman()
     // cout << "Tanaman " << this->getNamaBarang() << " telah dihapus" << std::endl;
 }
 
+// Clone
+
+Sellable *Tanaman::Clone()
+{
+    return new Tanaman(*this);
+}
+
 /* Methods */
 // getter
 string Tanaman::getJenis()
@@ -170,14 +177,16 @@ bool Tanaman::isBuah()
 void Tanaman::loadTanamanConfig(string path)
 {
     ifstream inputFile(path);
-    if (!inputFile.is_open()) {
+    if (!inputFile.is_open())
+    {
         throw FileNotFoundException();
     }
 
-    string line; 
+    string line;
     int id, durationToHarvest, price;
     string code, name, type, origin;
-    while (getline(inputFile, line)) {
+    while (getline(inputFile, line))
+    {
         istringstream iss(line);
         iss >> id >> code >> name >> type >> durationToHarvest >> price;
         plantMap[name] = make_tuple(id, code, type, durationToHarvest, price);

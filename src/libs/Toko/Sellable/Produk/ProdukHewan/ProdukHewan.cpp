@@ -39,12 +39,20 @@ ProdukHewan &ProdukHewan::operator=(const ProdukHewan &other)
 // dtor
 ProdukHewan::~ProdukHewan() {}
 
+// CLone
+
+Sellable *ProdukHewan::Clone()
+{
+    return new ProdukHewan(*this);
+}
+
 string ProdukHewan::getJenis()
 {
     return "PRODUK_HEWAN";
 }
 
-bool ProdukHewan::isEdible() {
+bool ProdukHewan::isEdible()
+{
     return true;
 }
 
@@ -54,7 +62,8 @@ vector<ProdukHewan> ProdukHewan::tambahProdukHewanHerbivora(Hewan &hewan)
     vector<tuple<int, string, string, string, int, int>> produk_herbivora_vector = Produk::productOriginMap[hewan.getNamaBarang()];
     vector<ProdukHewan> produk_hewan_baru_list;
 
-    for (int i = 0; i < produk_herbivora_vector.size(); i++) {
+    for (int i = 0; i < produk_herbivora_vector.size(); i++)
+    {
         ProdukHewan produk_hewan_baru = ProdukHewan(get<0>(produk_herbivora_vector[i]), get<1>(produk_herbivora_vector[i]), get<2>(produk_herbivora_vector[i]), get<3>(produk_herbivora_vector[i]), hewan.getNamaBarang(), get<4>(produk_herbivora_vector[i]), get<5>(produk_herbivora_vector[i]));
         produk_hewan_baru_list.push_back(produk_hewan_baru);
     }
@@ -67,7 +76,8 @@ vector<ProdukHewan> ProdukHewan::tambahProdukHewanKarnivora(Hewan &hewan)
     vector<tuple<int, string, string, string, int, int>> produk_karnivora_vektor = Produk::productOriginMap[hewan.getNamaBarang()];
     vector<ProdukHewan> produk_hewan_baru_list;
 
-    for (int i = 0; i < produk_karnivora_vektor.size(); i++) {
+    for (int i = 0; i < produk_karnivora_vektor.size(); i++)
+    {
         ProdukHewan produk_hewan_baru = ProdukHewan(get<0>(produk_karnivora_vektor[i]), get<1>(produk_karnivora_vektor[i]), get<2>(produk_karnivora_vektor[i]), get<3>(produk_karnivora_vektor[i]), hewan.getNamaBarang(), get<4>(produk_karnivora_vektor[i]), get<5>(produk_karnivora_vektor[i]));
         produk_hewan_baru_list.push_back(produk_hewan_baru);
     }
@@ -80,7 +90,8 @@ vector<ProdukHewan> ProdukHewan::tambahProdukHewanOmnivora(Hewan &hewan)
     vector<tuple<int, string, string, string, int, int>> produk_omnivora_vector = Produk::productOriginMap[hewan.getNamaBarang()];
     vector<ProdukHewan> produk_hewan_baru_list;
 
-    for (int i = 0; i < produk_omnivora_vector.size(); i++) {
+    for (int i = 0; i < produk_omnivora_vector.size(); i++)
+    {
         ProdukHewan produk_hewan_baru = ProdukHewan(get<0>(produk_omnivora_vector[i]), get<1>(produk_omnivora_vector[i]), get<2>(produk_omnivora_vector[i]), get<3>(produk_omnivora_vector[i]), hewan.getNamaBarang(), get<4>(produk_omnivora_vector[i]), get<5>(produk_omnivora_vector[i]));
         produk_hewan_baru_list.push_back(produk_hewan_baru);
     }

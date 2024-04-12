@@ -15,9 +15,9 @@
 class Bangunan : public Sellable
 {
 private:
+    int id_bangunan;
     map<string, int> material; // <string nama_material, int jumlah_material>
 public:
-    static int id_bangunan;
     static map<string, tuple<string, int, map<string, int>, int>> list_of_bangunan;
     // map with key = nama_bangunan, value = tuple<kode_bangunan, harga_bangunan, vector<tuple<material, jumlah_material>>>
 
@@ -32,6 +32,8 @@ public:
 
     // dtor
     ~Bangunan();
+
+    Sellable *Clone();
 
     /* Methods */
     // getter

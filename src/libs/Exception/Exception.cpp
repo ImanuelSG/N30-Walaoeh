@@ -3,7 +3,12 @@
 // EXCEPTION UNTUK INPUT
 const char *NumericException::what()
 {
-    return "Input anda tidak valid.\nSilahkan masukkan angka sebagai input.";
+    return "Input anda tidak valid.\nSilahkan masukkan integer sebagai input.";
+}
+
+const char *MoreThanZeroException::what()
+{
+    return "Input yang anda masukkan harus lebih dari 0.\nSilahkan masukkan input yang sesuai.";
 }
 
 const char *InvalidInputException::what()
@@ -42,6 +47,11 @@ const char *LadangFullException::what()
 const char *TernakFullException::what()
 {
     return "Ternak Anda sudah penuh, tidak bisa menjalankan perintah\n";
+}
+
+const char *InventoryNotEnoughException::what()
+{
+    return "Slot inventory Anda tidak cukup, tidak bisa menjalankan perintah\n";
 }
 
 // EXCEPTION UNTUK KURANG

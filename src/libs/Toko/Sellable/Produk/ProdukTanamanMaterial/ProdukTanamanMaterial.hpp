@@ -22,10 +22,14 @@ public:
     // dtor
     ~ProdukTanamanMaterial();
 
+    // Clone
+
+    Sellable *Clone();
+
     /* Methods */
     // getter
     string getJenis();
-    
+
     // Konversi tanaman menjadi produk (material) kalau weight sudah mencapai weight_to_harvest
     vector<ProdukTanamanMaterial> tambahProdukTanamanMaterial(Tanaman &tanaman);
 };

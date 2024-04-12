@@ -9,6 +9,8 @@
 #include <map>
 #include <tuple>
 #include <vector>
+#include <sstream>
+#include <algorithm>
 using namespace std;
 
 bool isValidInput(string input);
@@ -19,7 +21,7 @@ int getRowStorage(string input);
 string getValidInputStorage(string order);
 string intToStringWithLeadingZero(int num);
 string toLowercase(const string &str);
-
+vector<string> getManyInputStorage(const string &order);
 void countdown(int seconds);
 string intToAlphabet(int n);
 void displayReadyPanen(map<string, tuple<vector<string>, int>> &readyItems);
