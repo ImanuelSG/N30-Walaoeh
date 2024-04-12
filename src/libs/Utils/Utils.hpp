@@ -23,4 +23,3 @@ string toLowercase(const string &str);
 void displayReadyPanen(map<string, tuple<list<string>, int>> &readyItems);
 void countdown(int seconds);
 string intToAlphabet(int n);
-void displayReadyPanen(map<string, tuple<vector<string>, int>> &readyItems);
