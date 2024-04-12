@@ -4,6 +4,7 @@
 #include <vector>
 #include "Storage/Storage.hpp"
 #include "../Toko/Sellable/Sellable.hpp"
+#include "../Toko/Toko.hpp"
 #include "../Exception/Exception.hpp"
 #include "../Utils/Utils.hpp"
 
@@ -98,8 +99,8 @@ public:
      */
     virtual void bangunBangunan();
     virtual void kasihMakan();
-    virtual void beli();
-    virtual void jual();
+    void beli(Toko &toko);
+    void jual(Toko &toko);
     virtual void addPlantAge();
     virtual void panen();
     /**
@@ -109,7 +110,7 @@ public:
      * @return index pemain baru (untuk menentukan urutan main nantinya)
      */
     virtual int tambahPemain(vector<Pemain *> &pemain);
-    virtual int getKKP()  = 0;
+    virtual int getKKP() = 0;
     virtual string getRole() const = 0;
 
     static int getUkuranInventoryN();

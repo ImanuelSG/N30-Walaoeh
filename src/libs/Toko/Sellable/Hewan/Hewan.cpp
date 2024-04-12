@@ -38,6 +38,11 @@ Hewan::~Hewan()
     // cout << "Hewan " << this->getNamaBarang() << " telah dihapus" << std::endl;
 }
 
+Sellable *Hewan::Clone()
+{
+    return new Hewan(*this);
+}
+
 /* Methods */
 // getter
 string Hewan::getJenis()
@@ -109,7 +114,6 @@ Hewan Hewan::tambahHewanConfig(ifstream &file)
     return hewan;
 }
 
-
 void Hewan::tambahWeightHewan(int weight)
 {
     this->weight += weight;
@@ -171,18 +175,19 @@ bool Hewan::isHarvestValid()
 //     return getKodeHurufHewan() == "DCK";
 // }
 
-
 void Hewan::loadHewanConfig(string path)
 {
     ifstream inputFile(path);
-    if (!inputFile.is_open()) {
+    if (!inputFile.is_open())
+    {
         throw FileNotFoundException();
     }
 
-    string line; 
+    string line;
     int id, weightToHarvest, price;
     string code, name, type, origin;
-    while (getline(inputFile, line)) {
+    while (getline(inputFile, line))
+    {
         istringstream iss(line);
         iss >> id >> code >> name >> type >> weightToHarvest >> price;
         animalMap[name] = make_tuple(id, code, type, weightToHarvest, price);

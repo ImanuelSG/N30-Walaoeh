@@ -22,6 +22,10 @@ public:
     // dtor
     ~ProdukTanamanMaterial();
 
+    // Clone
+
+    Sellable *Clone();
+
     /* Methods */
     // getter
     string getJenis();

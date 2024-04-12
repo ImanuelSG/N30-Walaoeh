@@ -15,11 +15,11 @@ class Tanaman : public Sellable
 {
 private:
     string tipe_tanaman;
+    int id_tanaman = 1;
     int age;
     int duration_to_harvest;
 
 public:
-    int id_tanaman = 1;
     static map<string, tuple<int, string, string, int, int>> plantMap;
 
     // ctor default
@@ -31,13 +31,15 @@ public:
     // operator overloading
     Tanaman &operator=(const Tanaman &other);
 
+    Sellable *Clone();
+
     // dtor
     ~Tanaman();
 
     /* Methods */
     // getter
     string getJenis();
-    
+
     int getIdTanaman();
     string getTipeTanaman();
     int getAge();

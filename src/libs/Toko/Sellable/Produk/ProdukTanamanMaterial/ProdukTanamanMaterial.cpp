@@ -42,6 +42,11 @@ ProdukTanamanMaterial &ProdukTanamanMaterial::operator=(const ProdukTanamanMater
 // dtor
 ProdukTanamanMaterial::~ProdukTanamanMaterial() {}
 
+//
+Sellable *ProdukTanamanMaterial::Clone()
+{
+    return new ProdukTanamanMaterial(*this);
+}
 /* Methods */
 // getter
 string ProdukTanamanMaterial::getJenis()

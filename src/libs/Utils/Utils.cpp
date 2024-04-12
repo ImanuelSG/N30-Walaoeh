@@ -67,6 +67,59 @@ string getValidInputStorage(string order)
     return input;
 }
 
+vector<string> getManyInputStorage(const string &order)
+{
+    string input;
+    vector<string> slots;
+    bool valid;
+
+    cin.clear();
+    do
+    {
+
+        cout << order << " : ";
+
+        getline(cin, input);
+
+        // Split input by comma and space
+        istringstream iss(input);
+        string slot;
+        while (getline(iss, slot, ','))
+        {
+            // Remove leading and trailing spaces from the slot
+            slot.erase(0, slot.find_first_not_of(" \t\n\r\f\v"));
+            slot.erase(slot.find_last_not_of(" \t\n\r\f\v") + 1);
+
+            // Check if the slot is valid
+            valid = isValidInput(slot);
+            if (!valid)
+            {
+                cout << "Slot " << slot << " tidak valid. Masukkan dengan format yang benar.\n";
+                slots.clear();
+                break; // Break the loop if any slot is invalid
+                        }
+            else
+            {
+                // Check if the slot is already in the vector
+                if (find(slots.begin(), slots.end(), slot) != slots.end())
+                {
+                    cout << "Slot " << slot << " sudah dimasukkan sebelumnya. Masukkan slot yang unik. Silahkan ulangi input\n";
+                    valid = false; // Mark input as invalid
+                    // Refresh slots
+                    slots.clear();
+                    break; // Break the loop if slot is duplicate
+                }
+                else
+                {
+                    slots.push_back(slot);
+                }
+            }
+        }
+    } while (!valid);
+
+    return slots;
+}
+
 string intToStringWithLeadingZero(int num)
 {
     if (num < 10)

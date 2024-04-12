@@ -178,12 +178,205 @@ void Pemain::panen()
     throw PanenInputException();
 }
 
-void Pemain::beli()
+void Pemain::beli(Toko &toko)
 {
+    // Display all buyable for a certain role
+    toko.displayAllBuyableItem(getRole());
+    cout << endl;
+
+    cout << "Uang Anda : " << getGulden() << " gulden" << endl;
+    cout << "Slot penyimpanan tersedia : " << inventory.countEmptySlot() << endl;
+
+    // Get the input
+    int num;
+    do
+    {
+        cout << "Masukkan nomor barang yang ingin dibeli: ";
+        cin >> num;
+
+        if (cin.fail())
+        {
+            cin.clear();
+            cin.ignore();
+            cout << "Input tidak valid, silahkan coba lagi" << endl;
+        }
+        else if (!toko.isValidItem(num, getRole()))
+        {
+            cout << "Input tidak valid, silahkan coba lagi" << endl;
+        }
+
+    } while (!toko.isValidItem(num, getRole()));
+    // Get the quantity
+    int quantity;
+
+    cout << "Kuantitas : ";
+    cin >> quantity;
+    // Case not a number
+
+    if (cin.fail())
+    {
+        cin.clear();
+        cin.ignore();
+        throw NumericException();
+    }
+    // Case item less than 0
+
+    if (quantity <= 0)
+    {
+        throw MoreThanZeroException();
+    }
+
+    // Case quantity too much
+
+    if (inventory.countEmptySlot() < quantity)
+    {
+        throw InventoryNotEnoughException();
+    }
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    // All things validated so we can buy the item
+    tuple<Sellable *, int> item = toko.Beli(num, getRole(), getGulden(), quantity);
+
+    cout << "Selamat Anda berhasil membeli " << quantity << " " << get<0>(item)->getNamaBarang() << endl
+         << " dengan total harga " << get<1>(item) << " gulden" << endl;
+
+    setGulden(getGulden() - get<1>(item));
+    cout << "Sisa uang Anda : " << getGulden() << " gulden" << endl;
+
+    cout << "Pilih slot untuk menyimpan barang yang Anda beli!" << endl;
+
+    cetakPenyimpanan();
+
+    // Get the slot
+    bool valid = false;
+    do
+    {
+
+        // Parse input
+        vector<string> slot = getManyInputStorage("Petak Slot");
+
+        // check if all input is not empty
+        if (slot.empty())
+        {
+            cout << "Input tidak valid, silahkan coba lagi" << endl;
+            continue;
+        }
+
+        if (slot.size() != quantity)
+        {
+            cout << "Jumlah slot yang dimasukkan tidak sesuai dengan jumlah barang yang dibeli" << endl;
+            continue;
+        }
+
+        for (auto pos : slot)
+        {
+            int row = getRowStorage(pos);
+            int col = getColStorage(pos[0]);
+            if (inventory.getElementAddress(row, col) != nullptr)
+            {
+                cout << "Slot " << pos << " sudah terisi, silahkan pilih slot lain" << endl;
+                break;
+            }
+            if (
+                row < 0 || row >= inventory.getRow() || col < 0 || col >= inventory.getCol())
+            {
+                cout << "Slot " << pos << " tidak valid, silahkan pilih slot lain" << endl;
+                break;
+            }
+
+            // if all slot is valid
+            if (pos == slot.back())
+            {
+                Sellable *copy = get<0>(item)->Clone();
+
+                for (auto pos : slot)
+                {
+                    int row = getRowStorage(pos);
+                    int col = getColStorage(pos[0]);
+                    inventory.insert(row, col, *(get<0>(item)));
+                }
+                valid = true;
+
+                // Put the item to the inventory
+            }
+        }
+    } while (!valid);
+
+    cout << get<0>(item)->getNamaBarang() << " berhasil disimpan di penyimpanan" << endl;
 }
 
-void Pemain::jual()
+void Pemain::jual(Toko &toko)
 {
+    if (inventory.isEmpty())
+    {
+        throw InventoryEmptyException();
+    }
+    // Display slots
+    cout << "Berikut merupakan penyimpanan Anda" << endl;
+    display(inventory);
+    cout << endl;
+
+    // Get the item to be sold
+
+    // Get the slot
+    bool valid = false;
+    vector<string> slot;
+    vector<Sellable *> items;
+
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    do
+    {
+        slot = getManyInputStorage("Petak Slot");
+        for (auto pos : slot)
+        {
+            int row = getRowStorage(pos);
+            int col = getColStorage(pos[0]);
+
+            if (
+                row < 0 || row >= inventory.getRow() || col < 0 || col >= inventory.getCol())
+            {
+                cout << "Slot " << pos << " tidak valid, silahkan pilih slot lain" << endl;
+                break;
+            }
+            if (inventory.getElementAddress(row, col) == nullptr)
+            {
+                cout << "Slot " << pos << " tidak berisi barang, silahkan pilih slot yang valid" << endl;
+                break;
+            }
+
+            // if all slot is valid (we reached the end interation, sell the selected item)
+            if (pos == slot.back())
+            {
+                // Put the item want to be sold into the vector array of items
+                for (auto pos : slot)
+                {
+                    int row = getRowStorage(pos);
+                    int col = getColStorage(pos[0]);
+                    Sellable *item = inventory.getElementAddress(row, col);
+                    items.push_back(item);
+                }
+                valid = true;
+            }
+        }
+    } while (!valid);
+
+    // Sell the item to the shop
+    int hasilJual = toko.Jual(items, this->getRole());
+    setGulden(getGulden() + hasilJual);
+
+    // Delete from inventory
+
+    for (auto pos : slot)
+    {
+        int row = getRowStorage(pos);
+        int col = getColStorage(pos[0]);
+        inventory.deleteAt(row, col);
+    }
+
+    cout << "Barang Anda berhasil dijual!" << endl
+         << "Uang Anda bertambah " << hasilJual << " gulden" << endl;
 }
 
 void Pemain::addPlantAge()

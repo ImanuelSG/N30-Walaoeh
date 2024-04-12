@@ -21,8 +21,13 @@ ProdukTanamanBuah::ProdukTanamanBuah()
 }
 
 // ctor user defined
-ProdukTanamanBuah::ProdukTanamanBuah(int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga):Produk(id, kode, nama_produk, tipe_produk_tanaman_buah, origin, added_weight, harga)
+ProdukTanamanBuah::ProdukTanamanBuah(int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga) : Produk(id, kode, nama_produk, tipe_produk_tanaman_buah, origin, added_weight, harga)
 {
+}
+
+Sellable *ProdukTanamanBuah::Clone()
+{
+    return new ProdukTanamanBuah(*this);
 }
 
 // operator overloading

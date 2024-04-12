@@ -24,7 +24,6 @@ public:
     static map<string, vector<tuple<int, string, string, string, int, int>>> productOriginMap;
     static map<string, tuple<int, string, string, string, int, int>> productMap;
 
-
     // ctor default
     Produk();
 
@@ -36,6 +35,7 @@ public:
 
     // dtor
     virtual ~Produk();
+
 
     /* Methods */
     // getter
@@ -53,7 +53,6 @@ public:
     // load config to productMap
     static void loadProductOriginConfig(string path);
     static void loadProductConfig(string path);
-
 };
 
 #endif

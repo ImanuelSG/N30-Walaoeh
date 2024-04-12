@@ -22,8 +22,11 @@ public:
     // dtor
     ~ProdukTanamanBuah();
 
+    // Clone
+    Sellable *Clone();
+
     /* Methods */
-    // getter   
+    // getter
     string getJenis();
     bool isEdible() override;
 };
