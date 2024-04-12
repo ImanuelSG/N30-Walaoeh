@@ -166,7 +166,111 @@ void GameWorld::saveGameState()
     cout << "Game State Saved!" << endl;
 }
 
-void GameWorld::loadGameState()
-{
+void GameWorld::loadGameState(Toko& t)
+{   
+    string path;
+    cout << "Masukkan lokasi berkas state: "; cin >> path;
+
+    ifstream inputFile(path);
+    if (!inputFile.is_open()) {
+        throw FileNotFoundException();
+    }
+
+    int playerCount;
+    inputFile >> playerCount;
+
+    string username, role;
+    int berat_badan, uang, itemCount;
+    for (int i = 0; i < playerCount; i++) {
+        inputFile >> username >> role >> berat_badan >> uang;
+
+        Pemain* player;
+        if (role == "Peternak") {
+            player = new Peternak(username, uang, berat_badan);
+        } else if (role == "Petani") {
+            player = new Petani(username, uang, berat_badan);
+        } else if (role == "Walikota") {
+            player = new Walikota(username, uang, berat_badan);
+        }
+
+        inputFile >> itemCount;
+        string itemName;
+        Sellable *item = nullptr;
+        for (int j = 0; j < itemCount; j++) {
+            inputFile >> itemName;
+            if (Produk::productMap.find(itemName) != Produk::productMap.end())
+            {
+                tuple<int, string, string, string, int, int> product_item_tuple = Produk::productMap[itemName];
+
+                if (get<3>(product_item_tuple) == "PRODUCT_MATERIAL_PLANT")
+                {
+                    item = new ProdukTanamanMaterial(get<0>(product_item_tuple), get<1>(product_item_tuple), itemName, get<3>(product_item_tuple), get<2>(product_item_tuple), get<4>(product_item_tuple), get<5>(product_item_tuple));
+                }
+                else if (get<3>(product_item_tuple) == "PRODUCT_FRUIT_PLANT")
+                {
+                    item = new ProdukTanamanBuah(get<0>(product_item_tuple), get<1>(product_item_tuple), itemName, get<3>(product_item_tuple), get<2>(product_item_tuple), get<4>(product_item_tuple), get<5>(product_item_tuple));
+                }
+                else if (get<3>(product_item_tuple) == "PRODUCT_ANIMAL")
+                {
+                    item = new ProdukHewan(get<0>(product_item_tuple), get<1>(product_item_tuple), itemName, get<3>(product_item_tuple), get<2>(product_item_tuple), get<4>(product_item_tuple), get<5>(product_item_tuple));
+                }
+            }
+            if (Bangunan::list_of_bangunan.find(itemName) != Bangunan::list_of_bangunan.end())
+            {
+                tuple<string, int, map<string, int>, int> bangunan_item_tuple = Bangunan::list_of_bangunan[itemName];
+
+                item = new Bangunan(get<3>(bangunan_item_tuple), get<0>(bangunan_item_tuple), itemName, get<1>(bangunan_item_tuple), get<2>(bangunan_item_tuple));
+            }
+            if (Hewan::animalMap.find(itemName) != Hewan::animalMap.end())
+            {
+                tuple<int, string, string, int, int> hewan_item_tuple = Hewan::animalMap[itemName];
+
+                item = new Hewan(get<0>(hewan_item_tuple), get<1>(hewan_item_tuple), itemName, get<2>(hewan_item_tuple), 0, get<3>(hewan_item_tuple), get<4>(hewan_item_tuple));
+            }
+            if (Tanaman::plantMap.find(itemName) != Tanaman::plantMap.end())
+            {
+                tuple<int, string, string, int, int> tanaman_item_tuple = Tanaman::plantMap[itemName];
+
+                item = new Tanaman(get<0>(tanaman_item_tuple), get<1>(tanaman_item_tuple), itemName, get<2>(tanaman_item_tuple), 0, get<3>(tanaman_item_tuple), get<4>(tanaman_item_tuple));
+            }
+
+            // todo : insert item into player's inventory
+        }
+        if (role == "Peternak") {
+            int ranch_animals;
+            inputFile >> ranch_animals;
+
+            for (int i = 0; i < ranch_animals; i++) {
+                Hewan* hewan = nullptr;
+                string petak, animalName; int weight;
+                inputFile >> petak >> animalName >> weight;
+
+                tuple<int, string, string, int, int> hewan_item_tuple = Hewan::animalMap[animalName];
+                hewan = new Hewan(get<0>(hewan_item_tuple), get<1>(hewan_item_tuple), animalName, get<2>(hewan_item_tuple), weight, get<3>(hewan_item_tuple), get<4>(hewan_item_tuple));
+
+                // insert_animal_to_ranch() ato apalah
+            }
+        }
+        if (role == "Petani") {
+            int field_plants;
+            inputFile >> field_plants;
+
+            for (int i = 0; i < field_plants; i++) {
+                Tanaman* tanaman = nullptr;
+                string petak, plantName; int weight;
+                inputFile >> petak >> plantName >> weight;
+
+                tuple<int, string, string, int, int> tanaman_item_tuple = Tanaman::plantMap[plantName];
+                tanaman = new Tanaman(get<0>(tanaman_item_tuple), get<1>(tanaman_item_tuple), plantName, get<2>(tanaman_item_tuple), weight, get<3>(tanaman_item_tuple), get<4>(tanaman_item_tuple));
+
+                // insert_plant_to_field() ato apalah
+            }
+        }
+        listOfPLayers.push_back(player);
+    }
+
+    t.MuatStateToko(inputFile);
+
+    inputFile.close();
     cout << "Game State Loaded!" << endl;
 }

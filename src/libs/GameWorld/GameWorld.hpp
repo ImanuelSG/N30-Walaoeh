@@ -4,9 +4,15 @@
 #include <sstream>
 #include <fstream>
 #include "../CommandManager/CommandManager.hpp"
+#include "../Toko/Toko.hpp"
 #include "../Toko/Sellable/Hewan/Hewan.hpp"
 #include "../Toko/Sellable/Tanaman/Tanaman.hpp"
 #include "../Toko/Sellable/Produk/Produk.hpp"
+#include "../Toko/Sellable/Produk/Produk.hpp"
+#include "../Toko/Sellable/Produk/Produk.hpp"
+#include "../Toko/Sellable/Produk/ProdukHewan/ProdukHewan.hpp"
+#include "../Toko/Sellable/Produk/ProdukTanamanBuah/ProdukTanamanBuah.hpp"
+#include "../Toko/Sellable/Produk/ProdukTanamanMaterial/ProdukTanamanMaterial.hpp"
 #include "../Toko/Sellable/Bangunan/Bangunan.hpp"
 #include "../Pemain/Walikota/Walikota.hpp"
 #include "../Pemain/Petani/Petani.hpp"
@@ -33,6 +39,6 @@ public:
     void initializeConfigs();
     void loadMiscConfig(string path);
     void saveGameState();
-    void loadGameState();
+    void loadGameState(Toko& t);
     void initializeDefaultGame();
 };
