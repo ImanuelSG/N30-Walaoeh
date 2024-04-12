@@ -49,38 +49,43 @@ bool ProdukHewan::isEdible() {
 }
 
 /* Methods */
-ProdukHewan ProdukHewan::tambahProdukHewanHerbivora(Hewan &hewan)
+vector<ProdukHewan> ProdukHewan::tambahProdukHewanHerbivora(Hewan &hewan)
 {
-    tuple<int, string, string, string, int, int> produk_herbivora_tuple = Produk::productOriginMap[hewan.getNamaBarang()];
-    ProdukHewan produk_hewan_baru = ProdukHewan(get<0>(produk_herbivora_tuple), get<1>(produk_herbivora_tuple), get<2>(produk_herbivora_tuple), get<3>(produk_herbivora_tuple), hewan.getNamaBarang(), get<4>(produk_herbivora_tuple), get<5>(produk_herbivora_tuple));
+    vector<tuple<int, string, string, string, int, int>> produk_herbivora_vector = Produk::productOriginMap[hewan.getNamaBarang()];
+    vector<ProdukHewan> produk_hewan_baru_list;
 
-    return produk_hewan_baru;
-}
-
-ProdukHewan ProdukHewan::tambahProdukHewanKarnivora(Hewan &hewan)
-{
-    tuple<int, string, string, string, int, int> produk_karnivora_tuple = Produk::productOriginMap[hewan.getNamaBarang()];
-    ProdukHewan produk_hewan_baru = ProdukHewan(get<0>(produk_karnivora_tuple), get<1>(produk_karnivora_tuple), get<2>(produk_karnivora_tuple), get<3>(produk_karnivora_tuple), hewan.getNamaBarang(), get<4>(produk_karnivora_tuple), get<5>(produk_karnivora_tuple));
-
-    return produk_hewan_baru;
-}
-
-pair<ProdukHewan, ProdukHewan> ProdukHewan::tambahProdukHewanOmnivora(Hewan &hewan)
-{
-    ProdukHewan produk_hewan_baru_meat, produk_hewan_baru_egg;
-
-    if (hewan.getKodeHuruf() == "CHK")
-    {
-        produk_hewan_baru_meat = ProdukHewan(14, "CHM", "CHICKEN_MEAT", tipe_produk_hewan, "CHICKEN", 3, 7);
-        produk_hewan_baru_egg = ProdukHewan(16, "CHE", "CHICKEN_EGG", tipe_produk_hewan, "CHICKEN", 1, 4);
-    }
-    else if (hewan.getKodeHuruf() == "DCK")
-    {
-        produk_hewan_baru_meat = ProdukHewan(15, "DCM", "DUCK_MEAT", tipe_produk_hewan, "DUCK", 3, 7);
-        produk_hewan_baru_egg = ProdukHewan(17, "DCE", "DUCK_EGG", tipe_produk_hewan, "DUCK", 2, 4);
+    for (int i = 0; i < produk_herbivora_vector.size(); i++) {
+        ProdukHewan produk_hewan_baru = ProdukHewan(get<0>(produk_herbivora_vector[i]), get<1>(produk_herbivora_vector[i]), get<2>(produk_herbivora_vector[i]), get<3>(produk_herbivora_vector[i]), hewan.getNamaBarang(), get<4>(produk_herbivora_vector[i]), get<5>(produk_herbivora_vector[i]));
+        produk_hewan_baru_list.push_back(produk_hewan_baru);
     }
 
-    return make_pair(produk_hewan_baru_meat, produk_hewan_baru_egg);
+    return produk_hewan_baru_list;
+}
+
+vector<ProdukHewan> ProdukHewan::tambahProdukHewanKarnivora(Hewan &hewan)
+{
+    vector<tuple<int, string, string, string, int, int>> produk_karnivora_vektor = Produk::productOriginMap[hewan.getNamaBarang()];
+    vector<ProdukHewan> produk_hewan_baru_list;
+
+    for (int i = 0; i < produk_karnivora_vektor.size(); i++) {
+        ProdukHewan produk_hewan_baru = ProdukHewan(get<0>(produk_karnivora_vektor[i]), get<1>(produk_karnivora_vektor[i]), get<2>(produk_karnivora_vektor[i]), get<3>(produk_karnivora_vektor[i]), hewan.getNamaBarang(), get<4>(produk_karnivora_vektor[i]), get<5>(produk_karnivora_vektor[i]));
+        produk_hewan_baru_list.push_back(produk_hewan_baru);
+    }
+
+    return produk_hewan_baru_list;
+}
+
+vector<ProdukHewan> ProdukHewan::tambahProdukHewanOmnivora(Hewan &hewan)
+{
+    vector<tuple<int, string, string, string, int, int>> produk_omnivora_vector = Produk::productOriginMap[hewan.getNamaBarang()];
+    vector<ProdukHewan> produk_hewan_baru_list;
+
+    for (int i = 0; i < produk_omnivora_vector.size(); i++) {
+        ProdukHewan produk_hewan_baru = ProdukHewan(get<0>(produk_omnivora_vector[i]), get<1>(produk_omnivora_vector[i]), get<2>(produk_omnivora_vector[i]), get<3>(produk_omnivora_vector[i]), hewan.getNamaBarang(), get<4>(produk_omnivora_vector[i]), get<5>(produk_omnivora_vector[i]));
+        produk_hewan_baru_list.push_back(produk_hewan_baru);
+    }
+
+    return produk_hewan_baru_list;
 }
 
 // static method

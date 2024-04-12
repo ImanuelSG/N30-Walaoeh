@@ -8,7 +8,7 @@
 int Produk::id_produk = 1;
 
 map<string, tuple<int, string, string, string, int, int>> Produk::productMap;
-map<string, tuple<int, string, string, string, int, int>> Produk::productOriginMap;
+map<string, vector<tuple<int, string, string, string, int, int>>> Produk::productOriginMap;
 
 Produk::Produk() : Sellable()
 {
@@ -124,7 +124,7 @@ void Produk::loadProductOriginConfig(string path)
     while (getline(inputFile, line)) {
         istringstream iss(line);
         iss >> id >> code >> name >> type >> origin >> addedWeight >> price;
-        productOriginMap[origin] = make_tuple(id, code, name, type, addedWeight, price);
+        productOriginMap[origin].push_back(make_tuple(id, code, name, type, addedWeight, price));
     }
     inputFile.close();
 

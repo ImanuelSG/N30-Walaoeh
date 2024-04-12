@@ -71,6 +71,7 @@ void Toko::MuatStateToko(string path)
         inputFile >> itemName >> quantity;
 
         Sellable *item = nullptr;
+        Sellable *bangunan = nullptr;
 
         if (Produk::productMap.find(itemName) != Produk::productMap.end())
         {
@@ -93,11 +94,15 @@ void Toko::MuatStateToko(string path)
         {
             tuple<string, int, map<string, int>, int> bangunan_item_tuple = Bangunan::list_of_bangunan[itemName];
 
-            item = new Bangunan(get<3>(bangunan_item_tuple), get<0>(bangunan_item_tuple), itemName, get<1>(bangunan_item_tuple), get<2>(bangunan_item_tuple));
+            bangunan = new Bangunan(get<3>(bangunan_item_tuple), get<0>(bangunan_item_tuple), itemName, get<1>(bangunan_item_tuple), get<2>(bangunan_item_tuple));
         }
         if (item != nullptr)
         {
             items.push_back(make_pair(item, quantity));
+        }
+        if (bangunan != nullptr)
+        {
+            list_bangunan.push_back(make_pair(bangunan, quantity));
         }
     }
     inputFile.close();

@@ -46,9 +46,9 @@ public:
     */
 
     // Konversi hewan menjadi produk (hewan) kalau weight sudah mencapai weight_to_harvest
-    ProdukHewan tambahProdukHewanHerbivora(Hewan &hewan);
-    ProdukHewan tambahProdukHewanKarnivora(Hewan &hewan);
-    static pair<ProdukHewan, ProdukHewan> tambahProdukHewanOmnivora(Hewan& hewan);
+    vector<ProdukHewan> tambahProdukHewanHerbivora(Hewan &hewan);
+    vector<ProdukHewan> tambahProdukHewanKarnivora(Hewan &hewan);
+    vector<ProdukHewan> tambahProdukHewanOmnivora(Hewan& hewan);
 
     // static method
     static ProdukHewan tambahProdukHewan(ifstream &file);

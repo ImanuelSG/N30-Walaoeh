@@ -29,6 +29,18 @@ int main()
         std::cout << "Quantity: " << quantity << std::endl;
         std::cout << std::endl;
     }
+    for (const auto& item : t.list_bangunan) {
+        // Accessing the Sellable object pointer and its quantity
+        Sellable* sellableItem = item.first;
+        int quantity = item.second;
+
+        // Printing the details of the Sellable object
+        std::cout << "Name: " << sellableItem->getNamaBarang() << std::endl;
+        // std::cout << "Code: " << sellableItem->getKod << std::endl;
+        std::cout << "Price: " << sellableItem->getHargaBarang() << std::endl;
+        std::cout << "Quantity: " << quantity << std::endl;
+        std::cout << std::endl;
+    }
 
     return 0;
 }

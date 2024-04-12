@@ -20,7 +20,7 @@ protected:
 
 public:
     static int id_produk;
-    static map<string, tuple<int, string, string, string, int, int>> productOriginMap;
+    static map<string, vector<tuple<int, string, string, string, int, int>>> productOriginMap;
     static map<string, tuple<int, string, string, string, int, int>> productMap;
 
 

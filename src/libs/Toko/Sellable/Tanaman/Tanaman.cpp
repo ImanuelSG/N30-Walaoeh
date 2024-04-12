@@ -17,7 +17,7 @@ Tanaman::Tanaman(int id, string kode, string nama_tanaman, string tipe, int umur
 {
     this->id_tanaman = id;
     this->tipe_tanaman = tipe;
-    this->age = 0;
+    this->age = umur;
     this->duration_to_harvest = durasi_panen;
 }
 
