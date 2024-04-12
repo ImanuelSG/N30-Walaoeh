@@ -95,7 +95,6 @@ bool Bangunan::isValidRecipe(string name)
     return list_of_bangunan.find(name) != list_of_bangunan.end();
 }
 
-
 void Bangunan::loadBangunanConfig(string path)
 {
     ifstream inputFile(path);
@@ -171,7 +170,7 @@ tuple<Sellable *, int, map<string, int>> Bangunan::build(string name, map<string
     else
     {
         // Create the building
-        Sellable *building = new Bangunan(getIdBangunan(), get<0>(data), name, neededGulden, neededMaterials);
+        Sellable *building = new Bangunan(99, get<0>(data), name, neededGulden, neededMaterials);
         return make_tuple(building, neededGulden, neededMaterials);
     }
 };
