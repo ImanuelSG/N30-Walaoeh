@@ -5,15 +5,6 @@
 #include <fstream>
 #include "../CommandManager/CommandManager.hpp"
 #include "../Toko/Toko.hpp"
-#include "../Toko/Sellable/Hewan/Hewan.hpp"
-#include "../Toko/Sellable/Tanaman/Tanaman.hpp"
-#include "../Toko/Sellable/Produk/Produk.hpp"
-#include "../Toko/Sellable/Produk/Produk.hpp"
-#include "../Toko/Sellable/Produk/Produk.hpp"
-#include "../Toko/Sellable/Produk/ProdukHewan/ProdukHewan.hpp"
-#include "../Toko/Sellable/Produk/ProdukTanamanBuah/ProdukTanamanBuah.hpp"
-#include "../Toko/Sellable/Produk/ProdukTanamanMaterial/ProdukTanamanMaterial.hpp"
-#include "../Toko/Sellable/Bangunan/Bangunan.hpp"
 #include "../Pemain/Walikota/Walikota.hpp"
 #include "../Pemain/Petani/Petani.hpp"
 #include "../Pemain/Peternak/Peternak.hpp"
@@ -31,14 +22,54 @@ private:
     Toko toko;
 
 public:
-    GameWorld();
+    /**
+     * @brief Construct a new Game World object
+     *
+     */
+    GameWorld(); /**
+                  * @brief Destroy the Game World object
+                  *
+                  */
     ~GameWorld();
+    /**
+     * @brief Method to start the game, basically running all things
+     *
+     */
     void startGame();
+    /**
+     * @brief Display the header of the game
+     *
+     */
     void displayHeader();
+    /**
+     * @brief Check the endgame condition
+     *
+     */
     void checkEndGame();
+    /**
+     * @brief Initialize all Default Configs
+     *
+     */
     void initializeConfigs();
+    /**
+     * @brief load the game configs (winning conditions etc)
+     *
+     * @param path
+     */
     void loadMiscConfig(string path);
+    /**
+     * @brief Save game state
+     *
+     */
     void saveGameState();
-    void loadGameState(Toko& t);
+    /**
+     * @brief Load game state
+     *
+     */
+    void loadGameState();
+    /**
+     * @brief Initialize default game
+     *
+     */
     void initializeDefaultGame();
 };

@@ -11,8 +11,6 @@ int main()
     MainGame.initializeConfigs();
     cout << endl;
     string ans;
-    Toko t;
-    t.MuatHewanTanamanToko();
     do
     {
         cout << "Apakah anda ingin memuat state? (y/n) ";
@@ -28,7 +26,14 @@ int main()
 
     if (ans == "y" || ans == "Y")
     {
-        MainGame.loadGameState(t);
+        try
+        {
+            MainGame.loadGameState();
+        }
+        catch (FileNotFoundException &e)
+        {
+            cout << e.what() << endl;
+        }
     }
     else
     {

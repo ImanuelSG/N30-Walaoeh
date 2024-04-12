@@ -1,5 +1,4 @@
 #include "Pemain.hpp"
-#include "../Utils/Utils.hpp"
 
 int Pemain::inventory_n = 5;
 int Pemain::inventory_m = 5;

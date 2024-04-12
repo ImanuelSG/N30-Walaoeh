@@ -3,6 +3,9 @@
 GameWorld::GameWorld()
 {
     currPlayerIndex = 0;
+    ended = false;
+    winningGulden = 0;
+    winningWeight = 0;
 }
 
 GameWorld::~GameWorld()
@@ -81,7 +84,7 @@ void GameWorld::checkEndGame()
 {
     Pemain *currPlayer = listOfPLayers[currPlayerIndex];
     {
-        if (currPlayer->getGulden() >= 100 && currPlayer->getBerat() >= 100)
+        if (currPlayer->getGulden() >= winningGulden && currPlayer->getBerat() >= winningWeight)
         {
 
             cout << R"(
@@ -139,7 +142,7 @@ void GameWorld::initializeConfigs()
     Produk::loadProductOriginConfig("./src/libs/FileConfig/product.txt");
     Tanaman::loadTanamanConfig("./src/libs/FileConfig/plant.txt");
     Bangunan::loadBangunanConfig("./src/libs/FileConfig/recipe.txt");
-    ended = false;
+    toko.MuatHewanTanamanToko();
 }
 
 void GameWorld::initializeDefaultGame()
@@ -151,7 +154,6 @@ void GameWorld::initializeDefaultGame()
     listOfPLayers.push_back(pemain1);
     listOfPLayers.push_back(pemain2);
     listOfPLayers.push_back(pemain3);
-    toko.MuatHewanTanamanToko();
 
     // map<string, int> daftarMaterial;
 
@@ -169,13 +171,16 @@ void GameWorld::saveGameState()
     cout << "Game State Saved!" << endl;
 }
 
-void GameWorld::loadGameState(Toko& t)
-{   
+void GameWorld::loadGameState()
+{
+
     string path;
-    cout << "Masukkan lokasi berkas state: "; cin >> path;
+    cout << "Masukkan lokasi berkas state: ";
+    cin >> path;
 
     ifstream inputFile(path);
-    if (!inputFile.is_open()) {
+    if (!inputFile.is_open())
+    {
         throw FileNotFoundException();
     }
 
@@ -184,22 +189,29 @@ void GameWorld::loadGameState(Toko& t)
 
     string username, role;
     int berat_badan, uang, itemCount;
-    for (int i = 0; i < playerCount; i++) {
+    for (int i = 0; i < playerCount; i++)
+    {
         inputFile >> username >> role >> berat_badan >> uang;
 
-        Pemain* player;
-        if (role == "Peternak") {
+        Pemain *player;
+        if (role == "Peternak")
+        {
             player = new Peternak(username, uang, berat_badan);
-        } else if (role == "Petani") {
+        }
+        else if (role == "Petani")
+        {
             player = new Petani(username, uang, berat_badan);
-        } else if (role == "Walikota") {
+        }
+        else if (role == "Walikota")
+        {
             player = new Walikota(username, uang, berat_badan);
         }
 
         inputFile >> itemCount;
         string itemName;
         Sellable *item = nullptr;
-        for (int j = 0; j < itemCount; j++) {
+        for (int j = 0; j < itemCount; j++)
+        {
             inputFile >> itemName;
             if (Produk::productMap.find(itemName) != Produk::productMap.end())
             {
@@ -239,13 +251,16 @@ void GameWorld::loadGameState(Toko& t)
 
             // todo : insert item into player's inventory
         }
-        if (role == "Peternak") {
+        if (role == "Peternak")
+        {
             int ranch_animals;
             inputFile >> ranch_animals;
 
-            for (int i = 0; i < ranch_animals; i++) {
-                Hewan* hewan = nullptr;
-                string petak, animalName; int weight;
+            for (int i = 0; i < ranch_animals; i++)
+            {
+                Hewan *hewan = nullptr;
+                string petak, animalName;
+                int weight;
                 inputFile >> petak >> animalName >> weight;
 
                 tuple<int, string, string, int, int> hewan_item_tuple = Hewan::animalMap[animalName];
@@ -254,13 +269,16 @@ void GameWorld::loadGameState(Toko& t)
                 // insert_animal_to_ranch() ato apalah
             }
         }
-        if (role == "Petani") {
+        if (role == "Petani")
+        {
             int field_plants;
             inputFile >> field_plants;
 
-            for (int i = 0; i < field_plants; i++) {
-                Tanaman* tanaman = nullptr;
-                string petak, plantName; int weight;
+            for (int i = 0; i < field_plants; i++)
+            {
+                Tanaman *tanaman = nullptr;
+                string petak, plantName;
+                int weight;
                 inputFile >> petak >> plantName >> weight;
 
                 tuple<int, string, string, int, int> tanaman_item_tuple = Tanaman::plantMap[plantName];
@@ -272,8 +290,12 @@ void GameWorld::loadGameState(Toko& t)
         listOfPLayers.push_back(player);
     }
 
-    t.MuatStateToko(inputFile);
+    toko.MuatStateToko(inputFile);
 
     inputFile.close();
+
+    sort(listOfPLayers.begin(), listOfPLayers.end(), [](const Pemain *p1, const Pemain *p2)
+         { return p1->getName() < p2->getName(); });
+
     cout << "Game State Loaded!" << endl;
 }
