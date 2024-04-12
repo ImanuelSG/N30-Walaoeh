@@ -8,7 +8,7 @@
 int Produk::id_produk = 1;
 
 map<string, tuple<int, string, string, string, int, int>> Produk::productMap;
-map<string, tuple<int, string, string, string, int, int>> Produk::productOriginMap;
+map<string, vector<tuple<int, string, string, string, int, int>>> Produk::productOriginMap;
 
 Produk::Produk() : Sellable()
 {
@@ -124,15 +124,17 @@ void Produk::loadProductOriginConfig(string path)
     while (getline(inputFile, line)) {
         istringstream iss(line);
         iss >> id >> code >> name >> type >> origin >> addedWeight >> price;
-        productOriginMap[origin] = make_tuple(id, code, name, type, addedWeight, price);
+        productOriginMap[origin].push_back(make_tuple(id, code, name, type, addedWeight, price));
     }
     inputFile.close();
 
     // how to access
-    // for (const auto& pair : productOriginMap) {
-    //     std::cout << "Origin: " << pair.first << ", ID: " << get<0>(pair.second)
-    //               << ", Code: " << get<1>(pair.second) << ", Name: " << get<2>(pair.second)
-    //               << ", Type: " << get<3>(pair.second) << ", Weight: " << get<4>(pair.second)
-    //               << ", Price: " << get<5>(pair.second) << endl;
-    // }
+    for (const auto& pair : productOriginMap) {
+        cout << "Origin: " << pair.first << endl;
+        for (const auto& product_tuple : pair.second) {
+            cout << "ID: " << get<0>(product_tuple) << ", Code: " << get<1>(product_tuple) 
+            << ", Name: " << get<2>(product_tuple) << ", Type: " << get<3>(product_tuple) 
+            << ", Weight: " << get<4>(product_tuple) << ", Price: " << get<5>(product_tuple) << endl;
+        }
+    }
 }
