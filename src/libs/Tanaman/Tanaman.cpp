@@ -180,7 +180,7 @@ void Tanaman::loadTanamanConfig(string path)
     while (getline(inputFile, line)) {
         istringstream iss(line);
         iss >> id >> code >> name >> type >> durationToHarvest >> price;
-        plantMap[code] = make_tuple(id, name, type, durationToHarvest, price);
+        plantMap[name] = make_tuple(id, code, type, durationToHarvest, price);
     }
     inputFile.close();
 

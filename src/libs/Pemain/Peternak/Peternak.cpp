@@ -21,7 +21,8 @@ void Peternak::ternak()
     }
 
     cout << "Pilih hewan dari penyimpanan" << endl;
-    bool valid = false;
+    display(inventory);
+    bool valid= false;
     string slot;
     int col = 0;
     int row = 0;
@@ -30,27 +31,46 @@ void Peternak::ternak()
     // Slot inventory
     do
     {
-        slot = getValidInputStorage("Slot");
-
-        col = getColStorage(slot[0]);
-        row = getRowStorage(slot);
-
-        item = inventory.getElementAddress(row, col);
-        if (item->getJenis() == "HEWAN")
+        bool acc = false;
+        int col = 0; int row = 0;
+        do
         {
-            valid = true;
-        }
-        else
+            slot = getValidInputStorage("Slot");
+
+            col = getColStorage(slot[0]);
+            row = getRowStorage(slot);
+
+            if (col < 0 || col > inventory.getCol() || row < 0 || row > inventory.getRow())
+            {
+                cout << "Masukkan lokasi petak yang sesuai!" << endl;
+            }
+            else
+            {
+                acc = true;
+            }
+            
+        } while (!acc);
+
+        item = inventory.getElementAddress(row,col);
+
+        if (item != nullptr)
         {
-            cout << "Barang pada slot tersebut bukanlah Hewan.\n Silakan pilih Slot lain!\n";
+            if (item->getJenis() == "HEWAN"){
+                valid = true;
+            }
+            else
+            {
+                cout << "Barang pada slot tersebut bukanlah Hewan.\n Silakan pilih Slot lain!\n";
+            }
         }
     } while (!valid);
 
+    cout << "Kamu memilih " << item->getNamaBarang() << "." << endl;
     cout << "Pilih petak tanah yang akan ditinggali" << endl;
 
-    cetakPeternakan();
+    display(peternakan);
 
-    bool isEmpty = false;
+    valid = false;
     string petak;
     int colP = 0;
     int rowP = 0;
@@ -59,22 +79,35 @@ void Peternak::ternak()
     // validasi kosong ato gak
     do
     {
-        petak = getValidInputStorage("Petak tanah");
-
-        colP = getColStorage(petak[0]);
-        rowP = getRowStorage(petak);
-
-        cekPetak = peternakan.getElementAddress(rowP, colP);
-        if (cekPetak == nullptr)
+        bool acc = false;
+        do
         {
-            isEmpty = true;
-        }
-        else
-        {
+            slot = getValidInputStorage("Petak tanah");
+
+            colP = getColStorage(slot[0]);
+            rowP = getRowStorage(slot);
+
+            if (colP< 0 || colP > peternakan.getCol() || rowP < 0 || rowP > peternakan.getRow())
+            {
+                cout << "Masukkan lokasi petak yang sesuai!" << endl;
+            }
+            else
+            {
+                acc = true;
+            }
+            
+        } while (!acc);
+
+        cekPetak = peternakan.getElementAddress(rowP,colP);
+        if (cekPetak == nullptr){
+            valid = true;
+
+        } else {
             cout << "Petak yang anda pilih tidak kosong.\n Silakan pilih petak kosong." << endl;
         }
 
-    } while (!isEmpty);
+    } while (!valid);
+    
 
     // Petak dipilih sudah kosong
 
@@ -94,9 +127,8 @@ void Peternak::kasihMakan()
         throw TernakEmptyException();
     }
 
-    // klo gak ada makanannya beri pesan aja
     cout << "Pilih petak kandang yang akan ditinggali" << endl;
-    cetakPeternakan();
+    display(peternakan);
     bool isEmpty = true;
     string petak;
     int colP = 0;
@@ -106,10 +138,24 @@ void Peternak::kasihMakan()
     // validasi kosong ato gak
     do
     {
-        petak = getValidInputStorage("Petak kandang");
+        bool acc = false;
+        do
+        {
+            petak = getValidInputStorage("Petak Kandang");
 
-        colP = getColStorage(petak[0]);
-        rowP = getRowStorage(petak);
+            colP = getColStorage(petak[0]);
+            rowP = getRowStorage(petak);
+
+            if (colP < 0 || colP > inventory.getCol() || rowP < 0 || rowP > inventory.getRow())
+            {
+                cout << "Masukkan lokasi petak yang sesuai!" << endl;
+            }
+            else
+            {
+                acc = true;
+            }
+            
+        } while (!acc);
 
         hewan = peternakan.getElementAddress(rowP, colP);
         if (hewan == nullptr)
@@ -127,33 +173,53 @@ void Peternak::kasihMakan()
          << endl;
     cout << "Pilih pangan yang akan diberikan: " << endl;
 
+
     string tipeHewan = hewan->getTipeHewan();
     // cek ada makanan tipe itu atau gak
-    if (isMakananAvailable(tipeHewan))
-    {
-        cetakPenyimpanan();
-        string slot = getValidInputStorage("Slot");
-        int col = getColStorage(slot[0]);
-        int row = getRowStorage(slot);
-        Sellable *item = inventory.getElementAddress(row, col);
+    if (isMakananAvailable(tipeHewan)){
+        display(inventory);
 
-        if (!(item->getJenis() == "PRODUK_TANAMAN_BUAH") || !(item->getJenis() == "PRODUK_HEWAN"))
+        bool acc = false;
+        int col = 0; int row = 0;
+        do
         {
-            throw InvalidProdukException();
-        }
-        else
-        {
-            if ((hewan->isCarnivore() && (item->getJenis() == "PRODUK_HEWAN")) || (hewan->isHerbivore() && (item->getJenis() == "PRODUK_TANAMAN_BUAH")) || (hewan->isOmnivore() && ((item->getJenis() == "PRODUK_TANAMAN_BUAH") || (item->getJenis() == "PRODUK_HEWAN"))))
+            string slot = getValidInputStorage("Slot");
+
+            int col = getColStorage(slot[0]);
+            int row = getRowStorage(slot);
+
+            if (col < 0 || col > inventory.getCol() || row < 0 || row > inventory.getRow())
             {
-                // tambah berat
-                hewan->setWeight(hewan->getWeight() + 1);
-                cout << hewan->getKodeHuruf() << "sudah diberi makan dan beratnya menjadi " << hewan->getWeight() << endl;
-                // hapus barang dri inventory
-                inventory.deleteAt(col, row);
+                cout << "Masukkan lokasi petak yang sesuai!" << endl;
             }
             else
             {
-                throw InvalidJenisMakananException();
+                acc = true;
+            }
+            
+        } while (!acc);
+        Sellable* item = inventory.getElementAddress(row,col);
+
+        if (item != nullptr)
+        {
+
+            if(!(item->getJenis() == "PRODUK_TANAMAN_BUAH") || !(item->getJenis() == "PRODUK_HEWAN")){
+                throw InvalidProdukException(); 
+            }
+            else
+            {
+                if ((hewan->isCarnivore() && (item->getJenis() == "PRODUK_HEWAN")) || (hewan->isHerbivore() && (item->getJenis() == "PRODUK_TANAMAN_BUAH")) || (hewan->isOmnivore() && ((item->getJenis() == "PRODUK_TANAMAN_BUAH") || (item->getJenis() == "PRODUK_HEWAN"))))
+                {
+                    // tambah berat
+                    hewan->setWeight(hewan->getWeight() + item->getAddedWeight());
+                    cout << hewan->getKodeHuruf() << "sudah diberi makan dan beratnya menjadi " << hewan->getWeight() << endl;
+                    // hapus barang dri inventory
+                    inventory.deleteAt(col,row);
+                }
+                else
+                {
+                    throw InvalidJenisMakananException();
+                }
             }
         }
     }
@@ -172,7 +238,7 @@ void Peternak::panen()
     displayItems(peternakan);
 
     cout << "Pilih hewan siap panen yang kamu miliki" << endl;
-    auto readyItems = readyPanen<Hewan>(peternakan);
+    auto readyItems = readyPanen(peternakan);
     displayReadyPanen(readyItems);
 
     string chosenItem;
@@ -271,7 +337,15 @@ void Peternak::panen()
     }
 }
 
-void Peternak::cetakPeternakan() {}
+void Peternak::cetakPeternakan() 
+{
+    display(peternakan);
+    if (!peternakan.isEmpty())
+    {
+        displayItems(peternakan);
+        cout << endl;
+    }
+}
 
 void Peternak::beli() {}
 
@@ -280,9 +354,9 @@ void Peternak::jual() {}
 int Peternak::getKekayaan()
 {
     int count = Pemain::getKekayaan();
-    for (int i = 0; i < ternak_n; i++)
+    for (int i = 0; i < peternakan.getRow(); i++)
     {
-        for (int j = 0; j < ternak_m; j++)
+        for (int j = 0; j < peternakan.getCol(); j++)
         {
             Hewan *item = peternakan.getElementAddress(i, j);
             if (item != nullptr)
@@ -294,35 +368,46 @@ int Peternak::getKekayaan()
     return count;
 }
 
-int Peternak::countHewanInventory() { return 0; }
-
-bool Peternak::isMakananAvailable(string tipeHewan)
-{
-    for (int i = 0; i < inventory_n; i++)
-    {
-        for (int j = 0; j < inventory_m; j++)
-        {
-            Sellable *item = inventory.getElementAddress(i, j);
-
-            if (tipeHewan == "CARNIVORE")
+int Peternak::countHewanInventory(){
+    int count = 0;
+    for (int i = 0; i < inventory.getRow(); i++) {
+        for (int j = 0; j < inventory.getCol(); j++) {
+            Sellable* item = inventory.getElementAddress(i,j);
+            if (item != nullptr)
             {
-                if ((item->getJenis() == "PRODUK_HEWAN"))
-                {
-                    return true;
+                if (item->getJenis() == "HEWAN"){
+                    count++;
                 }
             }
-            else if (tipeHewan == "HERBIVORE")
+        }
+    }
+    return count;
+}
+
+bool Peternak::isMakananAvailable(string tipeHewan){
+    for (int i = 0; i < inventory.getRow(); i++) {
+        for (int j = 0; j < inventory.getCol(); j++) {
+            Sellable* item = inventory.getElementAddress(i,j);
+            
+            if (item != nullptr)
             {
-                if ((item->getJenis() == "PRODUK_TANAMAN_BUAH"))
+                if (tipeHewan == "CARNIVORE")
                 {
-                    return true;
+                    if ((item->getJenis() == "PRODUK_HEWAN")){
+                        return true;
+                    }
                 }
-            }
-            else if (tipeHewan == "OMNIVORE")
-            {
-                if ((item->getJenis() == "PRODUK_HEWAN") || (item->getJenis() == "PRODUK_TANAMAN_BUAH"))
+                else if (tipeHewan == "HERBIVORE")
                 {
-                    return true;
+                    if ((item->getJenis() == "PRODUK_TANAMAN_BUAH")){
+                        return true;
+                    }
+                }
+                else if (tipeHewan == "OMNIVORE")
+                {
+                    if ((item->getJenis() == "PRODUK_HEWAN") || (item->getJenis() == "PRODUK_TANAMAN_BUAH")){
+                        return true;
+                    }
                 }
             }
         }
@@ -349,7 +434,7 @@ void display<Hewan>(const Storage<Hewan> &storage)
     {
         cout << "=";
     }
-    cout << "[ Ladang ]";
+    cout << "[ Ternak ]";
     for (int i = 0; i < numOfEq; i++)
     {
         cout << "=";
@@ -457,11 +542,14 @@ void displayItems<Hewan>(const Storage<Hewan> &storage)
         for (Hewan *value : innerVector)
         {
             map<string, string> itemMap;
-            itemMap[value->getKodeHuruf()] = value->getNamaBarang();
-            Items.insert(itemMap);
+            if (value != nullptr)
+            {
+                itemMap[value->getKodeHuruf()] = value->getNamaBarang();
+                Items.insert(itemMap);
+            }
         }
     }
-    for (const auto &item : Items)
+    for (const auto& item : Items)
     {
         for (const auto &pair : item)
         {

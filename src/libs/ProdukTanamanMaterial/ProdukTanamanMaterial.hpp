@@ -27,7 +27,7 @@ public:
     string getJenis();
     
     // Konversi tanaman menjadi produk (material) kalau weight sudah mencapai weight_to_harvest
-    // ProdukTanamanMaterial tambahProdukTanamanMaterial(Tanaman &tanaman);
+    ProdukTanamanMaterial tambahProdukTanamanMaterial(Tanaman &tanaman);
 };
 
 #endif

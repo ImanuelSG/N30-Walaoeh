@@ -19,7 +19,7 @@ OBJECTS := $(patsubst $(SOURCE_FOLDER)/%.cpp,$(OUTPUT_FOLDER)/%.o,$(ALL_SRCS))
 # Main target to compile all sources and link them
 compile: $(OBJECTS)
 	@echo "Linking object files..."
-	@$(CC) -std=c++17 -o $(OUTPUT_FOLDER)/$(EXECUTABLE_FILENAME) $(OBJECTS) ./src/main.cpp
+	@$(CC)  -std=c++17 -o $(OUTPUT_FOLDER)/$(EXECUTABLE_FILENAME) $(OBJECTS) ./src/main.cpp
 	@echo "Compilation done."
 
 # Compile each source file into an object file
@@ -59,10 +59,16 @@ testStorage: $(TEST_OUTPUT_FOLDER)/testStorage
 
 testPemain: $(TEST_OUTPUT_FOLDER)/testPemain
 	@./$(TEST_OUTPUT_FOLDER)/testPemain
-	
+
+testPetani: $(TEST_OUTPUT_FOLDER)/testPetani
+	@./$(TEST_OUTPUT_FOLDER)/testPetani
 
 testGameWorld: $(TEST_OUTPUT_FOLDER)/testGameWorld
 	@./$(TEST_OUTPUT_FOLDER)/testGameWorld
+
+testToko: $(TEST_OUTPUT_FOLDER)/testToko
+	@./$(TEST_OUTPUT_FOLDER)/testToko
+
 clean:
 	@rm -rf $(OUTPUT_FOLDER)/*
 	@echo "Clean done."

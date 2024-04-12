@@ -20,6 +20,8 @@ private:
 
 public:
     int id_hewan = 1;
+
+    // map with key = 
     static map<string, tuple<int, string, string, int, int>> animalMap;
     
     // ctor default

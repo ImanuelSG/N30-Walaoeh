@@ -5,7 +5,7 @@
 // map<string, int> material; // <string nama_material, int jumlah_material>
 
 int Bangunan::id_bangunan = 1;
-map<string, tuple<string, int, map<string, int>>> Bangunan::list_of_bangunan;
+map<string, tuple<string, int, map<string, int>, int>> Bangunan::list_of_bangunan;
 // ctor default
 Bangunan::Bangunan()
 {
@@ -59,6 +59,16 @@ void Bangunan::setIdBangunan(int id)
 void Bangunan::setMaterial(map<string, int> material)
 {
     this->material = material;
+}
+
+tuple<string, int, map<string, int>, int> Bangunan::getSpecificRecipe(string name)
+{
+    return list_of_bangunan.find(name)->second;
+}
+
+map<string, tuple<string, int, map<string, int>, int>> Bangunan::getAllRecipe()
+{
+    return list_of_bangunan;
 }
 
 void Bangunan::displayAllRecipe()
@@ -118,7 +128,7 @@ void Bangunan::loadBangunanConfig(string path)
         {
             materials[material_name] = quantity;
         }
-        list_of_bangunan[name] = make_tuple(code, price, materials);
+        list_of_bangunan[name] = make_tuple(code, price, materials, id);
     }
     inputFile.close();
 
@@ -127,6 +137,7 @@ void Bangunan::loadBangunanConfig(string path)
     //     cout << "Name: " << building.first << endl;
     //     cout << "Code: " << get<0>(building.second) << endl;
     //     cout << "Price: " << get<1>(building.second) << endl;
+    //     cout << "ID: " << get<3>(building.second) << endl;
 
     //     cout << "Materials:" << endl;
     //     for (const auto& material : get<2>(building.second)) {
@@ -137,11 +148,12 @@ void Bangunan::loadBangunanConfig(string path)
 
 tuple<Sellable *, int, map<string, int>> Bangunan::build(string name, map<string, int> materials, int gulden)
 {
-    tuple<string, int, map<string, int>> data = list_of_bangunan.find(name)->second;
+    tuple<string, int, map<string, int>, int> data = list_of_bangunan.find(name)->second;
     // Get the gulden
     int neededGulden = get<1>(data);
     // Get the materials
     map<string, int> neededMaterials = get<2>(data);
+    int id = get<3>(data);
     map<string, int> remainingNeededMaterials;
 
     // Check if player has enough money (diffrence between needed and available)
@@ -170,7 +182,7 @@ tuple<Sellable *, int, map<string, int>> Bangunan::build(string name, map<string
     else
     {
         // Create the building
-        Sellable *building = new Bangunan(99, get<0>(data), name, neededGulden, neededMaterials);
+        Sellable *building = new Bangunan(id, get<0>(data), name, neededGulden, neededMaterials);
         return make_tuple(building, neededGulden, neededMaterials);
     }
 };

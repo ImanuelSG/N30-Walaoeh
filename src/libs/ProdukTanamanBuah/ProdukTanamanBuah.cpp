@@ -41,7 +41,6 @@ ProdukTanamanBuah &ProdukTanamanBuah::operator=(const ProdukTanamanBuah &other)
 // dtor
 ProdukTanamanBuah::~ProdukTanamanBuah() {}
 
-/* Methods */
 // getter
 string ProdukTanamanBuah::getJenis()
 {
@@ -53,35 +52,11 @@ bool ProdukTanamanBuah::isEdible()
     return true;
 }
 
-// ProdukTanamanBuah ProdukTanamanBuah::tambahProdukTanamanBuah(Tanaman &tanaman)
-// {
-//     ProdukTanamanBuah produk_tanaman_buah_baru;
-//     int id_produk = Produk::getIdProduk();
-//     string origin = tanaman.getNamaBarang();
-//     int added_weight, harga;
+/* Methods */
+ProdukTanamanBuah ProdukTanamanBuah::tambahProdukTanamanBuah(Tanaman &tanaman)
+{
+    tuple<int, string, string, string, int, int> produk_buah_tuple = Produk::productOriginMap[tanaman.getNamaBarang()];
+    ProdukTanamanBuah produk_buah_baru = ProdukTanamanBuah(get<0>(produk_buah_tuple), get<1>(produk_buah_tuple), get<2>(produk_buah_tuple), get<3>(produk_buah_tuple), tanaman.getNamaBarang(), get<4>(produk_buah_tuple), get<5>(produk_buah_tuple));
 
-//     cout << "Masukkan berat tambahan: ";
-//     cin >> added_weight;
-
-//     cout << "Masukkan harga: ";
-//     cin >> harga;
-
-//     if (tanaman.isApple())
-//     {
-//         produk_tanaman_buah_baru = ProdukTanamanBuah(jenis_produk_tanaman_buah, id_produk, "APP", "APPLE", tipe_produk_tanaman_buah, origin, added_weight, harga);
-//     }
-//     else if (tanaman.isOrange())
-//     {
-//         produk_tanaman_buah_baru = ProdukTanamanBuah(jenis_produk_tanaman_buah, id_produk, "ORP", "ORANGE", tipe_produk_tanaman_buah, origin, added_weight, harga);
-//     }
-//     else if (tanaman.isBanana())
-//     {
-//         produk_tanaman_buah_baru = ProdukTanamanBuah(jenis_produk_tanaman_buah, id_produk, "BNP", "BANANA", tipe_produk_tanaman_buah, origin, added_weight, harga);
-//     }
-//     else if (tanaman.isGuava())
-//     {
-//         produk_tanaman_buah_baru = ProdukTanamanBuah(jenis_produk_tanaman_buah, id_produk, "GAP", "GUAVA", tipe_produk_tanaman_buah, origin, added_weight, harga);
-//     }
-
-//     return produk_tanaman_buah_baru;
-// }
+    return produk_buah_baru;
+}

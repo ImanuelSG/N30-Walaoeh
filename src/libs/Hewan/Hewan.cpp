@@ -185,7 +185,7 @@ void Hewan::loadHewanConfig(string path)
     while (getline(inputFile, line)) {
         istringstream iss(line);
         iss >> id >> code >> name >> type >> weightToHarvest >> price;
-        animalMap[code] = make_tuple(id, name, type, weightToHarvest, price);
+        animalMap[name] = make_tuple(id, code, type, weightToHarvest, price);
     }
     inputFile.close();
 
