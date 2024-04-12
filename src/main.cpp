@@ -11,6 +11,8 @@ int main()
     MainGame.initializeConfigs();
     cout << endl;
     string ans;
+    Toko t;
+    t.MuatHewanTanamanToko();
     do
     {
         cout << "Apakah anda ingin memuat state? (y/n) ";
@@ -26,7 +28,7 @@ int main()
 
     if (ans == "y" || ans == "Y")
     {
-        MainGame.loadGameState();
+        MainGame.loadGameState(t);
     }
     else
     {

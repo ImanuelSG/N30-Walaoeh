@@ -52,14 +52,8 @@ void Toko::MuatHewanTanamanToko()
     }
 }
 
-void Toko::MuatStateToko(string path)
+void Toko::MuatStateToko(ifstream& inputFile)
 {
-    ifstream inputFile(path);
-    if (!inputFile.is_open())
-    {
-        throw FileNotFoundException();
-    }
-
     int itemCount;
     inputFile >> itemCount;
 
@@ -105,7 +99,6 @@ void Toko::MuatStateToko(string path)
             list_bangunan.push_back(make_pair(bangunan, quantity));
         }
     }
-    inputFile.close();
 }
 
 // Display all buyable items
