@@ -51,7 +51,7 @@ string getValidInputStorage(string order)
     bool valid = false;
     do
     {
-        cout << order << " : ";
+        cout << order << ": ";
         cin >> input;
         valid = isValidInput(input);
         if (!valid)

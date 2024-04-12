@@ -313,7 +313,7 @@ void Pemain::jual(Toko &toko)
         throw InventoryEmptyException();
     }
     // Display slots
-    cout << "Berikut merupakan penyimpanan Anda" << endl;
+    cout << "Berikut merupakan penyimpanan Anda";
     display(inventory);
     cout << endl;
 
@@ -442,6 +442,7 @@ void Pemain::displayInfo()
 template <>
 void display<Sellable>(const Storage<Sellable> &storage)
 {
+    cout << endl;
     // ================[ Penyimpanan ]==================
     cout << "     ";
     int numOfEq = (1 + 6 * storage.col - 15) / 2; // 15 is len([ Penyimpanan ])

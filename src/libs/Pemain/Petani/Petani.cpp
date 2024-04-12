@@ -26,7 +26,7 @@ void Petani::tanam()
         throw NotEnoughTanamanException();
     }
 
-    cout << "Pilih tanaman dari penyimpanan" << endl;
+    cout << "Pilih tanaman dari penyimpanan";
     display(inventory);
     bool valid = false;
     string slot;
@@ -142,7 +142,13 @@ void Petani::panen()
     {
         cout << "Nomor tanaman yang ingin dipanen: ";
         cin >> nomor;
-        if (1 <= nomor && nomor <= size)
+        if (cin.fail())
+        {
+            cout << "Masukkan angka!" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        else if (1 <= nomor && nomor <= size)
         {
             // Jika input valid, maka cari key dari readyItems (chosenItem)
             valid = true;
@@ -165,7 +171,13 @@ void Petani::panen()
     {
         cout << "Berapa petak yang ingin dipanen: ";
         cin >> numPanen;
-        if (numPanen < 0 || numPanen > get<1>(readyItems[chosenItem]))
+        if (cin.fail())
+        {
+            cout << "Masukkan angka!" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        else if (numPanen < 0 || numPanen > get<1>(readyItems[chosenItem]))
         {
             cout << "Masukkan jumlah yang benar!" << endl;
         }
@@ -370,6 +382,7 @@ Sellable* Petani::tambahProdukTanamanMaterial(Tanaman &tanaman)
 template <>
 void display<Tanaman>(const Storage<Tanaman> &storage)
 {
+    cout << endl;
     // ================[ Penyimpanan ]==================
     cout << "     ";
     int numOfEq = (1 + 6 * storage.col - 10) / 2; // 10 is len([ Ladang ])

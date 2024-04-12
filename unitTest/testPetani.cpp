@@ -3,6 +3,7 @@
 #include "../src/libs/Pemain/Petani/Petani.hpp"
 #include "../src/libs/Toko/Sellable/Tanaman/Tanaman.hpp"
 #include "../src/libs/GameWorld/GameWorld.hpp"
+#include "../src/libs/Exception/Exception.hpp"
 
 void testPetani() {
     // Test constructor and getter methods
@@ -59,9 +60,13 @@ void testPetani() {
 
 int main() {
     // Run the test cases
+    try{
     testPetani();
 
     std::cout << "All tests passed!" << std::endl;
-
+    } catch (InvalidStorageIndexException& e)
+    {
+        cout << e.what() << endl;
+    }
     return 0;
 }
