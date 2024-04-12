@@ -1,7 +1,8 @@
+#include <algorithm>
 #include "Peternak.hpp"
 #include "../../Utils/Utils.hpp"
 #include "../../pcolor/pcolor.h"
-#include <algorithm>
+#include "../../ProdukHewan/ProdukHewan.hpp"
 
 int Peternak::ternak_m = 5;
 int Peternak::ternak_n = 5;
@@ -248,7 +249,7 @@ void Peternak::panen()
 
     do
     {
-        cout << "Nomor tanaman yang ingin dipanen: ";
+        cout << "Nomor hewan yang ingin dipanen: ";
         cin >> input;
 
         if (input >= 1 && input <= size)
@@ -291,49 +292,98 @@ void Peternak::panen()
 
     } while (!valid);
 
-    int iter = 0;
-    vector<string> chosenPositions;
-    // pilih petak
+    
+    // validasi jumlah penyimpanan cukup atau tidak
+    int tempCol = getColStorage(positions[0][0]);
+    int tempRow = getRowStorage(positions[0]);
 
-    cout << "Pilih petak yang ingin dipanen:" << endl;
-    do
+    Hewan *tempHewan = peternakan.getElementAddress(tempRow,tempCol);
+    int tambahan = (tempHewan->isOmnivore()) ? (num * 2) : num;
+
+    // inventory gak cukup
+    if (((inventory.getNeff() + tambahan) > inventory.getCapacity()))
     {
-
-        string slot;
-        slot = getValidInputStorage("Petak ke-" + to_string(iter + 1));
-
-        auto it = find(positions.begin(), positions.end(), slot);
-        auto it2 = find(chosenPositions.begin(), chosenPositions.end(), slot);
-
-        // if slot is not available
-        if (it == positions.end())
-        {
-            cout << "Lokasi petak tidak tersedia" << endl;
-        }
-        else if (it2 != positions.end()) // klo udh pernah diipilh
-        {
-            cout << "Anda sudah memilih petak tersebut" << endl;
-        }
-        else if ((it != positions.end()) && (it2 == chosenPositions.end()))
-        {
-            chosenPositions.push_back(slot);
-            iter++;
-        }
-
-    } while (iter < num);
-
-    // masukin petaknya
-
-    for (int i = 0; i < num; i++)
+        cout << "Jumlah penyimpanan tidak cukup!" << endl;
+    }
+    // inventory cukup
+    else
     {
-        int col = getColStorage(chosenPositions[i][0]);
-        int row = getRowStorage(chosenPositions[i]);
+        // pilih petak
+        int iter = 0;
+        vector<string> chosenPositions;
 
-        // hapus dari ladang
-        // konversi menjadi produk
-        // tambah ke inventory
+        cout << "Pilih petak yang ingin dipanen:" << endl;
+        do
+        {
 
-        // print klo sudah berhasil
+            string slot;
+            slot = getValidInputStorage("Petak ke-" + to_string(iter + 1));
+
+            auto it = find(positions.begin(), positions.end(), slot);
+            auto it2 = find(chosenPositions.begin(), chosenPositions.end(), slot);
+
+            // if slot is not available
+            if (it == positions.end())
+            {
+                cout << "Lokasi petak tidak tersedia" << endl;
+            }
+            else if (it2 != positions.end()) // klo udh pernah diipilh
+            {
+                cout << "Anda sudah memilih petak tersebut" << endl;
+            }
+            else if ((it != positions.end()) && (it2 == chosenPositions.end()))
+            {
+                chosenPositions.push_back(slot);
+                iter++;
+            }
+
+        } while (iter < num);
+
+        // masukin petaknya
+
+        for (int i = 0; i < num; i++)
+        {
+            int col = getColStorage(chosenPositions[i][0]);
+            int row = getRowStorage(chosenPositions[i]);
+
+            Hewan* hewan = peternakan.getElementAddress(row,col);
+
+            if (hewan->isOmnivore())
+            {
+                pair<ProdukHewan,ProdukHewan> produce = ProdukHewan::tambahProdukHewanOmnivora(*hewan);
+                inventory.insert(produce.first);
+                inventory.insert(produce.second);
+            }
+            else
+            {
+                ProdukHewan daging;
+                if (hewan->isCarnivore())
+                {
+                    daging.tambahProdukHewanKarnivora(*hewan);
+                }
+                else if (hewan->isHerbivore())
+                {
+                    daging.tambahProdukHewanHerbivora(*hewan);
+
+                }
+                inventory.insert(daging);
+            }
+
+            peternakan.deleteAt(row,col);
+            
+        }
+
+        cout << num << "petak hewan " << chosenItem << " ";
+        for (int i =0 ; i < chosenPositions.size(); i++)
+        {
+            cout << chosenPositions[i];
+            if (i != (chosenPositions.size()-1) )
+            {
+                cout <<",";
+            }
+            cout << " ";
+        }
+        cout << "telah dipanen!" << endl;
     }
 }
 
@@ -429,12 +479,12 @@ void display<Hewan>(const Storage<Hewan> &storage)
 {
     // ================[ Penyimpanan ]==================
     cout << "     ";
-    int numOfEq = (1 + 6 * storage.col - 10) / 2; // 10 is len([ Ladang ])
+    int numOfEq = (1 + 6 * storage.col - 14) / 2; // 14 is len([ Peternakan ])
     for (int i = 0; i < numOfEq; i++)
     {
         cout << "=";
     }
-    cout << "[ Ternak ]";
+    cout << "[ Peternakan ]";
     for (int i = 0; i < numOfEq; i++)
     {
         cout << "=";

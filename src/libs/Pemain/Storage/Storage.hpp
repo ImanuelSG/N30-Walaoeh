@@ -100,6 +100,26 @@ public:
     }
 
     /**
+     * @brief Get the Neff attribute
+     *
+     * @return int
+     */
+    int getNeff() const
+    {
+        return neff;
+    }
+
+    /**
+     * @brief Get the Capacity attribute
+     *
+     * @return int
+     */
+    int getCapacity() const
+    {
+        return capacity;
+    }
+
+    /**
      * @brief Insert object to first empty slot
      *
      * @param obj Object to be inserted
