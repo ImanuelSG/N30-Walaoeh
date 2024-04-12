@@ -3,9 +3,8 @@
 
 #include <vector>
 #include "Storage/Storage.hpp"
-#include "../Toko/Sellable/Sellable.hpp"
 #include "../Toko/Toko.hpp"
-#include "../Exception/Exception.hpp"
+
 #include "../Utils/Utils.hpp"
 
 using namespace std;
@@ -77,8 +76,12 @@ public:
      * @brief Mencetak Informasi penting dari pemain ke layar
      *
      */
-
     void displayInfo();
+    /**
+     * @brief to copy inventory into this player inventory
+     *
+     */
+    void setInventory(const Storage<Sellable> &storage);
     /**
      * @brief Menghitung Kekayaan pemain
      */
@@ -101,6 +104,7 @@ public:
     virtual void kasihMakan();
     void beli(Toko &toko);
     void jual(Toko &toko);
+    virtual void addPlantAge();
     virtual void panen();
     /**
      * @brief Menambah pemain atau peternak, Khusus untuk walikota
@@ -111,6 +115,12 @@ public:
     virtual int tambahPemain(vector<Pemain *> &pemain);
     virtual int getKKP() = 0;
     virtual string getRole() const = 0;
+
+
+    // Configurations needs
+
+    virtual void setLadang(const Storage<Tanaman> &storage);
+    virtual void setPeternakan(const Storage<Hewan> &storage);
 
     static int getUkuranInventoryN();
     static int getUkuranInventoryM();

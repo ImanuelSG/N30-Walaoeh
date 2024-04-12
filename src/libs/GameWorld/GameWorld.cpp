@@ -73,21 +73,23 @@ void GameWorld::startGame()
             {
                 currPlayerIndex = res;
             }
+            if (checkEndGame())
+            {
+                CommandManager.setIsTakingTurn(false);
+            }
         }
-        CommandManager.getNextPlayerIndex();
         currPlayerIndex = CommandManager.getNextPlayerIndex();
-        checkEndGame();
     }
 }
 
-void GameWorld::checkEndGame()
+bool GameWorld::checkEndGame()
 {
     Pemain *currPlayer = listOfPLayers[currPlayerIndex];
-    {
-        if (currPlayer->getGulden() >= winningGulden && currPlayer->getBerat() >= winningWeight)
-        {
 
-            cout << R"(
+    if (currPlayer->getGulden() >= winningGulden && currPlayer->getBerat() >= winningWeight)
+    {
+
+        cout << R"(
   /$$$$$$   /$$$$$$  /$$   /$$  /$$$$$$  /$$$$$$$   /$$$$$$  /$$$$$$$$ /$$   /$$ /$$        /$$$$$$  /$$$$$$$$ /$$$$$$  /$$$$$$  /$$   /$$  /$$$$$$ 
  /$$__  $$ /$$__  $$| $$$ | $$ /$$__  $$| $$__  $$ /$$__  $$|__  $$__/| $$  | $$| $$       /$$__  $$|__  $$__/|_  $$_/ /$$__  $$| $$$ | $$ /$$__  $$
 | $$  \__/| $$  \ $$| $$$$| $$| $$  \__/| $$  \ $$| $$  \ $$   | $$   | $$  | $$| $$      | $$  \ $$   | $$     | $$  | $$  \ $$| $$$$| $$| $$  \__/
@@ -98,11 +100,12 @@ void GameWorld::checkEndGame()
  \______/  \______/ |__/  \__/ \______/ |__/  |__/|__/  |__/   |__/    \______/ |________/|__/  |__/   |__/   |______/ \______/ |__/  \__/ \______/ 
 )" << endl;
 
-            cout << "Player " << currPlayer->getName() << " wins!" << endl;
-            cout << "See You Next Time !" << endl;
-            ended = true;
-        }
+        cout << "Player " << currPlayer->getName() << " wins!" << endl;
+        cout << "See You Next Time !" << endl;
+        ended = true;
+        return true;
     }
+    return false;
 }
 
 void GameWorld::loadMiscConfig(string path)
@@ -194,6 +197,10 @@ void GameWorld::loadGameState()
         inputFile >> username >> role >> berat_badan >> uang;
 
         Pemain *player;
+        inputFile >> itemCount;
+        string itemName;
+        Sellable *item = nullptr;
+
         if (role == "Peternak")
         {
             player = new Peternak(username, uang, berat_badan);
@@ -207,9 +214,8 @@ void GameWorld::loadGameState()
             player = new Walikota(username, uang, berat_badan);
         }
 
-        inputFile >> itemCount;
-        string itemName;
-        Sellable *item = nullptr;
+        Storage<Sellable> inventory(Pemain::getUkuranInventoryN(), Pemain::getUkuranInventoryM());
+
         for (int j = 0; j < itemCount; j++)
         {
             inputFile >> itemName;
@@ -249,13 +255,20 @@ void GameWorld::loadGameState()
                 item = new Tanaman(get<0>(tanaman_item_tuple), get<1>(tanaman_item_tuple), itemName, get<2>(tanaman_item_tuple), 0, get<3>(tanaman_item_tuple), get<4>(tanaman_item_tuple));
             }
 
+            inventory.insert(*item);
+
             // todo : insert item into player's inventory
         }
+
+        player->setInventory(inventory);
+        // todo : insert inventory into inventory
+
         if (role == "Peternak")
         {
             int ranch_animals;
             inputFile >> ranch_animals;
 
+            Storage<Hewan> ranch(Peternak::getUkuranTernakN(), Peternak::getUkuranTernakM());
             for (int i = 0; i < ranch_animals; i++)
             {
                 Hewan *hewan = nullptr;
@@ -266,13 +279,17 @@ void GameWorld::loadGameState()
                 tuple<int, string, string, int, int> hewan_item_tuple = Hewan::animalMap[animalName];
                 hewan = new Hewan(get<0>(hewan_item_tuple), get<1>(hewan_item_tuple), animalName, get<2>(hewan_item_tuple), weight, get<3>(hewan_item_tuple), get<4>(hewan_item_tuple));
 
-                // insert_animal_to_ranch() ato apalah
+                ranch.insert(*hewan);
             }
+            player->setPeternakan(ranch);
         }
+
+        // to
         if (role == "Petani")
         {
             int field_plants;
             inputFile >> field_plants;
+            Storage<Tanaman> field(Petani::getUkuranLadangN(), Petani::getUkuranLadangM());
 
             for (int i = 0; i < field_plants; i++)
             {
@@ -284,9 +301,11 @@ void GameWorld::loadGameState()
                 tuple<int, string, string, int, int> tanaman_item_tuple = Tanaman::plantMap[plantName];
                 tanaman = new Tanaman(get<0>(tanaman_item_tuple), get<1>(tanaman_item_tuple), plantName, get<2>(tanaman_item_tuple), weight, get<3>(tanaman_item_tuple), get<4>(tanaman_item_tuple));
 
-                // insert_plant_to_field() ato apalah
+                field.insert(*tanaman);
             }
+            player->setLadang(field);
         }
+
         listOfPLayers.push_back(player);
     }
 

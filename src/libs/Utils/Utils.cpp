@@ -4,7 +4,7 @@ bool isValidInput(string input)
 {
     bool valid = false;
     bool has00 = false;
-    if (isalpha(input[0]))
+    if (isalpha(input[0]) && input.length() >= 3)
     {
 
         int id = 1;
@@ -51,7 +51,7 @@ string getValidInputStorage(string order)
     bool valid = false;
     do
     {
-        cout << order << " : ";
+        cout << order << ": ";
         cin >> input;
         valid = isValidInput(input);
         if (!valid)
@@ -97,7 +97,7 @@ vector<string> getManyInputStorage(const string &order)
                 cout << "Slot " << slot << " tidak valid. Masukkan dengan format yang benar.\n";
                 slots.clear();
                 break; // Break the loop if any slot is invalid
-                        }
+            }
             else
             {
                 // Check if the slot is already in the vector
@@ -168,7 +168,7 @@ void displayReadyPanen(map<string, tuple<vector<string>, int>> &readyItems)
     int count = 1;
     for (const auto &pair : readyItems)
     {
-        cout << count << ". " << pair.first << '(' << get<1>(pair.second) << " petak siap panen)" << endl;
+        cout << count << ". " << pair.first << " (" << get<1>(pair.second) << " petak siap panen)" << endl;
         count++;
     }
 }

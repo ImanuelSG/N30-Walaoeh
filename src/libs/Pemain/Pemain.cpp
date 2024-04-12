@@ -88,6 +88,8 @@ void Pemain::makan()
         {
             slot = getValidInputStorage("Slot");
 
+            
+
             col = getColStorage(slot[0]);
             row = getRowStorage(slot);
 
@@ -312,7 +314,7 @@ void Pemain::jual(Toko &toko)
         throw InventoryEmptyException();
     }
     // Display slots
-    cout << "Berikut merupakan penyimpanan Anda" << endl;
+    cout << "Berikut merupakan penyimpanan Anda";
     display(inventory);
     cout << endl;
 
@@ -378,6 +380,11 @@ void Pemain::jual(Toko &toko)
          << "Uang Anda bertambah " << hasilJual << " gulden" << endl;
 }
 
+void Pemain::addPlantAge()
+{
+    return;
+}
+
 int Pemain::tambahPemain(vector<Pemain *> &pemain)
 {
     throw WalikotaInputException();
@@ -436,6 +443,7 @@ void Pemain::displayInfo()
 template <>
 void display<Sellable>(const Storage<Sellable> &storage)
 {
+    cout << endl;
     // ================[ Penyimpanan ]==================
     cout << "     ";
     int numOfEq = (1 + 6 * storage.col - 15) / 2; // 15 is len([ Penyimpanan ])
@@ -491,4 +499,19 @@ void display<Sellable>(const Storage<Sellable> &storage)
         }
         cout << endl;
     }
+}
+
+void Pemain::setInventory(const Storage<Sellable> &storage)
+{
+    inventory = storage;
+}
+
+void Pemain::setPeternakan(const Storage<Hewan> &storage)
+{
+    return;
+}
+
+void Pemain::setLadang(const Storage<Tanaman> &storage)
+{
+    return;
 }

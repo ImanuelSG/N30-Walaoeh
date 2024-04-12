@@ -45,7 +45,7 @@ public:
      * @brief Check the endgame condition
      *
      */
-    void checkEndGame();
+    bool checkEndGame();
     /**
      * @brief Initialize all Default Configs
      *

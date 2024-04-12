@@ -27,6 +27,8 @@ public:
     int getKekayaan();
     int getKKP();
     string getRole() const;
+
+    void setPeternakan(const Storage<Hewan> &storage);
     static int getUkuranTernakN();
     static int getUkuranTernakM();
     static void setUkuranTernakN(int n);

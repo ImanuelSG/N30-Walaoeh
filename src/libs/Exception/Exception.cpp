@@ -105,7 +105,7 @@ const char *TernakEmptyException::what()
 // EXCEPTION UNTUK INVALID
 const char *InvalidStorageIndexException::what()
 {
-    return "Indeks yang Anda masukkan tidak valid!.\n Pastikan Indeks Anda sesuai.\n";
+    return "Indeks yang Anda masukkan tidak valid!.\nPastikan Indeks Anda sesuai.\n";
 }
 
 const char *FileNotFoundException::what()
@@ -115,32 +115,32 @@ const char *FileNotFoundException::what()
 
 const char *InvalidJenisTanamanException::what()
 {
-    return "Jenis tanaman yang Anda masukkan tidak valid!.\n Pastikan Jenis Tanaman Anda sesuai.\n";
+    return "Jenis tanaman yang Anda masukkan tidak valid!.\nPastikan Jenis Tanaman Anda sesuai.\n";
 }
 
 const char *InvalidJenisHewanException::what()
 {
-    return "Jenis hewan yang Anda masukkan tidak valid!.\n Pastikan Jenis Hewan Anda sesuai.\n";
+    return "Jenis hewan yang Anda masukkan tidak valid!.\nPastikan Jenis Hewan Anda sesuai.\n";
 }
 
 const char *InvalidJenisProdukMaterialException::what()
 {
-    return "Jenis produk material yang Anda masukkan tidak valid!.\n Pastikan Jenis Produk Material Anda sesuai.\n";
+    return "Jenis produk material yang Anda masukkan tidak valid!.\nPastikan Jenis Produk Material Anda sesuai.\n";
 }
 
 const char *InvalidJenisProdukBuahException::what()
 {
-    return "Jenis produk buah yang Anda masukkan tidak valid!.\n Pastikan Jenis Produk Buah Anda sesuai.\n";
+    return "Jenis produk buah yang Anda masukkan tidak valid!.\nPastikan Jenis Produk Buah Anda sesuai.\n";
 }
 
 const char *InvalidJenisProdukHewanException::what()
 {
-    return "Jenis produk hewan yang Anda masukkan tidak valid!.\n Pastikan Jenis Produk Hewan Anda sesuai.\n";
+    return "Jenis produk hewan yang Anda masukkan tidak valid!.\nPastikan Jenis Produk Hewan Anda sesuai.\n";
 }
 
 const char *InvalidJenisBangunanException::what()
 {
-    return "Jenis bangunan yang Anda masukkan tidak valid!.\n Pastikan Jenis Bangunan Anda sesuai.\n";
+    return "Jenis bangunan yang Anda masukkan tidak valid!.\nPastikan Jenis Bangunan Anda sesuai.\n";
 }
 
 const char *InvalidProdukException::what()
@@ -154,7 +154,7 @@ const char *InvalidJenisMakananException::what()
 
 const char *InvalidJenisSellableException::what()
 {
-    return "Jenis sellable yang Anda masukkan tidak valid!.\n Pastikan Jenis Sellable Anda sesuai.\n";
+    return "Jenis sellable yang Anda masukkan tidak valid!.\nPastikan Jenis Sellable Anda sesuai.\n";
 }
 
 // ECEPTION UNTUK NOT ENOUGH

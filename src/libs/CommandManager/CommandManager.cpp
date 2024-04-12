@@ -26,6 +26,10 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
             {
                 nextPlayerIndex = 0;
             }
+            for (auto player : ListOfPlayers)
+            {
+                player->addPlantAge();
+            }
             isTakingTurn = false;
         }
         else if (what == "CETAK_PENYIMPANAN")
@@ -58,7 +62,7 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         }
         else if (what == "MAKAN")
         {
-            currPlayer->kasihMakan();
+            currPlayer->makan();
         }
         else if (what == "KASIH_MAKAN")
         {
