@@ -16,7 +16,6 @@ class Bangunan : public Sellable
 {
 private:
     map<string, int> material; // <string nama_material, int jumlah_material>
-
 public:
     static int id_bangunan;
     static map<string, tuple<string, int, map<string, int>, int>> list_of_bangunan;

@@ -45,11 +45,25 @@ const char *TernakFullException::what()
 }
 
 // EXCEPTION UNTUK KURANG
+NotEnoughMoneyException::NotEnoughMoneyException(int kurang)
+{
+    this->kurang = kurang;
+}
 const char *NotEnoughMoneyException::what()
 {
-    return "Gulden Anda tidak cukup\n";
+    ostringstream oss;
+    oss << "Gulden Anda tidak cukup, kekurangan " << this->kurang << " gulden\n";
+    // Convert the ostringstream to a string and return its char* representation
+    string result = oss.str();
+    char *word = new char[result.length() + 1];
+    strcpy(word, result.c_str());
+    return word;
 }
 
+const char *NotEnoughStockException::what()
+{
+    return "Stok dari barang yang diminta tidak mencukupi :( , tidak bisa membeli barang!\n";
+}
 const char *NotEnoughTanamanException::what()
 {
     return "Tanaman Anda tidak cukup, tidak bisa menjalankan perintah\n";
@@ -173,4 +187,9 @@ const char *NotEnoughMaterialException::what()
     char *word = new char[result.length() + 1];
     strcpy(word, result.c_str());
     return word;
+}
+
+const char *InvalidSellException::what()
+{
+    return "Anda tidak boleh menjual bangunan!\n";
 }

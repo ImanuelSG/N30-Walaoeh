@@ -80,7 +80,7 @@ int Walikota::tambahPemain(vector<Pemain *> &pemain)
     // Check if the Walikota has enough money
     if (this->getGulden() < 50)
     {
-        throw NotEnoughMoneyException();
+        throw NotEnoughMoneyException(50 - this->getGulden());
     }
     else
     {
@@ -170,7 +170,6 @@ void Walikota::bangunBangunan()
     Bangunan::displayAllRecipe();
     cout << endl;
 
-    
     string namaBangunan;
     do
     {
@@ -187,7 +186,6 @@ void Walikota::bangunBangunan()
         }
 
     } while (namaBangunan.empty() || !Bangunan::isValidRecipe(namaBangunan));
-    
 
     // Get the recipe to check
     // tuple<string, int, map<string, int>> recipe = bangunan.getSpecificRecipe(namaBangunan);

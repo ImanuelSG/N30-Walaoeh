@@ -23,9 +23,11 @@ public:
     vector<pair<Sellable *, int>> items;
     vector<pair<Sellable *, int>> list_bangunan;
 
+    bool isValidItem(int num, string role);
+
     void MuatHewanTanamanToko();
     void displayAllBuyableItem(string role);
-    int Beli(Sellable *, string role, int currentGulden, int quantity);
-    int Jual(vector<Sellable *>, string role);
+    tuple<Sellable *, int> Beli(int choice, string role, int currentGulden, int quantity);
+    int Jual(vector<Sellable *> soldItems, string role);
     void MuatStateToko(string path);
 };

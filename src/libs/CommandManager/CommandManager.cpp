@@ -120,6 +120,11 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         cout << e.what() << endl;
         return -2;
     }
+    catch (NotEnoughStockException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
     catch (InvalidStorageIndexException &e)
     {
         cout << e.what() << endl;

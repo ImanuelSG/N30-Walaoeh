@@ -65,6 +65,16 @@ public:
 // EXCEPTION UNTUK KURANG
 class NotEnoughMoneyException : public exception
 {
+private:
+    int kurang;
+
+public:
+    NotEnoughMoneyException(int kurang);
+    const char *what();
+};
+
+class NotEnoughStockException : public exception
+{
 public:
     const char *what();
 };
@@ -184,4 +194,10 @@ public:
     const char *what();
 };
 
+// Invalid sell exception
+class InvalidSellException : public exception
+{
+public:
+    const char *what();
+};
 #endif

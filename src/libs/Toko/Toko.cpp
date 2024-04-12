@@ -130,30 +130,122 @@ void Toko::displayAllBuyableItem(string role)
     }
 }
 
-int Toko::Beli(Sellable *, string role, int currentGulden, int quantity)
+bool Toko::isValidItem(int num, string role)
 {
-    // vector<pair<Sellable *, int>> temp(items);
-    // if (role != "Walikota")
-    // {
-    //     // If the role is not Walikota, then we can buy buildings
-    //     temp.insert(temp.end(), list_bangunan.begin(), list_bangunan.end());
-    // }
-    // for (const auto &item : temp)
-    // {
-    //     if (item.first->getNamaBarang() == item->getNamaBarang())
-    //     {
-    //         if (item->getHargaBarang() * quantity > currentGulden)
-    //         {
-    //             return -1;
-    //         }
-    //         else
-    //         {
-    //             return item->getHargaBarang() * quantity;
-    //         }
-    //     }
-    // }
+    int length = items.size();
+    if (role != "Walikota")
+    {
+        length += list_bangunan.size();
+    }
+
+    return num >= 1 && num <= length;
 }
 
-int Jual(vector<Sellable *>, string role)
+tuple<Sellable *, int> Toko::Beli(int num, string role, int currentGulden, int quantity)
 {
+    vector<pair<Sellable *, int>> temp(items);
+
+    if (role != "Walikota")
+    {
+        // If the role is not Walikota, then we can buy buildings
+        temp.insert(temp.end(), list_bangunan.begin(), list_bangunan.end());
+    }
+    Sellable *chosenItem = temp[num - 1].first;
+    int stock = temp[num - 1].second;
+
+    if (stock != -1 && stock < quantity)
+    {
+        throw NotEnoughStockException();
+    }
+
+    int totalBelanja = quantity * temp[num - 1].first->getHargaBarang();
+
+    if (currentGulden < totalBelanja)
+    {
+        throw NotEnoughMoneyException(totalBelanja - currentGulden);
+    }
+    // If the bought items is not plant or animal, then descrease the stock
+    if (stock != -1)
+    {
+        if (chosenItem->getJenis() == "BANGUNAN")
+        {
+            list_bangunan[num - items.size() - 1].second -= quantity;
+            if (list_bangunan[num - items.size() - 1].second == 0)
+            {
+                list_bangunan.erase(list_bangunan.begin() + num - items.size() - 1);
+            }
+        }
+        else
+        {
+            items[num - 1].second -= quantity;
+            if (items[num - 1].second == 0)
+            {
+                items.erase(items.begin() + num - 1);
+            }
+        }
+    }
+
+    return make_tuple(chosenItem, quantity);
+}
+
+int Toko::Jual(vector<Sellable *> soldItems, string role)
+{
+    // Validate if peternak and petani is selling a building
+
+    for (auto &item : soldItems)
+    {
+        if (role == "Petani" || role == "Peternak")
+        {
+            if (item->getJenis() == "BANGUNAN")
+            {
+                throw InvalidSellException();
+            }
+        }
+    }
+
+    int totalGained = 0;
+    for (auto &item : soldItems)
+    {
+        totalGained += item->getHargaBarang();
+
+        // If the item is not a plant or animal, then add it to the list of items
+        if (item->getJenis() != "HEWAN" && item->getJenis() != "TANAMAN")
+        {
+            // if item not bangunan
+            if (item->getJenis() != "BANGUNAN")
+            {
+                for (auto &it : items)
+                {
+                    // if barang exsist, increase the stock
+                    if (it.first->getNamaBarang() == item->getNamaBarang())
+                    {
+                        it.second++;
+                    }
+                    else
+                    // if not, add the item to the list
+                    {
+                        items.push_back(make_pair(item, 1));
+                    }
+                }
+            }
+            else
+            {
+                // if the item is a building, add it to the list of buildings
+                for (auto &it : list_bangunan)
+                {
+                    // if building exsist, increase the stock
+                    if (it.first->getNamaBarang() == item->getNamaBarang())
+                    {
+                        it.second++;
+                    }
+                    else
+                    // if not, add the item to the list
+                    {
+                        list_bangunan.push_back(make_pair(item, 1));
+                    }
+                }
+            }
+        }
+    }
+    return totalGained;
 }
