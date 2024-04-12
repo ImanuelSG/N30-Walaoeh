@@ -1,18 +1,21 @@
 #include <iostream>
 #include <string>
 #include "../src/libs/Utils/Utils.hpp"
+#include <vector>
 using namespace std;
 
 int main()
 {
 
     bool valid = false;
-    std::string input = getValidInputStorage("Stok");
-
-    int col = getColStorage(input[0]);
-    int row = getRowStorage(input);
-
-    std::cout << "Parsed column: " << col << ", Parsed row: " << row << std::endl;
+    vector<string> input = getManyInputStorage("Stok");
+    for (auto i : input)
+    {
+        cout << i << endl;
+        int row = getRowStorage(i);
+        int col = getColStorage(i[0]);
+        std::cout << "Parsed column: " << col << ", Parsed row: " << row << std::endl;
+    }
 
     return 0;
 }

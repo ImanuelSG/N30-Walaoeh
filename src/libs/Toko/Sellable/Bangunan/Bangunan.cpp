@@ -4,7 +4,6 @@
 
 // map<string, int> material; // <string nama_material, int jumlah_material>
 
-int Bangunan::id_bangunan = 1;
 map<string, tuple<string, int, map<string, int>, int>> Bangunan::list_of_bangunan;
 // ctor default
 Bangunan::Bangunan()
@@ -24,6 +23,13 @@ Bangunan &Bangunan::operator=(const Bangunan &other)
     this->id_bangunan = other.id_bangunan;
     this->material = other.material;
     return *this;
+}
+
+// Clone
+Sellable *Bangunan::Clone()
+{
+    map<string, int> copy(this->material);
+    return new Bangunan(this->id_bangunan, this->getKodeHuruf(), this->getNamaBarang(), this->getHargaBarang(), copy);
 }
 
 // dtor

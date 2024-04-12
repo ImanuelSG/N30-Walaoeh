@@ -41,6 +41,8 @@ public:
   // operator overloading
   Sellable &operator=(const Sellable &other);
 
+  virtual Sellable *Clone() = 0;
+
   // dtor
   virtual ~Sellable();
 
@@ -59,8 +61,6 @@ public:
   // additional
   virtual bool isEdible();
   virtual int getAddedWeight();
-
-
 };
 
 #endif

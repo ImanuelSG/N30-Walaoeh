@@ -21,8 +21,13 @@ ProdukTanamanBuah::ProdukTanamanBuah()
 }
 
 // ctor user defined
-ProdukTanamanBuah::ProdukTanamanBuah(int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga):Produk(id, kode, nama_produk, tipe_produk_tanaman_buah, origin, added_weight, harga)
+ProdukTanamanBuah::ProdukTanamanBuah(int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga) : Produk(id, kode, nama_produk, tipe_produk_tanaman_buah, origin, added_weight, harga)
 {
+}
+
+Sellable *ProdukTanamanBuah::Clone()
+{
+    return new ProdukTanamanBuah(*this);
 }
 
 // operator overloading
@@ -58,7 +63,8 @@ vector<ProdukTanamanBuah> ProdukTanamanBuah::tambahProdukTanamanBuah(Tanaman &ta
     vector<tuple<int, string, string, string, int, int>> produk_buah_vektor = Produk::productOriginMap[tanaman.getNamaBarang()];
     vector<ProdukTanamanBuah> produk_buah_baru_list;
 
-    for (int i = 0; i < produk_buah_vektor.size(); i++) {
+    for (int i = 0; i < produk_buah_vektor.size(); i++)
+    {
         ProdukTanamanBuah produk_buah_baru = ProdukTanamanBuah(get<0>(produk_buah_vektor[i]), get<1>(produk_buah_vektor[i]), get<2>(produk_buah_vektor[i]), get<3>(produk_buah_vektor[i]), tanaman.getNamaBarang(), get<4>(produk_buah_vektor[i]), get<5>(produk_buah_vektor[i]));
         produk_buah_baru_list.push_back(produk_buah_baru);
     }

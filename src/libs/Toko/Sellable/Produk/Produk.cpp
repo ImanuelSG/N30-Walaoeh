@@ -42,6 +42,9 @@ Produk::~Produk()
 {
 }
 
+// Clone
+
+
 /* Methods */
 // getter
 int Produk::getIdProduk()
@@ -88,14 +91,16 @@ void Produk::setAddedWeight(int added_weight)
 void Produk::loadProductConfig(string path)
 {
     ifstream inputFile(path);
-    if (!inputFile.is_open()) {
+    if (!inputFile.is_open())
+    {
         throw FileNotFoundException();
     }
 
-    string line; 
+    string line;
     int id, addedWeight, price;
     string code, name, type, origin;
-    while (getline(inputFile, line)) {
+    while (getline(inputFile, line))
+    {
         istringstream iss(line);
         iss >> id >> code >> name >> type >> origin >> addedWeight >> price;
         productMap[name] = make_tuple(id, code, origin, type, addedWeight, price);
@@ -114,14 +119,16 @@ void Produk::loadProductConfig(string path)
 void Produk::loadProductOriginConfig(string path)
 {
     ifstream inputFile(path);
-    if (!inputFile.is_open()) {
+    if (!inputFile.is_open())
+    {
         throw FileNotFoundException();
     }
 
-    string line; 
+    string line;
     int id, addedWeight, price;
     string code, name, type, origin;
-    while (getline(inputFile, line)) {
+    while (getline(inputFile, line))
+    {
         istringstream iss(line);
         iss >> id >> code >> name >> type >> origin >> addedWeight >> price;
         productOriginMap[origin].push_back(make_tuple(id, code, name, type, addedWeight, price));

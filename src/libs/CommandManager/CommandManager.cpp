@@ -66,11 +66,11 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         }
         else if (what == "BELI")
         {
-            currPlayer->beli();
+            currPlayer->beli(toko);
         }
         else if (what == "JUAL")
         {
-            currPlayer->jual();
+            currPlayer->jual(toko);
         }
         else if (what == "PANEN")
         {
@@ -104,32 +104,50 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         }
         return -1;
     }
+    // Exceptions for inputs
+    catch (NumericException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
+    catch (MoreThanZeroException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
     catch (InvalidInputException &e)
     {
         cout << e.what() << endl;
         return -2;
     }
+    catch (InvalidSellException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
+    // Exception for roles
     catch (WalikotaInputException &e)
     {
         cout << e.what() << endl;
         return -2;
     }
+    catch (PeternakInputException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
+    catch (PetaniInputException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
+    catch (PanenInputException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
 
-    catch (NotEnoughMoneyException &e)
-    {
-        cout << e.what() << endl;
-        return -2;
-    }
-    catch (NotEnoughStockException &e)
-    {
-        cout << e.what() << endl;
-        return -2;
-    }
-    catch (InvalidStorageIndexException &e)
-    {
-        cout << e.what() << endl;
-        return -2;
-    }
+    // Exception for full
     catch (InventoryFullException &e)
     {
         cout << e.what() << endl;
@@ -145,7 +163,64 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         cout << e.what() << endl;
         return -2;
     }
+
+    // Exception for not enough
+    catch (NotEnoughMoneyException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
+    catch (NotEnoughStockException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
+    catch (InventoryNotEnoughException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
+    catch (NotEnoughHewanException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
+    catch (NotEnoughTanamanException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
+    catch (NotEnoughFoodException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
     catch (NotEnoughMaterialException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
+
+    // Exception untuk kosong
+    catch (InventoryEmptyException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
+    catch (LadangEmptyException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
+    catch (TernakEmptyException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
+
+    // Invalid Index
+
+    catch (InvalidStorageIndexException &e)
     {
         cout << e.what() << endl;
         return -2;
