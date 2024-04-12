@@ -5,7 +5,8 @@ int Pemain::inventory_n = 5;
 int Pemain::inventory_m = 5;
 
 // Constructor , destructor
-Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m) {
+Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m)
+{
     cout << "Pemain created" << endl;
 }
 Pemain::~Pemain() {}
@@ -26,7 +27,7 @@ string Pemain::getName() const
     return this->name;
 }
 
-int Pemain::getKekayaan() 
+int Pemain::getKekayaan()
 {
     int count = gulden;
     for (int i = 0; i < inventory.getRow(); i++)
@@ -34,11 +35,10 @@ int Pemain::getKekayaan()
         for (int j = 0; j < inventory.getCol(); j++)
         {
             Sellable *item = inventory.getElementAddress(i, j);
-            if (item != nullptr){
+            if (item != nullptr)
+            {
                 count += item->getHargaBarang();
             }
-
-            
         }
     }
     return count;
@@ -83,7 +83,8 @@ void Pemain::makan()
     {
 
         bool acc = false;
-        int col = 0; int row = 0;
+        int col = 0;
+        int row = 0;
         do
         {
             slot = getValidInputStorage("Slot");
@@ -99,9 +100,9 @@ void Pemain::makan()
             {
                 acc = true;
             }
-            
+
         } while (!acc);
-        
+
         Sellable *item = inventory.getElementAddress(row, col);
 
         if (item == nullptr)
@@ -209,7 +210,6 @@ bool Pemain::isFoodAvailable()
     return false;
 }
 
-
 void Pemain::setUkuranInventoryM(int m)
 {
     inventory_m = m;
@@ -232,9 +232,13 @@ int Pemain::getUkuranInventoryN()
 
 void Pemain::displayInfo()
 {
+    cout << "Informasi Pemain: " << endl;
+
     cout << "Nama: " << name << endl;
+    cout << "Role: " << getRole() << endl;
     cout << "Gulden: " << gulden << endl;
-    cout << "Berat: " << berat <<  endl;
+    cout << "Berat: " << berat << endl;
+    cout << "Kekayaan: " << getKekayaan() << endl;
 }
 
 template <>
