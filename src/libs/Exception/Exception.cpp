@@ -149,7 +149,7 @@ const char *InvalidProdukException::what()
 }
 const char *InvalidJenisMakananException::what()
 {
-    return "Jenis maknanan yang Anda pilih tidak sesuai dengan jenis hewan Anda.\n";
+    return "Jenis makanan yang Anda pilih tidak sesuai dengan jenis hewan Anda.\n";
 }
 
 const char *InvalidJenisSellableException::what()

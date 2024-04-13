@@ -20,7 +20,7 @@ public:
     ~Peternak();
     void ternak();
     void kasihMakan();
-    void panen();
+    // void panen();
     void cetakPeternakan();
     void beli();
     void jual();
@@ -33,6 +33,10 @@ public:
     static int getUkuranTernakM();
     static void setUkuranTernakN(int n);
     static void setUkuranTernakM(int m);
+
+    Sellable *tambahProdukHewanCarnivore(Hewan &hewan);
+    Sellable *tambahProdukHewanHerbivore(Hewan &hewan);
+    pair<Sellable*,Sellable*> tambahProdukHewanOmnivore(Hewan &hewan);
 };
 
 #endif
