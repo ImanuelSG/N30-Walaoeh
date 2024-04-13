@@ -513,3 +513,11 @@ void Pemain::setLadang(const Storage<Tanaman> &storage)
 {
     return;
 }
+
+void Pemain::rezeki()
+{
+    cout << "Wah, dewa siwa sedang baik hati nich (￣︶￣) ↗" << endl;
+    int tambahan = (int) (0.1 * gulden);
+    cout << name << " mendapatkan tambahan uang sebanyak " << tambahan << " gulden $$$" << endl;
+    gulden += tambahan;
+}

@@ -665,3 +665,30 @@ void Peternak::setUkuranTernakM(int m)
 {
     ternak_m = m;
 }
+
+void Peternak::azab()
+{
+    if (!peternakan.isEmpty())
+    {
+        string namaHewan;
+        for (int i = 0; i < peternakan.getRow(); i++)
+        {
+            for (int j = 0; j < peternakan.getCol(); j++)
+            {
+                Hewan *item = peternakan.getElementAddress(i, j);
+                if (item != nullptr)
+                {
+                    namaHewan = item->getNamaBarang();
+                    peternakan.deleteAt(i,j);
+                    delete &item;
+                    break;
+                }
+            }
+        }
+
+        cout << "Wakwaw dewa siwa marah!!! " << namaHewan << " " << name << " kaburr!!" << endl;
+    } else
+    {
+        cout << "Tadinya kamu membuat dewa siwa marah!!, namun karena kamu tidak memiliki hewan dewa siwa kasian\nKamu tidak terkena apa apa" << endl;
+    }
+}
