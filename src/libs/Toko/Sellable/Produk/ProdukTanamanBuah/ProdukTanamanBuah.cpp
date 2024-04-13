@@ -71,6 +71,7 @@ Sellable* ProdukTanamanBuah::tambahProdukTanamanBuah(Tanaman &tanaman)
     {
         produk_buah_baru = new ProdukTanamanBuah(get<0>(produk_buah_vektor[i]), get<1>(produk_buah_vektor[i]), get<2>(produk_buah_vektor[i]), get<3>(produk_buah_vektor[i]), tanaman.getNamaBarang(), get<4>(produk_buah_vektor[i]), get<5>(produk_buah_vektor[i]));
     }
-
+    
+    delete &tanaman;
     return produk_buah_baru;
 }

@@ -67,6 +67,8 @@ Sellable* ProdukHewan::tambahProdukHewanHerbivora(Hewan &hewan)
     vector<tuple<int, string, string, string, int, int>> produk_herbivora_vector = Produk::productOriginMap[hewan.getNamaBarang()];
 
     ProdukHewan* produk_hewan_baru = new ProdukHewan(get<0>(produk_herbivora_vector[0]), get<1>(produk_herbivora_vector[0]), get<2>(produk_herbivora_vector[0]), get<3>(produk_herbivora_vector[0]), hewan.getNamaBarang(), get<4>(produk_herbivora_vector[0]), get<5>(produk_herbivora_vector[0]));
+    
+    delete &hewan;
     return produk_hewan_baru;
 }
 
@@ -75,6 +77,8 @@ Sellable* ProdukHewan::tambahProdukHewanKarnivora(Hewan &hewan)
     vector<tuple<int, string, string, string, int, int>> produk_karnivora_vektor = Produk::productOriginMap[hewan.getNamaBarang()];
 
     ProdukHewan* produk_hewan_baru = new ProdukHewan(get<0>(produk_karnivora_vektor[0]), get<1>(produk_karnivora_vektor[0]), get<2>(produk_karnivora_vektor[0]), get<3>(produk_karnivora_vektor[0]), hewan.getNamaBarang(), get<4>(produk_karnivora_vektor[0]), get<5>(produk_karnivora_vektor[0]));
+    
+    delete &hewan;
     return produk_hewan_baru;
 }
 
@@ -83,6 +87,8 @@ Sellable* ProdukHewan::tambahProdukHewanOmnivoraDaging(Hewan &hewan)
     vector<tuple<int, string, string, string, int, int>> produk_omnivora_vector = Produk::productOriginMap[hewan.getNamaBarang()];
 
     ProdukHewan* produk_hewan_baru = new ProdukHewan(get<0>(produk_omnivora_vector[0]), get<1>(produk_omnivora_vector[0]), get<2>(produk_omnivora_vector[0]), get<3>(produk_omnivora_vector[0]), hewan.getNamaBarang(), get<4>(produk_omnivora_vector[0]), get<5>(produk_omnivora_vector[0]));
+    
+    delete &hewan;
     return produk_hewan_baru;
 }
 
@@ -91,6 +97,8 @@ Sellable* ProdukHewan::tambahProdukHewanOmnivoraTelur(Hewan &hewan)
     vector<tuple<int, string, string, string, int, int>> produk_omnivora_vector = Produk::productOriginMap[hewan.getNamaBarang()];
 
     ProdukHewan* produk_hewan_baru = new ProdukHewan(get<0>(produk_omnivora_vector[1]), get<1>(produk_omnivora_vector[1]), get<2>(produk_omnivora_vector[1]), get<3>(produk_omnivora_vector[1]), hewan.getNamaBarang(), get<4>(produk_omnivora_vector[1]), get<5>(produk_omnivora_vector[1]));
+    
+    delete &hewan;
     return produk_hewan_baru;
 }
 
