@@ -193,6 +193,8 @@ void Peternak::kasihMakan()
 
             col = getColStorage(slot[0]);
             row = getRowStorage(slot);
+            col = getColStorage(slot[0]);
+            row = getRowStorage(slot);
 
             if (col < 0 || col > inventory.getCol() || row < 0 || row > inventory.getRow())
             {
@@ -208,6 +210,7 @@ void Peternak::kasihMakan()
         Sellable *item = inventory.getElementAddress(row, col);
         if (item != nullptr)
         {
+            cout << "TIPE: " << item->getJenis() << endl;
             cout << "TIPE: " << item->getJenis() << endl;
 
             if ((item->getJenis() == "PRODUK_HEWAN") || (item->getJenis() == "PRODUK_TANAMAN_BUAH"))

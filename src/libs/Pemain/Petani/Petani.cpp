@@ -65,7 +65,7 @@ void Petani::tanam()
             }
             else
             {
-                cout << "Barang pada slot tersebut bukanlah Tanaman.\n Silakan pilih Slot lain!\n";
+                cout << "Barang pada slot tersebut bukanlah Tanaman.\nSilakan pilih Slot lain!\n";
             }
         }
     } while (!valid);
@@ -110,7 +110,7 @@ void Petani::tanam()
         }
         else
         {
-            cout << "Petak yang anda pilih tidak kosong.\n Silakan pilih petak kosong." << endl;
+            cout << "Petak yang anda pilih tidak kosong.\nSilakan pilih petak kosong." << endl;
         }
 
     } while (!valid);
@@ -204,8 +204,17 @@ void Petani::panen()
         auto it = find(possibleLocations.begin(), possibleLocations.end(), location);
         if (it != possibleLocations.end())
         {
-            chosenLocations.push_back(location);
-            i++;
+            auto iter = find(chosenLocations.begin(), chosenLocations.end(), location);
+            // Sudah ada element pada pilihan sebelumnya
+            if (iter != chosenLocations.end())
+            {
+                cout << "Masukkan petak yang belum pernah dipilih!" << endl;
+            }
+            else
+            {
+                chosenLocations.push_back(location);
+                i++;
+            }
         }
         else
         {
@@ -234,6 +243,8 @@ void Petani::panen()
 
             inventory.insert(*newItem);
         }
+        delete tanaman;
+        
     }
 
     // Message terakhir

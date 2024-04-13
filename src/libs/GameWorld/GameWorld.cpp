@@ -48,6 +48,7 @@ void GameWorld::startGame()
     countdown(3);
     cout << "Game dimulai!" << endl;
     cout << endl;
+
     while (!ended)
     {
         CommandManager.setIsTakingTurn(true);
@@ -192,6 +193,7 @@ void GameWorld::loadGameState()
 
     string username, role;
     int berat_badan, uang, itemCount;
+
     for (int i = 0; i < playerCount; i++)
     {
         inputFile >> username >> role >> berat_badan >> uang;
@@ -219,6 +221,7 @@ void GameWorld::loadGameState()
         for (int j = 0; j < itemCount; j++)
         {
             inputFile >> itemName;
+
             if (Produk::productMap.find(itemName) != Produk::productMap.end())
             {
                 tuple<int, string, string, string, int, int> product_item_tuple = Produk::productMap[itemName];
@@ -233,6 +236,7 @@ void GameWorld::loadGameState()
                 }
                 else if (get<3>(product_item_tuple) == "PRODUCT_ANIMAL")
                 {
+
                     item = new ProdukHewan(get<0>(product_item_tuple), get<1>(product_item_tuple), itemName, get<3>(product_item_tuple), get<2>(product_item_tuple), get<4>(product_item_tuple), get<5>(product_item_tuple));
                 }
             }
@@ -261,6 +265,7 @@ void GameWorld::loadGameState()
         }
 
         player->setInventory(inventory);
+
         // todo : insert inventory into inventory
 
         if (role == "Peternak")
@@ -273,14 +278,16 @@ void GameWorld::loadGameState()
             {
                 Hewan *hewan = nullptr;
                 string petak, animalName;
-                int weight;
+                int weight, row, col;
                 inputFile >> petak >> animalName >> weight;
 
                 tuple<int, string, string, int, int> hewan_item_tuple = Hewan::animalMap[animalName];
                 hewan = new Hewan(get<0>(hewan_item_tuple), get<1>(hewan_item_tuple), animalName, get<2>(hewan_item_tuple), weight, get<3>(hewan_item_tuple), get<4>(hewan_item_tuple));
-
-                ranch.insert(*hewan);
+                row = getRowStorage(petak);
+                col = getColStorage(petak[0]);
+                ranch.insert(row, col, *hewan);
             }
+
             player->setPeternakan(ranch);
         }
 

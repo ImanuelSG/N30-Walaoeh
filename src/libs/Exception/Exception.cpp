@@ -72,7 +72,7 @@ const char *NotEnoughMoneyException::what()
 
 const char *NotEnoughStockException::what()
 {
-    return "Stok dari barang yang diminta tidak mencukupi :( , tidak bisa membeli barang!\n";
+    return "Stok dari barang yang diminta tidak mencukupi :( , tidak bisa membeli barang!";
 }
 const char *NotEnoughTanamanException::what()
 {

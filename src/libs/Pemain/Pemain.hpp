@@ -116,7 +116,6 @@ public:
     virtual int getKKP() = 0;
     virtual string getRole() const = 0;
 
-
     // Configurations needs
 
     virtual void setLadang(const Storage<Tanaman> &storage);
