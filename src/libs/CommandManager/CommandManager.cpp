@@ -229,6 +229,13 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         cout << e.what() << endl;
         return -2;
     }
+
+    // Other Invalid
+    catch (InvalidProdukException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
 }
 
 void CommandManager::setIsTakingTurn(bool isTakingTurn)

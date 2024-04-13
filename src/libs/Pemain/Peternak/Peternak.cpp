@@ -172,12 +172,13 @@ void Peternak::kasihMakan()
 
     } while (isEmpty);
 
-    cout << "Kamu memilih " << hewan->getKodeHuruf() << "untuk diberi makan.\n"
+    cout << "Kamu memilih " << hewan->getKodeHuruf() << " untuk diberi makan.\n"
          << endl;
     cout << "Pilih pangan yang akan diberikan: " << endl;
 
     string tipeHewan = hewan->getTipeHewan();
     // cek ada makanan tipe itu atau gak
+    cout << "TIPE HEWAN: " << tipeHewan << endl;
     if (isMakananAvailable(tipeHewan))
     {
         display(inventory);
@@ -189,8 +190,8 @@ void Peternak::kasihMakan()
         {
             string slot = getValidInputStorage("Slot");
 
-            int col = getColStorage(slot[0]);
-            int row = getRowStorage(slot);
+            col = getColStorage(slot[0]);
+            row = getRowStorage(slot);
 
             if (col < 0 || col > inventory.getCol() || row < 0 || row > inventory.getRow())
             {
@@ -202,16 +203,13 @@ void Peternak::kasihMakan()
             }
 
         } while (!acc);
-        Sellable *item = inventory.getElementAddress(row, col);
 
+        Sellable *item = inventory.getElementAddress(row, col);
         if (item != nullptr)
         {
+            cout << "TIPE: " << item->getJenis() << endl;
 
-            if (!(item->getJenis() == "PRODUK_TANAMAN_BUAH") || !(item->getJenis() == "PRODUK_HEWAN"))
-            {
-                throw InvalidProdukException();
-            }
-            else
+            if ((item->getJenis() == "PRODUK_HEWAN") || (item->getJenis() == "PRODUK_TANAMAN_BUAH"))
             {
                 if ((hewan->isCarnivore() && (item->getJenis() == "PRODUK_HEWAN")) || (hewan->isHerbivore() && (item->getJenis() == "PRODUK_TANAMAN_BUAH")) || (hewan->isOmnivore() && ((item->getJenis() == "PRODUK_TANAMAN_BUAH") || (item->getJenis() == "PRODUK_HEWAN"))))
                 {
@@ -219,13 +217,21 @@ void Peternak::kasihMakan()
                     hewan->setWeight(hewan->getWeight() + item->getAddedWeight());
                     cout << hewan->getKodeHuruf() << "sudah diberi makan dan beratnya menjadi " << hewan->getWeight() << endl;
                     // hapus barang dri inventory
-                    inventory.deleteAt(col, row);
+                    inventory.deleteAt(row, col);
                 }
                 else
                 {
                     throw InvalidJenisMakananException();
                 }
             }
+            else
+            {
+                throw InvalidProdukException();
+            }
+        }
+        else
+        {
+            cout << "Anda memilih slot kosong" << endl;
         }
     }
     else

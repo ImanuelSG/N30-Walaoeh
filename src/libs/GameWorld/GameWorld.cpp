@@ -48,6 +48,8 @@ void GameWorld::startGame()
     countdown(3);
     cout << "Game dimulai!" << endl;
     cout << endl;
+
+    
     while (!ended)
     {
         CommandManager.setIsTakingTurn(true);
@@ -192,6 +194,15 @@ void GameWorld::loadGameState()
 
     string username, role;
     int berat_badan, uang, itemCount;
+
+    std::cout << "--Product Map--" << endl;
+    for (auto product : Produk::productMap)
+    {
+        cout << product.first << endl;
+        tuple<int, std::string, std::string, std::string, int, int> data = product.second;
+        cout << get<0>(data) << " " << get<1>(data) << " " << get<2>(data) << " " << get<3>(data) << " " << get<4>(data) << " " << get<5>(data) << endl;
+    }
+
     for (int i = 0; i < playerCount; i++)
     {
         inputFile >> username >> role >> berat_badan >> uang;
@@ -219,6 +230,7 @@ void GameWorld::loadGameState()
         for (int j = 0; j < itemCount; j++)
         {
             inputFile >> itemName;
+
             if (Produk::productMap.find(itemName) != Produk::productMap.end())
             {
                 tuple<int, string, string, string, int, int> product_item_tuple = Produk::productMap[itemName];
@@ -233,6 +245,7 @@ void GameWorld::loadGameState()
                 }
                 else if (get<3>(product_item_tuple) == "PRODUCT_ANIMAL")
                 {
+
                     item = new ProdukHewan(get<0>(product_item_tuple), get<1>(product_item_tuple), itemName, get<3>(product_item_tuple), get<2>(product_item_tuple), get<4>(product_item_tuple), get<5>(product_item_tuple));
                 }
             }
@@ -261,6 +274,7 @@ void GameWorld::loadGameState()
         }
 
         player->setInventory(inventory);
+
         // todo : insert inventory into inventory
 
         if (role == "Peternak")
