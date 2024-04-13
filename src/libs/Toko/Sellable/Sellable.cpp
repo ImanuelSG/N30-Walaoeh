@@ -32,9 +32,13 @@ Sellable &Sellable::operator=(const Sellable &other)
     return *this;
 }
 
+// bool Sellable::operator==(const Sellable &a, const Sellable &b)
+// {
+//     return a.kode_huruf == b.kode_huruf && a.nama_barang == b.nama_barang && a.harga_barang == b.harga_barang;
+// }
+
 // dtor
 Sellable::~Sellable() {}
-
 
 // getter
 string Sellable::getKodeHuruf()
@@ -74,7 +78,12 @@ bool Sellable::isEdible()
     return false;
 }
 
-int Sellable::getAddedWeight() {
+int Sellable::getAddedWeight()
+{
     return 0;
 }
 
+bool Sellable::operator==(Sellable &other)
+{
+    return this->kode_huruf == other.getKodeHuruf() && this->nama_barang == other.getNamaBarang() && this->harga_barang == other.getHargaBarang();
+}

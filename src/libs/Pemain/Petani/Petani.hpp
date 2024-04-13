@@ -29,6 +29,9 @@ public:
     static int getUkuranLadangM();
     static void setUkuranLadangN(int n);
     static void setUkuranLadangM(int m);
+
+    // bonus
+    void azab();
 };
 
 #endif

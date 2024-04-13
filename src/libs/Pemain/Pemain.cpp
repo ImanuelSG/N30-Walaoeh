@@ -6,7 +6,6 @@ int Pemain::inventory_m = 5;
 // Constructor , destructor
 Pemain::Pemain(string name, int gulden, int berat) : name(name), gulden(gulden), berat(berat), inventory(inventory_n, inventory_m)
 {
-    
 }
 Pemain::~Pemain() {}
 
@@ -87,8 +86,6 @@ void Pemain::makan()
         do
         {
             slot = getValidInputStorage("Slot");
-
-            
 
             col = getColStorage(slot[0]);
             row = getRowStorage(slot);
@@ -273,6 +270,7 @@ void Pemain::beli(Toko &toko)
         {
             int row = getRowStorage(pos);
             int col = getColStorage(pos[0]);
+            cout << row << " " << col << endl;
             if (inventory.getElementAddress(row, col) != nullptr)
             {
                 cout << "Slot " << pos << " sudah terisi, silahkan pilih slot lain" << endl;
@@ -294,7 +292,7 @@ void Pemain::beli(Toko &toko)
                 {
                     int row = getRowStorage(pos);
                     int col = getColStorage(pos[0]);
-                    inventory.insert(row, col, *(get<0>(item)));
+                    inventory.insert(row, col, *copy);
                 }
                 valid = true;
 
@@ -372,7 +370,8 @@ void Pemain::jual(Toko &toko)
     {
         int row = getRowStorage(pos);
         int col = getColStorage(pos[0]);
-        inventory.deleteAt(row, col);
+        Sellable &res = inventory.deleteAt(row, col);
+        delete &res;
     }
 
     cout << "Barang Anda berhasil dijual!" << endl

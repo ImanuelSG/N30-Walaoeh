@@ -34,8 +34,6 @@ void Peternak::ternak()
     do
     {
         bool acc = false;
-        int col = 0;
-        int row = 0;
         do
         {
             slot = getValidInputStorage("Slot");
@@ -132,7 +130,8 @@ void Peternak::kasihMakan()
         throw TernakEmptyException();
     }
     cout << endl;
-    cout << "Pilih petak kandang yang akan diberi makan" << endl << endl;
+    cout << "Pilih petak kandang yang akan diberi makan" << endl
+         << endl;
     display(peternakan);
     bool isEmpty = true;
     string petak;
@@ -193,8 +192,6 @@ void Peternak::kasihMakan()
 
             col = getColStorage(slot[0]);
             row = getRowStorage(slot);
-            col = getColStorage(slot[0]);
-            row = getRowStorage(slot);
 
             if (col < 0 || col > inventory.getCol() || row < 0 || row > inventory.getRow())
             {
@@ -206,7 +203,7 @@ void Peternak::kasihMakan()
             }
 
         } while (!acc);
-        
+
         Sellable *item = inventory.getElementAddress(row, col);
         if (item != nullptr)
         {
@@ -220,8 +217,6 @@ void Peternak::kasihMakan()
                     cout << hewan->getKodeHuruf() << " sudah diberi makan dan beratnya menjadi " << hewan->getWeight() << endl;
                     // hapus barang dri inventory
                     inventory.deleteAt(row, col);
-                    
-                
                 }
                 else
                 {
@@ -250,7 +245,6 @@ void Peternak::panen()
     // cetak ternak
     cout << endl;
     cetakPeternakan();
-
 
     auto readyItems = readyPanen(peternakan);
     if (readyItems.size() > 0)
@@ -321,12 +315,11 @@ void Peternak::panen()
 
         } while (!valid);
 
-        
         // validasi jumlah penyimpanan cukup atau tidak
         int tempCol = getColStorage(positions[0][0]);
         int tempRow = getRowStorage(positions[0]);
 
-        Hewan *tempHewan = peternakan.getElementAddress(tempRow,tempCol);
+        Hewan *tempHewan = peternakan.getElementAddress(tempRow, tempCol);
         if (tempHewan != nullptr)
         {
             int tambahan = (tempHewan->isOmnivore()) ? (num * 2) : num;
@@ -342,7 +335,8 @@ void Peternak::panen()
                 int iter = 0;
                 vector<string> chosenPositions;
 
-                cout << endl << "Pilih petak yang ingin dipanen:" << endl;
+                cout << endl
+                     << "Pilih petak yang ingin dipanen:" << endl;
                 do
                 {
 
@@ -376,7 +370,7 @@ void Peternak::panen()
                     int col = getColStorage(chosenPositions[i][0]);
                     int row = getRowStorage(chosenPositions[i]);
 
-                    Hewan* hewan = peternakan.getElementAddress(row,col);
+                    Hewan *hewan = peternakan.getElementAddress(row, col);
 
                     if (hewan->isOmnivore())
                     {
@@ -395,32 +389,29 @@ void Peternak::panen()
                         Sellable *item = ProdukHewan::tambahProdukHewanHerbivora(*hewan);
                         inventory.insert(*item);
                     }
-                    
-                    
 
-                    peternakan.deleteAt(row,col);
-                    
+                    peternakan.deleteAt(row, col);
                 }
 
-                cout << endl << num << " petak hewan " << chosenItem << " pada petak ";
-                for (int i =0 ; i < chosenPositions.size(); i++)
+                cout << endl
+                     << num << " petak hewan " << chosenItem << " pada petak ";
+                for (int i = 0; i < chosenPositions.size(); i++)
                 {
                     cout << chosenPositions[i];
-                    if (i != (chosenPositions.size()-1) )
+                    if (i != (chosenPositions.size() - 1))
                     {
-                        cout <<",";
+                        cout << ",";
                     }
                     cout << " ";
                 }
                 cout << "telah dipanen!" << endl;
             }
         }
-    } else 
+    }
+    else
     {
         throw NotEnoughPanenException();
     }
-
-
 }
 
 void Peternak::cetakPeternakan()
@@ -516,7 +507,6 @@ string Peternak::getRole() const
     return "Peternak";
 }
 
-
 template <>
 void display<Hewan>(const Storage<Hewan> &storage)
 {
@@ -610,13 +600,13 @@ map<string, tuple<vector<string>, int>> readyPanen<Hewan>(const Storage<Hewan> &
                     auto it = result.find(kode);
                     if (it == result.end())
                     {
-                        vector<string> position = {intToAlphabet(j) + intToStringWithLeadingZero(i+1)};
+                        vector<string> position = {intToAlphabet(j) + intToStringWithLeadingZero(i + 1)};
                         result[kode] = make_tuple(position, 1);
                     }
                     else
                     {
                         auto &value = it->second;
-                        get<0>(value).push_back(intToAlphabet(j) + intToStringWithLeadingZero(i+1));
+                        get<0>(value).push_back(intToAlphabet(j) + intToStringWithLeadingZero(i + 1));
                         get<1>(value)++;
                     }
                 }
@@ -674,4 +664,32 @@ void Peternak::setUkuranTernakN(int n)
 void Peternak::setUkuranTernakM(int m)
 {
     ternak_m = m;
+}
+
+void Peternak::azab()
+{
+    if (!peternakan.isEmpty())
+    {
+        string nama;
+        for (int i = 0; i < peternakan.getRow(); i++)
+        {
+            for (int j = 0; j < peternakan.getCol(); j++)
+            {
+                Hewan *item = peternakan.getElementAddress(i, j);
+                if (item != nullptr)
+                {
+                    nama = item->getNamaBarang();
+                    peternakan.deleteAt(i,j);
+                    delete &item;
+                    break;
+                }
+            }
+        }
+
+        cout << "Wakwaw dewa siwa marah!!! Hewan kamu kaburr!!" << endl;
+        cout << "Bye-bye " << name << endl;
+    } else
+    {
+        cout << "Tadinya kamu membuat dewa siwa marah!!, namun karena kamu tidak memiliki hewan dewa siwa kasian\nKamu tidak terkena apa apa" << endl;
+    }
 }

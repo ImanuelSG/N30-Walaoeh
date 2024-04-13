@@ -40,6 +40,8 @@ int main()
         MainGame.initializeDefaultGame();
     }
 
+    
+
     MainGame.startGame();
 
     return 0;

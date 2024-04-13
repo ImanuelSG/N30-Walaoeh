@@ -14,9 +14,9 @@ We only provide 8 colors. Feel free to modify/add colors if you want to.
 **/
 
 #define NORMAL "\x1B[0m"
-#define RED "\x1B[31m"
-#define GREEN "\x1B[32m"
-#define BLUE "\x1B[34m"
+#define MERAH "\x1B[31m"
+#define HIJAU "\x1B[32m"
+#define BIRU "\x1B[34m"
 
 void print_red(char c);
 void print_green(char c);

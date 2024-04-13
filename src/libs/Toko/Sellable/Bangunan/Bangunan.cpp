@@ -25,6 +25,11 @@ Bangunan &Bangunan::operator=(const Bangunan &other)
     return *this;
 }
 
+// bool Bangunan::operator==(const )
+// {
+//     return a.id_bangunan == b.id_bangunan && a.material == b.material;
+// }
+
 // Clone
 Sellable *Bangunan::Clone()
 {

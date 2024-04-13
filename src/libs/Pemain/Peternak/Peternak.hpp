@@ -32,6 +32,9 @@ public:
     static void setUkuranTernakN(int n);
     static void setUkuranTernakM(int m);
 
+    // bonus
+    void azab();
+
 };
 
 #endif

@@ -67,6 +67,9 @@ public:
     string getRole() const;
 
     int getKKP() ;
+
+    // bonus
+    void azab();
 };
 
 #endif

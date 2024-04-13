@@ -11,18 +11,18 @@ Modified at: 23/10/2023
 
 void print_red(char c)
 {
-    printf("%s%c", RED, c);
+    printf("%s%c", MERAH, c);
     printf("%s", NORMAL);
 }
 
 void print_green(char c)
 {
-    printf("%s%c", GREEN, c);
+    printf("%s%c", HIJAU, c);
     printf("%s", NORMAL);
 }
 
 void print_blue(char c)
 {
-    printf("%s%c", BLUE, c);
+    printf("%s%c", BIRU, c);
     printf("%s", NORMAL);
 }

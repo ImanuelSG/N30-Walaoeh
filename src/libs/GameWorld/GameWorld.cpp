@@ -201,20 +201,32 @@ void GameWorld::saveGameState()
 
 void GameWorld::loadGameState()
 {
-
     string path;
-    cout << "Masukkan lokasi berkas state: ";
-    cin >> path;
+    bool valid = false;
+    int playerCount;
+
+    do
+    {
+
+        cout << "Masukkan lokasi berkas state: ";
+
+        cin >> path;
+
+        ifstream testFile(path);
+        if (!testFile.is_open())
+        {
+            cout << "File tidak ditemukan, silahkan coba lagi" << endl;
+        }
+        else
+        {
+            valid = true;
+        }
+
+    } while (!valid);
 
     ifstream inputFile(path);
-    if (!inputFile.is_open())
-    {
-        throw FileNotFoundException();
-    }
 
-    int playerCount;
     inputFile >> playerCount;
-
     string username, role;
     int berat_badan, uang, itemCount;
 

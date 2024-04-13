@@ -4,7 +4,7 @@ bool isValidInput(string input)
 {
     bool valid = false;
     bool has00 = false;
-    if (isalpha(input[0]) && input.length() >= 3)
+    if (isalpha(input[0]) && input.length() >= 3 && input[0] - 'A' <= 25)
     {
 
         int id = 1;
@@ -171,4 +171,12 @@ void displayReadyPanen(map<string, tuple<vector<string>, int>> &readyItems)
         cout << count << ". " << pair.first << " (" << get<1>(pair.second) << " petak siap panen)" << endl;
         count++;
     }
+}
+bool isEmpty(string s) {
+    for (char c : s) {
+        if (!isspace(c)) {
+            return false;
+        }
+    }
+    return true;
 }
