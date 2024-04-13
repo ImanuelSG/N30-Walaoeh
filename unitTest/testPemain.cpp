@@ -35,6 +35,9 @@ void testPemain() {
     cout << player.getBerat() << endl;
     assert(player.getKekayaan() == 210);
 
+    player.rezeki();
+    assert(player.getGulden() == 220);
+
     // Test other methods
     // Add more test cases for other methods as needed
 }

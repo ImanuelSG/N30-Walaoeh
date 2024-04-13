@@ -509,5 +509,29 @@ void Petani::setLadang(const Storage<Tanaman> &storage)
 
 void Petani::azab()
 {
-    cout << this->getName() << " kena Azab! Semua tanaman di ladang mati!" << endl;
+    if (!ladang.isEmpty())
+    {
+        string namaTanaman;
+        for (int i = 0; i < ladang.getRow(); i++)
+        {
+            for (int j = 0; j < ladang.getCol(); j++)
+            {
+                Tanaman *item = ladang.getElementAddress(i, j);
+                if (item != nullptr)
+                {
+                    namaTanaman = item->getNamaBarang();
+                    ladang.deleteAt(i,j);
+                    delete item;
+                    break;
+                }
+            }
+        }
+
+        cout << "Wakwaw dewa siwa marah!!! Tanaman " << name << " kena serangan hama!!" << endl;
+        cout << "Bye-bye " << namaTanaman << endl;
+    }
+    else
+    {
+         cout << "Tadinya kamu membuat dewa siwa marah!!, namun karena kamu tidak memiliki tanaman dewa siwa kasian\nKamu tidak terkena apa apa" << endl;
+    }
 }
