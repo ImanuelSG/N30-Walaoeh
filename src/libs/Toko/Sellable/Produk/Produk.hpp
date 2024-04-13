@@ -3,6 +3,7 @@
 
 #include "../Sellable.hpp"
 #include "../../../Exception/Exception.hpp"
+#include "../../../Utils/Utils.hpp"
 #include <vector>
 #include <map>
 #include <string>
@@ -32,10 +33,10 @@ public:
 
     // operator overloading
     Produk &operator=(const Produk &other);
+    // bool operator==(const Produk &a, const Produk &b);
 
     // dtor
     virtual ~Produk();
-
 
     /* Methods */
     // getter

@@ -52,7 +52,7 @@ void Toko::MuatHewanTanamanToko()
     }
 }
 
-void Toko::MuatStateToko(ifstream& inputFile)
+void Toko::MuatStateToko(ifstream &inputFile)
 {
     int itemCount;
     inputFile >> itemCount;
@@ -220,7 +220,7 @@ int Toko::Jual(vector<Sellable *> soldItems, string role)
                 for (auto &it : items)
                 {
                     // if barang exsist, increase the stock
-                    if (it.first->getNamaBarang() == item->getNamaBarang())
+                    if (*(it.first) == *item)
                     {
                         it.second++;
                         found = true;

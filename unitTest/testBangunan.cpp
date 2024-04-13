@@ -22,5 +22,10 @@ int main()
     //     cout << it.first << ": " << it.second << endl;
     // }
 
+    Sellable *b1 = new Bangunan(1, "SMALL_HOUSE", "SMALL HOUSE", 50, {{"TEAK_WOOD", 1}, {"SANDAL_WOOD", 1}});
+    Sellable *b2 = new Bangunan(1, "SMALL_HOUSE", "SMALL HOUSE", 50, {{"TEAK_WOOD", 1}, {"SANDAL_WOOD", 1}});
+
+    cout << (*b1 == *b2) << endl;
+
     return 0;
 }

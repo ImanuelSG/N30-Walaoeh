@@ -37,13 +37,17 @@ Produk &Produk::operator=(const Produk &other)
     return *this;
 }
 
+// bool Produk::operator==(const Produk &a, const Produk &b)
+// {
+//     return a.id_produk == b.id_produk && a.tipe_produk == b.tipe_produk && a.origin == b.origin && a.added_weight == b.added_weight;
+// }
+
 // dtor
 Produk::~Produk()
 {
 }
 
 // Clone
-
 
 /* Methods */
 // getter
@@ -99,16 +103,17 @@ void Produk::loadProductConfig(string path)
     string line;
     int id, addedWeight, price;
     string code, name, type, origin;
-    while (getline(inputFile, line))
+    while (getline(inputFile, line) && !((line)).empty())
     {
         istringstream iss(line);
         iss >> id >> code >> name >> type >> origin >> addedWeight >> price;
+
         productMap[name] = make_tuple(id, code, origin, type, addedWeight, price);
     }
     inputFile.close();
 
-    // how to access
-    // for (const auto& pair : productMap) {
+    // for (const auto &pair : productMap)
+    // {
     //     std::cout << "Name: " << pair.first << ", ID: " << get<0>(pair.second)
     //               << ", Code: " << get<1>(pair.second) << ", Origin: " << get<2>(pair.second)
     //               << ", Type: " << get<3>(pair.second) << ", Weight: " << get<4>(pair.second)
@@ -127,7 +132,7 @@ void Produk::loadProductOriginConfig(string path)
     string line;
     int id, addedWeight, price;
     string code, name, type, origin;
-    while (getline(inputFile, line))
+    while (getline(inputFile, line) && !isEmpty(line))
     {
         istringstream iss(line);
         iss >> id >> code >> name >> type >> origin >> addedWeight >> price;
@@ -136,10 +141,14 @@ void Produk::loadProductOriginConfig(string path)
     inputFile.close();
 
     // how to access
-    // for (const auto& pair : productOriginMap) {
-    //     std::cout << "Origin: " << pair.first << ", ID: " << get<0>(pair.second)
-    //               << ", Code: " << get<1>(pair.second) << ", Name: " << get<2>(pair.second)
-    //               << ", Type: " << get<3>(pair.second) << ", Weight: " << get<4>(pair.second)
-    //               << ", Price: " << get<5>(pair.second) << endl;
+    // for (const auto &entry : productOriginMap)
+    // {
+    //     cout << "Origin: " << entry.first << endl;
+    //     for (const auto &item : entry.second)
+    //     {
+    //         cout << "ID: " << get<0>(item) << ", Code: " << get<1>(item) << ", Name: " << get<2>(item)
+    //              << ", Type: " << get<3>(item) << ", Added Weight: " << get<4>(item)
+    //              << ", Price: " << get<5>(item) << endl;
+    //     }
     // }
 }

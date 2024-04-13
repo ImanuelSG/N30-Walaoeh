@@ -43,6 +43,11 @@ ProdukTanamanBuah &ProdukTanamanBuah::operator=(const ProdukTanamanBuah &other)
     return *this;
 }
 
+// bool ProdukTanamanBuah::operator==(const ProdukTanamanBuah &a, const ProdukTanamanBuah &b)
+// {
+//     return a.id_produk == b.id_produk && a.kode_huruf == b.kode_huruf && a.nama_barang == b.nama_barang && a.tipe_produk == b.tipe_produk && a.origin == b.origin && a.added_weight == b.added_weight && a.harga_barang == b.harga_barang;
+// }
+
 // dtor
 ProdukTanamanBuah::~ProdukTanamanBuah() {}
 
@@ -55,4 +60,18 @@ string ProdukTanamanBuah::getJenis()
 bool ProdukTanamanBuah::isEdible()
 {
     return true;
+}
+
+Sellable* ProdukTanamanBuah::tambahProdukTanamanBuah(Tanaman &tanaman)
+{
+    vector<tuple<int, string, string, string, int, int>> produk_buah_vektor = Produk::productOriginMap[tanaman.getNamaBarang()];
+
+    Sellable *produk_buah_baru;
+    for (int i = 0; i < produk_buah_vektor.size(); i++)
+    {
+        produk_buah_baru = new ProdukTanamanBuah(get<0>(produk_buah_vektor[i]), get<1>(produk_buah_vektor[i]), get<2>(produk_buah_vektor[i]), get<3>(produk_buah_vektor[i]), tanaman.getNamaBarang(), get<4>(produk_buah_vektor[i]), get<5>(produk_buah_vektor[i]));
+    }
+    
+    delete &tanaman;
+    return produk_buah_baru;
 }

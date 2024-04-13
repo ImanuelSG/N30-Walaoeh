@@ -17,18 +17,22 @@ public:
     // ctor user defined
     ProdukTanamanMaterial(int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga);
 
+    // operator overloading
     ProdukTanamanMaterial &operator=(const ProdukTanamanMaterial &other);
+    // bool operator==(const ProdukTanamanMaterial &a, const ProdukTanamanMaterial &b);
 
     // dtor
     ~ProdukTanamanMaterial();
 
     // Clone
-
     Sellable *Clone();
 
     /* Methods */
     // getter
     string getJenis();
+
+    // Konversi tanaman menjadi produk (material) kalau weight sudah mencapai weight_to_harvest
+    static Sellable* tambahProdukTanamanMaterial(Tanaman &tanaman);
 };
 
 #endif

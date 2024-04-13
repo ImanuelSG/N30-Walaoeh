@@ -162,10 +162,10 @@ int Walikota::tambahPemain(vector<Pemain *> &pemain)
 void Walikota::bangunBangunan()
 {
 
-    if (this->inventory.isFull())
-    {
-        throw InventoryFullException();
-    }
+    // if (this->inventory.isFull())
+    // {
+    //     throw InventoryFullException();
+    // }
 
     Bangunan::displayAllRecipe();
     cout << endl;
@@ -225,7 +225,8 @@ void Walikota::bangunBangunan()
                 {
                     usedMaterial.erase(name);
                 }
-                inventory.deleteAt(i, j);
+                Sellable& item = inventory.deleteAt(i, j);
+                delete &item;
             }
             j++;
         }

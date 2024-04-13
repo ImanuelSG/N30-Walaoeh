@@ -39,6 +39,11 @@ ProdukTanamanMaterial &ProdukTanamanMaterial::operator=(const ProdukTanamanMater
     return *this;
 }
 
+// bool ProdukTanamanMaterial::operator==(const ProdukTanamanMaterial &a, const ProdukTanamanMaterial &b)
+// {
+//     return a.id_produk == b.id_produk && a.kode_huruf == b.kode_huruf && a.nama_barang == b.nama_barang && a.tipe_produk == b.tipe_produk && a.origin == b.origin && a.added_weight == b.added_weight && a.harga_barang == b.harga_barang;
+// }
+
 // dtor
 ProdukTanamanMaterial::~ProdukTanamanMaterial() {}
 
@@ -52,4 +57,19 @@ Sellable *ProdukTanamanMaterial::Clone()
 string ProdukTanamanMaterial::getJenis()
 {
     return "PRODUK_TANAMAN_MATERIAL";
+}
+
+
+Sellable* ProdukTanamanMaterial::tambahProdukTanamanMaterial(Tanaman &tanaman)
+{
+    vector<tuple<int, string, string, string, int, int>> produk_material_vektor = Produk::productOriginMap[tanaman.getNamaBarang()];
+
+    Sellable *produk_material_baru;
+    for (int i = 0; i < produk_material_vektor.size(); i++)
+    {
+        produk_material_baru = new ProdukTanamanMaterial(get<0>(produk_material_vektor[i]), get<1>(produk_material_vektor[i]), get<2>(produk_material_vektor[i]), get<3>(produk_material_vektor[i]), tanaman.getNamaBarang(), get<4>(produk_material_vektor[i]), get<5>(produk_material_vektor[i]));
+    }
+    
+    delete &tanaman;
+    return produk_material_baru;
 }

@@ -25,3 +25,6 @@ vector<string> getManyInputStorage(const string &order);
 void countdown(int seconds);
 string intToAlphabet(int n);
 void displayReadyPanen(map<string, tuple<vector<string>, int>> &readyItems);
+
+// https://stackoverflow.com/questions/36499064/how-to-detect-empty-lines-while-reading-from-ifstream-in-c
+bool isEmpty(string buffer);

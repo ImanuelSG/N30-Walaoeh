@@ -17,7 +17,9 @@ public:
     // ctor user defined
     ProdukTanamanBuah(int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga);
 
+    // operator overloading
     ProdukTanamanBuah &operator=(const ProdukTanamanBuah &other);
+    // bool operator==(const ProdukTanamanBuah &a, const ProdukTanamanBuah &b);
 
     // dtor
     ~ProdukTanamanBuah();
@@ -29,6 +31,9 @@ public:
     // getter
     string getJenis();
     bool isEdible() override;
+
+     // Konversi tanaman menjadi produk (buah) kalau weight sudah mencapai weight_to_harvest
+     static Sellable* tambahProdukTanamanBuah(Tanaman &tanaman);
 };
 
 #endif

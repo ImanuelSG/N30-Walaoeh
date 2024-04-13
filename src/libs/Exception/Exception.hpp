@@ -95,6 +95,11 @@ class NotEnoughTanamanException : public exception
 public:
     const char *what();
 };
+class NotEnoughPanenException : public exception
+{
+public:
+    const char *what();
+};
 
 class NotEnoughHewanException : public exception
 {
