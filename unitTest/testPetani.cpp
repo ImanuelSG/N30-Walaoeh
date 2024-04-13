@@ -27,12 +27,12 @@ void testPetani() {
     GameWorld world;
     world.initializeConfigs();
     
-    Tanaman lumut1(3, "BNT", "BANANA_TREE", "FRUIT_PLANT", 2, 4, 3);
-    Tanaman lumut(1, "IRN", "IRONWOOD_TREE", "MATERIAL_PLANT", 4, 5, 5);
-    Tanaman iron(2, "IRN", "IRONWOOD_TREE", "MATERIAL_PLANT", 4, 5, 5);
-    player.inventory.insert(3,4,lumut1);
-    player.inventory.insert(0,0,lumut);
-    player.inventory.insert(1,1,iron);
+    Tanaman *lumut1 = new Tanaman(3, "BNT", "BANANA_TREE", "FRUIT_PLANT", 2, 4, 3);
+    Tanaman *lumut = new Tanaman(1, "IRN", "IRONWOOD_TREE", "MATERIAL_PLANT", 4, 5, 5);
+    Tanaman *iron = new Tanaman(2, "IRN", "IRONWOOD_TREE", "MATERIAL_PLANT", 4, 5, 5);
+    player.inventory.insert(3,4,*lumut1);
+    player.inventory.insert(0,0,*lumut);
+    player.inventory.insert(1,1,*iron);
     // player.cetakPenyimpanan();
     // player.cetakLadang();
     player.tanam();
