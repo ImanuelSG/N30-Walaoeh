@@ -37,7 +37,7 @@ Produk &Produk::operator=(const Produk &other)
     return *this;
 }
 
-bool &Produk::operator==(const Produk &a, const Produk &b)
+bool Produk::operator==(const Produk &a, const Produk &b)
 {
     return a.id_produk == b.id_produk && a.tipe_produk == b.tipe_produk && a.origin == b.origin && a.added_weight == b.added_weight;
 }

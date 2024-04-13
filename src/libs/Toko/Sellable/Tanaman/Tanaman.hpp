@@ -30,7 +30,7 @@ public:
 
     // operator overloading
     Tanaman &operator=(const Tanaman &other);
-    bool &operator==(const Tanaman &a, const Tanaman &b);
+    bool operator==(const Tanaman &a, const Tanaman &b);
 
     Sellable *Clone();
 

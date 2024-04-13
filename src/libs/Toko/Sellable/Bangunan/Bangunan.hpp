@@ -29,7 +29,7 @@ public:
 
     // operator overloading
     Bangunan &operator=(const Bangunan &other);
-    bool &operator==(const Bangunan &a, const Bangunan &b);
+    bool operator==(const Bangunan &a, const Bangunan &b);
 
     // dtor
     ~Bangunan();

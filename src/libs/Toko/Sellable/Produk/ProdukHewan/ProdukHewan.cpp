@@ -36,7 +36,7 @@ ProdukHewan &ProdukHewan::operator=(const ProdukHewan &other)
     return *this;
 }
 
-bool &ProdukHewan::operator==(const ProdukHewan &a, const ProdukHewan &b)
+bool ProdukHewan::operator==(const ProdukHewan &a, const ProdukHewan &b)
 {
     return a.id_produk == b.id_produk && a.kode_huruf == b.kode_huruf && a.nama_barang == b.nama_barang && a.tipe_produk == b.tipe_produk && a.origin == b.origin && a.added_weight == b.added_weight && a.harga_barang == b.harga_barang;
 }

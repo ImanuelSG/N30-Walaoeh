@@ -32,7 +32,7 @@ Hewan &Hewan::operator=(const Hewan &other)
     return *this;
 }
 
-bool &Hewan::operator==(const Hewan &a, const Hewan &b)
+bool Hewan::operator==(const Hewan &a, const Hewan &b)
 {
     return a.id_hewan == b.id_hewan && a.tipe_hewan == b.tipe_hewan && a.weight == b.weight && a.weight_to_harvest == b.weight_to_harvest;
 }

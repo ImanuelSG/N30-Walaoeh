@@ -25,7 +25,7 @@ Bangunan &Bangunan::operator=(const Bangunan &other)
     return *this;
 }
 
-bool &Bangunan::operator==(const Bangunan &a, const Bangunan &b)
+bool Bangunan::operator==(const Bangunan &a, const Bangunan &b)
 {
     return a.id_bangunan == b.id_bangunan && a.material == b.material;
 }

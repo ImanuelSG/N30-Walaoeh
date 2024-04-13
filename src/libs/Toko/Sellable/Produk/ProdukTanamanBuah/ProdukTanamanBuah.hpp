@@ -19,7 +19,7 @@ public:
 
     // operator overloading
     ProdukTanamanBuah &operator=(const ProdukTanamanBuah &other);
-    bool &operator==(const ProdukTanamanBuah &a, const ProdukTanamanBuah &b);
+    bool operator==(const ProdukTanamanBuah &a, const ProdukTanamanBuah &b);
 
     // dtor
     ~ProdukTanamanBuah();

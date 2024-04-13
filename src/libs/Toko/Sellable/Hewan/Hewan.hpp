@@ -31,7 +31,7 @@ public:
 
     // operator overloading
     Hewan &operator=(const Hewan &other);
-    bool &operator==(const Hewan &a, const Hewan &b);
+    bool operator==(const Hewan &a, const Hewan &b);
 
     // dtor
     ~Hewan();
