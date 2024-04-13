@@ -78,6 +78,10 @@ const char *NotEnoughTanamanException::what()
 {
     return "Tanaman Anda tidak cukup, tidak bisa menjalankan perintah\n";
 }
+const char *NotEnoughPanenException::what()
+{
+    return "Jumlah Panen Anda tidak cukup\n";
+}
 
 const char *NotEnoughHewanException::what()
 {

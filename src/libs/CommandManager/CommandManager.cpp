@@ -204,6 +204,11 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         cout << e.what() << endl;
         return -2;
     }
+    catch (NotEnoughPanenException &e)
+    {
+        cout << e.what() << endl;
+        return -2;
+    }
 
     // Exception untuk kosong
     catch (InventoryEmptyException &e)
