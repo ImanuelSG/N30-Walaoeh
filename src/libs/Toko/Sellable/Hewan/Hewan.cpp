@@ -137,7 +137,7 @@ bool Hewan::isOmnivore()
 
 bool Hewan::isHarvestValid()
 {
-    return weight >= weight_to_harvest;
+    return this->weight >= this->weight_to_harvest;
 }
 
 // bool Hewan::isCow()
