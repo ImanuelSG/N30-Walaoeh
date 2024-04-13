@@ -40,6 +40,7 @@ public:
 
   // operator overloading
   Sellable &operator=(const Sellable &other);
+  bool &operator==(const Sellable &a, const Sellable &b);
 
   virtual Sellable *Clone() = 0;
 

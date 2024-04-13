@@ -22,6 +22,7 @@ public:
 
     // operator overloading
     ProdukHewan &operator=(const ProdukHewan &other);
+    bool &operator==(const ProdukHewan &a, const ProdukHewan &b);
 
     // dtor
     ~ProdukHewan();

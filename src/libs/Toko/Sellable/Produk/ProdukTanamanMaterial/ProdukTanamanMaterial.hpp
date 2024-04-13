@@ -17,13 +17,14 @@ public:
     // ctor user defined
     ProdukTanamanMaterial(int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga);
 
+    // operator overloading
     ProdukTanamanMaterial &operator=(const ProdukTanamanMaterial &other);
+    bool &operator==(const ProdukTanamanMaterial &a, const ProdukTanamanMaterial &b);
 
     // dtor
     ~ProdukTanamanMaterial();
 
     // Clone
-
     Sellable *Clone();
 
     /* Methods */

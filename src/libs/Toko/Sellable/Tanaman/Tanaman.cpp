@@ -31,6 +31,11 @@ Tanaman &Tanaman::operator=(const Tanaman &other)
     return *this;
 }
 
+bool &Tanaman::operator==(const Tanaman &a, const Tanaman &b)
+{
+    return a.id_tanaman == b.id_tanaman && a.tipe_tanaman == b.tipe_tanaman && a.age == b.age && a.duration_to_harvest == b.duration_to_harvest; 
+}
+
 // dtor
 Tanaman::~Tanaman()
 {

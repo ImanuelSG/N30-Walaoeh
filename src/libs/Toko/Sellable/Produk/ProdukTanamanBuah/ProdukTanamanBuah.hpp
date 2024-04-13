@@ -17,7 +17,9 @@ public:
     // ctor user defined
     ProdukTanamanBuah(int id, string kode, string nama_produk, string tipe, string origin, int added_weight, int harga);
 
+    // operator overloading
     ProdukTanamanBuah &operator=(const ProdukTanamanBuah &other);
+    bool &operator==(const ProdukTanamanBuah &a, const ProdukTanamanBuah &b);
 
     // dtor
     ~ProdukTanamanBuah();

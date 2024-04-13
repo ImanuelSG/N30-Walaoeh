@@ -32,6 +32,7 @@ public:
 
     // operator overloading
     Produk &operator=(const Produk &other);
+    bool &operator==(const Produk &a, const Produk &b);
 
     // dtor
     virtual ~Produk();
