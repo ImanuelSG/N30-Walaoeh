@@ -33,12 +33,6 @@ public:
      * @param pemain
      * @return int
      */
-    int tagihPajak(Pemain *pemain);
-    /**
-     * @brief pungutPajak, function to collect tax from all players
-     *
-     * @param pemain
-     */
     void pungutPajak(const vector<Pemain *> &pemain) override;
     /**
      * @brief bangunBangunan, method to build a building

@@ -91,7 +91,7 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         else if (what == "TAMBAH_PEMAIN")
         {
             int addedPlayerIndex = currPlayer->tambahPemain(ListOfPlayers);
-            cout << "addedPlayerIndex: " << addedPlayerIndex << endl;
+            // cout << "addedPlayerIndex: " << addedPlayerIndex << endl;
             if (addedPlayerIndex <= CurrentPlayerIndex)
             {
                 // if the player is added behind the current player

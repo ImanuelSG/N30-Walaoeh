@@ -41,9 +41,18 @@ public:
      * @return int
      */
     int getNextPlayerIndex();
-
+    /**
+     * @brief Set the Is Taking Turn attribute
+     *
+     * @param isTakingTurn
+     */
     void setIsTakingTurn(bool isTakingTurn);
-
+    /**
+     * @brief Get the Is Taking Turn attribute
+     *
+     * @return true
+     * @return false
+     */
     bool getIsTakingTurn();
 };
 

@@ -158,16 +158,6 @@ void GameWorld::initializeDefaultGame()
     listOfPLayers.push_back(pemain1);
     listOfPLayers.push_back(pemain2);
     listOfPLayers.push_back(pemain3);
-
-    // map<string, int> daftarMaterial;
-
-    // Sellable *item = new Bangunan(1, "SMH", "SMALL_HOUSE", 50, daftarMaterial);
-    // vector<Sellable *> items;
-    // items.push_back(item);
-    // toko.MuatHewanTanamanToko();
-    // int res = toko.Jual(items, "Walikota");
-    // cout << res << endl;
-    // toko.displayAllBuyableItem("Petani");
 }
 
 void GameWorld::saveGameState()

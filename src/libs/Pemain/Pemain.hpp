@@ -4,8 +4,8 @@
 #include <vector>
 #include "Storage/Storage.hpp"
 #include "../Toko/Toko.hpp"
-
 #include "../Utils/Utils.hpp"
+#include "cmath"
 
 using namespace std;
 class Pemain
@@ -86,6 +86,12 @@ public:
      * @brief Menghitung Kekayaan pemain
      */
     virtual int getKekayaan();
+    /**
+     * @brief Mengembalikan pajak yang dibebankan kepada pemain
+     *
+     * @return int
+     */
+    int getPajak();
     /**
      * @brief Pungut Pajak, Khusus untuk walikota
      *
