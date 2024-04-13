@@ -8,8 +8,10 @@
 #include "../Pemain/Walikota/Walikota.hpp"
 #include "../Pemain/Petani/Petani.hpp"
 #include "../Pemain/Peternak/Peternak.hpp"
+#include "../Utils/Utils.hpp"
 
 using namespace std;
+
 
 class GameWorld
 {
@@ -72,4 +74,5 @@ public:
      *
      */
     void initializeDefaultGame();
+
 };
