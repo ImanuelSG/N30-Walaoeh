@@ -144,46 +144,6 @@ bool Tanaman::isHarvestValid()
     return this->age >= this->duration_to_harvest;
 }
 
-// bool Tanaman::isTeak()
-// {
-//     return getKodeHurufTanaman() == "TEK";
-// }
-
-// bool Tanaman::isSandalwood()
-// {
-//     return getKodeHurufTanaman() == "SDT";
-// }
-
-// bool Tanaman::isAloe()
-// {
-//     return getKodeHurufTanaman() == "ALT";
-// }
-
-// bool Tanaman::isIronwood()
-// {
-//     return getKodeHurufTanaman() == "IRN";
-// }
-
-// bool Tanaman::isApple()
-// {
-//     return getKodeHurufTanaman() == "APL";
-// }
-
-// bool Tanaman::isOrange()
-// {
-//     return getKodeHurufTanaman() == "ORG";
-// }
-
-// bool Tanaman::isBanana()
-// {
-//     return getKodeHurufTanaman() == "BNT";
-// }
-
-// bool Tanaman::isGuava()
-// {
-//     return getKodeHurufTanaman() == "GAV";
-// }
-
 void Tanaman::loadTanamanConfig(string path)
 {
     ifstream inputFile(path);
@@ -202,11 +162,4 @@ void Tanaman::loadTanamanConfig(string path)
         plantMap[name] = make_tuple(id, code, type, durationToHarvest, price);
     }
     inputFile.close();
-
-    // how to access
-    // for (const auto& pair : plantMap) {
-    //     std::cout << "Code: " << pair.first << ", ID: " << get<0>(pair.second)
-    //               << ", Name: " << get<1>(pair.second) << ", Type: " << get<2>(pair.second)
-    //               << ", DurationToHarvest: " << get<3>(pair.second) << ", Price: " << get<4>(pair.second) << endl;
-    // }
 }

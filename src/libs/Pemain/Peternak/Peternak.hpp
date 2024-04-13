@@ -32,6 +32,7 @@ public:
     static void setUkuranTernakN(int n);
     static void setUkuranTernakM(int m);
 
+    void azab();
 };
 
 #endif

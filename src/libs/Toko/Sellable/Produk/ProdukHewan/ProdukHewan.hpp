@@ -22,7 +22,6 @@ public:
 
     // operator overloading
     ProdukHewan &operator=(const ProdukHewan &other);
-    // bool operator==(const ProdukHewan &a, const ProdukHewan &b);
 
     // dtor
     ~ProdukHewan();
@@ -55,9 +54,6 @@ public:
     static Sellable* tambahProdukHewanKarnivora(Hewan &hewan);
     static Sellable* tambahProdukHewanOmnivoraDaging(Hewan &hewan);
     static Sellable* tambahProdukHewanOmnivoraTelur(Hewan &hewan);
-
-    // static method
-    // static ProdukHewan tambahProdukHewan(ifstream &file);
 
     bool isEdible() override;
 };

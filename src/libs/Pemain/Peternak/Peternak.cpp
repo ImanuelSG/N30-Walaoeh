@@ -150,7 +150,7 @@ void Peternak::kasihMakan()
             colP = getColStorage(petak[0]);
             rowP = getRowStorage(petak);
 
-            if (colP < 0 || colP > inventory.getCol() || rowP < 0 || rowP > inventory.getRow())
+            if (colP < 0 || colP > peternakan.getCol() || rowP < 0 || rowP > peternakan.getRow())
             {
                 cout << "Masukkan lokasi petak yang sesuai!" << endl;
             }

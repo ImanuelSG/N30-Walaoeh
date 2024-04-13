@@ -25,11 +25,6 @@ Bangunan &Bangunan::operator=(const Bangunan &other)
     return *this;
 }
 
-// bool Bangunan::operator==(const )
-// {
-//     return a.id_bangunan == b.id_bangunan && a.material == b.material;
-// }
-
 // Clone
 Sellable *Bangunan::Clone()
 {
@@ -40,8 +35,6 @@ Sellable *Bangunan::Clone()
 // dtor
 Bangunan::~Bangunan()
 {
-    // this->material.clear();
-    // cout << "Bangunan " << this->getNamaBarang() << " telah dihancurkan" << endl;
 }
 
 /* Methods */
@@ -142,19 +135,6 @@ void Bangunan::loadBangunanConfig(string path)
         list_of_bangunan[name] = make_tuple(code, price, materials, id);
     }
     inputFile.close();
-
-    // how to access
-    // for (const auto& building : list_of_bangunan) {
-    //     cout << "Name: " << building.first << endl;
-    //     cout << "Code: " << get<0>(building.second) << endl;
-    //     cout << "Price: " << get<1>(building.second) << endl;
-    //     cout << "ID: " << get<3>(building.second) << endl;
-
-    //     cout << "Materials:" << endl;
-    //     for (const auto& material : get<2>(building.second)) {
-    //         cout << "  " << material.first << " : " << material.second << endl;
-    //     }
-    // }
 }
 
 tuple<Sellable *, int, map<string, int>> Bangunan::build(string name, map<string, int> materials, int gulden)
