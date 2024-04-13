@@ -136,7 +136,6 @@ void Pemain::cetakPenyimpanan()
     cout << "Total Slot Kosong: " << inventory.countEmptySlot() << endl;
 }
 
-// JGN LUPA GANTI EXEPTION
 void Pemain::pungutPajak(const vector<Pemain *> &pemain)
 {
     throw WalikotaInputException();
