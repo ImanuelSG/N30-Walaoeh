@@ -50,12 +50,13 @@ public:
     */
 
     // Konversi hewan menjadi produk (hewan) kalau weight sudah mencapai weight_to_harvest
-    vector<ProdukHewan> tambahProdukHewanHerbivora(Hewan &hewan);
-    vector<ProdukHewan> tambahProdukHewanKarnivora(Hewan &hewan);
-    vector<ProdukHewan> tambahProdukHewanOmnivora(Hewan &hewan);
+    static Sellable* tambahProdukHewanHerbivora(Hewan &hewan);
+    static Sellable* tambahProdukHewanKarnivora(Hewan &hewan);
+    static Sellable* tambahProdukHewanOmnivoraDaging(Hewan &hewan);
+    static Sellable* tambahProdukHewanOmnivoraTelur(Hewan &hewan);
 
     // static method
-    static ProdukHewan tambahProdukHewan(ifstream &file);
+    // static ProdukHewan tambahProdukHewan(ifstream &file);
 
     bool isEdible() override;
 };

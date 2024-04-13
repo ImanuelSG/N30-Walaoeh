@@ -29,11 +29,6 @@ public:
     static int getUkuranLadangM();
     static void setUkuranLadangN(int n);
     static void setUkuranLadangM(int m);
-
-    // Konversi tanaman menjadi produk (buah) kalau weight sudah mencapai weight_to_harvest
-    Sellable *tambahProdukTanamanBuah(Tanaman &tanaman);
-    // Konversi tanaman menjadi produk (material) kalau weight sudah mencapai weight_to_harvest
-    Sellable *tambahProdukTanamanMaterial(Tanaman &tanaman);
 };
 
 #endif

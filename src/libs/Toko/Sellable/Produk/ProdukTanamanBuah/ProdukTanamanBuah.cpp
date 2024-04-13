@@ -56,3 +56,16 @@ bool ProdukTanamanBuah::isEdible()
 {
     return true;
 }
+
+Sellable* ProdukTanamanBuah::tambahProdukTanamanBuah(Tanaman &tanaman)
+{
+    vector<tuple<int, string, string, string, int, int>> produk_buah_vektor = Produk::productOriginMap[tanaman.getNamaBarang()];
+
+    Sellable *produk_buah_baru;
+    for (int i = 0; i < produk_buah_vektor.size(); i++)
+    {
+        produk_buah_baru = new ProdukTanamanBuah(get<0>(produk_buah_vektor[i]), get<1>(produk_buah_vektor[i]), get<2>(produk_buah_vektor[i]), get<3>(produk_buah_vektor[i]), tanaman.getNamaBarang(), get<4>(produk_buah_vektor[i]), get<5>(produk_buah_vektor[i]));
+    }
+
+    return produk_buah_baru;
+}

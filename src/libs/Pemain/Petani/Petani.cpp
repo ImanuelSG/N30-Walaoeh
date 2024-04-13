@@ -233,13 +233,13 @@ void Petani::panen()
 
         if (tanaman->isBuah())
         {
-            Sellable *newItem = tambahProdukTanamanBuah(*tanaman);
+            Sellable *newItem = ProdukTanamanBuah::tambahProdukTanamanBuah(*tanaman);
 
             inventory.insert(*newItem);
         }
         else
         {
-            Sellable *newItem = tambahProdukTanamanMaterial(*tanaman);
+            Sellable *newItem = ProdukTanamanMaterial::tambahProdukTanamanMaterial(*tanaman);
 
             inventory.insert(*newItem);
         }
@@ -357,32 +357,6 @@ void Petani::setUkuranLadangN(int n)
 void Petani::setUkuranLadangM(int m)
 {
     ladang_m = m;
-}
-
-Sellable *Petani::tambahProdukTanamanBuah(Tanaman &tanaman)
-{
-    vector<tuple<int, string, string, string, int, int>> produk_buah_vektor = Produk::productOriginMap[tanaman.getNamaBarang()];
-
-    Sellable *produk_buah_baru;
-    for (int i = 0; i < produk_buah_vektor.size(); i++)
-    {
-        produk_buah_baru = new ProdukTanamanBuah(get<0>(produk_buah_vektor[i]), get<1>(produk_buah_vektor[i]), get<2>(produk_buah_vektor[i]), get<3>(produk_buah_vektor[i]), tanaman.getNamaBarang(), get<4>(produk_buah_vektor[i]), get<5>(produk_buah_vektor[i]));
-    }
-
-    return produk_buah_baru;
-}
-
-Sellable *Petani::tambahProdukTanamanMaterial(Tanaman &tanaman)
-{
-    vector<tuple<int, string, string, string, int, int>> produk_material_vektor = Produk::productOriginMap[tanaman.getNamaBarang()];
-
-    Sellable *produk_material_baru;
-    for (int i = 0; i < produk_material_vektor.size(); i++)
-    {
-        produk_material_baru = new ProdukTanamanMaterial(get<0>(produk_material_vektor[i]), get<1>(produk_material_vektor[i]), get<2>(produk_material_vektor[i]), get<3>(produk_material_vektor[i]), tanaman.getNamaBarang(), get<4>(produk_material_vektor[i]), get<5>(produk_material_vektor[i]));
-    }
-
-    return produk_material_baru;
 }
 
 template <>

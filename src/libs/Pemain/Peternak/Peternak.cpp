@@ -21,7 +21,7 @@ void Peternak::ternak()
     {
         throw NotEnoughHewanException();
     }
-
+    cout << endl;
     cout << "Pilih hewan dari penyimpanan" << endl;
     display(inventory);
     bool valid = false;
@@ -131,7 +131,7 @@ void Peternak::kasihMakan()
     {
         throw TernakEmptyException();
     }
-
+    cout << endl;
     cout << "Pilih petak kandang yang akan diberi makan" << endl << endl;
     display(peternakan);
     bool isEmpty = true;
@@ -248,6 +248,7 @@ void Peternak::kasihMakan()
 void Peternak::panen()
 {
     // cetak ternak
+    cout << endl;
     cetakPeternakan();
 
 
@@ -262,7 +263,7 @@ void Peternak::panen()
         bool valid = false;
         int size = readyItems.size();
         int input;
-
+        cout << endl;
         do
         {
             cout << "Nomor hewan yang ingin dipanen: ";
@@ -328,7 +329,6 @@ void Peternak::panen()
         Hewan *tempHewan = peternakan.getElementAddress(tempRow,tempCol);
         if (tempHewan != nullptr)
         {
-            cout << tempHewan->getNamaBarang() << endl;
             int tambahan = (tempHewan->isOmnivore()) ? (num * 2) : num;
             // inventory gak cukup
             if (((inventory.getNeff() + tambahan) > inventory.getCapacity()))
@@ -342,7 +342,7 @@ void Peternak::panen()
                 int iter = 0;
                 vector<string> chosenPositions;
 
-                cout << "Pilih petak yang ingin dipanen:" << endl;
+                cout << endl << "Pilih petak yang ingin dipanen:" << endl;
                 do
                 {
 
@@ -380,26 +380,20 @@ void Peternak::panen()
 
                     if (hewan->isOmnivore())
                     {
-                        ProdukHewan produkhewan;
-                        vector<ProdukHewan> produce = produkhewan.tambahProdukHewanOmnivora(*hewan);
-                        Sellable *item = &produce[0];
-                        Sellable *item2 = &produce[1];
+                        Sellable *item = ProdukHewan::tambahProdukHewanOmnivoraDaging(*hewan);
+                        Sellable *item2 = ProdukHewan::tambahProdukHewanOmnivoraTelur(*hewan);
                         inventory.insert(*item);
                         inventory.insert(*item2);
                     }
                     else if (hewan->isCarnivore())
                     {
-                        ProdukHewan produkhewan;
-                        vector<ProdukHewan> daging = produkhewan.tambahProdukHewanKarnivora(*hewan);
-                        Sellable *item = &daging[0];
+                        Sellable *item = ProdukHewan::tambahProdukHewanKarnivora(*hewan);
                         inventory.insert(*item);
                     }
                     else if (hewan->isHerbivore())
                     {
-                        ProdukHewan produkhewan;
-                        vector<ProdukHewan> daging = produkhewan.tambahProdukHewanHerbivora(*hewan);
-                        Sellable *item = &daging[0];
-                        inventory.insert(daging[0]);
+                        Sellable *item = ProdukHewan::tambahProdukHewanHerbivora(*hewan);
+                        inventory.insert(*item);
                     }
                     
                     
@@ -521,28 +515,6 @@ string Peternak::getRole() const
 {
     return "Peternak";
 }
-
-
-// Sellable* Peternak::tambahProdukHewanHerbivore(Hewan &hewan)
-// {
-//     vector<tuple<int, string, string, string, int, int>> produk_herbivora_vector = Produk::productOriginMap[hewan.getNamaBarang()];
-    
-//     Sellable *produkHerbivore;
-//     for (int i = 0; i < produk_herbivora_vector.size(); i++)
-//     {
-//         produkHerbivore = new ProdukHewan(get<0>(produk_herbivora_vector[i]), get<1>(produk_herbivora_vector[i]), get<2>(produk_herbivora_vector[i]), get<3>(produk_herbivora_vector[i]), hewan.getNamaBarang(), get<4>(produk_herbivora_vector[i]), get<5>(produk_herbivora_vector[i]));
-//     }
-//     return produkHerbivore;
-// }
-
-// Sellable* Peternak::tambahProdukHewanCarnivore(Hewan &hewan)
-// {
-
-// }
-// pair<Sellable*,Sellable*> Peternak::tambahProdukHewanOmnivore(Hewan &hewan)
-// {
-
-// }
 
 
 template <>
