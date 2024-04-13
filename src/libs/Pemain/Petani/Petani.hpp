@@ -17,8 +17,6 @@ public:
     void tanam();
     void panen();
     void cetakLadang();
-    void beli();
-    void jual();
     void addPlantAge();
     int countTanamanInventory();
     int getKekayaan();

@@ -278,14 +278,6 @@ void Petani::cetakLadang()
     }
 }
 
-void Petani::beli()
-{
-}
-
-void Petani::jual()
-{
-}
-
 void Petani::addPlantAge()
 {
     for (int i = 0; i < ladang.getRow(); i++)

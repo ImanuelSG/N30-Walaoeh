@@ -210,8 +210,6 @@ void Peternak::kasihMakan()
         Sellable *item = inventory.getElementAddress(row, col);
         if (item != nullptr)
         {
-            cout << "TIPE: " << item->getJenis() << endl;
-            cout << "TIPE: " << item->getJenis() << endl;
 
             if ((item->getJenis() == "PRODUK_HEWAN") || (item->getJenis() == "PRODUK_TANAMAN_BUAH"))
             {
@@ -297,10 +295,6 @@ void Peternak::panen()
         vector<string> positions = get<0>(readyItems[chosenItem]);
         int count = get<1>(readyItems[chosenItem]);
 
-        // validasi jumlah penyimpanan cukup atau tidak
-        for (int i =0 ;i < positions.size() ; i++){
-            cout << positions[i] << endl;
-        }
         valid = false;
         int num;
 
@@ -327,6 +321,7 @@ void Peternak::panen()
         } while (!valid);
 
         
+        // validasi jumlah penyimpanan cukup atau tidak
         int tempCol = getColStorage(positions[0][0]);
         int tempRow = getRowStorage(positions[0]);
 
@@ -443,10 +438,6 @@ void Peternak::cetakPeternakan()
         cout << endl;
     }
 }
-
-void Peternak::beli() {}
-
-void Peternak::jual() {}
 
 int Peternak::getKekayaan()
 {
