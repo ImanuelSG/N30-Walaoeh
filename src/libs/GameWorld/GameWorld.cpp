@@ -6,12 +6,17 @@ GameWorld::GameWorld()
     ended = false;
     winningGulden = 0;
     winningWeight = 0;
+    tipegame = "default";
 }
 
 GameWorld::~GameWorld()
 {
 }
 
+void GameWorld::setTipeGame(string tipegame)
+{
+    this->tipegame = tipegame;
+}
 void GameWorld::displayHeader()
 {
     cout << R"(
@@ -38,7 +43,7 @@ void GameWorld::displayHeader()
 }
 void GameWorld::startGame()
 {
-    CommandManager CommandManager;
+    CommandManager CommandManager(tipegame);
     cout << "Berikut adalah daftar pemain yang ada dalam permainan ini : " << endl;
     for (int i = 0; i < listOfPLayers.size(); i++)
     {

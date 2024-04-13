@@ -131,7 +131,7 @@ void Petani::panen()
     map<string, tuple<vector<string>, int>> readyItems = readyPanen(ladang);
     if (readyItems.size() > 0)
     {
-    cout << "Pilih tanaman siap panen yang kamu miliki" << endl;
+        cout << "Pilih tanaman siap panen yang kamu miliki" << endl;
         displayReadyPanen(readyItems);
 
         // Pilihan tanaman yang mau dipanen
@@ -194,7 +194,7 @@ void Petani::panen()
         } while (!valid);
 
         cout << endl
-            << "Pilih petak yang ingin dipanen:" << endl;
+             << "Pilih petak yang ingin dipanen:" << endl;
         // Validasi format dan lokasi petak
         int i = 0;
         vector<string> possibleLocations = get<0>(readyItems[chosenItem]);
@@ -249,7 +249,7 @@ void Petani::panen()
 
         // Message terakhir
         cout << endl
-            << numPanen << " petak tanaman " << chosenItem << " pada petak ";
+             << numPanen << " petak tanaman " << chosenItem << " pada petak ";
 
         // Tampilkan lokasi ladang yang dipanen
         for (i = 0; i < chosenLocations.size(); i++)
@@ -505,4 +505,9 @@ void displayItems<Tanaman>(const Storage<Tanaman> &storage)
 void Petani::setLadang(const Storage<Tanaman> &storage)
 {
     ladang = storage;
+}
+
+void Petani::azab()
+{
+    cout << this->getName() << " kena Azab! Semua tanaman di ladang mati!" << endl;
 }

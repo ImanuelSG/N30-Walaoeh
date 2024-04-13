@@ -131,6 +131,9 @@ public:
     static int getUkuranInventoryM();
     static void setUkuranInventoryN(int n);
     static void setUkuranInventoryM(int m);
+
+    void rezeki();
+    virtual void azab() = 0;
 };
 
 #endif

@@ -247,3 +247,17 @@ map<string, int> Walikota::getMaterialProduct()
     }
     return materialProduct;
 }
+
+void Walikota::azab()
+{
+    if (gulden != 0)
+    {
+        this->gulden = gulden * 0.67;
+        cout << "Wakwaw dewa siwa marah!!! Kamu terciduk oleh KPK" << endl;
+        cout << "Karena koneksimu sebagai walikota banyak, guldenmu hanya berkurang 1/3 dari total keseluruhan" << endl;
+    }
+    else
+    {
+        cout << "Tadinya kamu membuat dewa siwa marah!!, namun karena kamu tidak memiliki gulden lagi dewa siwa kasian\nKamu tidak terkena apa apa" << endl;
+    }
+}

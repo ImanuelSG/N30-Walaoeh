@@ -30,7 +30,6 @@ public:
 
     // operator overloading
     Tanaman &operator=(const Tanaman &other);
-    // bool operator==(const Tanaman &a, const Tanaman &b);
 
     Sellable *Clone();
 
@@ -60,15 +59,6 @@ public:
     bool isMaterial();
     bool isBuah();
     bool isHarvestValid();
-    
-    // bool isTeak();
-    // bool isSandalwood();
-    // bool isAloe();
-    // bool isIronwood();
-    // bool isApple();
-    // bool isOrange();
-    // bool isBanana();
-    // bool isGuava();
 
     // load config to animalMap
     static void loadTanamanConfig(string path);

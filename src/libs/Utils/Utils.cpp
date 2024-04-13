@@ -172,9 +172,12 @@ void displayReadyPanen(map<string, tuple<vector<string>, int>> &readyItems)
         count++;
     }
 }
-bool isEmpty(string s) {
-    for (char c : s) {
-        if (!isspace(c)) {
+bool isEmpty(string s)
+{
+    for (char c : s)
+    {
+        if (!isspace(c))
+        {
             return false;
         }
     }

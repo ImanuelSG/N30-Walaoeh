@@ -37,11 +37,6 @@ Produk &Produk::operator=(const Produk &other)
     return *this;
 }
 
-// bool Produk::operator==(const Produk &a, const Produk &b)
-// {
-//     return a.id_produk == b.id_produk && a.tipe_produk == b.tipe_produk && a.origin == b.origin && a.added_weight == b.added_weight;
-// }
-
 // dtor
 Produk::~Produk()
 {
@@ -111,14 +106,6 @@ void Produk::loadProductConfig(string path)
         productMap[name] = make_tuple(id, code, origin, type, addedWeight, price);
     }
     inputFile.close();
-
-    // for (const auto &pair : productMap)
-    // {
-    //     std::cout << "Name: " << pair.first << ", ID: " << get<0>(pair.second)
-    //               << ", Code: " << get<1>(pair.second) << ", Origin: " << get<2>(pair.second)
-    //               << ", Type: " << get<3>(pair.second) << ", Weight: " << get<4>(pair.second)
-    //               << ", Price: " << get<5>(pair.second) << endl;
-    // }
 }
 
 void Produk::loadProductOriginConfig(string path)
@@ -139,16 +126,4 @@ void Produk::loadProductOriginConfig(string path)
         productOriginMap[origin].push_back(make_tuple(id, code, name, type, addedWeight, price));
     }
     inputFile.close();
-
-    // how to access
-    // for (const auto &entry : productOriginMap)
-    // {
-    //     cout << "Origin: " << entry.first << endl;
-    //     for (const auto &item : entry.second)
-    //     {
-    //         cout << "ID: " << get<0>(item) << ", Code: " << get<1>(item) << ", Name: " << get<2>(item)
-    //              << ", Type: " << get<3>(item) << ", Added Weight: " << get<4>(item)
-    //              << ", Price: " << get<5>(item) << endl;
-    //     }
-    // }
 }

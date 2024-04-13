@@ -1,8 +1,10 @@
 #include "CommandManager.hpp"
 
-CommandManager::CommandManager()
+CommandManager::CommandManager(string tipegame)
 {
     nextPlayerIndex = 0;
+    isTakingTurn = false;
+    this->tipegame = tipegame;
 }
 
 CommandManager::~CommandManager()
@@ -30,6 +32,32 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
             {
                 player->addPlantAge();
             }
+            // Pengenaan Azab Jika ini game azab
+
+            if (tipegame == "AZAB")
+            {
+                cout << "Dewa Siwa Sedang Marah! Azab akan diberikan kepada pemain yang sial !!" << endl;
+                int count = 0;
+                for (auto player : ListOfPlayers)
+                {
+                    int randomNumber = rand() % 13 + 1;
+                    if (randomNumber == 4 || randomNumber == 9 || randomNumber == 13)
+                    {
+                        player->azab();
+                        count += 1;
+                    }
+                    else if (randomNumber == 7)
+                    {
+                        player->rezeki();
+                    }
+                }
+                cout << endl;
+                if (count == 0)
+                {
+                    cout << "Kemarahan Dewa Siwa tidak berdampak kepada siapapun ! Tidak ada pemain yang mendapatkan azab" << endl;
+                }
+            }
+
             isTakingTurn = false;
         }
         else if (what == "CETAK_PENYIMPANAN")
@@ -279,7 +307,6 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         cout << e.what() << endl;
         return -2;
     }
-    
 }
 
 void CommandManager::setIsTakingTurn(bool isTakingTurn)

@@ -36,11 +36,6 @@ ProdukHewan &ProdukHewan::operator=(const ProdukHewan &other)
     return *this;
 }
 
-// bool ProdukHewan::operator==(const ProdukHewan &a, const ProdukHewan &b)
-// {
-//     return a.id_produk == b.id_produk && a.kode_huruf == b.kode_huruf && a.nama_barang == b.nama_barang && a.tipe_produk == b.tipe_produk && a.origin == b.origin && a.added_weight == b.added_weight && a.harga_barang == b.harga_barang;
-// }
-
 // dtor
 ProdukHewan::~ProdukHewan() {}
 
@@ -101,14 +96,3 @@ Sellable* ProdukHewan::tambahProdukHewanOmnivoraTelur(Hewan &hewan)
     delete &hewan;
     return produk_hewan_baru;
 }
-
-// static method
-// ProdukHewan ProdukHewan::tambahProdukHewan(ifstream &file)
-// {
-//     string kode, nama_produk, tipe, origin;
-//     int id, harga, added_weight;
-
-//     file >> id >> kode >> nama_produk >> tipe >> origin >> added_weight >> harga;
-
-//     return ProdukHewan(jenis_produk_hewan, id, kode, nama_produk, tipe, origin, added_weight, harga);
-// }
