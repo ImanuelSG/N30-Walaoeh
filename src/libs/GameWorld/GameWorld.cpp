@@ -7,12 +7,17 @@ GameWorld::GameWorld()
     ended = false;
     winningGulden = 0;
     winningWeight = 0;
+    tipegame = "default";
 }
 
 GameWorld::~GameWorld()
 {
 }
 
+void GameWorld::setTipeGame(string tipegame)
+{
+    this->tipegame = tipegame;
+}
 void GameWorld::displayHeader()
 {
     const char* header = R"(
@@ -59,7 +64,7 @@ void GameWorld::displayHeader()
 }
 void GameWorld::startGame()
 {
-    CommandManager CommandManager;
+    CommandManager CommandManager(tipegame);
     cout << "Berikut adalah daftar pemain yang ada dalam permainan ini : " << endl;
     for (int i = 0; i < listOfPLayers.size(); i++)
     {
@@ -182,16 +187,6 @@ void GameWorld::initializeDefaultGame()
     listOfPLayers.push_back(pemain1);
     listOfPLayers.push_back(pemain2);
     listOfPLayers.push_back(pemain3);
-
-    // map<string, int> daftarMaterial;
-
-    // Sellable *item = new Bangunan(1, "SMH", "SMALL_HOUSE", 50, daftarMaterial);
-    // vector<Sellable *> items;
-    // items.push_back(item);
-    // toko.MuatHewanTanamanToko();
-    // int res = toko.Jual(items, "Walikota");
-    // cout << res << endl;
-    // toko.displayAllBuyableItem("Petani");
 }
 
 void GameWorld::saveGameState()

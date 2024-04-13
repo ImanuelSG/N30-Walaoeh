@@ -42,6 +42,53 @@ int Pemain::getKekayaan()
     return count;
 }
 
+int Pemain::getPajak()
+{
+    if (getRole() == "Walikota")
+    {
+        return 0;
+    }
+    else
+    {
+        // Get kekayaan kena pajak
+        int KKP = getKKP();
+        // if less than 0 early exit
+        if (KKP <= 0)
+            return 0;
+        float multiplier;
+        // else search for category
+        if (KKP <= 6)
+            multiplier = 0.05;
+        else if (KKP <= 25)
+        {
+            multiplier = 0.15;
+        }
+        else if (KKP <= 50)
+        {
+            multiplier = 0.25;
+        }
+        else if (KKP <= 500)
+        {
+            multiplier = 0.3;
+        }
+        else
+        {
+            multiplier = 0.35;
+        }
+
+        // round to the nearest int
+        int totalPajak = round(KKP * multiplier);
+
+        // Cek apakah ada uang yang dapat dibayarkan
+        int pajakDibayarkan = min(getGulden(), totalPajak);
+
+        // // Setelah itu, kurangi uang pemain
+        // pemain->setGulden(pemain->getGulden() - pajakDibayarkan);
+
+        return pajakDibayarkan;
+    }
+}
+
 void Pemain::setName(string name)
 {
     this->name = name;
@@ -193,13 +240,16 @@ void Pemain::beli(Toko &toko)
 
         if (cin.fail())
         {
-            cin.clear();
-            cin.ignore();
+
             cout << "Input tidak valid, silahkan coba lagi" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         else if (!toko.isValidItem(num, getRole()))
         {
             cout << "Input tidak valid, silahkan coba lagi" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
 
     } while (!toko.isValidItem(num, getRole()));
@@ -213,7 +263,7 @@ void Pemain::beli(Toko &toko)
     if (cin.fail())
     {
         cin.clear();
-        cin.ignore();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         throw NumericException();
     }
     // Case item less than 0
@@ -512,4 +562,12 @@ void Pemain::setPeternakan(const Storage<Hewan> &storage)
 void Pemain::setLadang(const Storage<Tanaman> &storage)
 {
     return;
+}
+
+void Pemain::rezeki()
+{
+    cout << "Wah, dewa siwa sedang baik hati nich (￣︶￣) ↗" << endl;
+    int tambahan = (int) (0.1 * gulden);
+    cout << name << " mendapatkan tambahan uang sebanyak " << tambahan << " gulden $$$" << endl;
+    gulden += tambahan;
 }

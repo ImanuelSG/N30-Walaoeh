@@ -22,17 +22,25 @@ private:
     int currPlayerIndex;
     bool ended;
     Toko toko;
+    string tipegame;
 
 public:
     /**
      * @brief Construct a new Game World object
      *
      */
-    GameWorld(); /**
-                  * @brief Destroy the Game World object
-                  *
-                  */
+    GameWorld();
+    /**
+     * @brief Destroy the Game World object
+     *
+     */
     ~GameWorld();
+    /**
+     * @brief Set the Tipe Game attribtue
+     * 
+     * @param tipegame 
+     */
+    void setTipeGame(string tipegame);
     /**
      * @brief Method to start the game, basically running all things
      *

@@ -32,15 +32,9 @@ Hewan &Hewan::operator=(const Hewan &other)
     return *this;
 }
 
-// bool Hewan::operator==(const Hewan &a, const Hewan &b)
-// {
-//     return a.id_hewan == b.id_hewan && a.tipe_hewan == b.tipe_hewan && a.weight == b.weight && a.weight_to_harvest == b.weight_to_harvest;
-// }
-
 // dtor
 Hewan::~Hewan()
 {
-    // cout << "Hewan " << this->getNamaBarang() << " telah dihapus" << std::endl;
 }
 
 Sellable *Hewan::Clone()
@@ -145,41 +139,6 @@ bool Hewan::isHarvestValid()
     return this->weight >= this->weight_to_harvest;
 }
 
-// bool Hewan::isCow()
-// {
-//     return getKodeHurufHewan() == "COW";
-// }
-
-// bool Hewan::isSheep()
-// {
-//     return getKodeHurufHewan() == "SHP";
-// }
-
-// bool Hewan::isHorse()
-// {
-//     return getKodeHurufHewan() == "HRS";
-// }
-
-// bool Hewan::isRabbit()
-// {
-//     return getKodeHurufHewan() == "RBT";
-// }
-
-// bool Hewan::isSnake()
-// {
-//     return getKodeHurufHewan() == "SNK";
-// }
-
-// bool Hewan::isChicken()
-// {
-//     return getKodeHurufHewan() == "CHK";
-// }
-
-// bool Hewan::isDuck()
-// {
-//     return getKodeHurufHewan() == "DCK";
-// }
-
 void Hewan::loadHewanConfig(string path)
 {
     ifstream inputFile(path);
@@ -198,11 +157,4 @@ void Hewan::loadHewanConfig(string path)
         animalMap[name] = make_tuple(id, code, type, weightToHarvest, price);
     }
     inputFile.close();
-
-    // how to access
-    // for (const auto& pair : animalMap) {
-    //     std::cout << "Code: " << pair.first << ", ID: " << get<0>(pair.second)
-    //               << ", Name: " << get<1>(pair.second) << ", Type: " << get<2>(pair.second)
-    //               << ", WeightToHarvest: " << get<3>(pair.second) << ", Price: " << get<4>(pair.second) << endl;
-    // }
 }

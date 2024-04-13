@@ -40,7 +40,23 @@ int main()
         MainGame.initializeDefaultGame();
     }
 
-    
+    do
+    {
+        cout << "Apakah anda ingin menggunakan mode azab? (y/n) ";
+        cin >> ans;
+
+        if (ans != "y" && ans != "n" && ans != "Y" && ans != "N")
+        {
+            cout << "Input tidak sesuai. Silahkan masukkan 'y' atau 'n'."
+                 << endl;
+        }
+
+    } while (ans != "y" && ans != "n" && ans != "Y" && ans != "N");
+
+    if (ans == "y" || ans == "Y")
+    {
+        MainGame.setTipeGame("AZAB");
+    }
 
     MainGame.startGame();
 

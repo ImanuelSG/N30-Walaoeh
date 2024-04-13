@@ -150,7 +150,7 @@ void Peternak::kasihMakan()
             colP = getColStorage(petak[0]);
             rowP = getRowStorage(petak);
 
-            if (colP < 0 || colP > inventory.getCol() || rowP < 0 || rowP > inventory.getRow())
+            if (colP < 0 || colP > peternakan.getCol() || rowP < 0 || rowP > peternakan.getRow())
             {
                 cout << "Masukkan lokasi petak yang sesuai!" << endl;
             }
@@ -670,7 +670,7 @@ void Peternak::azab()
 {
     if (!peternakan.isEmpty())
     {
-        string nama;
+        string namaHewan;
         for (int i = 0; i < peternakan.getRow(); i++)
         {
             for (int j = 0; j < peternakan.getCol(); j++)
@@ -678,16 +678,15 @@ void Peternak::azab()
                 Hewan *item = peternakan.getElementAddress(i, j);
                 if (item != nullptr)
                 {
-                    nama = item->getNamaBarang();
+                    namaHewan = item->getNamaBarang();
                     peternakan.deleteAt(i,j);
-                    delete &item;
+                    delete item;
                     break;
                 }
             }
         }
 
-        cout << "Wakwaw dewa siwa marah!!! Hewan kamu kaburr!!" << endl;
-        cout << "Bye-bye " << name << endl;
+        cout << "Wakwaw dewa siwa marah!!! " << namaHewan << " " << name << " kaburr!!" << endl;
     } else
     {
         cout << "Tadinya kamu membuat dewa siwa marah!!, namun karena kamu tidak memiliki hewan dewa siwa kasian\nKamu tidak terkena apa apa" << endl;

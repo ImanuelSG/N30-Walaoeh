@@ -19,7 +19,6 @@ public:
 
     // operator overloading
     ProdukTanamanMaterial &operator=(const ProdukTanamanMaterial &other);
-    // bool operator==(const ProdukTanamanMaterial &a, const ProdukTanamanMaterial &b);
 
     // dtor
     ~ProdukTanamanMaterial();

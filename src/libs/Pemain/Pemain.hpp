@@ -4,8 +4,8 @@
 #include <vector>
 #include "Storage/Storage.hpp"
 #include "../Toko/Toko.hpp"
-
 #include "../Utils/Utils.hpp"
+#include "cmath"
 
 using namespace std;
 class Pemain
@@ -87,6 +87,12 @@ public:
      */
     virtual int getKekayaan();
     /**
+     * @brief Mengembalikan pajak yang dibebankan kepada pemain
+     *
+     * @return int
+     */
+    int getPajak();
+    /**
      * @brief Pungut Pajak, Khusus untuk walikota
      *
      * @param pemain vector pemain yang akan dikenakan pajak
@@ -126,7 +132,7 @@ public:
     static void setUkuranInventoryN(int n);
     static void setUkuranInventoryM(int m);
 
-    // bonus
+    void rezeki();
     virtual void azab() = 0;
 };
 

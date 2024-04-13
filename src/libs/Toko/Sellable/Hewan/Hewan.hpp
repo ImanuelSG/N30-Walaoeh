@@ -31,7 +31,6 @@ public:
 
     // operator overloading
     Hewan &operator=(const Hewan &other);
-    // bool operator==(const Hewan &a, const Hewan &b);
 
     // dtor
     ~Hewan();
@@ -62,14 +61,6 @@ public:
     bool isHerbivore();
     bool isOmnivore();
     bool isHarvestValid();
-
-    // bool isCow();
-    // bool isSheep();
-    // bool isHorse();
-    // bool isRabbit();
-    // bool isSnake();
-    // bool isChicken();
-    // bool isDuck();
 
     // load config to animalMap
     static void loadHewanConfig(string path);

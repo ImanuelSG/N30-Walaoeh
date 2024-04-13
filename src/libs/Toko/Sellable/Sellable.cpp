@@ -32,10 +32,6 @@ Sellable &Sellable::operator=(const Sellable &other)
     return *this;
 }
 
-// bool Sellable::operator==(const Sellable &a, const Sellable &b)
-// {
-//     return a.kode_huruf == b.kode_huruf && a.nama_barang == b.nama_barang && a.harga_barang == b.harga_barang;
-// }
 
 // dtor
 Sellable::~Sellable() {}

@@ -12,13 +12,14 @@ class CommandManager
 private:
     int nextPlayerIndex;
     bool isTakingTurn;
+    string tipegame;
 
 public:
     /**
      * @brief Construct a new Command Manager object
      *
      */
-    CommandManager();
+    CommandManager(string tipegame);
     /**
      * @brief Destroy the Command Manager object
      *
@@ -41,9 +42,18 @@ public:
      * @return int
      */
     int getNextPlayerIndex();
-
+    /**
+     * @brief Set the Is Taking Turn attribute
+     *
+     * @param isTakingTurn
+     */
     void setIsTakingTurn(bool isTakingTurn);
-
+    /**
+     * @brief Get the Is Taking Turn attribute
+     *
+     * @return true
+     * @return false
+     */
     bool getIsTakingTurn();
 };
 

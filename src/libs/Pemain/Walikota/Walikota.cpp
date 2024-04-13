@@ -8,7 +8,7 @@ Walikota::~Walikota()
 {
 }
 
-void Walikota::pungutPajak(const vector<Pemain *> &pemain)
+void Walikota::pungutPajak(const vector<Pemain *> &listpemain)
 {
     cout << "Cring cring cring..." << endl;
     cout << "Pajak sudah dipungut!" << endl;
@@ -17,14 +17,23 @@ void Walikota::pungutPajak(const vector<Pemain *> &pemain)
     int counter = 1;
     int totalpajak = 0;
     int currentpajak;
-    for (auto pemain : pemain)
+    vector<Pemain *> temp(listpemain);
+    temp.erase(remove_if(temp.begin(), temp.end(), [this](Pemain *pemain)
+                         { return pemain->getName() == this->name; }),
+               temp.end());
+    stable_sort(temp.begin(), temp.end(), [](Pemain *a, Pemain *b)
+                { return a->getPajak() > b->getPajak(); });
+
+    for (auto pemain : temp)
     {
+        // If the player is not himself
         if (pemain->getName() != this->name)
         {
 
-            currentpajak = tagihPajak(pemain);
+            currentpajak = pemain->getPajak();
             cout << "   " << counter << ". " << pemain->getName() << " - " << pemain->getRole() << ": " << currentpajak << " gulden" << endl;
             counter++;
+            pemain->setGulden(pemain->getGulden() - currentpajak);
             totalpajak += currentpajak;
         }
     }
@@ -32,47 +41,6 @@ void Walikota::pungutPajak(const vector<Pemain *> &pemain)
     cout << "Negara mendapatkan pemasukan sebesar " << totalpajak << " gulden" << endl;
     cout << "Gunakan dengan baik dan jangan dikorupsi ya!" << endl;
     setGulden(getGulden() + totalpajak);
-}
-
-int Walikota::tagihPajak(Pemain *pemain)
-{
-    // Get kekayaan kena pajak
-    int KKP = pemain->getKKP();
-
-    // if less than 0 early exit
-    if (KKP <= 0)
-        return 0;
-    float multiplier;
-    // else search for category
-    if (KKP <= 6)
-        multiplier = 0.05;
-    else if (KKP <= 25)
-    {
-        multiplier = 0.15;
-    }
-    else if (KKP <= 50)
-    {
-        multiplier = 0.25;
-    }
-    else if (KKP <= 500)
-    {
-        multiplier = 0.3;
-    }
-    else
-    {
-        multiplier = 0.35;
-    }
-
-    // round to the nearest int
-    int totalPajak = round(KKP * multiplier);
-
-    // Cek apakah ada uang yang dapat dibayarkan
-    int pajakDibayarkan = min(pemain->getGulden(), totalPajak);
-
-    // Setelah itu, kurangi uang pemain
-    pemain->setGulden(pemain->getGulden() - pajakDibayarkan);
-
-    return pajakDibayarkan;
 }
 
 int Walikota::tambahPemain(vector<Pemain *> &pemain)
@@ -225,7 +193,7 @@ void Walikota::bangunBangunan()
                 {
                     usedMaterial.erase(name);
                 }
-                Sellable& item = inventory.deleteAt(i, j);
+                Sellable &item = inventory.deleteAt(i, j);
                 delete &item;
             }
             j++;
@@ -284,7 +252,7 @@ void Walikota::azab()
 {
     if (gulden != 0)
     {  
-        this->gulden = gulden * 0.67;
+        this->gulden = (int) (gulden * 0.67);
         cout << "Wakwaw dewa siwa marah!!! Kamu terciduk KPK" << endl;
         cout << "Karena koneksimu sebagai walikota banyak, guldenmu hanya berkurang 1/3 dari total keseluruhan" << endl;
     }

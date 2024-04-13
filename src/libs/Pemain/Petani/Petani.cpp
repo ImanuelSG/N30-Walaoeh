@@ -131,7 +131,7 @@ void Petani::panen()
     map<string, tuple<vector<string>, int>> readyItems = readyPanen(ladang);
     if (readyItems.size() > 0)
     {
-    cout << "Pilih tanaman siap panen yang kamu miliki" << endl;
+        cout << "Pilih tanaman siap panen yang kamu miliki" << endl;
         displayReadyPanen(readyItems);
 
         // Pilihan tanaman yang mau dipanen
@@ -194,7 +194,7 @@ void Petani::panen()
         } while (!valid);
 
         cout << endl
-            << "Pilih petak yang ingin dipanen:" << endl;
+             << "Pilih petak yang ingin dipanen:" << endl;
         // Validasi format dan lokasi petak
         int i = 0;
         vector<string> possibleLocations = get<0>(readyItems[chosenItem]);
@@ -249,7 +249,7 @@ void Petani::panen()
 
         // Message terakhir
         cout << endl
-            << numPanen << " petak tanaman " << chosenItem << " pada petak ";
+             << numPanen << " petak tanaman " << chosenItem << " pada petak ";
 
         // Tampilkan lokasi ladang yang dipanen
         for (i = 0; i < chosenLocations.size(); i++)
@@ -511,7 +511,7 @@ void Petani::azab()
 {
     if (!ladang.isEmpty())
     {
-        string name;
+        string namaTanaman;
         for (int i = 0; i < ladang.getRow(); i++)
         {
             for (int j = 0; j < ladang.getCol(); j++)
@@ -519,16 +519,16 @@ void Petani::azab()
                 Tanaman *item = ladang.getElementAddress(i, j);
                 if (item != nullptr)
                 {
-                    name = item->getNamaBarang();
+                    namaTanaman = item->getNamaBarang();
                     ladang.deleteAt(i,j);
-                    delete &item;
+                    delete item;
                     break;
                 }
             }
         }
 
-        cout << "Wakwaw dewa siwa marah!!! Tanaman kamu kena serangan hama!!" << endl;
-        cout << "Bye-bye" << name << endl;
+        cout << "Wakwaw dewa siwa marah!!! Tanaman " << name << " kena serangan hama!!" << endl;
+        cout << "Bye-bye " << namaTanaman << endl;
     }
     else
     {
