@@ -136,10 +136,12 @@ void Produk::loadProductOriginConfig(string path)
     inputFile.close();
 
     // how to access
-    // for (const auto& pair : productOriginMap) {
-    //     std::cout << "Origin: " << pair.first << ", ID: " << get<0>(pair.second)
-    //               << ", Code: " << get<1>(pair.second) << ", Name: " << get<2>(pair.second)
-    //               << ", Type: " << get<3>(pair.second) << ", Weight: " << get<4>(pair.second)
-    //               << ", Price: " << get<5>(pair.second) << endl;
+    // for (const auto& entry : productOriginMap) {
+    //     cout << "Origin: " << entry.first << endl;
+    //     for (const auto& item : entry.second) {
+    //         cout << "ID: " << get<0>(item) << ", Code: " << get<1>(item) << ", Name: " << get<2>(item) 
+    //             << ", Type: " << get<3>(item) << ", Added Weight: " << get<4>(item) 
+    //             << ", Price: " << get<5>(item) << endl;
+    //     }
     // }
 }

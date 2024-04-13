@@ -376,29 +376,29 @@ void Peternak::panen()
 
                     Hewan* hewan = peternakan.getElementAddress(row,col);
 
-                    if (hewan->isOmnivore())
-                    {
-                        ProdukHewan produkhewan;
-                        vector<ProdukHewan> produce = produkhewan.tambahProdukHewanOmnivora(*hewan);
-                        Sellable *item = &produce[0];
-                        Sellable *item2 = &produce[1];
-                        inventory.insert(*item);
-                        inventory.insert(*item2);
-                    }
-                    else if (hewan->isCarnivore())
-                    {
-                        ProdukHewan produkhewan;
-                        vector<ProdukHewan> daging = produkhewan.tambahProdukHewanKarnivora(*hewan);
-                        Sellable *item = &daging[0];
-                        inventory.insert(*item);
-                    }
-                    else if (hewan->isHerbivore())
-                    {
-                        ProdukHewan produkhewan;
-                        vector<ProdukHewan> daging = produkhewan.tambahProdukHewanHerbivora(*hewan);
-                        Sellable *item = &daging[0];
-                        inventory.insert(daging[0]);
-                    }
+                    // if (hewan->isOmnivore())
+                    // {
+                    //     ProdukHewan produkhewan;
+                    //     vector<ProdukHewan> produce = produkhewan.tambahProdukHewanOmnivora(*hewan);
+                    //     Sellable *item = &produce[0];
+                    //     Sellable *item2 = &produce[1];
+                    //     inventory.insert(*item);
+                    //     inventory.insert(*item2);
+                    // }
+                    // else if (hewan->isCarnivore())
+                    // {
+                    //     ProdukHewan produkhewan;
+                    //     vector<ProdukHewan> daging = produkhewan.tambahProdukHewanKarnivora(*hewan);
+                    //     Sellable *item = &daging[0];
+                    //     inventory.insert(*item);
+                    // }
+                    // else if (hewan->isHerbivore())
+                    // {
+                    //     ProdukHewan produkhewan;
+                    //     vector<ProdukHewan> daging = produkhewan.tambahProdukHewanHerbivora(*hewan);
+                    //     Sellable *item = &daging[0];
+                    //     inventory.insert(daging[0]);
+                    // }
                     
                     
 
