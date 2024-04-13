@@ -72,7 +72,7 @@ const char *NotEnoughMoneyException::what()
 
 const char *NotEnoughStockException::what()
 {
-    return "Stok dari barang yang diminta tidak mencukupi :( , tidak bisa membeli barang!\n";
+    return "Stok dari barang yang diminta tidak mencukupi :( , tidak bisa membeli barang!";
 }
 const char *NotEnoughTanamanException::what()
 {
@@ -149,7 +149,7 @@ const char *InvalidProdukException::what()
 }
 const char *InvalidJenisMakananException::what()
 {
-    return "Jenis maknanan yang Anda pilih tidak sesuai dengan jenis hewan Anda.\n";
+    return "Jenis makanan yang Anda pilih tidak sesuai dengan jenis hewan Anda.\n";
 }
 
 const char *InvalidJenisSellableException::what()

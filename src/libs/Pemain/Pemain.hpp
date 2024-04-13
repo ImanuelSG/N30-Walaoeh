@@ -19,9 +19,9 @@ protected:
     string name;
     int gulden;
     int berat;
+    Storage<Sellable> inventory;
 
 public:
-    Storage<Sellable> inventory;
     Pemain(string name, int gulden, int berat);
     ~Pemain();
     /**
@@ -115,7 +115,6 @@ public:
     virtual int tambahPemain(vector<Pemain *> &pemain);
     virtual int getKKP() = 0;
     virtual string getRole() const = 0;
-
 
     // Configurations needs
 

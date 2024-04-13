@@ -49,7 +49,6 @@ void GameWorld::startGame()
     cout << "Game dimulai!" << endl;
     cout << endl;
 
-    
     while (!ended)
     {
         CommandManager.setIsTakingTurn(true);
@@ -195,14 +194,6 @@ void GameWorld::loadGameState()
     string username, role;
     int berat_badan, uang, itemCount;
 
-    std::cout << "--Product Map--" << endl;
-    for (auto product : Produk::productMap)
-    {
-        cout << product.first << endl;
-        tuple<int, std::string, std::string, std::string, int, int> data = product.second;
-        cout << get<0>(data) << " " << get<1>(data) << " " << get<2>(data) << " " << get<3>(data) << " " << get<4>(data) << " " << get<5>(data) << endl;
-    }
-
     for (int i = 0; i < playerCount; i++)
     {
         inputFile >> username >> role >> berat_badan >> uang;
@@ -287,14 +278,16 @@ void GameWorld::loadGameState()
             {
                 Hewan *hewan = nullptr;
                 string petak, animalName;
-                int weight;
+                int weight, row, col;
                 inputFile >> petak >> animalName >> weight;
 
                 tuple<int, string, string, int, int> hewan_item_tuple = Hewan::animalMap[animalName];
                 hewan = new Hewan(get<0>(hewan_item_tuple), get<1>(hewan_item_tuple), animalName, get<2>(hewan_item_tuple), weight, get<3>(hewan_item_tuple), get<4>(hewan_item_tuple));
-
-                ranch.insert(*hewan);
+                row = getRowStorage(petak);
+                col = getColStorage(petak[0]);
+                ranch.insert(row, col, *hewan);
             }
+
             player->setPeternakan(ranch);
         }
 
