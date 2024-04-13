@@ -4,7 +4,7 @@ bool isValidInput(string input)
 {
     bool valid = false;
     bool has00 = false;
-    if (isalpha(input[0]))
+    if (isalpha(input[0]) && input.length() >= 3)
     {
 
         int id = 1;
@@ -51,7 +51,7 @@ string getValidInputStorage(string order)
     bool valid = false;
     do
     {
-        cout << order << " : ";
+        cout << order << ": ";
         cin >> input;
         valid = isValidInput(input);
         if (!valid)
@@ -65,6 +65,59 @@ string getValidInputStorage(string order)
     } while (!valid);
 
     return input;
+}
+
+vector<string> getManyInputStorage(const string &order)
+{
+    string input;
+    vector<string> slots;
+    bool valid;
+
+    cin.clear();
+    do
+    {
+
+        cout << order << " : ";
+
+        getline(cin, input);
+
+        // Split input by comma and space
+        istringstream iss(input);
+        string slot;
+        while (getline(iss, slot, ','))
+        {
+            // Remove leading and trailing spaces from the slot
+            slot.erase(0, slot.find_first_not_of(" \t\n\r\f\v"));
+            slot.erase(slot.find_last_not_of(" \t\n\r\f\v") + 1);
+
+            // Check if the slot is valid
+            valid = isValidInput(slot);
+            if (!valid)
+            {
+                cout << "Slot " << slot << " tidak valid. Masukkan dengan format yang benar.\n";
+                slots.clear();
+                break; // Break the loop if any slot is invalid
+            }
+            else
+            {
+                // Check if the slot is already in the vector
+                if (find(slots.begin(), slots.end(), slot) != slots.end())
+                {
+                    cout << "Slot " << slot << " sudah dimasukkan sebelumnya. Masukkan slot yang unik. Silahkan ulangi input\n";
+                    valid = false; // Mark input as invalid
+                    // Refresh slots
+                    slots.clear();
+                    break; // Break the loop if slot is duplicate
+                }
+                else
+                {
+                    slots.push_back(slot);
+                }
+            }
+        }
+    } while (!valid);
+
+    return slots;
 }
 
 string intToStringWithLeadingZero(int num)
@@ -87,16 +140,6 @@ string toLowercase(const std::string &str)
         result += std::tolower(c);
     }
     return result;
-}
-
-void displayReadyPanen(map<string, tuple<list<string>, int>> &readyItems)
-{
-    int count = 1;
-    for (const auto &pair : readyItems)
-    {
-        cout << count << ". " << pair.first << '(' << get<1>(pair.second) << " petak siap panen)" << endl;
-        count++;
-    }
 }
 
 void countdown(int seconds)
@@ -125,7 +168,7 @@ void displayReadyPanen(map<string, tuple<vector<string>, int>> &readyItems)
     int count = 1;
     for (const auto &pair : readyItems)
     {
-        cout << count << ". " << pair.first << '(' << get<1>(pair.second) << " petak siap panen)" << endl;
+        cout << count << ". " << pair.first << " (" << get<1>(pair.second) << " petak siap panen)" << endl;
         count++;
     }
 }

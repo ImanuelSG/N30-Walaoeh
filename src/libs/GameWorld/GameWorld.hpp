@@ -4,13 +4,10 @@
 #include <sstream>
 #include <fstream>
 #include "../CommandManager/CommandManager.hpp"
-#include "../Hewan/Hewan.hpp"
-#include "../Tanaman/Tanaman.hpp"
-#include "../Produk/Produk.hpp"
+#include "../Toko/Toko.hpp"
 #include "../Pemain/Walikota/Walikota.hpp"
 #include "../Pemain/Petani/Petani.hpp"
 #include "../Pemain/Peternak/Peternak.hpp"
-#include "../Bangunan/Bangunan.hpp"
 
 using namespace std;
 
@@ -22,16 +19,57 @@ private:
     vector<Pemain *> listOfPLayers;
     int currPlayerIndex;
     bool ended;
+    Toko toko;
 
 public:
-    GameWorld();
+    /**
+     * @brief Construct a new Game World object
+     *
+     */
+    GameWorld(); /**
+                  * @brief Destroy the Game World object
+                  *
+                  */
     ~GameWorld();
+    /**
+     * @brief Method to start the game, basically running all things
+     *
+     */
     void startGame();
+    /**
+     * @brief Display the header of the game
+     *
+     */
     void displayHeader();
-    void checkEndGame();
+    /**
+     * @brief Check the endgame condition
+     *
+     */
+    bool checkEndGame();
+    /**
+     * @brief Initialize all Default Configs
+     *
+     */
     void initializeConfigs();
+    /**
+     * @brief load the game configs (winning conditions etc)
+     *
+     * @param path
+     */
     void loadMiscConfig(string path);
+    /**
+     * @brief Save game state
+     *
+     */
     void saveGameState();
+    /**
+     * @brief Load game state
+     *
+     */
     void loadGameState();
+    /**
+     * @brief Initialize default game
+     *
+     */
     void initializeDefaultGame();
 };

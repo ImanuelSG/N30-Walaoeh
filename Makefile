@@ -11,7 +11,7 @@ CFLAGS          = $(DEBUG_CFLAG) $(WARNING_CFLAG)
 EXECUTABLE_FILENAME = Walaoeh
 
 # Find all source files recursively
-ALL_SRCS := $(filter-out $(SOURCE_FOLDER)/Bangunan/main.cpp $(SOURCE_FOLDER)/Hewan/main.cpp $(SOURCE_FOLDER)/Tanaman/main.cpp $(SOURCE_FOLDER)/ProdukHewan/main.cpp ,$(wildcard $(SOURCE_FOLDER)/*/*.cpp $(SOURCE_FOLDER)/*/*/*.cpp $(SOURCE_FOLDER)/pcolor/pcolor.c $(SOURCE_FOLDER)/Pemain/Storage/Storage.hpp))
+ALL_SRCS := $(filter-out $(SOURCE_FOLDER)/Toko/Sellable/Bangunan/main.cpp $(SOURCE_FOLDER)/Toko/Sellable/Hewan/main.cpp $(SOURCE_FOLDER)/Toko/Sellable/Tanaman/main.cpp $(SOURCE_FOLDER)/Toko/Sellable/Produk/ProdukHewan/main.cpp ,$(wildcard $(SOURCE_FOLDER)/*/*.cpp $(SOURCE_FOLDER)/*/*/*.cpp $(SOURCE_FOLDER)/*/*/*/*.cpp $(SOURCE_FOLDER)/*/*/*/*/*.cpp $(SOURCE_FOLDER)/pcolor/pcolor.c $(SOURCE_FOLDER)/Pemain/Storage/Storage.hpp))
 
 # Create a list of object files from source files
 OBJECTS := $(patsubst $(SOURCE_FOLDER)/%.cpp,$(OUTPUT_FOLDER)/%.o,$(ALL_SRCS))
@@ -19,7 +19,7 @@ OBJECTS := $(patsubst $(SOURCE_FOLDER)/%.cpp,$(OUTPUT_FOLDER)/%.o,$(ALL_SRCS))
 # Main target to compile all sources and link them
 compile: $(OBJECTS)
 	@echo "Linking object files..."
-	@$(CC) -std=c++17 -o $(OUTPUT_FOLDER)/$(EXECUTABLE_FILENAME) $(OBJECTS) ./src/main.cpp
+	@$(CC)  -std=c++17 -o $(OUTPUT_FOLDER)/$(EXECUTABLE_FILENAME) $(OBJECTS) ./src/main.cpp
 	@echo "Compilation done."
 
 # Compile each source file into an object file

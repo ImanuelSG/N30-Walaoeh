@@ -31,7 +31,6 @@ void Walikota::pungutPajak(const vector<Pemain *> &pemain)
     cout << endl;
     cout << "Negara mendapatkan pemasukan sebesar " << totalpajak << " gulden" << endl;
     cout << "Gunakan dengan baik dan jangan dikorupsi ya!" << endl;
-
     setGulden(getGulden() + totalpajak);
 }
 
@@ -81,11 +80,10 @@ int Walikota::tambahPemain(vector<Pemain *> &pemain)
     // Check if the Walikota has enough money
     if (this->getGulden() < 50)
     {
-        throw NotEnoughMoneyException();
+        throw NotEnoughMoneyException(50 - this->getGulden());
     }
     else
     {
-
         string jenisPemain = "";
         string namaPemain = "";
         do
@@ -168,9 +166,8 @@ void Walikota::bangunBangunan()
     {
         throw InventoryFullException();
     }
-    Bangunan bangunan;
 
-    bangunan.displayAllRecipe();
+    Bangunan::displayAllRecipe();
     cout << endl;
 
     string namaBangunan;
@@ -183,12 +180,12 @@ void Walikota::bangunBangunan()
         {
             cout << "Nama bangunan tidak boleh kosong!" << endl;
         }
-        else if (!bangunan.isValidRecipe(namaBangunan))
+        else if (!Bangunan::isValidRecipe(namaBangunan))
         {
             cout << "Kamu tidak punya resep bangunan tersebut!" << endl;
         }
 
-    } while (namaBangunan.empty() || !bangunan.isValidRecipe(namaBangunan));
+    } while (namaBangunan.empty() || !Bangunan::isValidRecipe(namaBangunan));
 
     // Get the recipe to check
     // tuple<string, int, map<string, int>> recipe = bangunan.getSpecificRecipe(namaBangunan);
@@ -200,7 +197,7 @@ void Walikota::bangunBangunan()
     map<string, int> materialProduct = this->getMaterialProduct();
 
     // Build the desired building
-    tuple<Sellable *, int, map<string, int>> result = bangunan.build(namaBangunan, materialProduct, this->getGulden());
+    tuple<Sellable *, int, map<string, int>> result = Bangunan::build(namaBangunan, materialProduct, this->getGulden());
 
     // If it ever reaches this point, the building is successfully built, because else it will throw exception
 

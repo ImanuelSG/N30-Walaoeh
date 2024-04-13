@@ -3,7 +3,12 @@
 // EXCEPTION UNTUK INPUT
 const char *NumericException::what()
 {
-    return "Input anda tidak valid.\nSilahkan masukkan angka sebagai input.";
+    return "Input anda tidak valid.\nSilahkan masukkan integer sebagai input.";
+}
+
+const char *MoreThanZeroException::what()
+{
+    return "Input yang anda masukkan harus lebih dari 0.\nSilahkan masukkan input yang sesuai.";
 }
 
 const char *InvalidInputException::what()
@@ -44,12 +49,31 @@ const char *TernakFullException::what()
     return "Ternak Anda sudah penuh, tidak bisa menjalankan perintah\n";
 }
 
-// EXCEPTION UNTUK KURANG
-const char *NotEnoughMoneyException::what()
+const char *InventoryNotEnoughException::what()
 {
-    return "Gulden Anda tidak cukup\n";
+    return "Slot inventory Anda tidak cukup, tidak bisa menjalankan perintah\n";
 }
 
+// EXCEPTION UNTUK KURANG
+NotEnoughMoneyException::NotEnoughMoneyException(int kurang)
+{
+    this->kurang = kurang;
+}
+const char *NotEnoughMoneyException::what()
+{
+    ostringstream oss;
+    oss << "Gulden Anda tidak cukup, kekurangan " << this->kurang << " gulden\n";
+    // Convert the ostringstream to a string and return its char* representation
+    string result = oss.str();
+    char *word = new char[result.length() + 1];
+    strcpy(word, result.c_str());
+    return word;
+}
+
+const char *NotEnoughStockException::what()
+{
+    return "Stok dari barang yang diminta tidak mencukupi :( , tidak bisa membeli barang!\n";
+}
 const char *NotEnoughTanamanException::what()
 {
     return "Tanaman Anda tidak cukup, tidak bisa menjalankan perintah\n";
@@ -81,7 +105,7 @@ const char *TernakEmptyException::what()
 // EXCEPTION UNTUK INVALID
 const char *InvalidStorageIndexException::what()
 {
-    return "Indeks yang Anda masukkan tidak valid!.\n Pastikan Indeks Anda sesuai.\n";
+    return "Indeks yang Anda masukkan tidak valid!.\nPastikan Indeks Anda sesuai.\n";
 }
 
 const char *FileNotFoundException::what()
@@ -91,32 +115,32 @@ const char *FileNotFoundException::what()
 
 const char *InvalidJenisTanamanException::what()
 {
-    return "Jenis tanaman yang Anda masukkan tidak valid!.\n Pastikan Jenis Tanaman Anda sesuai.\n";
+    return "Jenis tanaman yang Anda masukkan tidak valid!.\nPastikan Jenis Tanaman Anda sesuai.\n";
 }
 
 const char *InvalidJenisHewanException::what()
 {
-    return "Jenis hewan yang Anda masukkan tidak valid!.\n Pastikan Jenis Hewan Anda sesuai.\n";
+    return "Jenis hewan yang Anda masukkan tidak valid!.\nPastikan Jenis Hewan Anda sesuai.\n";
 }
 
 const char *InvalidJenisProdukMaterialException::what()
 {
-    return "Jenis produk material yang Anda masukkan tidak valid!.\n Pastikan Jenis Produk Material Anda sesuai.\n";
+    return "Jenis produk material yang Anda masukkan tidak valid!.\nPastikan Jenis Produk Material Anda sesuai.\n";
 }
 
 const char *InvalidJenisProdukBuahException::what()
 {
-    return "Jenis produk buah yang Anda masukkan tidak valid!.\n Pastikan Jenis Produk Buah Anda sesuai.\n";
+    return "Jenis produk buah yang Anda masukkan tidak valid!.\nPastikan Jenis Produk Buah Anda sesuai.\n";
 }
 
 const char *InvalidJenisProdukHewanException::what()
 {
-    return "Jenis produk hewan yang Anda masukkan tidak valid!.\n Pastikan Jenis Produk Hewan Anda sesuai.\n";
+    return "Jenis produk hewan yang Anda masukkan tidak valid!.\nPastikan Jenis Produk Hewan Anda sesuai.\n";
 }
 
 const char *InvalidJenisBangunanException::what()
 {
-    return "Jenis bangunan yang Anda masukkan tidak valid!.\n Pastikan Jenis Bangunan Anda sesuai.\n";
+    return "Jenis bangunan yang Anda masukkan tidak valid!.\nPastikan Jenis Bangunan Anda sesuai.\n";
 }
 
 const char *InvalidProdukException::what()
@@ -130,7 +154,7 @@ const char *InvalidJenisMakananException::what()
 
 const char *InvalidJenisSellableException::what()
 {
-    return "Jenis sellable yang Anda masukkan tidak valid!.\n Pastikan Jenis Sellable Anda sesuai.\n";
+    return "Jenis sellable yang Anda masukkan tidak valid!.\nPastikan Jenis Sellable Anda sesuai.\n";
 }
 
 // ECEPTION UNTUK NOT ENOUGH
@@ -173,4 +197,9 @@ const char *NotEnoughMaterialException::what()
     char *word = new char[result.length() + 1];
     strcpy(word, result.c_str());
     return word;
+}
+
+const char *InvalidSellException::what()
+{
+    return "Anda tidak boleh menjual bangunan!\n";
 }

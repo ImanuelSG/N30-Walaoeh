@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cassert>
 #include "../src/libs/Pemain/Petani/Petani.hpp"
-#include "../src/libs/ProdukHewan/ProdukHewan.hpp"
+#include "../src/libs/Toko/Sellable/Produk/ProdukHewan/ProdukHewan.hpp"
 
 void testPemain() {
     // Test constructor and getter methods

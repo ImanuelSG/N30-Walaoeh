@@ -16,11 +16,18 @@ public:
     const char *what();
 };
 
+class MoreThanZeroException : public exception
+{
+public:
+    const char *what();
+};
+
 class InvalidInputException : public exception
 {
 public:
     const char *what();
 };
+
 class WalikotaInputException : public exception
 {
 public:
@@ -65,10 +72,24 @@ public:
 // EXCEPTION UNTUK KURANG
 class NotEnoughMoneyException : public exception
 {
+private:
+    int kurang;
+
 public:
+    NotEnoughMoneyException(int kurang);
     const char *what();
 };
 
+class NotEnoughStockException : public exception
+{
+public:
+    const char *what();
+};
+class InventoryNotEnoughException : public exception
+{
+public:
+    const char *what();
+};
 class NotEnoughTanamanException : public exception
 {
 public:
@@ -86,7 +107,16 @@ class NotEnoughFoodException : public exception
 public:
     const char *what();
 };
+class NotEnoughMaterialException : public exception
+{
+private:
+    int gulden;
+    map<string, int> material;
 
+public:
+    NotEnoughMaterialException(int gulden, map<string, int> material);
+    const char *what();
+};
 // EXCEPTION UNTUK KOSONG
 class InventoryEmptyException : public exception
 {
@@ -173,15 +203,10 @@ public:
     const char *what();
 };
 
-class NotEnoughMaterialException : public exception
+// Invalid sell exception
+class InvalidSellException : public exception
 {
-private:
-    int gulden;
-    map<string, int> material;
-
 public:
-    NotEnoughMaterialException(int gulden, map<string, int> material);
     const char *what();
 };
-
 #endif

@@ -3,7 +3,7 @@
 
 #include "../Pemain.hpp"
 #include "../Storage/Storage.hpp"
-#include "../../Hewan/Hewan.hpp"
+#include "../../Toko/Sellable/Hewan/Hewan.hpp"
 #include "../../pcolor/pcolor.h"
 
 class Peternak : public Pemain
@@ -27,6 +27,8 @@ public:
     int getKekayaan();
     int getKKP();
     string getRole() const;
+
+    void setPeternakan(const Storage<Hewan> &storage);
     static int getUkuranTernakN();
     static int getUkuranTernakM();
     static void setUkuranTernakN(int n);

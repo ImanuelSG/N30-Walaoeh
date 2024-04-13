@@ -26,7 +26,14 @@ int main()
 
     if (ans == "y" || ans == "Y")
     {
-        MainGame.loadGameState();
+        try
+        {
+            MainGame.loadGameState();
+        }
+        catch (FileNotFoundException &e)
+        {
+            cout << e.what() << endl;
+        }
     }
     else
     {
