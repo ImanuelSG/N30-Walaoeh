@@ -164,9 +164,8 @@ void Pemain::makan()
             setBerat(getBerat() + addedWeight);
             valid = true;
             cout << GREEN << "Dengan lahapnya, kamu memakanan hidangan itu" << endl;
-            cout << "Alhasil, berat badan kamu naik menjadi " << RESET << YELLOW << berat 
-                 << RESET << endl; 
-
+            cout << "Alhasil, berat badan kamu naik menjadi " << RESET << YELLOW << berat
+                 << RESET << endl;
         }
         else if (!item->isEdible())
         {
@@ -316,7 +315,7 @@ void Pemain::beli(Toko &toko)
 
         if (slot.size() != quantity)
         {
-            cout<< RED << "Jumlah slot yang dimasukkan tidak sesuai dengan jumlah barang yang dibeli" << RESET << endl;
+            cout << RED << "Jumlah slot yang dimasukkan tidak sesuai dengan jumlah barang yang dibeli" << RESET << endl;
             continue;
         }
 
@@ -340,16 +339,14 @@ void Pemain::beli(Toko &toko)
             // if all slot is valid
             if (pos == slot.back())
             {
-                Sellable *copy = get<0>(item)->Clone();
-
                 for (auto pos : slot)
                 {
+                    Sellable *copy = get<0>(item)->Clone();
                     int row = getRowStorage(pos);
                     int col = getColStorage(pos[0]);
                     inventory.insert(row, col, *copy);
                 }
                 valid = true;
-
                 // Put the item to the inventory
             }
         }
@@ -389,7 +386,7 @@ void Pemain::jual(Toko &toko)
             if (
                 row < 0 || row >= inventory.getRow() || col < 0 || col >= inventory.getCol())
             {
-                cout << RED << "Slot " << pos << " tidak valid, silahkan pilih slot lain"  << RESET << endl;
+                cout << RED << "Slot " << pos << " tidak valid, silahkan pilih slot lain" << RESET << endl;
                 break;
             }
             if (inventory.getElementAddress(row, col) == nullptr)
@@ -570,9 +567,9 @@ void Pemain::setLadang(const Storage<Tanaman> &storage)
 
 void Pemain::rezeki()
 {
-    cout << CYAN << "Wah, kamu berhasil lari dari amarah dewa siwa!!" << endl 
-         << "Dewa siwa sedang baik hati nich (～￣▽￣)～(～￣▽￣)～"  << RESET << endl;
-    int tambahan = (int) (0.1 * gulden);
+    cout << CYAN << "Wah, kamu berhasil lari dari amarah dewa siwa!!" << endl
+         << "Dewa siwa sedang baik hati nich (～￣▽￣)～(～￣▽￣)～" << RESET << endl;
+    int tambahan = (int)(0.1 * gulden);
     cout << name << " mendapatkan tambahan uang sebanyak " << CYAN << tambahan << RESET << " gulden $$$" << endl;
     gulden += tambahan;
 }

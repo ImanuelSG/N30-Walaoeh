@@ -62,12 +62,13 @@ void Peternak::ternak()
             }
             else
             {
-                cout << RED << "Barang pada slot tersebut bukanlah Hewan.\n Silakan pilih Slot lain!\n" << RESET;
+                cout << RED << "Barang pada slot tersebut bukanlah Hewan.\n Silakan pilih Slot lain!\n"
+                     << RESET;
             }
         }
     } while (!valid);
 
-    cout << "Kamu memilih " << CYAN << item->getNamaBarang() << "."  << RESET << endl;
+    cout << "Kamu memilih " << CYAN << item->getNamaBarang() << "." << RESET << endl;
     cout << "Pilih petak tanah yang akan ditinggali" << endl;
 
     display(peternakan);
@@ -393,7 +394,8 @@ void Peternak::panen()
                     peternakan.deleteAt(row, col);
                 }
 
-                cout << endl << GREEN 
+                cout << endl
+                     << GREEN
                      << num << " petak hewan " << chosenItem << " pada petak ";
                 for (int i = 0; i < chosenPositions.size(); i++)
                 {
@@ -671,6 +673,7 @@ void Peternak::azab()
     if (!peternakan.isEmpty())
     {
         string namaHewan;
+        bool found = false;
         for (int i = 0; i < peternakan.getRow(); i++)
         {
             for (int j = 0; j < peternakan.getCol(); j++)
@@ -679,16 +682,20 @@ void Peternak::azab()
                 if (item != nullptr)
                 {
                     namaHewan = item->getNamaBarang();
-                    peternakan.deleteAt(i,j);
+                    peternakan.deleteAt(i, j);
                     delete item;
-                    break;
+                    found = true;
+                    break; // Exit the inner loop after deleting the first animal
                 }
             }
+            if (found) // Exit the outer loop if an animal has been found and removed
+                break;
         }
         cout << MAGENTA;
         cout << "Wakwaw dewa siwa marah!!! " << BOLD << namaHewan << RESET << " kaburr!!" << endl;
         cout << MAGENTA << "Bye-bye " << namaHewan << RESET << endl;
-    } else
+    }
+    else
     {
         cout << YELLOW << "Tadinya kamu membuat dewa siwa marah!!, namun karena kamu tidak memiliki hewan dewa siwa kasian\nKamu tidak terkena apa apa" << RESET << endl;
     }
