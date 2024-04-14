@@ -383,7 +383,7 @@ void GameWorld::loadGameState()
                 item = new Tanaman(get<0>(tanaman_item_tuple), get<1>(tanaman_item_tuple), itemName, get<2>(tanaman_item_tuple), 0, get<3>(tanaman_item_tuple), get<4>(tanaman_item_tuple));
             }
 
-            inventory.insert(*item);
+            inventory + *item;
 
             // todo : insert item into player's inventory
         }

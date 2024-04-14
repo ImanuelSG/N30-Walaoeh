@@ -202,7 +202,7 @@ void Walikota::bangunBangunan()
     }
 
     // Add actual building to inventory
-    inventory.insert(*actualBuilding);
+    inventory + *actualBuilding;
     cout << YELLOW << namaBangunan << RESET << GREEN <<" berhasil dibangun dan telah menjadi hak miliki walikota!" << RESET << endl;
 }
 

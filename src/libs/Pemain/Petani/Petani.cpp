@@ -233,19 +233,12 @@ void Petani::panen()
             rowP = getRowStorage(chosenLocations[i]);
 
             Tanaman *tanaman = &(ladang.deleteAt(rowP, colP));
+            Sellable *newItem = nullptr;
 
-            if (tanaman->isBuah())
-            {
-                Sellable *newItem = ProdukTanamanBuah::tambahProdukTanamanBuah(*tanaman);
+            *tanaman >> newItem;
+            inventory + *newItem;
 
-                inventory.insert(*newItem);
-            }
-            else
-            {
-                Sellable *newItem = ProdukTanamanMaterial::tambahProdukTanamanMaterial(*tanaman);
-
-                inventory.insert(*newItem);
-            }
+            delete tanaman;
         }
 
         // Message terakhir

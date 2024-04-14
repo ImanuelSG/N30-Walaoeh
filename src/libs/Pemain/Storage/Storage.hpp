@@ -124,7 +124,7 @@ public:
      *
      * @param obj Object to be inserted
      */
-    void insert(T &obj)
+    void operator+(T &obj)
     {
         bool found = false;
         int i = 0;

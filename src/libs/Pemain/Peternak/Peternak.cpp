@@ -377,18 +377,18 @@ void Peternak::panen()
                     {
                         Sellable *item = ProdukHewan::tambahProdukHewanOmnivoraDaging(*hewan);
                         Sellable *item2 = ProdukHewan::tambahProdukHewanOmnivoraTelur(*hewan);
-                        inventory.insert(*item);
-                        inventory.insert(*item2);
+                        inventory + *item;
+                        inventory + *item2;
                     }
                     else if (hewan->isCarnivore())
                     {
                         Sellable *item = ProdukHewan::tambahProdukHewanKarnivora(*hewan);
-                        inventory.insert(*item);
+                        inventory + *item;
                     }
                     else if (hewan->isHerbivore())
                     {
                         Sellable *item = ProdukHewan::tambahProdukHewanHerbivora(*hewan);
-                        inventory.insert(*item);
+                        inventory + *item;
                     }
 
                     peternakan.deleteAt(row, col);

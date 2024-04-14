@@ -2,6 +2,9 @@
 #define TANAMAN_HPP
 
 #include "../Sellable.hpp"
+#include "../Produk/Produk.hpp"
+#include "../Produk/ProdukTanamanBuah/ProdukTanamanBuah.hpp"
+#include "../Produk/ProdukTanamanMaterial/ProdukTanamanMaterial.hpp"
 #include "../../../Exception/Exception.hpp"
 #include <vector>
 #include <map>
@@ -50,10 +53,12 @@ public:
     void setTipeTanaman(string tipe);
     void setAge(int age);
 
-    static Tanaman tambahTanaman();
     static Tanaman tambahTanamanConfig(ifstream &file);
 
     void tambahUmurTanaman(int age);
+    
+    // Konversi tanaman menjadi produk (buah) kalau weight sudah mencapai weight_to_harvest
+    void operator>>(Sellable*& produkTanamanBuahBaru);
 
     // boolean
     bool isMaterial();
