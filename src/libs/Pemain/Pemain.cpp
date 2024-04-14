@@ -568,6 +568,14 @@ void Pemain::setLadang(const Storage<Tanaman> &storage)
     return;
 }
 
+Storage<Hewan> Pemain::getPeternakan() {
+    return Storage<Hewan>(0, 0);
+}
+
+Storage<Tanaman> Pemain::getLadang() {
+    return Storage<Tanaman>(0, 0);
+}
+
 void Pemain::rezeki()
 {
     cout << CYAN << "Wah, kamu berhasil lari dari amarah dewa siwa!!" << endl 

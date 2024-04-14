@@ -126,6 +126,8 @@ public:
 
     virtual void setLadang(const Storage<Tanaman> &storage);
     virtual void setPeternakan(const Storage<Hewan> &storage);
+    virtual Storage<Tanaman> getLadang();
+    virtual Storage<Hewan> getPeternakan();
 
     static int getUkuranInventoryN();
     static int getUkuranInventoryM();

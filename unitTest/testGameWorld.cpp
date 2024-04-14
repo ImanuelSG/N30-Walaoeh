@@ -12,5 +12,7 @@ int main()
     GameWorld g;
     g.initializeConfigs();
 
+    g.saveGameState();
+
     return 0;
 }

@@ -18,7 +18,7 @@ Hewan::Hewan(int id, string kode, string nama_hewan, string tipe, int weight, in
 {
     this->id_hewan = id;
     this->tipe_hewan = tipe;
-    this->weight = 0;
+    this->weight = weight;
     this->weight_to_harvest = weight_to_harvest;
 }
 
