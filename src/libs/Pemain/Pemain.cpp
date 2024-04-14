@@ -323,7 +323,7 @@ void Pemain::beli(Toko &toko)
         {
             int row = getRowStorage(pos);
             int col = getColStorage(pos[0]);
-            cout << row << " " << col << endl;
+            
             if (inventory.getElementAddress(row, col) != nullptr)
             {
                 cout << RED << "Slot " << pos << " sudah terisi, silahkan pilih slot lain" << RESET << endl;
@@ -563,6 +563,14 @@ void Pemain::setPeternakan(const Storage<Hewan> &storage)
 void Pemain::setLadang(const Storage<Tanaman> &storage)
 {
     return;
+}
+
+Storage<Hewan> Pemain::getPeternakan() {
+    return Storage<Hewan>(0, 0);
+}
+
+Storage<Tanaman> Pemain::getLadang() {
+    return Storage<Tanaman>(0, 0);
 }
 
 void Pemain::rezeki()

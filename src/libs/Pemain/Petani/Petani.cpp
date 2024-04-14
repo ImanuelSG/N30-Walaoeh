@@ -509,6 +509,11 @@ void Petani::setLadang(const Storage<Tanaman> &storage)
     ladang = storage;
 }
 
+Storage<Tanaman> Petani::getLadang() {
+    return ladang;
+}
+
+
 void Petani::azab()
 {
     if (!ladang.isEmpty())

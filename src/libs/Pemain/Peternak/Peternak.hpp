@@ -27,6 +27,7 @@ public:
     string getRole() const;
 
     void setPeternakan(const Storage<Hewan> &storage);
+    Storage<Hewan> getPeternakan();
     static int getUkuranTernakN();
     static int getUkuranTernakM();
     static void setUkuranTernakN(int n);

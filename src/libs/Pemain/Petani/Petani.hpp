@@ -24,6 +24,7 @@ public:
     string getRole() const;
 
     void setLadang(const Storage<Tanaman> &storage);
+    Storage<Tanaman> getLadang();
 
     static int getUkuranLadangN();
     static int getUkuranLadangM();

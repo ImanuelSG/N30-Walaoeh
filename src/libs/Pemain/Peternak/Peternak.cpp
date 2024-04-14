@@ -648,6 +648,11 @@ void Peternak::setPeternakan(const Storage<Hewan> &storage)
     peternakan = storage;
 }
 
+Storage<Hewan> Peternak::getPeternakan()
+{
+    return peternakan;
+}
+
 int Peternak::getUkuranTernakN()
 {
     return ternak_n;

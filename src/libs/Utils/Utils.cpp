@@ -164,6 +164,13 @@ string intToAlphabet(int n)
     return std::string(1, alphabet);
 }
 
+string rowColToPetak(int row, int col) {
+    string slot = "";
+    slot += intToAlphabet(col);
+    slot += intToStringWithLeadingZero(row + 1);
+    return slot;
+}
+
 void displayReadyPanen(map<string, tuple<vector<string>, int>> &readyItems)
 {
     int count = 1;
