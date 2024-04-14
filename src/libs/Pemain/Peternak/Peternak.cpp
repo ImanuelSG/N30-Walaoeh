@@ -43,7 +43,7 @@ void Peternak::ternak()
 
             if (col < 0 || col > inventory.getCol() || row < 0 || row > inventory.getRow())
             {
-                cout << "Masukkan lokasi petak yang sesuai!" << endl;
+                cout << RED << "Masukkan lokasi petak yang sesuai!" << RESET << endl;
             }
             else
             {
@@ -62,12 +62,12 @@ void Peternak::ternak()
             }
             else
             {
-                cout << "Barang pada slot tersebut bukanlah Hewan.\n Silakan pilih Slot lain!\n";
+                cout << RED << "Barang pada slot tersebut bukanlah Hewan.\n Silakan pilih Slot lain!\n" << RESET;
             }
         }
     } while (!valid);
 
-    cout << "Kamu memilih " << item->getNamaBarang() << "." << endl;
+    cout << "Kamu memilih " << CYAN << item->getNamaBarang() << "."  << RESET << endl;
     cout << "Pilih petak tanah yang akan ditinggali" << endl;
 
     display(peternakan);
@@ -91,7 +91,7 @@ void Peternak::ternak()
 
             if (colP < 0 || colP > peternakan.getCol() || rowP < 0 || rowP > peternakan.getRow())
             {
-                cout << "Masukkan lokasi petak yang sesuai!" << endl;
+                cout << RED << "Masukkan lokasi petak yang sesuai!" << RESET << endl;
             }
             else
             {
@@ -107,7 +107,7 @@ void Peternak::ternak()
         }
         else
         {
-            cout << "Petak yang anda pilih tidak kosong.\n Silakan pilih petak kosong." << endl;
+            cout << RED << "Petak yang anda pilih tidak kosong.\n Silakan pilih petak kosong." << RESET << endl;
         }
 
     } while (!valid);
@@ -118,9 +118,9 @@ void Peternak::ternak()
     peternakan.insert(rowP, colP, *hewan);
     inventory.deleteAt(row, col);
 
-    cout << "Dengan hati-hati, kamu meletakkan seekor " << item->getNamaBarang() << " di kandang." << endl
+    cout << GREEN << "Dengan hati-hati, kamu meletakkan seekor " << RESET << YELLOW << item->getNamaBarang() << RESET << GREEN << " di kandang." << endl
          << endl;
-    cout << item->getNamaBarang() << " telah menjadi peliharaanmu sekarang!";
+    cout << item->getNamaBarang() << " telah menjadi peliharaanmu sekarang!" << RESET << endl;
 }
 
 void Peternak::kasihMakan()
@@ -152,7 +152,7 @@ void Peternak::kasihMakan()
 
             if (colP < 0 || colP > peternakan.getCol() || rowP < 0 || rowP > peternakan.getRow())
             {
-                cout << "Masukkan lokasi petak yang sesuai!" << endl;
+                cout << RED << "Masukkan lokasi petak yang sesuai!" << RESET << endl;
             }
             else
             {
@@ -164,7 +164,7 @@ void Peternak::kasihMakan()
         hewan = peternakan.getElementAddress(rowP, colP);
         if (hewan == nullptr)
         {
-            cout << "Petak yang anda pilih kosong.\n Silakan pilih petak tidak kosong." << endl;
+            cout << RED << "Petak yang anda pilih kosong.\n Silakan pilih petak tidak kosong." << RESET << endl;
         }
         else
         {
@@ -173,7 +173,7 @@ void Peternak::kasihMakan()
 
     } while (isEmpty);
 
-    cout << "Kamu memilih " << hewan->getKodeHuruf() << " untuk diberi makan.\n"
+    cout << "Kamu memilih " << CYAN << hewan->getKodeHuruf() << RESET << " untuk diberi makan.\n"
          << endl;
 
     string tipeHewan = hewan->getTipeHewan();
@@ -195,7 +195,7 @@ void Peternak::kasihMakan()
 
             if (col < 0 || col > inventory.getCol() || row < 0 || row > inventory.getRow())
             {
-                cout << "Masukkan lokasi petak yang sesuai!" << endl;
+                cout << RED << "Masukkan lokasi petak yang sesuai!" << RESET << endl;
             }
             else
             {
@@ -214,7 +214,7 @@ void Peternak::kasihMakan()
                 {
                     // tambah berat
                     hewan->setWeight(hewan->getWeight() + item->getAddedWeight());
-                    cout << hewan->getKodeHuruf() << " sudah diberi makan dan beratnya menjadi " << hewan->getWeight() << endl;
+                    cout << GREEN << hewan->getKodeHuruf() << " sudah diberi makan dan beratnya menjadi " << RESET << YELLOW << hewan->getWeight() << RESET << endl;
                     // hapus barang dri inventory
                     inventory.deleteAt(row, col);
                 }
@@ -230,13 +230,13 @@ void Peternak::kasihMakan()
         }
         else
         {
-            cout << "Anda memilih slot kosong" << endl;
+            cout << RED << "Anda memilih slot kosong" << RESET << endl;
         }
     }
     else
     {
-        cout << "Anda tidak memiliki jenis makanan yang sesuai untuk tipe hewan Anda\n"
-             << endl;
+        cout << RED << "Anda tidak memiliki jenis makanan yang sesuai untuk tipe hewan Anda\n"
+             << RESET << endl;
     }
 }
 
@@ -265,7 +265,7 @@ void Peternak::panen()
 
             if (cin.fail())
             {
-                cout << "Masukkan angka!" << endl;
+                cout << RED << "Masukkan angka!" << RESET << endl;
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
@@ -281,7 +281,7 @@ void Peternak::panen()
             }
             else
             {
-                cout << "Pilihan tidak tersedia!" << endl;
+                cout << RED << "Pilihan tidak tersedia!" << RESET << endl;
             }
 
         } while (!valid);
@@ -300,7 +300,7 @@ void Peternak::panen()
             cin >> num;
             if (cin.fail())
             {
-                cout << "Masukkan angka!" << endl;
+                cout << RED << "Masukkan angka!" << RESET << endl;
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
@@ -310,7 +310,7 @@ void Peternak::panen()
             }
             else
             {
-                cout << "Jumlah petak tidak tersedia.\n Silakan pilih jumlah yang sesuai!" << endl;
+                cout << RED << "Jumlah petak tidak tersedia.\n Silakan pilih jumlah yang sesuai!" << RESET << endl;
             }
 
         } while (!valid);
@@ -349,11 +349,11 @@ void Peternak::panen()
                     // if slot is not available
                     if (it == positions.end())
                     {
-                        cout << "Lokasi petak tidak tersedia" << endl;
+                        cout << RED << "Lokasi petak tidak tersedia" << RESET << endl;
                     }
                     else if (it2 != chosenPositions.end()) // klo udh pernah diipilh
                     {
-                        cout << "Anda sudah memilih petak tersebut" << endl;
+                        cout << RED << "Anda sudah memilih petak tersebut" << RESET << endl;
                     }
                     else if ((it != positions.end()) && (it2 == chosenPositions.end()))
                     {
@@ -393,7 +393,7 @@ void Peternak::panen()
                     peternakan.deleteAt(row, col);
                 }
 
-                cout << endl
+                cout << endl << GREEN 
                      << num << " petak hewan " << chosenItem << " pada petak ";
                 for (int i = 0; i < chosenPositions.size(); i++)
                 {
@@ -404,7 +404,7 @@ void Peternak::panen()
                     }
                     cout << " ";
                 }
-                cout << "telah dipanen!" << endl;
+                cout << "telah dipanen!" << RESET << endl;
             }
         }
     }
@@ -685,10 +685,11 @@ void Peternak::azab()
                 }
             }
         }
-
-        cout << "Wakwaw dewa siwa marah!!! " << namaHewan << " " << name << " kaburr!!" << endl;
+        cout << MAGENTA;
+        cout << "Wakwaw dewa siwa marah!!! " << BOLD << namaHewan << RESET << " kaburr!!" << endl;
+        cout << MAGENTA << "Bye-bye " << namaHewan << RESET << endl;
     } else
     {
-        cout << "Tadinya kamu membuat dewa siwa marah!!, namun karena kamu tidak memiliki hewan dewa siwa kasian\nKamu tidak terkena apa apa" << endl;
+        cout << YELLOW << "Tadinya kamu membuat dewa siwa marah!!, namun karena kamu tidak memiliki hewan dewa siwa kasian\nKamu tidak terkena apa apa" << RESET << endl;
     }
 }

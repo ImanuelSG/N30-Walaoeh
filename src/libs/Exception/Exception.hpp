@@ -128,11 +128,6 @@ class InventoryEmptyException : public exception
 public:
     const char *what();
 };
-class LadangEmptyException : public exception
-{
-public:
-    const char *what();
-};
 class TernakEmptyException : public exception
 {
 public:
@@ -148,11 +143,6 @@ public:
 };
 
 // EXCEPTION UNTUK PERBEDAAN JENIS
-class InvalidJenisTanamanException : public exception
-{
-public:
-    const char *what();
-};
 
 class InvalidJenisHewanException : public exception
 {
@@ -160,35 +150,6 @@ public:
     const char *what();
 };
 
-class InvalidJenisProdukMaterialException : public exception
-{
-public:
-    const char *what();
-};
-
-class InvalidJenisProdukBuahException : public exception
-{
-public:
-    const char *what();
-};
-
-class InvalidJenisProdukHewanException : public exception
-{
-public:
-    const char *what();
-};
-
-class InvalidJenisBangunanException : public exception
-{
-public:
-    const char *what();
-};
-
-class InvalidJenisSellableException : public exception
-{
-public:
-    const char *what();
-};
 
 class InvalidProdukException : public exception
 {

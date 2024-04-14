@@ -142,6 +142,7 @@ string toLowercase(const std::string &str)
     return result;
 }
 
+
 void countdown(int seconds)
 {
     for (int i = seconds; i > 0; --i)

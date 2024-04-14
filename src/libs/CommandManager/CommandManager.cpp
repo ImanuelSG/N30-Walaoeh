@@ -244,11 +244,6 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         cout << e.what() << endl;
         return -2;
     }
-    catch (LadangEmptyException &e)
-    {
-        cout << e.what() << endl;
-        return -2;
-    }
     catch (TernakEmptyException &e)
     {
         cout << e.what() << endl;
@@ -262,32 +257,7 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         cout << e.what() << endl;
         return -2;
     }
-    catch (InvalidJenisTanamanException &e)
-    {
-        cout << e.what() << endl;
-        return -2;
-    }
     catch (InvalidJenisHewanException &e)
-    {
-        cout << e.what() << endl;
-        return -2;
-    }
-    catch (InvalidJenisProdukMaterialException &e)
-    {
-        cout << e.what() << endl;
-        return -2;
-    }
-    catch (InvalidJenisProdukBuahException &e)
-    {
-        cout << e.what() << endl;
-        return -2;
-    }
-    catch (InvalidJenisProdukHewanException &e)
-    {
-        cout << e.what() << endl;
-        return -2;
-    }
-    catch (InvalidJenisBangunanException &e)
     {
         cout << e.what() << endl;
         return -2;
@@ -302,11 +272,7 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         cout << e.what() << endl;
         return -2;
     }
-    catch (InvalidJenisSellableException &e)
-    {
-        cout << e.what() << endl;
-        return -2;
-    }
+
 }
 
 void CommandManager::setIsTakingTurn(bool isTakingTurn)

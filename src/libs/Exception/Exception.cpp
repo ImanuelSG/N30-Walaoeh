@@ -97,10 +97,6 @@ const char *InventoryEmptyException::what()
 {
     return "Inventory Anda Kosong, tidak bisa menjalankan perintah\n";
 }
-const char *LadangEmptyException::what()
-{
-    return "Ladang Anda Kosong, tidak bisa menjalankan perintah\n";
-}
 const char *TernakEmptyException::what()
 {
     return "Ternak Anda Kosong, tidak bisa menjalankan perintah\n";
@@ -116,35 +112,9 @@ const char *FileNotFoundException::what()
 {
     return "File yang diberikan tidak ditemukan!.\nPastikan path file Anda sesuai.\n";
 }
-
-const char *InvalidJenisTanamanException::what()
-{
-    return "Jenis tanaman yang Anda masukkan tidak valid!.\nPastikan Jenis Tanaman Anda sesuai.\n";
-}
-
 const char *InvalidJenisHewanException::what()
 {
     return "Jenis hewan yang Anda masukkan tidak valid!.\nPastikan Jenis Hewan Anda sesuai.\n";
-}
-
-const char *InvalidJenisProdukMaterialException::what()
-{
-    return "Jenis produk material yang Anda masukkan tidak valid!.\nPastikan Jenis Produk Material Anda sesuai.\n";
-}
-
-const char *InvalidJenisProdukBuahException::what()
-{
-    return "Jenis produk buah yang Anda masukkan tidak valid!.\nPastikan Jenis Produk Buah Anda sesuai.\n";
-}
-
-const char *InvalidJenisProdukHewanException::what()
-{
-    return "Jenis produk hewan yang Anda masukkan tidak valid!.\nPastikan Jenis Produk Hewan Anda sesuai.\n";
-}
-
-const char *InvalidJenisBangunanException::what()
-{
-    return "Jenis bangunan yang Anda masukkan tidak valid!.\nPastikan Jenis Bangunan Anda sesuai.\n";
 }
 
 const char *InvalidProdukException::what()
@@ -156,10 +126,6 @@ const char *InvalidJenisMakananException::what()
     return "Jenis makanan yang Anda pilih tidak sesuai dengan jenis hewan Anda.\n";
 }
 
-const char *InvalidJenisSellableException::what()
-{
-    return "Jenis sellable yang Anda masukkan tidak valid!.\nPastikan Jenis Sellable Anda sesuai.\n";
-}
 
 // ECEPTION UNTUK NOT ENOUGH
 NotEnoughMaterialException::NotEnoughMaterialException(int gulden, map<string, int> material)

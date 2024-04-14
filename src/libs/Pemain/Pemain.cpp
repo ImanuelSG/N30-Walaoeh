@@ -139,7 +139,7 @@ void Pemain::makan()
 
             if (col < 0 || col > inventory.getCol() || row < 0 || row > inventory.getRow())
             {
-                cout << "Masukkan lokasi petak yang sesuai!" << endl;
+                cout << RED << "Masukkan lokasi petak yang sesuai!" << RESET << endl;
             }
             else
             {
@@ -152,9 +152,9 @@ void Pemain::makan()
 
         if (item == nullptr)
         {
-            cout << "Kamu mengambil harapan kosong dari penyimpanan." << endl;
+            cout << RED << "Kamu mengambil harapan kosong dari penyimpanan." << endl;
             cout << "Silahkan masukan slot yang berisi makanan." << endl
-                 << endl;
+                 << RESET << endl;
         }
         else if (item->isEdible())
         {
@@ -163,12 +163,16 @@ void Pemain::makan()
 
             setBerat(getBerat() + addedWeight);
             valid = true;
+            cout << GREEN << "Dengan lahapnya, kamu memakanan hidangan itu" << endl;
+            cout << "Alhasil, berat badan kamu naik menjadi " << RESET << YELLOW << berat 
+                 << RESET << endl; 
+
         }
         else if (!item->isEdible())
         {
-            cout << "Apa yang kamu lakukan??!! Kamu mencoba untuk memakan itu?!!" << endl;
+            cout << RED << "Apa yang kamu lakukan??!! Kamu mencoba untuk memakan itu?!!" << endl;
             cout << "Silahkan masukan slot yang berisi makanan." << endl
-                 << endl;
+                 << RESET << endl;
         }
     } while (!valid);
 }
@@ -179,7 +183,7 @@ void Pemain::cetakPenyimpanan()
 {
     display(inventory);
     cout << endl;
-    cout << "Total Slot Kosong: " << inventory.countEmptySlot() << endl;
+    cout << "Total Slot Kosong: " << CYAN << inventory.countEmptySlot() << RESET << endl;
 }
 
 void Pemain::pungutPajak(const vector<Pemain *> &pemain)
@@ -228,8 +232,8 @@ void Pemain::beli(Toko &toko)
     toko.displayAllBuyableItem(getRole());
     cout << endl;
 
-    cout << "Uang Anda : " << getGulden() << " gulden" << endl;
-    cout << "Slot penyimpanan tersedia : " << inventory.countEmptySlot() << endl;
+    cout << "Uang Anda : " << CYAN << getGulden() << RESET << " gulden" << endl;
+    cout << "Slot penyimpanan tersedia : " << CYAN << inventory.countEmptySlot() << RESET << endl;
 
     // Get the input
     int num;
@@ -241,13 +245,13 @@ void Pemain::beli(Toko &toko)
         if (cin.fail())
         {
 
-            cout << "Input tidak valid, silahkan coba lagi" << endl;
+            cout << RED << "Input tidak valid, silahkan coba lagi" << RESET << endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         else if (!toko.isValidItem(num, getRole()))
         {
-            cout << "Input tidak valid, silahkan coba lagi" << endl;
+            cout << RED << "Input tidak valid, silahkan coba lagi" << RESET << endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
@@ -285,11 +289,11 @@ void Pemain::beli(Toko &toko)
     // All things validated so we can buy the item
     tuple<Sellable *, int> item = toko.Beli(num, getRole(), getGulden(), quantity);
 
-    cout << "Selamat Anda berhasil membeli " << quantity << " " << get<0>(item)->getNamaBarang() << endl
-         << " dengan total harga " << get<1>(item) << " gulden" << endl;
+    cout << "Selamat Anda berhasil membeli " << CYAN << quantity << " " << get<0>(item)->getNamaBarang() << RESET << endl
+         << " dengan total harga " << CYAN << get<1>(item) << RESET << " gulden" << endl;
 
     setGulden(getGulden() - get<1>(item));
-    cout << "Sisa uang Anda : " << getGulden() << " gulden" << endl;
+    cout << "Sisa uang Anda : " << CYAN << getGulden() << RESET << " gulden" << endl;
 
     cout << "Pilih slot untuk menyimpan barang yang Anda beli!" << endl;
 
@@ -306,13 +310,13 @@ void Pemain::beli(Toko &toko)
         // check if all input is not empty
         if (slot.empty())
         {
-            cout << "Input tidak valid, silahkan coba lagi" << endl;
+            cout << RED << "Input tidak valid, silahkan coba lagi" << RESET << endl;
             continue;
         }
 
         if (slot.size() != quantity)
         {
-            cout << "Jumlah slot yang dimasukkan tidak sesuai dengan jumlah barang yang dibeli" << endl;
+            cout<< RED << "Jumlah slot yang dimasukkan tidak sesuai dengan jumlah barang yang dibeli" << RESET << endl;
             continue;
         }
 
@@ -323,13 +327,13 @@ void Pemain::beli(Toko &toko)
             cout << row << " " << col << endl;
             if (inventory.getElementAddress(row, col) != nullptr)
             {
-                cout << "Slot " << pos << " sudah terisi, silahkan pilih slot lain" << endl;
+                cout << RED << "Slot " << pos << " sudah terisi, silahkan pilih slot lain" << RESET << endl;
                 break;
             }
             if (
                 row < 0 || row >= inventory.getRow() || col < 0 || col >= inventory.getCol())
             {
-                cout << "Slot " << pos << " tidak valid, silahkan pilih slot lain" << endl;
+                cout << RED << "Slot " << pos << " tidak valid, silahkan pilih slot lain" << RESET << endl;
                 break;
             }
 
@@ -351,7 +355,7 @@ void Pemain::beli(Toko &toko)
         }
     } while (!valid);
 
-    cout << get<0>(item)->getNamaBarang() << " berhasil disimpan di penyimpanan" << endl;
+    cout << GREEN << get<0>(item)->getNamaBarang() << " berhasil disimpan di penyimpanan" << RESET << endl;
 }
 
 void Pemain::jual(Toko &toko)
@@ -385,12 +389,12 @@ void Pemain::jual(Toko &toko)
             if (
                 row < 0 || row >= inventory.getRow() || col < 0 || col >= inventory.getCol())
             {
-                cout << "Slot " << pos << " tidak valid, silahkan pilih slot lain" << endl;
+                cout << RED << "Slot " << pos << " tidak valid, silahkan pilih slot lain"  << RESET << endl;
                 break;
             }
             if (inventory.getElementAddress(row, col) == nullptr)
             {
-                cout << "Slot " << pos << " tidak berisi barang, silahkan pilih slot yang valid" << endl;
+                cout << RED << "Slot " << pos << " tidak berisi barang, silahkan pilih slot yang valid" << RESET << endl;
                 break;
             }
 
@@ -424,8 +428,8 @@ void Pemain::jual(Toko &toko)
         delete &res;
     }
 
-    cout << "Barang Anda berhasil dijual!" << endl
-         << "Uang Anda bertambah " << hasilJual << " gulden" << endl;
+    cout << GREEN << "Barang Anda berhasil dijual!" << endl
+         << "Uang Anda bertambah " << RESET << YELLOW << hasilJual << RESET << GREEN << " gulden" << RESET << endl;
 }
 
 void Pemain::addPlantAge()
@@ -479,12 +483,12 @@ int Pemain::getUkuranInventoryN()
 
 void Pemain::displayInfo()
 {
-    cout << "Informasi Pemain: " << endl;
+    cout << "(❁´◡`❁) Informasi Pemain: (❁´◡`❁) " << endl;
 
     cout << "Nama: " << name << endl;
     cout << "Role: " << getRole() << endl;
-    cout << "Gulden: " << gulden << endl;
-    cout << "Berat: " << berat << endl;
+    cout << "Gulden: " << CYAN << gulden << RESET << endl;
+    cout << "Berat: " << CYAN << berat << RESET << endl;
     cout << "Kekayaan: " << getKekayaan() << endl;
 }
 
@@ -566,8 +570,9 @@ void Pemain::setLadang(const Storage<Tanaman> &storage)
 
 void Pemain::rezeki()
 {
-    cout << "Wah, dewa siwa sedang baik hati nich (￣︶￣) ↗" << endl;
+    cout << CYAN << "Wah, kamu berhasil lari dari amarah dewa siwa!!" << endl 
+         << "Dewa siwa sedang baik hati nich (～￣▽￣)～(～￣▽￣)～"  << RESET << endl;
     int tambahan = (int) (0.1 * gulden);
-    cout << name << " mendapatkan tambahan uang sebanyak " << tambahan << " gulden $$$" << endl;
+    cout << name << " mendapatkan tambahan uang sebanyak " << CYAN << tambahan << RESET << " gulden $$$" << endl;
     gulden += tambahan;
 }

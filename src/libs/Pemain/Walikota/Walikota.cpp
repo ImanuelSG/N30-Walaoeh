@@ -9,10 +9,10 @@ Walikota::~Walikota()
 }
 
 void Walikota::pungutPajak(const vector<Pemain *> &listpemain)
-{
+{   cout << GREEN;
     cout << "Cring cring cring..." << endl;
     cout << "Pajak sudah dipungut!" << endl;
-    cout << endl;
+    cout << RESET << endl;
     cout << "Berikut adalah detil dari pemungutan pajak: " << endl;
     int counter = 1;
     int totalpajak = 0;
@@ -38,7 +38,7 @@ void Walikota::pungutPajak(const vector<Pemain *> &listpemain)
         }
     }
     cout << endl;
-    cout << "Negara mendapatkan pemasukan sebesar " << totalpajak << " gulden" << endl;
+    cout << "Negara mendapatkan pemasukan sebesar " << CYAN << totalpajak << RESET << " gulden" << endl;
     cout << "Gunakan dengan baik dan jangan dikorupsi ya!" << endl;
     setGulden(getGulden() + totalpajak);
 }
@@ -60,7 +60,7 @@ int Walikota::tambahPemain(vector<Pemain *> &pemain)
             cin >> jenisPemain;
             if (jenisPemain != "Peternak" && jenisPemain != "peternak" && jenisPemain != "Petani" && jenisPemain != "petani")
             {
-                cout << "Jenis pemain tidak valid!" << endl;
+                cout << RED << "Jenis pemain tidak valid!" << RESET << endl;
             }
 
         } while (jenisPemain != "Peternak" && jenisPemain != "peternak" && jenisPemain != "Petani" && jenisPemain != "petani");
@@ -71,13 +71,13 @@ int Walikota::tambahPemain(vector<Pemain *> &pemain)
             cin >> namaPemain;
             if (namaPemain == "")
             {
-                cout << "Nama pemain tidak boleh kosong!" << endl;
+                cout << RED << "Nama pemain tidak boleh kosong!" << RESET << endl;
             }
             for (auto pemain : pemain)
             {
                 if (toLowercase(pemain->getName()) == toLowercase(namaPemain))
                 {
-                    cout << "Nama pemain sudah ada, silahkan coba nama yang lain!" << endl;
+                    cout  << RED << "Nama pemain sudah ada, silahkan coba nama yang lain!" << RESET  << endl;
                     namaPemain = "";
                 }
             }
@@ -117,8 +117,8 @@ int Walikota::tambahPemain(vector<Pemain *> &pemain)
         }
 
         cout << endl;
-        cout << "Pemain baru ditambahkan!" << endl;
-        cout << "Selamat datang \"" << namaPemain << "\" di kota ini!" << endl;
+        cout << GREEN << "Pemain baru ditambahkan!" << endl;
+        cout << "Selamat datang \"" << RESET << YELLOW << BOLD << namaPemain << RESET << GREEN << "\" di kota ini!" << RESET << endl;
 
         // Kurangi uang Walikota
         this->setGulden(this->getGulden() - 50);
@@ -146,11 +146,11 @@ void Walikota::bangunBangunan()
         cin >> namaBangunan;
         if (namaBangunan.empty())
         {
-            cout << "Nama bangunan tidak boleh kosong!" << endl;
+            cout << RED << "Nama bangunan tidak boleh kosong!" << RESET << endl;
         }
         else if (!Bangunan::isValidRecipe(namaBangunan))
         {
-            cout << "Kamu tidak punya resep bangunan tersebut!" << endl;
+            cout << RED << "Kamu tidak punya resep bangunan tersebut!" << RESET << endl;
         }
 
     } while (namaBangunan.empty() || !Bangunan::isValidRecipe(namaBangunan));
@@ -203,7 +203,7 @@ void Walikota::bangunBangunan()
 
     // Add actual building to inventory
     inventory.insert(*actualBuilding);
-    cout << namaBangunan << " berhasil dibangun dan telah menjadi hak miliki walikota!" << endl;
+    cout << YELLOW << namaBangunan << RESET << GREEN <<" berhasil dibangun dan telah menjadi hak miliki walikota!" << RESET << endl;
 }
 
 string Walikota::getRole() const
@@ -253,11 +253,12 @@ void Walikota::azab()
     if (gulden != 0)
     {  
         this->gulden = (int) (gulden * 0.67);
+        cout << MAGENTA ;
         cout << "Wakwaw dewa siwa marah!!! Kamu terciduk KPK" << endl;
-        cout << "Karena koneksimu sebagai walikota banyak, guldenmu hanya berkurang 1/3 dari total keseluruhan" << endl;
+        cout << "Karena koneksimu sebagai walikota banyak, guldenmu hanya berkurang" << BOLD << "1/3"  << RESET << MAGENTA "dari total keseluruhan" << RESET << endl;
     }
     else
     {
-        cout << "Tadinya kamu membuat dewa siwa marah!!, namun karena kamu tidak memiliki gulden lagi dewa siwa kasian\nKamu tidak terkena apa apa" << endl;
+        cout << YELLOW << "Tadinya kamu membuat dewa siwa marah!!, namun karena kamu tidak memiliki gulden lagi dewa siwa kasian\nKamu tidak terkena apa apa" << RESET << endl;
     }
 }

@@ -47,7 +47,7 @@ void Petani::tanam()
 
             if (col < 0 || col > inventory.getCol() || row < 0 || row > inventory.getRow())
             {
-                cout << "Masukkan lokasi petak yang sesuai!" << endl;
+                cout << RED << "Masukkan lokasi petak yang sesuai!" << RESET << endl;
             }
             else
             {
@@ -65,12 +65,12 @@ void Petani::tanam()
             }
             else
             {
-                cout << "Barang pada slot tersebut bukanlah Tanaman.\nSilakan pilih Slot lain!\n";
+                cout << RED << "Barang pada slot tersebut bukanlah Tanaman.\nSilakan pilih Slot lain!\n" << RESET;
             }
         }
     } while (!valid);
 
-    cout << "Kamu memilih " << item->getNamaBarang() << "." << endl;
+    cout << "Kamu memilih " << CYAN << item->getNamaBarang() << "." << RESET << endl;
     cout << "Pilihlah petak tanah yang akan ditanami" << endl;
 
     display(ladang);
@@ -94,7 +94,7 @@ void Petani::tanam()
 
             if (colP < 0 || colP > ladang.getCol() || rowP < 0 || rowP > ladang.getRow())
             {
-                cout << "Masukkan lokasi petak yang sesuai!" << endl;
+                cout << RED << "Masukkan lokasi petak yang sesuai!" << RESET << endl;
             }
             else
             {
@@ -110,7 +110,7 @@ void Petani::tanam()
         }
         else
         {
-            cout << "Petak yang anda pilih tidak kosong.\nSilakan pilih petak kosong." << endl;
+            cout << RED << "Petak yang anda pilih tidak kosong.\nSilakan pilih petak kosong." << RESET << endl;
         }
 
     } while (!valid);
@@ -119,8 +119,8 @@ void Petani::tanam()
     ladang.insert(rowP, colP, *tanaman);
     inventory.deleteAt(row, col);
 
-    cout << "Cangkul, cangkul, cangkul yang dalam~!" << endl;
-    cout << item->getNamaBarang() << " berhasil ditanam!" << endl;
+    cout << GREEN <<  "Cangkul, cangkul, cangkul yang dalam~!" << endl;
+    cout << RESET << YELLOW << RESET << item->getNamaBarang() << GREEN << " berhasil ditanam!" << RESET << endl;
 }
 
 void Petani::panen()
@@ -146,7 +146,7 @@ void Petani::panen()
             cin >> nomor;
             if (cin.fail())
             {
-                cout << "Masukkan angka!" << endl;
+                cout << RED << "Masukkan angka!" << RESET << endl;
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
@@ -162,7 +162,7 @@ void Petani::panen()
             }
             else
             {
-                cout << "Pilihan tidak tersedia!" << endl;
+                cout << RED << "Pilihan tidak tersedia!" << RESET << endl;
             }
         } while (!valid);
 
@@ -175,13 +175,13 @@ void Petani::panen()
             cin >> numPanen;
             if (cin.fail())
             {
-                cout << "Masukkan angka!" << endl;
+                cout << RED << "Masukkan angka!" << RESET << endl;
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
             else if (numPanen < 0 || numPanen > get<1>(readyItems[chosenItem]))
             {
-                cout << "Masukkan jumlah yang benar!" << endl;
+                cout << RED << "Masukkan jumlah yang benar!" << RESET << endl;
             }
             else if (numPanen > availableSlots)
             {
@@ -210,7 +210,7 @@ void Petani::panen()
                 // Sudah ada element pada pilihan sebelumnya
                 if (iter != chosenLocations.end())
                 {
-                    cout << "Masukkan petak yang belum pernah dipilih!" << endl;
+                    cout << RED << "Masukkan petak yang belum pernah dipilih!" << RESET << endl;
                 }
                 else
                 {
@@ -220,7 +220,7 @@ void Petani::panen()
             }
             else
             {
-                cout << "Masukkan petak yang tepat!" << endl;
+                cout << RED << "Masukkan petak yang tepat!" << RESET << endl;
             }
         }
 
@@ -248,7 +248,7 @@ void Petani::panen()
         }
 
         // Message terakhir
-        cout << endl
+        cout << endl << GREEN
              << numPanen << " petak tanaman " << chosenItem << " pada petak ";
 
         // Tampilkan lokasi ladang yang dipanen
@@ -263,7 +263,7 @@ void Petani::panen()
                 cout << chosenLocations[i] << ", ";
             }
         }
-        cout << " telah dipanen!" << endl;
+        cout << " telah dipanen!" << RESET << endl;
     }
     else
     {
@@ -526,12 +526,12 @@ void Petani::azab()
                 }
             }
         }
-
-        cout << "Wakwaw dewa siwa marah!!! Tanaman " << name << " kena serangan hama!!" << endl;
-        cout << "Bye-bye " << namaTanaman << endl;
+        cout << MAGENTA;
+        cout << "Wakwaw dewa siwa marah!!! Tanaman " << BOLD << name << " kena serangan hama!!" << RESET << endl;
+        cout << MAGENTA << "Bye-bye " << namaTanaman << RESET << endl;
     }
     else
     {
-         cout << "Tadinya kamu membuat dewa siwa marah!!, namun karena kamu tidak memiliki tanaman dewa siwa kasian\nKamu tidak terkena apa apa" << endl;
+         cout << YELLOW << "Tadinya kamu membuat dewa siwa marah!!, namun karena kamu tidak memiliki tanaman dewa siwa kasian\nKamu tidak terkena apa apa" << RESET << endl;
     }
 }
