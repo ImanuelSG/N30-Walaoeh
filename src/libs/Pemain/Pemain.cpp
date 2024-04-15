@@ -137,7 +137,7 @@ void Pemain::makan()
             col = getColStorage(slot[0]);
             row = getRowStorage(slot);
 
-            if (col < 0 || col > inventory.getCol() || row < 0 || row > inventory.getRow())
+            if (col < 0 || col >= inventory.getCol() || row < 0 || row >= inventory.getRow())
             {
                 cout << RED << "Masukkan lokasi petak yang sesuai!" << RESET << endl;
             }
@@ -324,15 +324,16 @@ void Pemain::beli(Toko &toko)
             int row = getRowStorage(pos);
             int col = getColStorage(pos[0]);
             
-            if (inventory.getElementAddress(row, col) != nullptr)
-            {
-                cout << RED << "Slot " << pos << " sudah terisi, silahkan pilih slot lain" << RESET << endl;
-                break;
-            }
             if (
                 row < 0 || row >= inventory.getRow() || col < 0 || col >= inventory.getCol())
             {
                 cout << RED << "Slot " << pos << " tidak valid, silahkan pilih slot lain" << RESET << endl;
+                break;
+            }
+
+            if (inventory.getElementAddress(row, col) != nullptr)
+            {
+                cout << RED << "Slot " << pos << " sudah terisi, silahkan pilih slot lain" << RESET << endl;
                 break;
             }
 

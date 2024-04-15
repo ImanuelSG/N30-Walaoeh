@@ -41,7 +41,7 @@ void Peternak::ternak()
             col = getColStorage(slot[0]);
             row = getRowStorage(slot);
 
-            if (col < 0 || col > inventory.getCol() || row < 0 || row > inventory.getRow())
+            if (col < 0 || col >= inventory.getCol() || row < 0 || row >= inventory.getRow())
             {
                 cout << RED << "Masukkan lokasi petak yang sesuai!" << RESET << endl;
             }
@@ -62,7 +62,7 @@ void Peternak::ternak()
             }
             else
             {
-                cout << RED << "Barang pada slot tersebut bukanlah Hewan.\n Silakan pilih Slot lain!\n"
+                cout << RED << "Barang pada slot tersebut bukanlah Hewan.\nSilakan pilih Slot lain!\n"
                      << RESET;
             }
         }
@@ -90,7 +90,7 @@ void Peternak::ternak()
             colP = getColStorage(slot[0]);
             rowP = getRowStorage(slot);
 
-            if (colP < 0 || colP > peternakan.getCol() || rowP < 0 || rowP > peternakan.getRow())
+            if (colP < 0 || colP >= peternakan.getCol() || rowP < 0 || rowP >= peternakan.getRow())
             {
                 cout << RED << "Masukkan lokasi petak yang sesuai!" << RESET << endl;
             }
@@ -108,7 +108,7 @@ void Peternak::ternak()
         }
         else
         {
-            cout << RED << "Petak yang anda pilih tidak kosong.\n Silakan pilih petak kosong." << RESET << endl;
+            cout << RED << "Petak yang anda pilih tidak kosong.\nSilakan pilih petak kosong." << RESET << endl;
         }
 
     } while (!valid);
@@ -151,7 +151,7 @@ void Peternak::kasihMakan()
             colP = getColStorage(petak[0]);
             rowP = getRowStorage(petak);
 
-            if (colP < 0 || colP > peternakan.getCol() || rowP < 0 || rowP > peternakan.getRow())
+            if (colP < 0 || colP >= peternakan.getCol() || rowP < 0 || rowP >= peternakan.getRow())
             {
                 cout << RED << "Masukkan lokasi petak yang sesuai!" << RESET << endl;
             }
@@ -165,7 +165,7 @@ void Peternak::kasihMakan()
         hewan = peternakan.getElementAddress(rowP, colP);
         if (hewan == nullptr)
         {
-            cout << RED << "Petak yang anda pilih kosong.\n Silakan pilih petak tidak kosong." << RESET << endl;
+            cout << RED << "Petak yang anda pilih kosong.\nSilakan pilih petak tidak kosong." << RESET << endl;
         }
         else
         {
@@ -194,7 +194,7 @@ void Peternak::kasihMakan()
             col = getColStorage(slot[0]);
             row = getRowStorage(slot);
 
-            if (col < 0 || col > inventory.getCol() || row < 0 || row > inventory.getRow())
+            if (col < 0 || col >= inventory.getCol() || row < 0 || row >= inventory.getRow())
             {
                 cout << RED << "Masukkan lokasi petak yang sesuai!" << RESET << endl;
             }
@@ -311,7 +311,7 @@ void Peternak::panen()
             }
             else
             {
-                cout << RED << "Jumlah petak tidak tersedia.\n Silakan pilih jumlah yang sesuai!" << RESET << endl;
+                cout << RED << "Jumlah petak tidak tersedia.\nSilakan pilih jumlah yang sesuai!" << RESET << endl;
             }
 
         } while (!valid);
@@ -374,7 +374,7 @@ void Peternak::panen()
                     Hewan *hewan = peternakan.getElementAddress(row, col);
 
                     vector<Sellable*> vectorProdukHewan;
-                    *hewan >> vectorProdukHewan;
+                        *hewan >> vectorProdukHewan;
 
                     for (auto element: vectorProdukHewan)
                     {
@@ -681,18 +681,20 @@ void Peternak::azab()
                     peternakan.deleteAt(i, j);
                     delete item;
                     found = true;
-                    break; // Exit the inner loop after deleting the first animal
+                    break;
                 }
             }
-            if (found) // Exit the outer loop if an animal has been found and removed
+            if (found) 
                 break;
         }
-        cout << MAGENTA;
-        cout << "Wakwaw dewa siwa marah!!! " << BOLD << namaHewan << RESET << " kaburr!!" << endl;
-        cout << MAGENTA << "Bye-bye " << namaHewan << RESET << endl;
+        cout << endl;
+        cout << BOLD << "NAKAL KAMU " << CYAN << name << RESET << MAGENTA << endl;
+        cout << "Wakwaw dewa siwa marah!!! Hewan " << BOLD << namaHewan << RESET << MAGENTA << " kaburr!!" << endl;
+        cout << MAGENTA << "ヾ(￣▽￣) Bye~Bye~ " << namaHewan << RESET << endl;
     }
     else
     {
-        cout << YELLOW << "Tadinya kamu membuat dewa siwa marah!!, namun karena kamu tidak memiliki hewan dewa siwa kasian\nKamu tidak terkena apa apa" << RESET << endl;
+        cout << endl;
+        cout << YELLOW << "Tadinya " << BOLD << name << RESET << YELLOW << " membuat dewa siwa marah!!,\nnamun karena " << name << " tidak memiliki hewan lagi dewa siwa kasian ○( ＾皿＾)っ Hehehe…\n" << name << " tidak terkena apa apa" << RESET << endl;
     }
 }

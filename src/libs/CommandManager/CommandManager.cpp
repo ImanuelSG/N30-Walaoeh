@@ -36,7 +36,8 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
 
             if (tipegame == "AZAB")
             {
-                cout << "Dewa Siwa Sedang Marah! Azab akan diberikan kepada pemain yang sial !!" << endl;
+                cout << endl;
+                cout << BOLD << RED << " (╬▔皿▔)╯ Dewa Siwa Sedang Marah! Azab akan diberikan kepada pemain yang sial !!" << RESET << endl;
                 int count = 0;
                 for (auto player : ListOfPlayers)
                 {
@@ -55,7 +56,7 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
                 cout << endl;
                 if (count == 0)
                 {
-                    cout << "Kemarahan Dewa Siwa tidak berdampak kepada siapapun ! Tidak ada pemain yang mendapatkan azab" << endl;
+                    cout << GREEN << "Sepertinya para pemain sedang beruntung!\nKemarahan Dewa Siwa tidak berdampak kepada siapapun ! Tidak ada pemain yang mendapatkan azab" << RESET << endl;
                 }
             }
 

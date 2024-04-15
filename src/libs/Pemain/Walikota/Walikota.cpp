@@ -247,12 +247,14 @@ void Walikota::azab()
     if (gulden != 0)
     {  
         this->gulden = (int) (gulden * 0.67);
-        cout << MAGENTA ;
-        cout << "Wakwaw dewa siwa marah!!! Kamu terciduk KPK" << endl;
-        cout << "Karena koneksimu sebagai walikota banyak, guldenmu hanya berkurang" << BOLD << "1/3"  << RESET << MAGENTA "dari total keseluruhan" << RESET << endl;
+        cout << endl;
+        cout << BOLD << "NAKAL KAMU "<< CYAN << name << RESET << MAGENTA << endl;
+        cout << "Wakwaw dewa siwa marah!!! Kamu terciduk KPK (っ °Д °;)っ" << endl;
+        cout << "Karena koneksimu sebagai walikota banyak, guldenmu hanya berkurang" << BOLD << " 1/3 "  << RESET << MAGENTA "dari total keseluruhan" << RESET << endl;
     }
     else
     {
-        cout << YELLOW << "Tadinya kamu membuat dewa siwa marah!!, namun karena kamu tidak memiliki gulden lagi dewa siwa kasian\nKamu tidak terkena apa apa" << RESET << endl;
+        cout << endl;
+        cout << YELLOW << "Tadinya " << BOLD << name << RESET << YELLOW << " membuat dewa siwa marah!!,\nnamun karena " << name << " tidak memiliki gulden lagi dewa siwa kasian ○( ＾皿＾)っ Hehehe…\n" << name << " tidak terkena apa apa" << RESET << endl;
     }
 }

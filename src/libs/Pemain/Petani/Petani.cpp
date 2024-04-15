@@ -45,7 +45,7 @@ void Petani::tanam()
             col = getColStorage(slot[0]);
             row = getRowStorage(slot);
 
-            if (col < 0 || col > inventory.getCol() || row < 0 || row > inventory.getRow())
+            if (col < 0 || col >= inventory.getCol() || row < 0 || row >= inventory.getRow())
             {
                 cout << RED << "Masukkan lokasi petak yang sesuai!" << RESET << endl;
             }
@@ -93,7 +93,7 @@ void Petani::tanam()
             colP = getColStorage(slot[0]);
             rowP = getRowStorage(slot);
 
-            if (colP < 0 || colP > ladang.getCol() || rowP < 0 || rowP > ladang.getRow())
+            if (colP < 0 || colP >= ladang.getCol() || rowP < 0 || rowP >= ladang.getRow())
             {
                 cout << RED << "Masukkan lokasi petak yang sesuai!" << RESET << endl;
             }
@@ -524,18 +524,20 @@ void Petani::azab()
                     ladang.deleteAt(i, j);
                     delete item;
                     found = true;
-                    break; // Exit the inner loop after deleting the first plant
+                    break; 
                 }
             }
-            if (found) // Exit the outer loop if a plant has been found and removed
+            if (found) 
                 break;
         }
-        cout << MAGENTA;
-        cout << "Wakwaw dewa siwa marah!!! Tanaman " << BOLD << namaTanaman << " kena serangan hama!!" << RESET << endl;
-        cout << MAGENTA << "Bye-bye " << namaTanaman << RESET << endl;
+        cout << endl;
+        cout << BOLD << "NAKAL KAMU " << CYAN << name << RESET << MAGENTA << endl;
+        cout << "Wakwaw dewa siwa marah!!! Tanaman " << BOLD << namaTanaman << RESET << MAGENTA << " kena serangan hama!!" << RESET << endl;
+        cout << MAGENTA << "ヾ(￣▽￣) Bye~Bye~ " << namaTanaman << RESET << endl;
     }
     else
     {
-        cout << YELLOW << "Tadinya kamu membuat dewa siwa marah!!, namun karena kamu tidak memiliki tanaman dewa siwa kasian\nKamu tidak terkena apa apa" << RESET << endl;
+        cout << endl;
+        cout << YELLOW << "Tadinya " << BOLD << name << RESET << YELLOW <<  " membuat dewa siwa marah!!,\nnamun karena " << name << " tidak memiliki tanaman lagi dewa siwa kasian ○( ＾皿＾)っ Hehehe…\n" << name << " tidak terkena apa apa" << RESET << endl;
     }
 }
