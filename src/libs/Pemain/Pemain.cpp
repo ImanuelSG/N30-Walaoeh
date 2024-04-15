@@ -573,6 +573,11 @@ Storage<Tanaman> Pemain::getLadang() {
     return Storage<Tanaman>(0, 0);
 }
 
+Storage<Sellable> Pemain::getInventory()
+{
+    return inventory;
+}
+
 void Pemain::rezeki()
 {
     cout << CYAN << "Wah, kamu berhasil lari dari amarah dewa siwa!!" << endl

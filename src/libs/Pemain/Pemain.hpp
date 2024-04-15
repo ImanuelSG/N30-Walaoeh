@@ -92,6 +92,14 @@ public:
      * @return int
      */
     int getPajak();
+
+    /**
+     * @brief Mengembalikan penyimpanan yang dimiliki pemain
+     *
+     * @return Storage<Sellable>
+     */
+    
+    Storage<Sellable> getInventory();
     /**
      * @brief Pungut Pajak, Khusus untuk walikota
      *

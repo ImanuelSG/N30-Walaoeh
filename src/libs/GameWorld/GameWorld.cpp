@@ -236,14 +236,14 @@ void GameWorld::saveGameState()
         outputFile << player->getName() << " " << player->getRole() << " " << player->getBerat() << " " << player->getGulden() << endl;
 
         // write player inventory info
-        outputFile << player->inventory.getNeff() << endl;
-        for (int i = 0; i < player->inventory.getRow(); i++)
+        outputFile << player->getInventory().getNeff() << endl;
+        for (int i = 0; i < player->getInventory().getRow(); i++)
         {
-            for (int j = 0; j < player->inventory.getCol(); j++)
+            for (int j = 0; j < player->getInventory().getCol(); j++)
             {
-                if (player->inventory.getElementAddress(i, j) != nullptr)
+                if (player->getInventory().getElementAddress(i, j) != nullptr)
                 {
-                    outputFile << (player->inventory.getElementAddress(i, j)->getNamaBarang()) << endl;
+                    outputFile << (player->getInventory().getElementAddress(i, j)->getNamaBarang()) << endl;
                 }
             }
         }
