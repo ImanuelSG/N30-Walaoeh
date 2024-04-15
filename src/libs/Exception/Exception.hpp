@@ -115,11 +115,10 @@ public:
 class NotEnoughMaterialException : public exception
 {
 private:
-    int gulden;
     map<string, int> material;
 
 public:
-    NotEnoughMaterialException(int gulden, map<string, int> material);
+    NotEnoughMaterialException(map<string, int> material);
     const char *what();
 };
 // EXCEPTION UNTUK KOSONG

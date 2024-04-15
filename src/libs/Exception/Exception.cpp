@@ -128,30 +128,19 @@ const char *InvalidJenisMakananException::what()
 
 
 // ECEPTION UNTUK NOT ENOUGH
-NotEnoughMaterialException::NotEnoughMaterialException(int gulden, map<string, int> material)
+NotEnoughMaterialException::NotEnoughMaterialException(map<string, int> material)
 {
-    this->gulden = gulden;
+    // this->gulden = gulden;
     this->material = material;
 }
 const char *NotEnoughMaterialException::what()
 {
     ostringstream oss;
-    int gulden = this->gulden;
     map<string, int> material = this->material;
     oss << "Kamu tidak punya sumber daya yang cukup!\nMasih memerlukan ";
 
-    if (gulden > 0)
-    {
-        oss << gulden << " gulden";
-    }
-
     if (!material.empty())
     {
-        if (gulden > 0)
-        {
-            oss << ", ";
-        }
-
         for (auto it = material.begin(); it != material.end(); it++)
         {
             oss << it->second << " " << it->first;

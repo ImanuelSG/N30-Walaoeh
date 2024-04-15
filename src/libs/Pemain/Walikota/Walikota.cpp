@@ -158,25 +158,19 @@ void Walikota::bangunBangunan()
     // Get the recipe to check
     // tuple<string, int, map<string, int>> recipe = bangunan.getSpecificRecipe(namaBangunan);
 
-    // int neededGulden = get<1>(recipe);
     // vector<tuple<string, int>> neededMaterials = get<2>(recipe);
 
     // Get all materialProduct from walikota
     map<string, int> materialProduct = this->getMaterialProduct();
 
     // Build the desired building
-    tuple<Sellable *, int, map<string, int>> result = Bangunan::build(namaBangunan, materialProduct, this->getGulden());
+    tuple<Sellable *, int, map<string, int>> result = Bangunan::build(namaBangunan, materialProduct);
 
     // If it ever reaches this point, the building is successfully built, because else it will throw exception
 
     // Add the building to inventory
     Sellable *actualBuilding = get<0>(result);
-    int usedGulden = get<1>(result);
     map<string, int> usedMaterial = get<2>(result);
-
-    // change gulden
-
-    this->setGulden(this->getGulden() - usedGulden);
 
     // remove material from inventory
     int i = 0;
