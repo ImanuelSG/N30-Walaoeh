@@ -27,11 +27,11 @@ void testPeternak() {
     // Assuming player's inventory has items with a total value of 300
     assert(player.getKekayaan() == 200);
 
-    // GameWorld world;
-    // world.initializeConfigs();
+    GameWorld world;
+    world.initializeConfigs();
     Tanaman iron(2, "IRN", "IRONWOOD_TREE", "MATERIAL_PLANT", 4, 5, 5);
     Hewan sapi(3, "COW", "SAPI", "HERBIVORE", 5, 4, 3);
-    Hewan ayam(1, "CHK", "AYAM", "OMNIVORE", 4, 5, 5);
+    Hewan *ayam = new Hewan(1, "CHK", "CHICKEN", "OMNIVORE", 4, 5, 5);
     Hewan ular(2, "SNK", "ULAR", "CARNIVORE", 3, 5, 5);
     // 01nMaterial material(3,"IRN","IRON","PRODUK_TANAMAN_MATERIAL","IRONWOOD_TREE",0,1);
 
@@ -41,7 +41,7 @@ void testPeternak() {
     Sellable *food4 = new ProdukTanamanBuah (2,"BNN","BANANA","PRODUK_TANAMAN_BUAH","BANANA_TREE",1,1);
     Sellable *falseFood = new ProdukTanamanMaterial (3,"IRN","IRON","PRODUK_TANAMAN_MATERIAL","IRONWOOD_TREE",0,1);
     player.inventory.insert(3,4,sapi);
-    player.inventory.insert(0,0,ayam);
+    player.inventory.insert(0,0,*ayam);
     player.inventory.insert(1,1,ular);
     player.inventory.insert(1,2,iron);
     player.inventory.insert(0,1,*food);
@@ -57,16 +57,16 @@ void testPeternak() {
     player.ternak();
     
     player.cetakPeternakan();
-    // player.kasihMakan();
+    player.kasihMakan();
     // player.kasihMakan();
 
-    player.cetakPeternakan();
+    player.cetakPenyimpanan();
     // Test panen
-    // player.displayInfo();
+    player.displayInfo();
     // cout << endl;
-    // player.panen();
-    // player.cetakPenyimpanan();
-    // player.cetakLadang();
+    player.panen();
+    player.cetakPenyimpanan();
+    player.cetakPeternakan();
     // cout << endl;
 
     player.displayInfo();

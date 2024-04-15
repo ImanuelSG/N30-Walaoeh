@@ -373,24 +373,15 @@ void Peternak::panen()
 
                     Hewan *hewan = peternakan.getElementAddress(row, col);
 
-                    if (hewan->isOmnivore())
+                    vector<Sellable*> vectorProdukHewan;
+                    *hewan >> vectorProdukHewan;
+
+                    for (auto element: vectorProdukHewan)
                     {
-                        Sellable *item = ProdukHewan::tambahProdukHewanOmnivoraDaging(*hewan);
-                        Sellable *item2 = ProdukHewan::tambahProdukHewanOmnivoraTelur(*hewan);
-                        inventory + *item;
-                        inventory + *item2;
-                    }
-                    else if (hewan->isCarnivore())
-                    {
-                        Sellable *item = ProdukHewan::tambahProdukHewanKarnivora(*hewan);
-                        inventory + *item;
-                    }
-                    else if (hewan->isHerbivore())
-                    {
-                        Sellable *item = ProdukHewan::tambahProdukHewanHerbivora(*hewan);
-                        inventory + *item;
+                        inventory + *element;
                     }
 
+                    delete hewan;
                     peternakan.deleteAt(row, col);
                 }
 

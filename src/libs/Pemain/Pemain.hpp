@@ -19,9 +19,9 @@ protected:
     string name;
     int gulden;
     int berat;
+    Storage<Sellable> inventory;
 
 public:
-    Storage<Sellable> inventory;
     Pemain(string name, int gulden, int berat);
     ~Pemain();
     /**
