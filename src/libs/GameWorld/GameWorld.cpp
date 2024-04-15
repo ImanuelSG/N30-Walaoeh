@@ -299,17 +299,20 @@ void GameWorld::loadGameState()
         cout << "Masukkan lokasi berkas state: ";
 
         cin >> path;
-
-        ifstream testFile(path);
-        if (!testFile.is_open())
+        if (filesystem::is_directory(path))
         {
-            cout << "File tidak ditemukan, silahkan coba lagi" << endl;
+            cout << "Path yang diberikan bukan file, silahkan coba lagi" << endl;
+        } else {
+            ifstream testFile(path);
+            if (!testFile.is_open())
+            {
+                cout << "File tidak ditemukan, silahkan coba lagi" << endl;
+            }
+            else
+            {
+                valid = true;
+            }
         }
-        else
-        {
-            valid = true;
-        }
-
     } while (!valid);
 
     ifstream inputFile(path);
