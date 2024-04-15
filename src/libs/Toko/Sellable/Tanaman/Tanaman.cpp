@@ -92,25 +92,6 @@ void Tanaman::setAge(int age)
     this->age = age;
 }
 
-Tanaman Tanaman::tambahTanaman()
-{
-    int id;
-    string kode, nama, tipe;
-    int umur, durasi, harga;
-
-    cout << "Masukkan ID, Kode, Nama, Tipe, Umur, Durasi, Harga: ";
-    cin >> id;
-    cin >> kode;
-    cin >> nama;
-    cin >> tipe;
-    cin >> umur;
-    cin >> durasi;
-    cin >> harga;
-
-    Tanaman tanaman(id, kode, nama, tipe, umur, durasi, harga);
-    return tanaman;
-}
-
 Tanaman Tanaman::tambahTanamanConfig(ifstream &file)
 {
     int id, umur, durasi, harga;
@@ -126,6 +107,21 @@ Tanaman Tanaman::tambahTanamanConfig(ifstream &file)
 void Tanaman::tambahUmurTanaman(int age)
 {
     this->age += age;
+}
+
+void Tanaman::operator>>(Sellable*& produkTanamanBaru)
+{
+    vector<tuple<int, string, string, string, int, int>> produk_buah_vektor = Produk::productOriginMap[getNamaBarang()];
+
+    if (isBuah())
+    {
+        produkTanamanBaru = new ProdukTanamanBuah(get<0>(produk_buah_vektor[0]), get<1>(produk_buah_vektor[0]), get<2>(produk_buah_vektor[0]), get<3>(produk_buah_vektor[0]), getNamaBarang(), get<4>(produk_buah_vektor[0]), get<5>(produk_buah_vektor[0]));
+    }
+    else
+    {
+        produkTanamanBaru = new ProdukTanamanMaterial(get<0>(produk_buah_vektor[0]), get<1>(produk_buah_vektor[0]), get<2>(produk_buah_vektor[0]), get<3>(produk_buah_vektor[0]), getNamaBarang(), get<4>(produk_buah_vektor[0]), get<5>(produk_buah_vektor[0]));
+    }
+    return;
 }
 
 // boolean

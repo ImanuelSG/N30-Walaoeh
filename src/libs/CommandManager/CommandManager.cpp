@@ -43,6 +43,7 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
                     int randomNumber = rand() % 13 + 1;
                     if (randomNumber == 4 || randomNumber == 9 || randomNumber == 13)
                     {
+                        
                         player->azab();
                         count += 1;
                     }
@@ -272,7 +273,6 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
         cout << e.what() << endl;
         return -2;
     }
-
 }
 
 void CommandManager::setIsTakingTurn(bool isTakingTurn)

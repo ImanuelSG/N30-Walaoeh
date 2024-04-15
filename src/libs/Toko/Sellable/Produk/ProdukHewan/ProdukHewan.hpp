@@ -2,7 +2,6 @@
 #define PRODUK_HEWAN_HPP
 
 #include "../Produk.hpp"
-#include "../../Hewan/Hewan.hpp"
 
 // #include "../Sellable/Sellable.cpp"
 
@@ -48,12 +47,6 @@ public:
     Chicken -> 1 Chicken Meat & 1 Chicken Egg
     Duck -> 1 Duck Meat & 1 Duck Egg
     */
-
-    // Konversi hewan menjadi produk (hewan) kalau weight sudah mencapai weight_to_harvest
-    static Sellable* tambahProdukHewanHerbivora(Hewan &hewan);
-    static Sellable* tambahProdukHewanKarnivora(Hewan &hewan);
-    static Sellable* tambahProdukHewanOmnivoraDaging(Hewan &hewan);
-    static Sellable* tambahProdukHewanOmnivoraTelur(Hewan &hewan);
 
     bool isEdible() override;
 };

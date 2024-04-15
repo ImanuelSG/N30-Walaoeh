@@ -18,7 +18,7 @@ Hewan::Hewan(int id, string kode, string nama_hewan, string tipe, int weight, in
 {
     this->id_hewan = id;
     this->tipe_hewan = tipe;
-    this->weight = 0;
+    this->weight = weight;
     this->weight_to_harvest = weight_to_harvest;
 }
 
@@ -116,6 +116,19 @@ Hewan Hewan::tambahHewanConfig(ifstream &file)
 void Hewan::tambahWeightHewan(int weight)
 {
     this->weight += weight;
+}
+
+void Hewan::operator>>(vector<Sellable*>& vectorProdukHewan)
+{
+    vector<tuple<int, string, string, string, int, int>> produkBaruVektor = Produk::productOriginMap[getNamaBarang()];
+
+    for (int i = 0; i < produkBaruVektor.size(); i++)
+    {
+        Sellable* produkHewanBaru = new ProdukHewan(get<0>(produkBaruVektor[i]), get<1>(produkBaruVektor[i]), get<2>(produkBaruVektor[i]), get<3>(produkBaruVektor[i]), getNamaBarang(), get<4>(produkBaruVektor[i]), get<5>(produkBaruVektor[i]));
+        
+        vectorProdukHewan.push_back(produkHewanBaru);
+    }
+    return;
 }
 
 // boolean

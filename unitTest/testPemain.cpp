@@ -25,7 +25,7 @@ void testPemain() {
     ProdukHewan ayam(1, "COM", "Cow Meat", "PRODUK_HEWAN", "Cow", 10, 10);
     player.inventory.insert(0,0,ayam);
     ProdukHewan babi(2, "PIM", "Pig Meat", "PRODUK_HEWAN", "Pig", 10, 10);
-    player.inventory.insert(babi);
+    player.inventory + babi;
     player.cetakPenyimpanan();
 
     // Test makan method

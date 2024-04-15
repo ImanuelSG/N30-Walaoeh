@@ -33,6 +33,7 @@ public:
     tuple<Sellable *, int> Beli(int choice, string role, int currentGulden, int quantity);
     int Jual(vector<Sellable *> soldItems, string role);
     void MuatStateToko(ifstream& inputFile);
+    void SimpanStateToko(ofstream& outputFile);
 };
 
 #endif

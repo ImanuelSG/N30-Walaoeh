@@ -10,6 +10,7 @@ private:
     static int ladang_m;
     static int ladang_n;
     Storage<Tanaman> ladang;
+    int countTanamanInventory();
 
 public:
     Petani(string name, int gulden, int berat);
@@ -18,12 +19,12 @@ public:
     void panen();
     void cetakLadang();
     void addPlantAge();
-    int countTanamanInventory();
     int getKekayaan();
     int getKKP();
     string getRole() const;
 
     void setLadang(const Storage<Tanaman> &storage);
+    Storage<Tanaman> getLadang();
 
     static int getUkuranLadangN();
     static int getUkuranLadangM();

@@ -2,7 +2,6 @@
 #define PRODUCT_TANAMAN_MATERIAL_HPP
 
 #include "../Produk.hpp"
-#include "../../Tanaman/Tanaman.hpp"
 
 /*<ID> <KODE_HURUF> <NAME> <TYPE> <ORIGIN> <ADDED_WEIGHT> <PRICE>*/
 class ProdukTanamanMaterial : public Produk
@@ -29,9 +28,6 @@ public:
     /* Methods */
     // getter
     string getJenis();
-
-    // Konversi tanaman menjadi produk (material) kalau weight sudah mencapai weight_to_harvest
-    static Sellable* tambahProdukTanamanMaterial(Tanaman &tanaman);
 };
 
 #endif

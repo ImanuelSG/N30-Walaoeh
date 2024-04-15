@@ -203,8 +203,89 @@ void GameWorld::initializeDefaultGame()
 
 void GameWorld::saveGameState()
 {
+    // todo: prompt and validate 
+    string path;
+    bool valid = false;
+    int playerCount;
+
+    do
+    {
+
+        cout << "Masukkan lokasi berkas state : ";
+
+        cin >> path;
+
+        ofstream testFile(path);
+        if (!testFile.is_open())
+        {
+            cout << "Lokasi berkas tidak valid" << endl;
+        }
+        else
+        {
+            valid = true;
+        }
+
+    } while (!valid);
+
+    ofstream outputFile(path);
+
+    // write player info
+    outputFile << listOfPLayers.size() << endl;
+    for (const auto& player : listOfPLayers)
+    {
+        outputFile << player->getName() << " " << player->getRole() << " " << player->getBerat() << " " << player->getGulden() << endl;
+
+        // write player inventory info
+        outputFile << player->inventory.getNeff() << endl;
+        for (int i = 0; i < player->inventory.getRow(); i++)
+        {
+            for (int j = 0; j < player->inventory.getCol(); j++)
+            {
+                if (player->inventory.getElementAddress(i, j) != nullptr)
+                {
+                    outputFile << (player->inventory.getElementAddress(i, j)->getNamaBarang()) << endl;
+                }
+            }
+        }
+        
+        // write specific data for each player role
+        if (player->getRole() == "Peternak")
+        {
+            outputFile << player->getPeternakan().getNeff() << endl;
+            for (int i = 0; i < player->getPeternakan().getRow(); i++)
+            {
+                for (int j = 0; j < player->getPeternakan().getCol(); j++)
+                {
+                    if (player->getPeternakan().getElementAddress(i, j) != nullptr)
+                    {
+                        outputFile << rowColToPetak(i, j) << " " << player->getPeternakan().getElementAddress(i, j)->getNamaBarang() << " " << player->getPeternakan().getElementAddress(i, j)->getWeight() << endl;
+                    }
+                }
+            }
+        }
+        else if (player->getRole() == "Petani")
+        {
+            outputFile << player->getLadang().getNeff() << endl;
+            for (int i = 0; i < player->getLadang().getRow(); i++)
+            {
+                for (int j = 0; j < player->getLadang().getCol(); j++)
+                {
+                    if (player->getLadang().getElementAddress(i, j) != nullptr)
+                    {
+                        outputFile << rowColToPetak(i, j) << " " << player->getLadang().getElementAddress(i, j)->getNamaBarang() << " " << player->getLadang().getElementAddress(i, j)->getAge() << endl;
+                    }
+                }
+            }
+        }
+    }
+
+    toko.SimpanStateToko(outputFile);
+
+    outputFile.close();
+
     cout << GREEN << "Game State Saved!" << RESET << endl;
 }
+
 
 void GameWorld::loadGameState()
 {
@@ -302,7 +383,7 @@ void GameWorld::loadGameState()
                 item = new Tanaman(get<0>(tanaman_item_tuple), get<1>(tanaman_item_tuple), itemName, get<2>(tanaman_item_tuple), 0, get<3>(tanaman_item_tuple), get<4>(tanaman_item_tuple));
             }
 
-            inventory.insert(*item);
+            inventory + *item;
 
             // todo : insert item into player's inventory
         }
@@ -345,13 +426,15 @@ void GameWorld::loadGameState()
             {
                 Tanaman *tanaman = nullptr;
                 string petak, plantName;
-                int weight;
+                int weight, row, col;
                 inputFile >> petak >> plantName >> weight;
 
                 tuple<int, string, string, int, int> tanaman_item_tuple = Tanaman::plantMap[plantName];
                 tanaman = new Tanaman(get<0>(tanaman_item_tuple), get<1>(tanaman_item_tuple), plantName, get<2>(tanaman_item_tuple), weight, get<3>(tanaman_item_tuple), get<4>(tanaman_item_tuple));
 
-                field.insert(*tanaman);
+                row = getRowStorage(petak);
+                col = getColStorage(petak[0]);
+                field.insert(row, col, *tanaman);
             }
             player->setLadang(field);
         }

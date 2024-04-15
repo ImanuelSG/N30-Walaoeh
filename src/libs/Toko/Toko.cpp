@@ -101,6 +101,28 @@ void Toko::MuatStateToko(ifstream &inputFile)
     }
 }
 
+void Toko::SimpanStateToko(ofstream& outputFile) {
+    int nonLivingProducts = 0;
+    for (const auto& item : items) {
+        if (item.second != -1) {
+            nonLivingProducts++;
+        }
+    }
+
+    outputFile << (nonLivingProducts + list_bangunan.size()) << endl;
+
+    for (const auto& item : items) {
+        if (item.second != -1) {
+            outputFile << item.first->getNamaBarang() << " " << item.second << endl;
+        }
+    }
+
+    for (const auto& bangunan : list_bangunan) {
+        outputFile << bangunan.first->getNamaBarang() << " " << bangunan.second << endl;
+    }
+}
+
+
 // Display all buyable items
 
 void Toko::displayAllBuyableItem(string role)

@@ -3,6 +3,7 @@
 
 #include "../Sellable.hpp"
 #include "../../../Exception/Exception.hpp"
+#include "../Produk/ProdukHewan/ProdukHewan.hpp"
 #include <vector>
 #include <map>
 #include <string>
@@ -55,6 +56,8 @@ public:
     static Hewan tambahHewanConfig(ifstream &file);
 
     void tambahWeightHewan(int weight);
+    // Konversi hewan menjadi produk (hewan) kalau weight sudah mencapai weight_to_harvest
+    void operator>>(vector<Sellable*>& vectorProdukHewan);
 
     // boolean
     bool isCarnivore();
