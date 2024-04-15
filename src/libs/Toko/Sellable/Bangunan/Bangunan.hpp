@@ -53,7 +53,7 @@ public:
 
     static void displayAllRecipe();
     static bool isValidRecipe(string name);
-    static tuple<Sellable *, int, map<string, int>> build(string name, map<string, int> material, int gulden);
+    static tuple<Sellable *, int, map<string, int>> build(string name, map<string, int> material);
     // load config to list_of_bangunan
     static void loadBangunanConfig(string path);
 };

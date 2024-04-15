@@ -81,17 +81,16 @@ void Bangunan::displayAllRecipe()
 
     cout << "Resep bangunan yang ada adalah sebagai berikut." << endl;
 
-    // Example tuple with entry.first = "SMALL_HOUSE"  is <SMH,50, vector<<TEAK_WOOD,1>,<SANDAL_WOOD,1>>
+    // Example tuple with entry.first = "SMALL_HOUSE"  is <SMH, vector<<TEAK_WOOD,1>,<SANDAL_WOOD,1>>
     for (const auto &entry : list_of_bangunan)
     {
-        cout << "    " << index << ". " << entry.first << "(" << get<1>(entry.second) << " gulden"
-             << ",";
+        cout << "    " << index << ". " << entry.first << "(";
 
         // Iterate through all materials
         const auto &materials = get<2>(entry.second);
         for (auto material = materials.begin(); material != materials.end(); material++)
         {
-            cout << " " << material->first << " " << material->second;
+            cout << material->first << " " << material->second;
 
             // Display comma except the last material
             if (material != prev(materials.end()))
@@ -137,18 +136,16 @@ void Bangunan::loadBangunanConfig(string path)
     inputFile.close();
 }
 
-tuple<Sellable *, int, map<string, int>> Bangunan::build(string name, map<string, int> materials, int gulden)
+tuple<Sellable *, int, map<string, int>> Bangunan::build(string name, map<string, int> materials)
 {
     tuple<string, int, map<string, int>, int> data = list_of_bangunan.find(name)->second;
-    // Get the gulden
-    int neededGulden = get<1>(data);
     // Get the materials
     map<string, int> neededMaterials = get<2>(data);
     int id = get<3>(data);
     map<string, int> remainingNeededMaterials;
 
     // Check if player has enough money (diffrence between needed and available)
-    int remainingNeededGulden = neededGulden - gulden;
+    // int remainingNeededGulden = neededGulden - gulden;
 
     for (auto &material : neededMaterials)
     {
@@ -166,14 +163,14 @@ tuple<Sellable *, int, map<string, int>> Bangunan::build(string name, map<string
         }
     }
     // Check if player has enough money and materials
-    if (remainingNeededGulden > 0 || !remainingNeededMaterials.empty())
+    if (!remainingNeededMaterials.empty())
     {
-        throw NotEnoughMaterialException(remainingNeededGulden, remainingNeededMaterials);
+        throw NotEnoughMaterialException(remainingNeededMaterials);
     }
     else
     {
         // Create the building
-        Sellable *building = new Bangunan(id, get<0>(data), name, neededGulden, neededMaterials);
-        return make_tuple(building, neededGulden, neededMaterials);
+        Sellable *building = new Bangunan(id, get<0>(data), name, get<1>(data), neededMaterials);
+        return make_tuple(building, get<1>(data), neededMaterials);
     }
 };
