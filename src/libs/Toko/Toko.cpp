@@ -101,27 +101,32 @@ void Toko::MuatStateToko(ifstream &inputFile)
     }
 }
 
-void Toko::SimpanStateToko(ofstream& outputFile) {
+void Toko::SimpanStateToko(ofstream &outputFile)
+{
     int nonLivingProducts = 0;
-    for (const auto& item : items) {
-        if (item.second != -1) {
+    for (const auto &item : items)
+    {
+        if (item.second != -1)
+        {
             nonLivingProducts++;
         }
     }
 
     outputFile << (nonLivingProducts + list_bangunan.size()) << endl;
 
-    for (const auto& item : items) {
-        if (item.second != -1) {
+    for (const auto &item : items)
+    {
+        if (item.second != -1)
+        {
             outputFile << item.first->getNamaBarang() << " " << item.second << endl;
         }
     }
 
-    for (const auto& bangunan : list_bangunan) {
+    for (const auto &bangunan : list_bangunan)
+    {
         outputFile << bangunan.first->getNamaBarang() << " " << bangunan.second << endl;
     }
 }
-
 
 // Display all buyable items
 
@@ -252,7 +257,7 @@ int Toko::Jual(vector<Sellable *> soldItems, string role)
                 if (!found)
                 // if not, add the item to the list
                 {
-                    items.push_back(make_pair(item, 1));
+                    items.push_back(make_pair(item->Clone(), 1));
                 }
             }
             else
@@ -264,7 +269,7 @@ int Toko::Jual(vector<Sellable *> soldItems, string role)
                 {
 
                     // if building exsist, increase the stock
-                    if (it.first->getNamaBarang() == item->getNamaBarang())
+                    if (*(it.first) == *item)
                     {
                         it.second++;
                         found = true;
@@ -274,7 +279,7 @@ int Toko::Jual(vector<Sellable *> soldItems, string role)
                 // if not, add the item to the list
                 if (!found)
                 {
-                    list_bangunan.push_back(make_pair(item, 1));
+                    list_bangunan.push_back(make_pair(item->Clone(), 1));
                 }
             }
         }
