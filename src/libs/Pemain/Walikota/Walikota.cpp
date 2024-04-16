@@ -9,7 +9,8 @@ Walikota::~Walikota()
 }
 
 void Walikota::pungutPajak(const vector<Pemain *> &listpemain)
-{   cout << GREEN;
+{
+    cout << GREEN;
     cout << "Cring cring cring..." << endl;
     cout << "Pajak sudah dipungut!" << endl;
     cout << RESET << endl;
@@ -77,7 +78,7 @@ int Walikota::tambahPemain(vector<Pemain *> &pemain)
             {
                 if (toLowercase(pemain->getName()) == toLowercase(namaPemain))
                 {
-                    cout  << RED << "Nama pemain sudah ada, silahkan coba nama yang lain!" << RESET  << endl;
+                    cout << RED << "Nama pemain sudah ada, silahkan coba nama yang lain!" << RESET << endl;
                     namaPemain = "";
                 }
             }
@@ -179,25 +180,34 @@ void Walikota::bangunBangunan()
         int j = 0;
         while (j < inventory.getCol() && !usedMaterial.empty())
         {
-            string name = inventory.getElementAddress(i, j)->getNamaBarang();
-            if (usedMaterial.find(name) != usedMaterial.end())
+            // If it is null, dont even bother checking
+            if (inventory.getElementAddress(i, j) == nullptr)
             {
-                usedMaterial[name]--;
-                if (usedMaterial[name] == 0)
-                {
-                    usedMaterial.erase(name);
-                }
-                Sellable &item = inventory.deleteAt(i, j);
-                delete &item;
+                j++;
+                continue;
             }
-            j++;
+            else
+            {
+                string name = inventory.getElementAddress(i, j)->getNamaBarang();
+                if (usedMaterial.find(name) != usedMaterial.end())
+                {
+                    usedMaterial[name]--;
+                    if (usedMaterial[name] == 0)
+                    {
+                        usedMaterial.erase(name);
+                    }
+                    Sellable &item = inventory.deleteAt(i, j);
+                    delete &item;
+                }
+                j++;
+            }
         }
         i++;
     }
 
     // Add actual building to inventory
     inventory + *actualBuilding;
-    cout << YELLOW << namaBangunan << RESET << GREEN <<" berhasil dibangun dan telah menjadi hak miliki walikota!" << RESET << endl;
+    cout << YELLOW << namaBangunan << RESET << GREEN << " berhasil dibangun dan telah menjadi hak miliki walikota!" << RESET << endl;
 }
 
 string Walikota::getRole() const
@@ -245,16 +255,17 @@ map<string, int> Walikota::getMaterialProduct()
 void Walikota::azab()
 {
     if (gulden != 0)
-    {  
-        this->gulden = (int) (gulden * 0.67);
+    {
+        this->gulden = (int)(gulden * 0.67);
         cout << endl;
-        cout << BOLD << "NAKAL KAMU "<< CYAN << name << RESET << MAGENTA << endl;
+        cout << BOLD << "NAKAL KAMU " << CYAN << name << RESET << MAGENTA << endl;
         cout << "Wakwaw dewa siwa marah!!! Kamu terciduk KPK (っ °Д °;)っ" << endl;
-        cout << "Karena koneksimu sebagai walikota banyak, guldenmu hanya berkurang" << BOLD << " 1/3 "  << RESET << MAGENTA "dari total keseluruhan" << RESET << endl;
+        cout << "Karena koneksimu sebagai walikota banyak, guldenmu hanya berkurang" << BOLD << " 1/3 " << RESET << MAGENTA "dari total keseluruhan" << RESET << endl;
     }
     else
     {
         cout << endl;
-        cout << YELLOW << "Tadinya " << BOLD << name << RESET << YELLOW << " membuat dewa siwa marah!!,\nnamun karena " << name << " tidak memiliki gulden lagi dewa siwa kasian ○( ＾皿＾)っ Hehehe…\n" << name << " tidak terkena apa apa" << RESET << endl;
+        cout << YELLOW << "Tadinya " << BOLD << name << RESET << YELLOW << " membuat dewa siwa marah!!,\nnamun karena " << name << " tidak memiliki gulden lagi dewa siwa kasian ○( ＾皿＾)っ Hehehe…\n"
+             << name << " tidak terkena apa apa" << RESET << endl;
     }
 }

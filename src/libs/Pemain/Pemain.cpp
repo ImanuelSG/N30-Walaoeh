@@ -227,6 +227,11 @@ void Pemain::panen()
 
 void Pemain::beli(Toko &toko)
 {
+
+    if (inventory.countEmptySlot() == 0)
+    {
+        throw InventoryFullException();
+    }
     // Display all buyable for a certain role
     toko.displayAllBuyableItem(getRole());
     cout << endl;
@@ -234,7 +239,7 @@ void Pemain::beli(Toko &toko)
     cout << "Uang Anda : " << CYAN << getGulden() << RESET << " gulden" << endl;
     cout << "Slot penyimpanan tersedia : " << CYAN << inventory.countEmptySlot() << RESET << endl;
 
-    // Get the input
+        // Get the input
     int num;
     do
     {
@@ -323,7 +328,7 @@ void Pemain::beli(Toko &toko)
         {
             int row = getRowStorage(pos);
             int col = getColStorage(pos[0]);
-            
+
             if (
                 row < 0 || row >= inventory.getRow() || col < 0 || col >= inventory.getCol())
             {
@@ -566,11 +571,13 @@ void Pemain::setLadang(const Storage<Tanaman> &storage)
     return;
 }
 
-Storage<Hewan> Pemain::getPeternakan() {
+Storage<Hewan> Pemain::getPeternakan()
+{
     return Storage<Hewan>(0, 0);
 }
 
-Storage<Tanaman> Pemain::getLadang() {
+Storage<Tanaman> Pemain::getLadang()
+{
     return Storage<Tanaman>(0, 0);
 }
 
