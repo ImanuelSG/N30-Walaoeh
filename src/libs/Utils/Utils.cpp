@@ -191,3 +191,14 @@ bool isEmpty(string s)
     }
     return true;
 }
+
+int getRandomNumber()
+{
+    random_device rd;
+    mt19937 gen(rd());
+    
+    // Random number from 1-13
+    uniform_int_distribution<int> distribution(1, 13);
+    return distribution(gen);
+}
+

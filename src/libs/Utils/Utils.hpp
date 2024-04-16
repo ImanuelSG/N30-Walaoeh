@@ -11,6 +11,8 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <random>
+
 using namespace std;
 
 // For Color Printing
@@ -25,10 +27,8 @@ using namespace std;
 #define CYAN    "\033[36m"
 
 bool isValidInput(string input);
-
 int getColStorage(char firstChar);
 int getRowStorage(string input);
-
 string getValidInputStorage(string order);
 string intToStringWithLeadingZero(int num);
 string toLowercase(const string &str);
@@ -37,7 +37,6 @@ void countdown(int seconds);
 string intToAlphabet(int n);
 void displayReadyPanen(map<string, tuple<vector<string>, int>> &readyItems);
 string rowColToPetak(int row, int col);
-
-// https://stackoverflow.com/questions/36499064/how-to-detect-empty-lines-while-reading-from-ifstream-in-c
 bool isEmpty(string buffer);
+int getRandomNumber();
 

@@ -41,7 +41,7 @@ int CommandManager::execute(string what, vector<Pemain *> &ListOfPlayers, int Cu
                 int count = 0;
                 for (auto player : ListOfPlayers)
                 {
-                    int randomNumber = rand() % 13 + 1;
+                    int randomNumber = getRandomNumber();
                     if (randomNumber == 4 || randomNumber == 9 || randomNumber == 13)
                     {
                         
