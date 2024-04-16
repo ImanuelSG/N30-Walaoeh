@@ -481,7 +481,7 @@ int Pemain::getUkuranInventoryN()
 
 void Pemain::displayInfo()
 {
-    cout << "(❁´◡`❁) Informasi Pemain: (❁´◡`❁) " << endl;
+    cout << CYAN << endl <<  "(❁´◡`❁) Informasi Pemain: (❁´◡`❁) " << RESET << endl;
 
     cout << "Nama: " << name << endl;
     cout << "Role: " << getRole() << endl;
@@ -581,7 +581,8 @@ Storage<Sellable> Pemain::getInventory()
 
 void Pemain::rezeki()
 {
-    cout << CYAN << "Wah, kamu berhasil lari dari amarah dewa siwa!!" << endl
+    cout << endl;
+    cout << CYAN << "Wah, " << BOLD << name << RESET << CYAN << " berhasil lari dari amarah dewa siwa!!" << endl
          << "Dewa siwa sedang baik hati nich (～￣▽￣)～(～￣▽￣)～" << RESET << endl;
     int tambahan = (int)(0.1 * gulden);
     cout << name << " mendapatkan tambahan uang sebanyak " << CYAN << tambahan << RESET << " gulden $$$" << endl;
