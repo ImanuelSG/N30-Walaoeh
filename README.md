@@ -91,30 +91,9 @@ Programming Language (version): `C++ Programming Language`
 |
 ├── test
 │ ├── Input
-│ | ├── animal.txt
-│ | ├── misc.txt
-│ | ├── plant.txt
-│ | ├── product.txt
-│ | ├── recipe.txt
-│ | └── statein.txt
-| |
 | └── Ouput
-│ ├── hoho.txt
-| └── stateout.txt
 |
 ├── uniTest
-│ ├── testBangunan.cpp
-│ ├── testGameWorld.cpp
-│ ├── testHewan.cpp
-│ ├── testParser.cpp
-│ ├── testPemain.cpp
-│ ├── testPetani.cpp
-│ ├── testPeternak.cpp
-│ ├── testProdukHewan.cpp
-│ ├── testStorage.cpp
-│ ├── testTanaman.cpp
-│ ├── testToko.cpp
-| └── testWalikota.cpp
 |
 ├── Makefile
 |
